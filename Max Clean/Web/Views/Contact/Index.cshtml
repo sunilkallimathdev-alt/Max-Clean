@@ -1,0 +1,328 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<section>
+    <div class="gp ls-gp">
+        <div class="fxd-bg" style="background: url(../images/parallax3.jpg);"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
+                    <div class="pg-tl txt-cntr">
+                        <h1 itemprop="headline">Contact Us</h1>
+                        <ul class="breadcrumbs">
+                            <li><a href="#" title="" itemprop="url">Optimize</a></li>
+                            <li class="active">Contact Us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="gp gry-bg3">
+        <div class="container">
+            <div class="txt-cntr">
+                <h2 itemprop="headline">Get In Touch With Us</h2>
+            </div>
+            <div id="contact" class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4 my-5">
+                    <div class="card border-0">
+                        <div class="card-body text-center">
+                            <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
+                            <h4 class="text-uppercase mb-5">call us</h4>
+                            <p>+8801683615582,+8801750603409</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 my-5">
+                    <div class="card border-0">
+                        <div class="card-body text-center">
+                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
+                            <h4 class="text-uppercase mb-5">office location</h4>
+                            <address>Suite 02, Level 12, Sahera Tropical Center </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 my-5">
+                    <div class="card border-0">
+                        <div class="card-body text-center">
+                            <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
+                            <h4 class="text-uppercase mb-5">email</h4>
+                            <p><a href="">http://al.a.noman1416@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contact" class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 my-5">
+                    <div class="card border-0">
+                        <div class="card-body text-center">
+                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
+                            <h4 class="text-uppercase mb-5">office location</h4>
+                            <address>Suite 02, Level 12, Sahera Tropical Center </address>
+                            <div class="g-mp-wrp">
+                                <div class="g-mg1" id="g-mp"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 my-5">
+                    <div class="card border-0">
+                        <div class="card-body text-center">
+                            <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
+                            <h4 class="text-uppercase mb-5">office location</h4>
+                            <address>Suite 02, Level 12, Sahera Tropical Center </address>
+                            <div class="g-mp-wrp">
+                                <div class="g-mg1" id="g-mp"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
+                    <div class="cnt-wrp txt-cntr">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12 col-lg-4">
+                                    <input class="rd6" type="text" placeholder="Name*" id="name" />
+                                    <label style="color:red;display:none;" id="Lblname">Invalid Name</label>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-lg-4">
+                                    <input class="rd6" type="email" placeholder="Email*" id="Email"/>
+                                    <label style="color:red;display:none;" id="LblEmail">Invalid Email</label>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-lg-4">
+                                    <input class="rd6" type="text" maxlength="10" placeholder="Mobile number*" id="Mobile"/>
+                                    <label style="color:red;display:none;" id="LblMobile">Invalid Mobile</label>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                    <textarea class="rd6" placeholder="Message*" id="Message"></textarea>
+                                    <label style="color:red;display:none;" id="LblMessage">Invalid Message</label>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                    <button class="rd6" type="button" onclick="ValidateEnq()">Submit Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="gp nogp">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <div class="g-mp-wrp">
+                    <div class="g-mg" id="g-mp"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*For loading component*@
+<script src="~/CustomJS/OrderControles.js"></script>
+
+@*Model1*@
+<div class="container">
+    <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" style="padding-top:120px;">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="loader"></div>
+                    <div clas="loader-txt">
+                        <p id="SuccessFailure">Please wait while we check our service availability at your location. <br><br><small>Thanks for your patience.</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Model2*@.
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<div class="modal model1" id="loadMe1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="container mt-3" style="padding:15px;">
+                <br>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home">Express  Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu1">Standard Order</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div id="home" class="container tab-pane active">
+                        <br>
+                        <p>
+                            You could order for quick delivery within 3 Days.
+
+                            However you need to Place an order before 10:00 PM for next day or before 3 days delivery.
+
+                            50% will be charged from express Delivery.
+
+                            Order confirmation decision will be with Management team.
+
+                            You can make offlline orders
+
+                            Pick  up and Drop facility availble
+                        </p>
+
+                        <button type="button" class="btn btn-info" onclick="TakeUserToOrderPage()" data-dismiss="modal">Continue to Order</button><br /><br />
+
+
+                    </div>
+                    <div id="menu1" class="container tab-pane fade">
+                        <br>
+                        <p>
+                            You could order for Standard delivery which takes 3 Days from date of Order at standad Price
+
+                            Order confirmation decision will be with Management team.
+
+                            You can make offline orders
+
+                            Pick  up and Drop facility availble
+                        </p>
+
+                        <button type="button" class="btn btn-info" onclick="TakeUserToOrderPage()" data-dismiss="modal">Continue to Order</button><br /><br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#Mobile").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+
+    });
+
+
+    function ValidateEnq()
+    {
+        var flag = true;
+
+        if (!$('#name').val()) {
+            $('#Lblname').show();
+            flag = false;
+        } else {
+            $('#Lblname').hide();
+        }
+        if (!$('#Email').val()) {
+            $('#LblEmail').show();
+            flag = false;
+        } else {
+            $('#LblEmail').hide();
+        }
+
+        var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!filter.test($('#Email').val())) {
+            $('#LblEmail').show();
+            flag = false;
+        } else {
+            $('#LblEmail').hide();
+        }
+
+        if (!$('#Mobile').val()) {
+            $('#LblMobile').show();
+            flag = false;
+        } else {
+            $('#LblMobile').hide();
+        }
+
+        if ($('#Mobile').val()<999999999) {
+            $('#LblMobile').show();
+            flag = false;
+        } else {
+            $('#LblMobile').hide();
+        }
+
+        if (!$('#Message').val()) {
+            $('#LblMessage').show();
+            flag = false;
+        } else {
+            $('#LblMessage').hide();
+        }
+
+        if (flag) {
+            placeQuery();
+        }
+    }
+
+
+    function placeQuery() {
+        if (confirm("Are you sure you want to submit this query?")) {
+            var data = {
+                "ContactName": $('#name').val(),
+                "EmailID": $('#Email').val(),
+                "MobileNumber": $('#Mobile').val(),
+                "Subject": "Enquery",
+                "Query": $('#Message').val()
+            };
+            var parameters = JSON.stringify(data);
+            $.ajax({
+                type: "POST",
+                url: '/Contact/Enquiry',
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    if (response.StatusCode == 200) {
+                        alert("Successfully submitted your query. Thank you.");
+
+                    } else {
+                        alert("failed to submit your query. Please try again later.");
+                    }
+
+
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                    alert("failed to submit your query. Please try again later.");
+
+                }
+            });
+        }
+
+    }
+
+</Script>
+
+

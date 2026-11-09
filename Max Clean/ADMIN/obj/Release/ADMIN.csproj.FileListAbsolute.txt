@@ -1,0 +1,132 @@
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\ApplicationInsights.config
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\ADMIN.dll.config
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\ADMIN.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\ADMIN.pdb
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\API.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\API.pdb
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\API.dll.config
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\obj\Release\ADMIN.csprojResolveAssemblyReference.cache
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\obj\Release\ADMIN.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\obj\Release\ADMIN.pdb
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\Microsoft.ReportViewer.Common.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\Microsoft.ReportViewer.WebForms.DLL
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\MySql.Data.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\ADMIN\bin\MySql.Data.xml
+G:\MMT New TFS\Max Clean\ADMIN\bin\ApplicationInsights.config
+G:\MMT New TFS\Max Clean\ADMIN\bin\ADMIN.dll.config
+G:\MMT New TFS\Max Clean\ADMIN\bin\ADMIN.dll
+G:\MMT New TFS\Max Clean\ADMIN\bin\ADMIN.pdb
+G:\MMT New TFS\Max Clean\ADMIN\bin\API.dll
+G:\MMT New TFS\Max Clean\ADMIN\bin\Microsoft.ReportViewer.Common.dll
+G:\MMT New TFS\Max Clean\ADMIN\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+G:\MMT New TFS\Max Clean\ADMIN\bin\Microsoft.ReportViewer.WebForms.DLL
+G:\MMT New TFS\Max Clean\ADMIN\bin\MySql.Data.dll
+G:\MMT New TFS\Max Clean\ADMIN\bin\API.pdb
+G:\MMT New TFS\Max Clean\ADMIN\bin\API.dll.config
+G:\MMT New TFS\Max Clean\ADMIN\bin\MySql.Data.xml
+G:\MMT New TFS\Max Clean\ADMIN\obj\Release\ADMIN.csprojResolveAssemblyReference.cache
+G:\MMT New TFS\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+G:\MMT New TFS\Max Clean\ADMIN\obj\Release\ADMIN.dll
+G:\MMT New TFS\Max Clean\ADMIN\obj\Release\ADMIN.pdb
+G:\MMT New TFS\Max Clean\ADMIN\bin\System.Linq.Dynamic.dll
+E:\MAXCLEAN\Max Clean\ADMIN\bin\ApplicationInsights.config
+E:\MAXCLEAN\Max Clean\ADMIN\bin\ADMIN.dll.config
+E:\MAXCLEAN\Max Clean\ADMIN\bin\ADMIN.dll
+E:\MAXCLEAN\Max Clean\ADMIN\bin\ADMIN.pdb
+E:\MAXCLEAN\Max Clean\ADMIN\bin\API.dll
+E:\MAXCLEAN\Max Clean\ADMIN\bin\Microsoft.ReportViewer.Common.dll
+E:\MAXCLEAN\Max Clean\ADMIN\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+E:\MAXCLEAN\Max Clean\ADMIN\bin\Microsoft.ReportViewer.WebForms.DLL
+E:\MAXCLEAN\Max Clean\ADMIN\bin\MySql.Data.dll
+E:\MAXCLEAN\Max Clean\ADMIN\bin\System.Linq.Dynamic.dll
+E:\MAXCLEAN\Max Clean\ADMIN\bin\API.pdb
+E:\MAXCLEAN\Max Clean\ADMIN\bin\API.dll.config
+E:\MAXCLEAN\Max Clean\ADMIN\bin\MySql.Data.xml
+E:\MAXCLEAN\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+E:\MAXCLEAN\Max Clean\ADMIN\obj\Release\ADMIN.dll
+E:\MAXCLEAN\Max Clean\ADMIN\obj\Release\ADMIN.pdb
+E:\MAXCLEAN\Max Clean\ADMIN\obj\Release\ADMIN.csprojAssemblyReference.cache
+E:\MAXCLEAN\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CopyComplete
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ApplicationInsights.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ADMIN.dll.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ADMIN.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ADMIN.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\API.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\MySql.Data.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Linq.Dynamic.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Net.Http.Formatting.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\API.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\API.dll.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\MySql.Data.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Net.Http.Formatting.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.csprojAssemblyReference.cache
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CopyComplete
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.WebHost.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.WebHost.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.Cors.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Cors.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.Cors.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ApplicationInsights.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ADMIN.dll.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ADMIN.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\ADMIN.pdb
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\API.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\MySql.Data.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Linq.Dynamic.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Net.Http.Formatting.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.WebHost.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.Cors.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Cors.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\API.pdb
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\API.dll.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\MySql.Data.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Net.Http.Formatting.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.WebHost.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\bin\System.Web.Http.Cors.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.csprojAssemblyReference.cache
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CopyComplete
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\ADMIN\obj\Release\ADMIN.pdb
+F:\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.csprojAssemblyReference.cache
+F:\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\ApplicationInsights.config
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\ADMIN.dll.config
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\ADMIN.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\ADMIN.pdb
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\API.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\Microsoft.ReportViewer.Common.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\Microsoft.ReportViewer.WebForms.DLL
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Linq.Dynamic.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Net.Http.Formatting.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Http.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Http.WebHost.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Http.Cors.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Cors.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\API.pdb
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\API.dll.config
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Net.Http.Formatting.xml
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Http.xml
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Http.WebHost.xml
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\bin\System.Web.Http.Cors.xml
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.csprojAssemblyReference.cache
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CoreCompileInputs.cache
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.csproj.CopyComplete
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.dll
+F:\Mindmaps Work\Max Clean\Max Clean\ADMIN\obj\Release\ADMIN.pdb

@@ -1,0 +1,116 @@
+﻿@using API.Models;
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/WebMasterLogin.cshtml";
+    CustmoerOrders_Model order = (CustmoerOrders_Model)ViewBag.OrderDetail;
+    Customer_Model currentUser = (Customer_Model)Session["Users"];
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30">
+                <!--cart table-->
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 " style="float:left;">
+                        <address>
+                            <p>
+                                <strong>Customer Name:@currentUser.CustomerName </strong>
+                                <br>
+                                Delivery Address:@order.DeliveryAddress
+                            </p>
+                        </address>
+                    </div>
+                    <div class="col-lg-3 col-md-3col-sm-12 col-xs-12 ">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+                        <p>
+                            <em>Ordered Date: @order.ordereddate </em>
+                        </p>
+                        <p>
+                            <em>Order ID #: @order.OrderID</em>
+                        </p>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table_type_3  full_width r_corners wrapper shadow bg_light_color_1 m_bottom_30 t_align_l">
+                        <thead>
+                            <tr class="f_size_large" style="font-weight:bold;">
+                                <!--titles for td-->
+
+                                <th>Product</th>
+                                <th>Services</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Extra </th>
+                                <th>Total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (order != null)
+                            {
+                                foreach (CustmoerOrderDetails_Model ord in order.orderList)
+                                {
+                                    <tr>
+                                        <td>@ord.product</td>
+                                        <td> @ord.service</td>
+                                        <td> @ord.quantity </td>
+                                        <td>@(ord.subtotal / ord.quantity - ord.extraPrice)  </td>
+                                        <td>@ord.extraPrice</td>
+                                        <td>@ord.subtotal</td>
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td> </td>
+                                <td><h4></h4></td>
+                                <td>Old Balance Amount:</td>
+                                <td class="f_size_large fw_medium scheme_color">Rs. @order.balanceAmount</td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><h4></h4></td>
+                                <td>Reward Amount Applied: </td>
+                                <td class="f_size_large fw_medium scheme_color">Rs. @order.CustomerRewardPoints </td>
+                            </tr>
+                            <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><h4></h4></td>
+                                    <td>Paid Amount</td>
+                                    <td class="f_size_large fw_medium scheme_color"> Rs. @order.paid_amount</td>
+                                </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><h4></h4></td>
+                                <td>Grand Total:</td>
+                                <td class="f_size_large fw_medium scheme_color">Rs. @order.total</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!--tabs-->
+            </section>
+            <!--right column-->
+            <hr class="divider_type_3 m_bottom_15">
+            <div class="container">
+                <a href="/order/getMyOrders"><span class=" button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5 " style="float: left;">Back</a></span>
+            </div>
+        </div>
+
+    </div>
+</div>

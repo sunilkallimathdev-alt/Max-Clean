@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "OrderStatusDisplay";
+}
+
+@if (ViewBag.OrderID > 0)
+{
+<section>
+    <div class="col-md-12 howit-work main-block center-block" id="howitworks">
+        <h2>Order placement <span>Successful</span></h2>
+    </div>
+
+    <div class="container">
+        <div class="jumbotron" style="text-align:center;">
+            <img src="~/images/6-2-success.png" alt=" " class="img-responsive" style="margin:auto;width:100px;" />
+
+            <h1 class="display-3">Thank You!</h1>
+            <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup. Your order id is @ViewBag.OrderID</p>
+            <hr>
+           
+             <p class="lead">
+                <a class="btn btn-primary btn-sm" href="~/Home/Index" role="button">Continue to homepage</a>
+            </p>
+        </div>
+    </div>
+</section>
+}
+else
+{
+ <section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="container" style="border:2px #ddd solid;">
+            <br />
+
+            <br />
+            <h1 class="display-1"><i class="fa fa-times-circle-o"></i> </h1>
+            <h1 class="display-3">FAILED</h1>
+            <h4 class="lower-case">Sorry !! Order placement failed</h4>
+            <h4 class="lower-case">Please try again later.</h4>
+          
+            <br />
+            <br />
+            <div style="text-align:center;">
+                <p class="lead">
+                    <a class="btn btn-primary btn-sm" href="~/Home/Index" role="button">Continue to homepage</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+</section>
+}
+

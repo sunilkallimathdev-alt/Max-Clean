@@ -1,0 +1,404 @@
+﻿
+@{
+    ViewBag.Title = "Store";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formstore">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Store Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="StoreName" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Manager Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="ManagerName" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Mobile Number<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="MobileNumber" maxlength="10" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>EmailID<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="EmailID" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Store Code<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="Store_code" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" type="text" name="Address" maxlength="200" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        @*<div class="col-md-3">
+            <div class="form-group">
+                <label>City</label>
+                <input class="form-control" type="text" name="City" maxlength="100" onkeypress="return NotanHTML(event)">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>State</label>
+                <input class="form-control" type="text" name="State" maxlength="100" onkeypress="return NotanHTML(event)">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Country</label>
+                <input class="form-control" type="text" name="Country" maxlength="100" onkeypress="return NotanHTML(event)">
+            </div>
+        </div>*@
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input class="form-control" type="text" name="PinCode" maxlength="6" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Latitude @*<a href="http://www.mapcoordinates.net/en" target="_blank"><small style="color:#9c27b0">Get Latitude and Logitude.</small></a>*@</label>
+                                <input class="form-control" type="text" name="Latitude" maxlength="20" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Longitude</label>
+                                <input class="form-control" type="text" name="Longitude" maxlength="20" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Reach Out Radius<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="Radius" maxlength="20" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" onclick="ClearFields()" id="btnreset">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formstore').validate({
+            rules: {
+                StoreName: {
+                    required: true,
+                },
+                ManagerName: {
+                    required: true,
+                },
+                MobileNumber: {
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 15,
+                    required: true,
+                },
+                EmailID: {
+                    email: true,
+                    required: true,
+                },
+                Address: {
+                    required: false,
+                },
+                City: {
+                    required: false,
+                },
+                State: {
+                    required: false,
+                },
+                Country: {
+                    required: false,
+                },
+                PinCode: {
+                    required: false,
+                },
+                Latitude: {
+                    required: false,
+                },
+                Longitude: {
+                    required: false,
+                },
+                Radius: {
+                    required:false,
+                },
+                Store_code:{
+                    required: true,
+                }
+            }
+        });
+
+        var form = $("#formstore");
+        form.validate();
+
+        $(document).ready(function () { 
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.StoreName = $('[name="StoreName"]').val();
+                    myobj.MobileNumber = $('[name="MobileNumber"]').val();
+                    myobj.EmailID = $('[name="EmailID"]').val();
+                    myobj.ManagerName = $('[name="ManagerName"]').val();
+                    myobj.Address = $('[name="Address"]').val();
+                    myobj.City = $('[name="City"]').val();
+                    myobj.State = $('[name="State"]').val();
+                    myobj.Country = $('[name="Country"]').val();
+                    myobj.PinCode = $('[name="PinCode"]').val();
+                    myobj.Latitude = $('[name="Latitude"]').val();
+                    myobj.Longitude = $('[name="Longitude"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+                    myobj.Radius = $('[name="Radius"]').val();
+                    myobj.Store_code = $('[name="Store_code"]').val();
+                    $.post("@Url.Action("AddStore", "Store")", { ObjStore: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message);
+                    });
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.StoreID = $('[name="HDID"]').val();
+                    myobj.StoreName = $('[name="StoreName"]').val();
+                    myobj.ManagerName = $('[name="ManagerName"]').val();
+                    myobj.MobileNumber = $('[name="MobileNumber"]').val();
+                    myobj.EmailID = $('[name="EmailID"]').val();
+                    myobj.Address = $('[name="Address"]').val();
+                    myobj.City = $('[name="City"]').val();
+                    myobj.State = $('[name="State"]').val();
+                    myobj.Country = $('[name="Country"]').val();
+                    myobj.PinCode = $('[name="PinCode"]').val();
+                    myobj.Latitude = $('[name="Latitude"]').val();
+                    myobj.Longitude = $('[name="Longitude"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+                    myobj.Radius = $('[name="Radius"]').val();
+                    myobj.Store_code = $('[name="Store_code"]').val();
+                    $.post("@Url.Action("UpdateStore", "Store")", { ObjStore: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            BindTableData();
+                            $('#btnupdate').hide();
+                            ClearFields();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message);
+                    });
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+        });
+
+        function GetData(StoreID) {
+            $.get("@Url.Action("GetStore", "Store")", { StoreID: StoreID }, function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.StoreID);
+                    $('[name="StoreName"]').val(myobj.ObjectResult.StoreName);
+                    $('[name="ManagerName"]').val(myobj.ObjectResult.ManagerName);
+                    $('[name="MobileNumber"]').val(myobj.ObjectResult.MobileNumber);
+                    $('[name="EmailID"]').val(myobj.ObjectResult.EmailID);
+                    $('[name="Address"]').val(myobj.ObjectResult.Address);
+                    $('[name="City"]').val(myobj.ObjectResult.City);
+                    $('[name="State"]').val(myobj.ObjectResult.State);
+                    $('[name="Country"]').val(myobj.ObjectResult.Country);
+                    $('[name="PinCode"]').val(myobj.ObjectResult.PinCode);
+                    $('[name="Latitude"]').val(myobj.ObjectResult.Latitude);
+                    $('[name="Longitude"]').val(myobj.ObjectResult.Longitude);
+                    $('[name="Radius"]').val(myobj.ObjectResult.Radius);
+                    $('[name="Store_code"]').val(myobj.ObjectResult.Store_code);
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val("true");
+                    else
+                        $('[name="IsActive"]').val("false");
+                    $("#btnadd").hide();
+                    $('#btnupdate').show();
+                    OpenCard();
+                }
+            });
+        }
+
+        function DeleteStore(StoreID) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeleteStore", "Store")", { StoreID: StoreID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                });
+            }
+        }
+       function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="StoreName"]').val(null);
+           $('[name="ManagerName"]').val(null)
+            $('[name="MobileNumber"]').val(null);
+            $('[name="EmailID"]').val(null);
+            $('[name="Address"]').val(null);
+            $('[name="City"]').val(null);
+            $('[name="State"]').val(null);
+            $('[name="Country"]').val(null);
+            $('[name="PinCode"]').val(null);
+            $('[name="Latitude"]').val(null);
+           $('[name="Longitude"]').val(null);
+           $('[name="Store_code"]').val(null);
+            $('.error').html("");
+            $('[name="Radius"]').val(null);
+           $('[name="IsActive"]').val('true');
+           $("#btnadd").show();
+           $('#btnupdate').hide();
+        }
+
+
+        function BindTableData() {
+
+            $.get("@Url.Action("GetStoreList", "Store")", function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].StoreName);
+                row.push(myObject[i].Store_code);
+                row.push(myObject[i].ManagerName)
+                row.push("<a href=tel:" + myObject[i].MobileNumber + ">" + myObject[i].MobileNumber + "</a>");
+                row.push("<a href=mailto:" + myObject[i].EmailID + ">" + myObject[i].EmailID + "</a>");
+                row.push(myObject[i].Address);
+              
+                row.push(myObject[i].PinCode);
+                row.push(myObject[i].Radius);
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+                row.push('<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + myObject[i].StoreID + ')">Edit</button>');
+                row.push('<button type="button" class="btn btn-danger btn-sm delete" onclick="DeleteStore(' + myObject[i].StoreID + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Store Name" },
+                    { title: "Store Code" },
+                    { title: "Manager Name" },
+                    { title: "Mobile Number" },
+                    { title: "EmailID" },
+                    { title: "Address" },
+                    { title: "Pincode" },
+                    { title: "Reach Out Radius" },
+                    { title: "Status" },
+                    { title: " " },
+                    { title: " " }
+                ]
+            });
+            hideshowbuttons();
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }
+
+    </script>
+</section>
+
+
+
+

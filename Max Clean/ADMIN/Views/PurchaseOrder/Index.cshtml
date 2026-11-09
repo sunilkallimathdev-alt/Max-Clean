@@ -1,0 +1,358 @@
+﻿
+@{
+    ViewBag.Title = "Purchase Order";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+@{
+    var VendorsList = (List<API.Models.Vendor_Model>)ViewBag.VendorList;
+    var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+    var CategoryList = (List<API.Models.Category_Model>)ViewBag.CategoryList;
+}
+<section class="content">
+    <div class="container-fluid">
+        <form id="formvendor">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">Product</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="callout callout-success">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Category Name<span style="color:red">*</span></label>
+                                            <select class="form-control" name="CategoryID">
+                                                <option value="">---Select---</option>
+                                                @{
+                                                    foreach (var Cate in CategoryList)
+                                                    {
+                                                        <option value="@Cate.CategoryId">@Cate.CategoryName</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Product Name<span style="color:red">*</span></label>
+                                            <select class="form-control" name="ProductID">
+                                                <option value="">---Select---</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Price (<span style="color:red">per Kg</span>)<span style="color:red">*</span></label>
+                                            <input class="form-control" type="text" name="PricePerKG" maxlength="20" onkeypress="return IsNumeric(event)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Requesting Quantities (<span style="color:red">In Kg</span>)<span style="color:red">*</span></label>
+                                            <input class="form-control" type="text" name="RequestedQuantity" maxlength="50" onkeypress="return IsNumeric(event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-success" id="btncartadd">Add to cart</button>
+                                    <button type="button" class="btn btn-danger" onclick="ClearFields();" id="btnreset">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Cart Details</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Place Order</h3>
+        </div>
+        <div class="card-body">
+            <div class="callout callout-danger">
+                <form id="formplaceorder">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Vendor Name<span style="color:red">*</span></label>
+                                <select class="form-control" name="VendorID">
+                                    <option value="">---Select---</option>
+                                    @{
+                                        foreach (var vendor in VendorsList)
+                                        {
+                                            <option value="@vendor.VendorID">@vendor.VendorName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Store Name<span style="color:red">*</span></label>
+                                <select class="form-control" name="StoreID">
+                                    <option value="">---Select---</option>
+                                    @{
+                                        foreach (var store in StoreList)
+                                        {
+                                            <option value="@store.StoreID">@store.StoreName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Expecting Delivery On<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="ExpectingDeliveryDate" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Remark</label>
+                    <textarea class="form-control" type="text" name="Remark"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h4 style="float:left">Grand Total: <label id="lblgrandtotal">0.00</label></h4>
+                <button type="button" class="btn btn-danger" onclick="ClearFields();" id="btnreset" style="float:right">Cancel</button>
+                <button type="button" class="btn btn-success" id="btnplaceorder" style="float:right">Place Order</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+        var TableData=[];
+        var DataToSave=[];
+
+        $('#formvendor').validate({
+            rules: {
+                CategoryID: {
+                    required: true,
+                },
+                ProductID: {
+                    required: true,
+                },
+                RequestedQuantity: {
+                    digits: true,
+                    minlength: 1,
+                    required: true,
+                },
+                PricePerKG: {
+                    number: true,
+                    minlength: 1,
+                    required: true,
+                },
+            }
+        });
+
+        $('#formplaceorder').validate({
+            rules: {
+                VendorID: {
+                    required: true,
+                },
+                StoreID: {
+                    required: true,
+                },
+                ExpectingDeliveryDate: {
+                    required: true,
+                },
+            }
+        });
+
+        var formorder = $("#formplaceorder");
+        formorder.validate();
+
+        var form = $("#formvendor");
+        form.validate();
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#carddiv').removeClass('collapsed-card');
+            }, 500);
+            BlockPreviousDate("ExpectingDeliveryDate");
+            $("[name=CategoryID]").on("change", function () {
+                GetProduct($("[name=CategoryID]").val());
+            });
+            BindTableData();
+            $("#btncartadd").on("click", function () {
+                var Dublicate = false;
+                if (form.valid()) {
+                    for (var i = 0; i < DataToSave.length; i++) {
+                        if (DataToSave[i][0] == $("[name=ProductID]").val()) {
+                            Dublicate = true
+                            break;
+                        }
+                    }
+                    if (!Dublicate) {
+                        var Trow = [];
+                        Trow.push($("[name=CategoryID] option:selected").text());
+                        Trow.push($("[name=ProductID] option:selected").text());
+                        Trow.push($("[name=PricePerKG]").val());
+                        Trow.push($("[name=RequestedQuantity]").val());
+                        Trow.push($("[name=PricePerKG]").val()*$("[name=RequestedQuantity]").val());
+                        Trow.push("<button type='button' class='btn btn-danger btn-sm' onclick='RemoveFromCart(" + $("[name=ProductID]").val() + ")'>Delete</button>");
+                        TableData.push(Trow);
+                        var Srow = [];
+                        Srow.push($("[name=ProductID]").val());
+                        Srow.push($("[name=PricePerKG]").val());
+                        Srow.push($("[name=RequestedQuantity]").val());
+                        DataToSave.push(Srow);
+                        $("[name=ProductID]").val(null);
+                        $("[name=PricePerKG]").val(null);
+                        $("[name=RequestedQuantity]").val(null);
+                        BindTableData();
+                        SuccessAlert($("[name=ProductID] option:selected").text(), "Added to cart.");
+                        CalculateGrandTotal();
+                    }
+                    else {
+                        DangerAlert($("[name=ProductID] option:selected").text(), " Already exist in cart.");
+                    }
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+            $("#btnplaceorder").on("click", function () {
+                if (DataToSave.length > 0) {
+                    if (formorder.valid()) {
+                        var myobj = new Object();
+                        myobj.VendorID = $("[name=VendorID]").val();
+                        myobj.StoreID = $("[name=StoreID]").val();
+                        myobj.Remark = $("[name=Remark]").val();
+                        myobj.ExpectingDeliveryDate = $("[name=ExpectingDeliveryDate]").val();
+                        var Details = [];
+                        DataToSave.forEach(function (index) {
+                            var detail = new Object();
+                            detail.ProductID = index[0];
+                            detail.PricePerKG = index[1];
+                            detail.RequestedQuantity = index[2];
+                            Details.push(detail);
+                        });
+                        myobj.PurchaseOrderDetail = Details;
+
+                        $.post("@Url.Action("AddPurchaseOrder", "PurchaseOrder")", { ObjPO: JSON.stringify(myobj) }, function (data) {
+                            var myobj = JSON.parse(data);
+                            if (myobj.StatusCode == 200) {
+                                SuccessAlert("Order Placed Successfully with ORDERID: " + myobj.Result, " ")
+                            }
+                            else {
+                                DangerAlert("Something Went Wrong. Please retry.");
+                            }
+                        });
+                    }
+                    else {
+                        DangerAlert("Please Select Vendor & Store & Delivery Date.", " ");
+                    }
+                }
+                else {
+                    DangerAlert("Please Add products to cart.", " ");
+                }
+            });
+        });
+
+        function CalculateGrandTotal() {
+            var GrandTotal = 0;
+            for (var i = 0; i < DataToSave.length; i++) {
+                GrandTotal += DataToSave[i][1] * DataToSave[i][2];
+            }
+            $("#lblgrandtotal").html(GrandTotal);
+        }
+
+        function RemoveFromCart(ProductID) {
+
+            for (var i = 0; i < DataToSave.length; i++) {
+                if (DataToSave[i][0] == ProductID) {
+                    DataToSave.splice(i, 1);
+                    TableData.splice(i, 1);
+                    BindTableData();
+                    SuccessAlert(" ", "Deleted from cart.");
+                    CalculateGrandTotal();
+                }
+            }
+        }
+
+        function GetProduct(CategoryID) {
+            $("[name=ProductID]").empty();
+            $.get("@Url.Action("GetIntProductOnCategoryID", "PurchaseOrder")", { CategoryID: CategoryID }, function (data) {
+                var myobject = JSON.parse(data);
+                $("[name=ProductID]").append("<option value=''>---Select---</option>");
+                myobject.ObjectResult.forEach(function (index) {
+                    $("[name=ProductID]").append("<option value='" + index.ProductId + "'>" + index.ProductName + "</option>");
+                });
+            });
+        }
+
+        function ClearFields() {
+            $('[name="VendorID"]').val(null);
+            $('[name="StoreID"]').val(null);
+            $('[name="RequestedQuantity"]').val(null);
+            $('[name="ExpectingDeliveryDate"]').val(null);
+            $('[name="Remark"]').val(null);
+        }
+
+       function BindTableData() {
+           $('#' + tableId).DataTable({
+               destroy: true,
+               data: TableData,
+               scrollX: true,
+               columns: [
+                   { title: "Category Name" },
+                   { title: "Product Name" },
+                   { title: "Price Per KG" },
+                   { title: "Qty" },
+                   { title: "Total Price" },
+                   { title: " " },
+               ]
+           });
+           var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+               buttons: [
+                   'copyHtml5',
+                   'excelHtml5',
+                   'csvHtml5',
+                   'pdfHtml5'
+
+               ]
+           }).container().appendTo($('#buttons'));
+           $('.buttons-html5').addClass('btn btn-default btn-sm');
+       }
+    </script>
+</section>

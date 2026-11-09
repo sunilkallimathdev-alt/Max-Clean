@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "orders";
+    Layout = "~/Views/Shared/WebMasterLogin.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 m_bottom_40">
+                <div class="center-block" id="howitworks">
+                    <h2>Book your <span style="color:#ffd923;">Dry Clean</span> and <span style="color:#ffd923;">Steam Press</span></h2>
+
+                </div>
+                <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+                    <!--tabs navigation-->
+                    <nav>
+                        <ul id="ulservice" class="tabs_nav horizontal_list clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                            @*<li class="f_xs_none ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="tab-1" aria-labelledby="ui-id-1" aria-selected="false" style="font-weight:bold;"><a href="#tab-1" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Dry Clean</a></li>*@
+
+
+
+                        </ul>
+                    </nav>
+                    <!--tabs content-->
+                    <section id="categoeryproducts" class="tabs_content shadow r_corners">
+
+        </section>
+                    
+                </div>
+            </div>
+        </div>
+        <hr class="divider_type_3 m_bottom_15">
+        <span class="button_type_6 bg_scheme_color tt_uppercase r_corners color_light d_inline_b tr_all_hover box_s_none f_size_ex_large d_xs_none" style=" font-weight:bold;float:right;"><a href="cart.html" style="color:black;">Continue</a></span>
+        <span class="button_type_6 bg_scheme_color tt_uppercase r_corners color_light d_inline_b tr_all_hover box_s_none f_size_ex_large d_none d_xs_block " style=" font-weight:bold;text-align:center"><a href="cart.html" style="color:black;">Continue</a></span>
+
+    </div>
+</div>
+
+<script src="~/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+
+    var CategoryTabs = "";
+
+    $(document).ready(function () {
+
+        GetServices();
+    });
+
+    function GetServices() {
+         tabcount = 0;
+         CategoryTabs = "";
+         ServiceProductIDs = [];
+         CategoryIDs = [];
+       $.get("@Url.Action("GetService", "Order")", function (data) {
+
+           var myObject = JSON.parse(data);
+           var servicetabs = "";
+           for (var i = 0; i < myObject.length; i++) {
+               if (i == 0) {
+                   servicetabs += "<li class='f_xs_none ui-state-default ui-corner-top ui-tabs-active ui-state-active' role='tab' tabindex='1' aria-controls='tab-"+ myObject[i].ServiceID +"' aria-labelledby='ui-id-"+ myObject[i].ServiceID + "' aria-selected='false' style='font-weight: bold;'> ";
+                   servicetabs += "<a href='#tab-" + myObject[i].ServiceID + "' class='bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor' role='presentation' tabindex='-" + myObject[i].ServiceID + "' id='ui-id-" + myObject[i].ServiceID + "'>" + myObject[i].ServiceName + "</a></li>";
+               }
+               else
+               {
+                   servicetabs += "<li class='f_xs_none ui-state-default ui-corner-top' role='tab' tabindex='2' aria-controls='tab-"+ myObject[i].ServiceID +"' aria-labelledby='ui-id-" + myObject[i].ServiceID + "' aria-selected='false' style='font-weight: bold;'> ";
+                   servicetabs += "<a href='#tab-" + myObject[i].ServiceID + "' class='bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor' role='presentation' tabindex='-" + myObject[i].ServiceID + "' id='ui-id-" + myObject[i].ServiceID + "'>" + myObject[i].ServiceName + "</a></li>";
+               }
+               GetCategoryProductsbyServiceID(myObject[i].ServiceID);
+           }
+         //  $("#ulservice").html(servicetabs);
+           $("#categoeryproducts").html(CategoryTabs);
+
+           for (var k = 0; k < CategoryIDs.length; k++) {
+               $('#Cattbl_' + CategoryIDs[k]).DataTable({
+                   destroy: true,
+                   scrolly: true,
+                   paging: false,
+                   searching: true
+               });
+           }
+
+       });
+
+     }
+
+    function GetCategoryProductsbyServiceID(ServiceID) {
+
+
+        $.ajax({
+            type: "get",
+            url: "/Order/GetCategoryProductsByServiceID",
+            data: { 'ServiceID': ServiceID },
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                var myObject = data;
+
+                CategoryTabs += "<div id='tab-" + ServiceID +"' aria-labelledby='ui-id-"+ServiceID+"' class='ui-tabs-panel ui-widget-content ui-corner-bottom' role='tabpanel' aria-expanded='false' aria-hidden='true' style='display: none;'>"
+                CategoryTabs += "<div class='accordion toggle'>";
+               
+                for (var i = 0; i < myObject.ObjectResult.length; i++) {
+
+                    if (tabcount == 0)
+                        CategoryTabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5 active'>";
+                    else
+                        CategoryTabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5'>";
+
+                    CategoryTabs += "<h3 class='a_title relative tr_all_hover bg_light_color_1 color_dark'>";
+                    CategoryTabs += "" + myObject.ObjectResult[i].CategoryName + "";
+                    CategoryTabs += "<span class='minus_icon tr_all_hover'>-</span>";
+                    CategoryTabs += "<span class='plus_icon tr_all_hover'>+</span>";
+                    CategoryTabs += "</h3>";
+                    CategoryTabs += "<div class='bg_light_color_3 a_content' style='display: none;'>";
+                    CategoryTabs += "<div class='table-responsive'>";
+                    CategoryTabs += "<table class='table_type_4  full_width r_corners wraper shadow t_align_l t_xs_align_c m_bottom_30'>";
+                    CategoryTabs += "<thead>";
+                    CategoryTabs += "<tr class='f_size_large' style='font-weight:bold;'> <th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th> </tr>";
+                    CategoryTabs += "</thead>";
+                    CategoryTabs += "<tbody>";
+
+                    for (var j = 0; j < myObject.ObjectResult[i].ProductList.length; j++) {
+
+                        CategoryTabs +="<tr>";
+                        CategoryTabs += "<td data-title='Product Image &amp; name' class='t_md_align_c'>";
+                        CategoryTabs += "<a href='#' class='d_inline_b m_left_5 color_dark'>" + myObject.ObjectResult[i].ProductList[j].ProductName +" </a></td > ";
+                        CategoryTabs +="<td data-title='Price'><p class='f_size_large color_dark'>" + myObject.ObjectResult[i].ProductList[j].Price + "</p></td>";
+                        CategoryTabs +="<td data-title='Quantity'>";
+                        CategoryTabs +="<div class='clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10' style='width:103px;'>";
+                        CategoryTabs +="<button class='bg_tr d_block f_left' data-direction='down'>-</button>";
+                        CategoryTabs +="<input type='text' name='' readonly='' value='1' class='f_left'>";
+                        CategoryTabs +="<button class='bg_tr d_block f_left' data-direction='up'>+</button>";
+                        CategoryTabs +="</div>";
+                        CategoryTabs +="</td>";
+                        CategoryTabs +="<td data-title='Subtotal'><p class='f_size_large fw_medium scheme_color'></p></td>";
+                        CategoryTabs +="</tr>";
+                    }
+                    CategoryTabs += "</tbody></table ></div></div></div >"
+                    tabcount++;
+                }
+                CategoryTabs += "</div >  </div >"
+
+
+            },
+            error: function (errMsg) {
+                alert(JSON.stringify(errMsg));
+            }
+        });
+
+    }
+</script>
+

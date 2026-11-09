@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Batch Stock";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <form id="formbatch">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Batch yet to start<span style="color:red">*</span></label>
+                                <select name="BatchID" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <h5>Store Name</h5>
+                                <div class="callout callout-info" style="background-color:#117a8b21">
+                                    <label id="txtstorename"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <h5>Batch Stock</h5>
+                                <div class="callout callout-info" style="background-color:#117a8b21">
+                                    <label id="txtbatchstock"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+            <span style="color:red">Once added can't be edited.</span>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+        var tableId = "tbl";
+        var BatchDetails;
+        $('#formbatch').validate({
+            rules: {
+                StoreID: {
+                    required: true,
+                },
+                BatchName: {
+                    required: true,
+                },
+                Exp_Date: {
+                    required: true,
+                },
+            }
+        });
+
+        var form = $("#formbatch");
+        form.validate();
+
+        $(document).ready(function () {
+            GetBatchList();
+            $("[name=BatchID]").on("change", function () {
+                BindStock($("[name=BatchID]").val());
+            });
+        });
+
+        function BindStock(BatchID) {
+            var Data = BatchDetails.find(x => x.BatchID == BatchID);
+            if (Data != null) {
+                $("#txtstorename").html(Data.StoreName);
+                $("#txtbatchstock").html(Data.Qunatity + " Kg");
+                if (confirm("Are you adding stock to " + Data.StoreName + " Store?")) {
+                    BindTableData(BatchID);
+                }
+                else {
+                    $("#txtstorename").html("");
+                    $("#txtbatchstock").html("");
+                    BindTableData(0);
+                    $("[name=BatchID]").val(null);
+                }
+            }
+            else {
+                $("#txtstorename").html("");
+                $("#txtbatchstock").html("");
+                BindTableData(0);
+            }
+        }
+
+        function AddStockToBatch(RequestOrderID) {
+            if (confirm("Once added can't be edited.Do you want to add?")) {
+                if ($("[name=qty_" + RequestOrderID + "]").val() > 0) {
+                    var myobj = new Object();
+                    myobj.BatchID = $("[name=BatchID]").val();
+                    myobj.RequestOrderID = RequestOrderID;
+                    myobj.Qunatity = $("[name=qty_" + RequestOrderID + "]").val();
+
+                    $.post("@Url.Action("AddBatchStock", "BatchVendor")", { ObjBatch: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            GetBatchList($("[name=BatchID]").val());
+                            SuccessAlert("@ViewBag.Title", "Added Stock Successfully.");
+                        }
+                        else {
+                            WarningAlert("@ViewBag.Title", Res.Message.replace("Please check your paying amount.", "Please check the available stock."));
+                        }
+                    })
+                }
+                else {
+                    WarningAlert(" ","Please check the available stock.");
+                }
+            }
+        }
+
+        function GetBatchList(BatchID) {
+            $.get("@Url.Action("GetYettostartBatchList", "BatchVendor")", function (data) {
+                $("[name=BatchID]").empty();
+                var myobj = JSON.parse(data);
+                myobj = myobj.ObjectResult;
+                BatchDetails = myobj;
+                $("[name=BatchID]").append("<option value=''>---Select---</option>");
+                for (var i = 0; i < myobj.length; i++){
+                $("[name=BatchID]").append("<option value='" + myobj[i].BatchID +"'>" + myobj[i].BatchName  +"</option>");
+                }
+                if (BatchID != null) {
+                    $("[name=BatchID]").val(BatchID);
+                    BindStock(BatchID);
+                    BindTableData(BatchID);
+                }
+            });
+        }
+
+        function BindTableData(BatchID) {
+
+            $.get("@Url.Action("GetStoreStock", "BatchVendor")", { BatchID: BatchID}, function (data) {
+                var myObject = JSON.parse(data);
+                myObject = myObject.ObjectResult;
+                    var TableDate = [];
+                    for (var i = 0; i < myObject.length; i++) {
+                        var row = [];
+                        row.push(myObject[i].VendorPaymentOrderID);
+                        row.push(SplitDateTime(myObject[i].ActualDeliveryDate));
+                        row.push(myObject[i].VendorName);
+                        row.push(myObject[i].ReceivedQuantity);
+                        row.push(myObject[i].SoldStock);
+                        row.push(myObject[i].AvailableStock);
+                        row.push('<input class="form-control" name="qty_' + myObject[i].VendorPaymentOrderID +'" onkeypress="return IsNumericDecimal(event)">');
+                        row.push('<button type="button" class="btn btn-danger btn-sm" onclick="AddStockToBatch(' + myObject[i].VendorPaymentOrderID + ')">Add to Batch</button>');
+                        TableDate.push(row);
+                    }
+                    $('#' + tableId).DataTable({
+                        destroy: true,
+                        data: TableDate,
+                        scrollX: true,
+                        columns: [
+
+                            { title: "Request OrderID" },
+                            { title: "Delivery Date" },
+                            { title: "Vendor Name" },
+                            { title: "Received Quantity" },
+                            { title: "Sold Stock" },
+                            { title: "Available Stock" },
+                            { title: " " },
+                            { title: " " },
+                        ]
+                    });
+                    var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdfHtml5'
+
+                        ]
+                    }).container().appendTo($('#buttons'));
+                    $('.buttons-html5').addClass('btn btn-default btn-sm');
+                });
+            }
+    </script>
+
+</section>

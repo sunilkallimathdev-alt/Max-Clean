@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="maxcleanDataSet" targetNamespace="http://tempuri.org/maxcleanDataSet.xsd" xmlns:mstns="http://tempuri.org/maxcleanDataSet.xsd" xmlns="http://tempuri.org/maxcleanDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="maxcleanConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="maxcleanConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.maxcleanConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_categoryTableAdapter" GeneratorDataComponentClassName="t_categoryTableAdapter" Name="t_category" UserDataComponentName="t_categoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_category" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `category_id`, `category_name`, `category_icon`, `category_banner`, `display_order`, `description`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_category`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_customerTableAdapter" GeneratorDataComponentClassName="t_customerTableAdapter" Name="t_customer" UserDataComponentName="t_customerTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_customer" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `customer_id`, `customer_name`, `email_id`, `mobile_no`, `alt_mobile_no`, `address`, `password`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_customer`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_delivery_boyTableAdapter" GeneratorDataComponentClassName="t_delivery_boyTableAdapter" Name="t_delivery_boy" UserDataComponentName="t_delivery_boyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_delivery_boy" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `id`, `name`, `mobile`, `email`, `address`, `vehicle_no`, `licence_no`, `image`, `languages_known`, `password`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_delivery_boy`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_enquiriesTableAdapter" GeneratorDataComponentClassName="t_enquiriesTableAdapter" Name="t_enquiries" UserDataComponentName="t_enquiriesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_enquiries" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `contact_us_id`, `contact_name`, `email_id`, `mobile_number`, `subject`, `query`, `is_active`, `created_by`, `created_date`, `update_by`, `update_date` FROM `t_enquiries`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_exceptionTableAdapter" GeneratorDataComponentClassName="t_exceptionTableAdapter" Name="t_exception" UserDataComponentName="t_exceptionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_exception" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `exception_id`, `exception_type`, `exception_Error`, `exception Page`, `inner_exception`, `date` FROM `t_exception`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_galleryTableAdapter" GeneratorDataComponentClassName="t_galleryTableAdapter" Name="t_gallery" UserDataComponentName="t_galleryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_gallery" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `gallery_id`, `title`, `is_image`, `url`, `is_active`, `created_by`, `created_date`, `update_by`, `update_date` FROM `t_gallery`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_order_cylceTableAdapter" GeneratorDataComponentClassName="t_order_cylceTableAdapter" Name="t_order_cylce" UserDataComponentName="t_order_cylceTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_order_cylce" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `order_cycle_id`, `order_cycle_stage`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_order_cylce`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_order_detailsTableAdapter" GeneratorDataComponentClassName="t_order_detailsTableAdapter" Name="t_order_details" UserDataComponentName="t_order_detailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_order_details" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `order_details_id`, `order_id`, `product_id`, `quantity`, `delivered_quantity`, `remaining_quantity`, `unit`, `price` FROM `t_order_details`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_ordersTableAdapter" GeneratorDataComponentClassName="t_ordersTableAdapter" Name="t_orders" UserDataComponentName="t_ordersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_orders" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `order_id`, `customer_id`, `store_id`, `order_date`, `delivery_date`, `expected_delivery_date`, `delivery_address`, `pickup_date`, `pickup_time`, `pickup_address`, `delivery_time`, `confirmed_by`, `pickedup_by`, `delivered_by`, `grandtotal_price`, `paid_amount`, `balance_amount`, `order_status`, `is_outlet_order`, `cust_sign_at_pickup`, `cust_sign_at_delivery`, `Received_at_store_by`, `admin_sign_at_pickup`, `sent_from_store_by`, `admin_sign_at_delivery`, `remark`, `created_date`, `created_by`, `updated_date`, `updated_by` FROM `t_orders`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_productTableAdapter" GeneratorDataComponentClassName="t_productTableAdapter" Name="t_product" UserDataComponentName="t_productTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_product" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `product_id`, `product_name`, `product_image`, `category_id`, `price`, `unit`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_product`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_promotionsTableAdapter" GeneratorDataComponentClassName="t_promotionsTableAdapter" Name="t_promotions" UserDataComponentName="t_promotionsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_promotions" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `subscribe_id`, `email_id`, `created_by`, `created_date`, `update_by`, `update_date` FROM `t_promotions`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_rewardTableAdapter" GeneratorDataComponentClassName="t_rewardTableAdapter" Name="t_reward" UserDataComponentName="t_rewardTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_reward" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `reward_id`, `customer_id`, `customer_rewardpoints`, `is_active`, `created_by`, `created_date`, `update_by`, `update_date` FROM `t_reward`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_roleTableAdapter" GeneratorDataComponentClassName="t_roleTableAdapter" Name="t_role" UserDataComponentName="t_roleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_role" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `role_id`, `role_name`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_role`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_serviceTableAdapter" GeneratorDataComponentClassName="t_serviceTableAdapter" Name="t_service" UserDataComponentName="t_serviceTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_service" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `service_id`, `service_name`, `image`, `display_order`, `description`, `is_active`, `created_by`, `created_date`, `update_by`, `update_date` FROM `t_service`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_storeTableAdapter" GeneratorDataComponentClassName="t_storeTableAdapter" Name="t_store" UserDataComponentName="t_storeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_store" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `store_id`, `store_name`, `manager_name`, `mobile_no`, `email_id`, `address`, `city`, `state`, `country`, `pincode`, `latitude`, `longitute`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_store`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_userTableAdapter" GeneratorDataComponentClassName="t_userTableAdapter" Name="t_user" UserDataComponentName="t_userTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.t_user" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `user_id`, `role_id`, `user_name`, `password`, `email_id`, `mobile_no`, `alt_mobile_no`, `address`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date` FROM `t_user`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbl_admin_categoryTableAdapter" GeneratorDataComponentClassName="tbl_admin_categoryTableAdapter" Name="tbl_admin_category" UserDataComponentName="tbl_admin_categoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.tbl_admin_category" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `id`, `category`, `display_order`, `li_id` FROM `tbl_admin_category`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbl_admin_pagesTableAdapter" GeneratorDataComponentClassName="tbl_admin_pagesTableAdapter" Name="tbl_admin_pages" UserDataComponentName="tbl_admin_pagesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.tbl_admin_pages" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `id`, `category_id`, `page_name`, `url`, `display_order`, `li_id` FROM `tbl_admin_pages`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tbl_roles_privilegesTableAdapter" GeneratorDataComponentClassName="tbl_roles_privilegesTableAdapter" Name="tbl_roles_privileges" UserDataComponentName="tbl_roles_privilegesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="maxcleanConnectionString (Web.config)" DbObjectName="maxclean.tbl_roles_privileges" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `id`, `admin_page_id`, `role_id` FROM `tbl_roles_privileges`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="maxcleanDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="maxcleanDataSet" msprop:Generator_UserDSName="maxcleanDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="t_category" msprop:Generator_TableClassName="t_categoryDataTable" msprop:Generator_TableVarName="tablet_category" msprop:Generator_TablePropName="t_category" msprop:Generator_RowDeletingName="t_categoryRowDeleting" msprop:Generator_RowChangingName="t_categoryRowChanging" msprop:Generator_RowEvHandlerName="t_categoryRowChangeEventHandler" msprop:Generator_RowDeletedName="t_categoryRowDeleted" msprop:Generator_UserTableName="t_category" msprop:Generator_RowChangedName="t_categoryRowChanged" msprop:Generator_RowEvArgName="t_categoryRowChangeEvent" msprop:Generator_RowClassName="t_categoryRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_customer" msprop:Generator_TableClassName="t_customerDataTable" msprop:Generator_TableVarName="tablet_customer" msprop:Generator_TablePropName="t_customer" msprop:Generator_RowDeletingName="t_customerRowDeleting" msprop:Generator_RowChangingName="t_customerRowChanging" msprop:Generator_RowEvHandlerName="t_customerRowChangeEventHandler" msprop:Generator_RowDeletedName="t_customerRowDeleted" msprop:Generator_UserTableName="t_customer" msprop:Generator_RowChangedName="t_customerRowChanged" msprop:Generator_RowEvArgName="t_customerRowChangeEvent" msprop:Generator_RowClassName="t_customerRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_delivery_boy" msprop:Generator_TableClassName="t_delivery_boyDataTable" msprop:Generator_TableVarName="tablet_delivery_boy" msprop:Generator_TablePropName="t_delivery_boy" msprop:Generator_RowDeletingName="t_delivery_boyRowDeleting" msprop:Generator_RowChangingName="t_delivery_boyRowChanging" msprop:Generator_RowEvHandlerName="t_delivery_boyRowChangeEventHandler" msprop:Generator_RowDeletedName="t_delivery_boyRowDeleted" msprop:Generator_UserTableName="t_delivery_boy" msprop:Generator_RowChangedName="t_delivery_boyRowChanged" msprop:Generator_RowEvArgName="t_delivery_boyRowChangeEvent" msprop:Generator_RowClassName="t_delivery_boyRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_enquiries" msprop:Generator_TableClassName="t_enquiriesDataTable" msprop:Generator_TableVarName="tablet_enquiries" msprop:Generator_TablePropName="t_enquiries" msprop:Generator_RowDeletingName="t_enquiriesRowDeleting" msprop:Generator_RowChangingName="t_enquiriesRowChanging" msprop:Generator_RowEvHandlerName="t_enquiriesRowChangeEventHandler" msprop:Generator_RowDeletedName="t_enquiriesRowDeleted" msprop:Generator_UserTableName="t_enquiries" msprop:Generator_RowChangedName="t_enquiriesRowChanged" msprop:Generator_RowEvArgName="t_enquiriesRowChangeEvent" msprop:Generator_RowClassName="t_enquiriesRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_exception" msprop:Generator_TableClassName="t_exceptionDataTable" msprop:Generator_TableVarName="tablet_exception" msprop:Generator_TablePropName="t_exception" msprop:Generator_RowDeletingName="t_exceptionRowDeleting" msprop:Generator_RowChangingName="t_exceptionRowChanging" msprop:Generator_RowEvHandlerName="t_exceptionRowChangeEventHandler" msprop:Generator_RowDeletedName="t_exceptionRowDeleted" msprop:Generator_UserTableName="t_exception" msprop:Generator_RowChangedName="t_exceptionRowChanged" msprop:Generator_RowEvArgName="t_exceptionRowChangeEvent" msprop:Generator_RowClassName="t_exceptionRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_gallery" msprop:Generator_TableClassName="t_galleryDataTable" msprop:Generator_TableVarName="tablet_gallery" msprop:Generator_TablePropName="t_gallery" msprop:Generator_RowDeletingName="t_galleryRowDeleting" msprop:Generator_RowChangingName="t_galleryRowChanging" msprop:Generator_RowEvHandlerName="t_galleryRowChangeEventHandler" msprop:Generator_RowDeletedName="t_galleryRowDeleted" msprop:Generator_UserTableName="t_gallery" msprop:Generator_RowChangedName="t_galleryRowChanged" msprop:Generator_RowEvArgName="t_galleryRowChangeEvent" msprop:Generator_RowClassName="t_galleryRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_order_cylce" msprop:Generator_TableClassName="t_order_cylceDataTable" msprop:Generator_TableVarName="tablet_order_cylce" msprop:Generator_TablePropName="t_order_cylce" msprop:Generator_RowDeletingName="t_order_cylceRowDeleting" msprop:Generator_RowChangingName="t_order_cylceRowChanging" msprop:Generator_RowEvHandlerName="t_order_cylceRowChangeEventHandler" msprop:Generator_RowDeletedName="t_order_cylceRowDeleted" msprop:Generator_UserTableName="t_order_cylce" msprop:Generator_RowChangedName="t_order_cylceRowChanged" msprop:Generator_RowEvArgName="t_order_cylceRowChangeEvent" msprop:Generator_RowClassName="t_order_cylceRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_order_details" msprop:Generator_TableClassName="t_order_detailsDataTable" msprop:Generator_TableVarName="tablet_order_details" msprop:Generator_TablePropName="t_order_details" msprop:Generator_RowDeletingName="t_order_detailsRowDeleting" msprop:Generator_RowChangingName="t_order_detailsRowChanging" msprop:Generator_RowEvHandlerName="t_order_detailsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_order_detailsRowDeleted" msprop:Generator_UserTableName="t_order_details" msprop:Generator_RowChangedName="t_order_detailsRowChanged" msprop:Generator_RowEvArgName="t_order_detailsRowChangeEvent" msprop:Generator_RowClassName="t_order_detailsRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_orders" msprop:Generator_TableClassName="t_ordersDataTable" msprop:Generator_TableVarName="tablet_orders" msprop:Generator_TablePropName="t_orders" msprop:Generator_RowDeletingName="t_ordersRowDeleting" msprop:Generator_RowChangingName="t_ordersRowChanging" msprop:Generator_RowEvHandlerName="t_ordersRowChangeEventHandler" msprop:Generator_RowDeletedName="t_ordersRowDeleted" msprop:Generator_UserTableName="t_orders" msprop:Generator_RowChangedName="t_ordersRowChanged" msprop:Generator_RowEvArgName="t_ordersRowChangeEvent" msprop:Generator_RowClassName="t_ordersRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_product" msprop:Generator_TableClassName="t_productDataTable" msprop:Generator_TableVarName="tablet_product" msprop:Generator_TablePropName="t_product" msprop:Generator_RowDeletingName="t_productRowDeleting" msprop:Generator_RowChangingName="t_productRowChanging" msprop:Generator_RowEvHandlerName="t_productRowChangeEventHandler" msprop:Generator_RowDeletedName="t_productRowDeleted" msprop:Generator_UserTableName="t_product" msprop:Generator_RowChangedName="t_productRowChanged" msprop:Generator_RowEvArgName="t_productRowChangeEvent" msprop:Generator_RowClassName="t_productRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_promotions" msprop:Generator_TableClassName="t_promotionsDataTable" msprop:Generator_TableVarName="tablet_promotions" msprop:Generator_TablePropName="t_promotions" msprop:Generator_RowDeletingName="t_promotionsRowDeleting" msprop:Generator_RowChangingName="t_promotionsRowChanging" msprop:Generator_RowEvHandlerName="t_promotionsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_promotionsRowDeleted" msprop:Generator_UserTableName="t_promotions" msprop:Generator_RowChangedName="t_promotionsRowChanged" msprop:Generator_RowEvArgName="t_promotionsRowChangeEvent" msprop:Generator_RowClassName="t_promotionsRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_reward" msprop:Generator_TableClassName="t_rewardDataTable" msprop:Generator_TableVarName="tablet_reward" msprop:Generator_TablePropName="t_reward" msprop:Generator_RowDeletingName="t_rewardRowDeleting" msprop:Generator_RowChangingName="t_rewardRowChanging" msprop:Generator_RowEvHandlerName="t_rewardRowChangeEventHandler" msprop:Generator_RowDeletedName="t_rewardRowDeleted" msprop:Generator_UserTableName="t_reward" msprop:Generator_RowChangedName="t_rewardRowChanged" msprop:Generator_RowEvArgName="t_rewardRowChangeEvent" msprop:Generator_RowClassName="t_rewardRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_role" msprop:Generator_TableClassName="t_roleDataTable" msprop:Generator_TableVarName="tablet_role" msprop:Generator_TablePropName="t_role" msprop:Generator_RowDeletingName="t_roleRowDeleting" msprop:Generator_RowChangingName="t_roleRowChanging" msprop:Generator_RowEvHandlerName="t_roleRowChangeEventHandler" msprop:Generator_RowDeletedName="t_roleRowDeleted" msprop:Generator_UserTableName="t_role" msprop:Generator_RowChangedName="t_roleRowChanged" msprop:Generator_RowEvArgName="t_roleRowChangeEvent" msprop:Generator_RowClassName="t_roleRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_service" msprop:Generator_TableClassName="t_serviceDataTable" msprop:Generator_TableVarName="tablet_service" msprop:Generator_TablePropName="t_service" msprop:Generator_RowDeletingName="t_serviceRowDeleting" msprop:Generator_RowChangingName="t_serviceRowChanging" msprop:Generator_RowEvHandlerName="t_serviceRowChangeEventHandler" msprop:Generator_RowDeletedName="t_serviceRowDeleted" msprop:Generator_UserTableName="t_service" msprop:Generator_RowChangedName="t_serviceRowChanged" msprop:Generator_RowEvArgName="t_serviceRowChangeEvent" msprop:Generator_RowClassName="t_serviceRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_store" msprop:Generator_TableClassName="t_storeDataTable" msprop:Generator_TableVarName="tablet_store" msprop:Generator_TablePropName="t_store" msprop:Generator_RowDeletingName="t_storeRowDeleting" msprop:Generator_RowChangingName="t_storeRowChanging" msprop:Generator_RowEvHandlerName="t_storeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_storeRowDeleted" msprop:Generator_UserTableName="t_store" msprop:Generator_RowChangedName="t_storeRowChanged" msprop:Generator_RowEvArgName="t_storeRowChangeEvent" msprop:Generator_RowClassName="t_storeRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_user" msprop:Generator_TableClassName="t_userDataTable" msprop:Generator_TableVarName="tablet_user" msprop:Generator_TablePropName="t_user" msprop:Generator_RowDeletingName="t_userRowDeleting" msprop:Generator_RowChangingName="t_userRowChanging" msprop:Generator_RowEvHandlerName="t_userRowChangeEventHandler" msprop:Generator_RowDeletedName="t_userRowDeleted" msprop:Generator_UserTableName="t_user" msprop:Generator_RowChangedName="t_userRowChanged" msprop:Generator_RowEvArgName="t_userRowChangeEvent" msprop:Generator_RowClassName="t_userRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tbl_admin_category" msprop:Generator_TableClassName="tbl_admin_categoryDataTable" msprop:Generator_TableVarName="tabletbl_admin_category" msprop:Generator_TablePropName="tbl_admin_category" msprop:Generator_RowDeletingName="tbl_admin_categoryRowDeleting" msprop:Generator_RowChangingName="tbl_admin_categoryRowChanging" msprop:Generator_RowEvHandlerName="tbl_admin_categoryRowChangeEventHandler" msprop:Generator_RowDeletedName="tbl_admin_categoryRowDeleted" msprop:Generator_UserTableName="tbl_admin_category" msprop:Generator_RowChangedName="tbl_admin_categoryRowChanged" msprop:Generator_RowEvArgName="tbl_admin_categoryRowChangeEvent" msprop:Generator_RowClassName="tbl_admin_categoryRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tbl_admin_pages" msprop:Generator_TableClassName="tbl_admin_pagesDataTable" msprop:Generator_TableVarName="tabletbl_admin_pages" msprop:Generator_TablePropName="tbl_admin_pages" msprop:Generator_RowDeletingName="tbl_admin_pagesRowDeleting" msprop:Generator_RowChangingName="tbl_admin_pagesRowChanging" msprop:Generator_RowEvHandlerName="tbl_admin_pagesRowChangeEventHandler" msprop:Generator_RowDeletedName="tbl_admin_pagesRowDeleted" msprop:Generator_UserTableName="tbl_admin_pages" msprop:Generator_RowChangedName="tbl_admin_pagesRowChanged" msprop:Generator_RowEvArgName="tbl_admin_pagesRowChangeEvent" msprop:Generator_RowClassName="tbl_admin_pagesRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tbl_roles_privileges" msprop:Generator_TableClassName="tbl_roles_privilegesDataTable" msprop:Generator_TableVarName="tabletbl_roles_privileges" msprop:Generator_TablePropName="tbl_roles_privileges" msprop:Generator_RowDeletingName="tbl_roles_privilegesRowDeleting" msprop:Generator_RowChangingName="tbl_roles_privilegesRowChanging" msprop:Generator_RowEvHandlerName="tbl_roles_privilegesRowChangeEventHandler" msprop:Generator_RowDeletedName="tbl_roles_privilegesRowDeleted" msprop:Generator_UserTableName="tbl_roles_privileges" msprop:Generator_RowChangedName="tbl_roles_privilegesRowChanged" msprop:Generator_RowEvArgName="tbl_roles_privilegesRowChangeEvent" msprop:Generator_RowClassName="tbl_roles_privilegesRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

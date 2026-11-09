@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewBag.Title = "Marque";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formbanner">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Marque<span style="color:red">*</span></label>
+                                <textarea class="form-control" type="text" name="Marque_Name" onkeypress="return NotanHTML(event)"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+        var ImageURL = "";
+        $('#formbanner').validate({
+            rules: {
+                Marque_Name: {
+                    required: true,
+                },
+               
+                IsActive: {
+                    required: false,
+                },
+
+            }
+        });
+
+        var form = $("#formbanner");
+        form.validate();
+
+        $(document).ready(function () {
+            BindTableData();
+          
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.Marque_Name = $('[name="Marque_Name"]').val();
+
+
+
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("AddMarque", "Marque")", { ObjMarque: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                ClearFields();
+                                BindTableData();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        })
+                    },000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.MarqueID = $('[name="HDID"]').val();
+                    myobj.Marque_Name = $('[name="Marque_Name"]').val();
+
+                    myobj.IsActive = $('[name="IsActive"]').val();
+                    setTimeout(function () {
+                        $.post("@Url.Action("UpdateMarque", "Marque")", { ObjMarque: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    })
+                    }, 000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            })
+        });
+
+
+
+       function readFile() {
+                if (this.files && this.files[0]) {
+                    var FR = new FileReader();
+                    FR.addEventListener("load", function (e) {
+                        ImageURL = e.target.result;
+                        ImageURL = ImageURL.split(",");
+                        ImageURL = ImageURL[1];
+                    });
+                    FR.readAsDataURL(this.files[0]);
+                }
+            }
+
+
+
+        function GetData(MarqueID) {
+            $.get("@Url.Action("GetMarque", "Marque")", { MarqueID: MarqueID }, function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.MarqueID);
+                    $('[name="Marque_Name"]').val(myobj.ObjectResult.Marque_Name);
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val('true');
+                    else
+                        $('[name="IsActive"]').val('false');
+                    OpenCard();
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+
+        function DeleteData(MarqueID) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeleteMarque", "Marque")", { MarqueID: MarqueID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                });
+            }
+        }
+        function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="Marque_Name"]').val(null);
+            $('[name="Banner_Image"]').val(null);
+            //$('[name="DisplayOrder"]').val(null);
+            //$('[name="Description"]').val(null);
+            $('[name="IsActive"]').val('true');
+            $('.error').html("");
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+        }
+
+        function BindTableData() {
+            $.get("@Url.Action("GetMarqueList", "Marque")", function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].Marque_Name);
+                
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+
+                row.push('<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + myObject[i].MarqueID + ')">Edit</button>');
+               // row.push('<button type="button" class="btn btn-danger btn-sm delete" onclick="DeleteData(' + myObject[i].MarqueID + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Title" },
+                    { title: "Status " },
+                    { title: " " },
+                  //  { title: " " },
+                ]
+            });
+            hideshowbuttons();
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }
+
+    </script>
+
+</section>
+
+
+
+

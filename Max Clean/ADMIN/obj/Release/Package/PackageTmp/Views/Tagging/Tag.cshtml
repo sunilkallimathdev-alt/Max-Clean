@@ -1,0 +1,59 @@
+﻿
+@{
+
+    API.Models.Tag_Model Tag = (API.Models.Tag_Model)ViewBag.TagDetails;
+    API.Models.PurchaseOrder_Model OrderDetails = (API.Models.PurchaseOrder_Model)ViewBag.OrderDetails;
+
+
+    Layout = null;
+    string zero = ".00";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tag</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table class="maxLogo" style="width:11%;outline-color:black;">
+            <tr><td style="border:none !important;"><img src="~/CustomFiles/maxclean-logo.png" style="margin:auto;display:block;width:150px;height:70px;" /></td></tr>
+            <tr><td><strong>Name : @OrderDetails.CustomerName</strong></td></tr>
+            <tr><td><strong>Order ID : @OrderDetails.OrderID</strong></td></tr>
+            <tr><td><strong>No Of Pcs : @Tag.Tag_Number.Split('/')[1]</strong></td></tr>
+            <tr><td><strong>Tag : @Tag.Tag_Number</strong></td></tr>
+            <tr><td><strong>Booking Date  : @OrderDetails.OrderDate.ToString("dd/MM/yyyy")</strong></td></tr>
+            <tr><td><strong>Delivery Date : @OrderDetails.ActualDeliveryDate.ToString("dd/MM/yyyy")</strong></td></tr>
+            @{ 
+
+            }
+            <tr><td><strong>Note: @Tag.Tag_Note</strong></td></tr>
+            <tr> <td>Max Clean Wheeler Road Ext.</td></tr>
+        </table>
+
+    </div>
+</body>
+</html>
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+    $(document).ready(function () {
+        window.print();
+    });
+</script>

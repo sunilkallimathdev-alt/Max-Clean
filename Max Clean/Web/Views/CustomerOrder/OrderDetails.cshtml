@@ -1,0 +1,150 @@
+﻿@using API.Models;
+
+@{
+    ViewBag.Title = "OrderDetails";
+    CustmoerOrders_Model order = (CustmoerOrders_Model)ViewBag.OrderDetail;
+    Customer_Model currentUser = (Customer_Model)Session["CurrentUser"];
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 howit-work main-block center-block" id="howitworks">
+
+            </div>
+        </div>
+        <div class="well col-md-12 col-sm-12 col-12">
+            <div class="row">
+
+                <div class=" col-sm-6 col-md-6 col-6">
+                    <address>
+                        <p>
+                            <strong>Customer Name: @currentUser.CustomerName</strong>
+                            <br>
+                            Delivery Address: @order.DeliveryAddress
+                            <abbr title="Date">@order.deliverydate , @order.delivery_time</abbr> 
+                        </p>
+                    </address>
+                </div>
+                <div class="col-sm-6 col-md-6 col-6 text-right">
+                    <p>
+                        <em>Ordered Date: @order.ordereddate</em>
+                    </p>
+                    <p>
+                        <em>Order ID #: @order.OrderID</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Services</th>
+                        <th style="text-align: center">Quantity</th>
+                        <th style="text-align: center">Price</th>
+                        <th style="text-align: center">Extra </th>
+                        <th style="text-align: center">Total</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CustmoerOrderDetails_Model ord in order.orderList)
+                    {
+                    <tr>
+                        <td>@ord.product</td>
+                        <td class="col-md-3 ">@ord.service</td>
+                        <td class="col-md-2 " style="text-align: center"> @ord.quantity </td>
+                        <td class="col-md-2 text-center">@(ord.subtotal / ord.quantity - ord.extraPrice)  </td>
+                        <td class="col-md-1  text-center">@ord.extraPrice</td>
+                        <td class="col-md-1  text-center">@ord.subtotal</td>
+                    </tr>
+                    }
+                    @*<tr>
+                        <td>T-shirt</td>
+                        <td class="col-md-3 ">Ironing</td>
+                        <td class="col-md-2 " style="text-align: center"> 1 </td>
+                        <td class="col-md-2  text-center">99.00</td>
+                        <td class="col-md-1  text-center">99.00</td>
+                    </tr>
+                    <tr>
+                        <td>Dress</td>
+                        <td class="col-md-3 ">Dry Clean</td>
+                        <td class="col-md-2 " style="text-align: center"> 3 </td>
+                        <td class="col-md-2  text-center">89.00</td>
+                        <td class="col-md-1 text-center">267.00</td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td class="text-right">
+                            <p>
+                                <strong>Subtotal: </strong>
+                            </p>
+                            <p>
+                                <strong>Tax: </strong>
+                            </p>
+                        </td>
+                        <td class="text-center">
+                            <p>
+                                <strong>516.00</strong>
+                            </p>
+                            <p>
+                                <strong>14.00</strong>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                        <td class="text-center text-danger"><h4><strong>530.00</strong></h4></td>
+                    </tr>*@
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Old Balance Amount: </td>
+                        <td class="text-right"><h4></h4></td>
+                        <td></td>
+                        <td class="text-center text-danger">Rs. @order.balanceAmount</td>
+                    </tr>
+                    @*<tr>
+                        <td></td>
+                        <td></td>
+                        <td>Customer Rewards: </td>
+                        <td class="text-right"><h4></h4></td>
+                        <td></td>
+                        <td class="text-center text-danger"></td>
+                    </tr>*@
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Grand Total:</td>
+                        <td class="text-right"><h4></h4></td>
+                        <td></td>
+                        <td class="text-center text-danger">Rs. @order.total</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="padding-bottom:20px;">
+            <div class="col-md-6 col-sm-12 actions">
+                <a href="~/CustomerOrder/Order" class="btn btn-warning"><i class="fa fa-angle-left"></i> Back</a>
+
+            </div>
+            <div class="col-md-6 col-sm-12 actions">
+                <a href="#" class="btn btn-success btn-block">Print</a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center;">Please check the order invoice for more details. The grand total is included of customer rewards and express delivery charges(if any added).</div>
+</section>
+

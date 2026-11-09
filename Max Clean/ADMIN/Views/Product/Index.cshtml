@@ -1,0 +1,391 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <form id="formsproduct">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Category Name<span style="color:red">*</span></label>
+                                <select name="CategoryId" class="form-control">
+                                    <option value="">---Select--- </option>
+                                    @{
+                    var CategoryList = (List<API.Models.Category_Model>)ViewBag.Category;
+                    foreach (var cat in CategoryList)
+                    {
+                        <option value="@cat.CategoryId">@cat.CategoryName </option>
+}
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Product Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="ProductName" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CategoryIcon">Product Image<span style="color:red"></span></label>
+                                <input class="form-control" type="file" accept="image/*" name="ProductImage">
+                            </div>
+                        </div>
+                        @*<div class="col-md-3">
+                            <div class="form-group">
+                                <label>Unit<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="UnitName" maxlength="100" >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Price<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="Price" maxlength="20" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>*@
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="=col-md-3">
+                            <div class="=form-group" id="Images-1">
+
+                            </div>
+                        </div> 
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                        <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                        <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                        <input type="hidden" name="HDID" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+        var tableId = "tbl";
+
+        $('#formsproduct').validate({
+            rules: {
+                CategoryId: {
+                    required: true,
+                },
+                ProductCode: {
+                    required: true,
+                },
+                ProductName: {
+                    required: true,
+                },
+                Price: {
+                    number: true,
+                    required: true,
+                   
+                },
+                UnitName: {
+                    required: true,
+                },
+                ProductImage: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: {
+                        depends: function () {
+                            return $('[name="HDID"]').val() == null;
+                        }
+                    }
+                },
+                ProductDisplayOrder: {
+                    required: false,
+                },
+            }
+        });
+
+        var form = $("#formsproduct");
+        form.validate();
+
+        $(document).ready(function () {
+
+           
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.CategoryId = $('[name="CategoryId"]').val();
+                    //myobj.SubCategoryId = $('[name="SubCategoryId"]').val();
+                 
+                    myobj.Price = $('[name="Price"]').val();
+                    myobj.UnitName = $('[name="UnitName"]').val();
+                    myobj.ProductCode = $('[name="ProductCode"]').val();
+                    myobj.ProductName = $('[name="ProductName"]').val();
+                    if ($('[name="ProductImage"]').val() != "") {
+                        readFile($('[name="ProductImage"]')[0].files[0], function (e) {
+                            myobj.ProductImage = e.target.result;
+                        });
+                    }
+                    myobj.ProductVideo = $('[name="ProductVideo"]').val();
+                    myobj.TagLine = $('[name="TagLine"]').val();
+                    myobj.ProductDescription = $('[name="ProductDescription"]').val();
+                    myobj.ProductDisplayOrder = $('[name="ProductDisplayOrder"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("AddProduct", "Product")", { ObjProduct: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                BindTableData();
+                                SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                ClearFields();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        });
+                    }, 2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+            $(".error").html("");
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.ProductId = $('[name="HDID"]').val();
+                    myobj.CategoryId = $('[name="CategoryId"]').val();
+                    //myobj.SubCategoryId = $('[name="SubCategoryId"]').val();
+                    myobj.Is_EndUserProduct = $('[name="Is_EndUserProduct"]').val();
+                    myobj.Price = $('[name="Price"]').val();
+                    myobj.UnitName = $('[name="UnitName"]').val();
+                    myobj.ProductCode = $('[name="ProductCode"]').val();
+                    myobj.ProductName = $('[name="ProductName"]').val();
+                    if ($('[name="ProductImage"]').val() != "") {
+                        readFile($('[name="ProductImage"]')[0].files[0], function (e) {
+                           // myobj.ProductImage = e.target.result;
+                            myobj.ProductImage = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    myobj.ProductVideo = $('[name="ProductVideo"]').val();
+                    myobj.TagLine = $('[name="TagLine"]').val();
+                    myobj.ProductDescription = $('[name="ProductDescription"]').val();
+                    myobj.ProductDisplayOrder = $('[name="ProductDisplayOrder"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("UpdateProduct", "Product")", { ObjProduct: JSON.stringify(myobj) }, function (data) {
+                                var Res = JSON.parse(data);
+                                if (Res.StatusCode == 200) {
+                                    BindTableData();
+                                    SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                                    ClearFields();
+                                }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                            });
+                        }, 2000);
+                    }
+                    else {
+                        DangerAlert(" ", "Recheck the fields.");
+                    }
+                });
+            });
+            @*function GetSubCategory(CategoryID,SubcategoryID) {
+                $.get("@Url.Action("GetSubCategoryByCatID", "Product")", { CategoryID: CategoryID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    $('[name="SubCategoryId"]').html("");
+                    $('[name="SubCategoryId"]').append("<option value='' selected>---Select---</option>");
+                    for (var i = 0; i < myobj.ObjectResult.length; i++)
+                        $('[name="SubCategoryId"]').append("<option value='" + myobj.ObjectResult[i].SubCategoryID + "'>" + myobj.ObjectResult[i].SubCategoryName + "</option>");
+                    if (SubcategoryID != null)
+                        $('[name="SubCategoryId"]').val(SubcategoryID);
+                })
+            }*@
+            function GetData(ProductId) {
+                $.get("@Url.Action("GetProduct", "Product")", { ProductId: ProductId }, function (data) {
+                    ClearFields();
+                    var myobj = JSON.parse(data);
+                    if (myobj.ObjectResult != null) {
+                        $('[name="HDID"]').val(myobj.ObjectResult.ProductId);
+                        $('[name="CategoryId"]').val(myobj.ObjectResult.CategoryId);
+                        //GetSubCategory(myobj.ObjectResult.CategoryId, myobj.ObjectResult.SubCategoryId);
+                        $('[name="Is_EndUserProduct"]').val(myobj.ObjectResult.Is_EndUserProduct);
+                        $('[name="Price"]').val(myobj.ObjectResult.Price);
+                        $('[name="UnitName"]').val(myobj.ObjectResult.UnitName);
+                        //$('[name="SubCategoryId"]').val(myobj.ObjectResult.SubCategoryId);
+                        $('[name="ProductCode"]').val(myobj.ObjectResult.ProductCode);
+                        $('[name="ProductName"]').val(myobj.ObjectResult.ProductName);
+                        $('[name="ProductVideo"]').val(myobj.ObjectResult.ProductVideo);
+                        $('[name="TagLine"]').val(myobj.ObjectResult.TagLine);
+                        $('[name="ProductDescription"]').val(myobj.ObjectResult.ProductDescription);
+                        $('[name="ProductDisplayOrder"]').val(myobj.ObjectResult.ProductDisplayOrder);
+
+                        $('#Images-1').html("<img src= '" + myobj.ObjectResult.ProductImage + "' alt='" + myobj.ObjectResult.ProductName + "'  style='height:100px;width:100px'/>");
+
+                        if (myobj.ObjectResult.IsActive)
+                            $('[name="IsActive"]').val('true');
+                        else
+                            $('[name="IsActive"]').val('false');
+                        OpenCard();
+                        $('#btnupdate').show();
+                        $('#btnadd').hide();
+                    }
+                    else {
+                        DangerAlert(" ", "Failed to get data.");
+                    }
+
+                });
+            }
+
+
+        function DeleteData(ProductID) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeleteProduct", "Product")", { ProductId: ProductID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200)
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                    BindTableData();
+                });
+            }
+        }
+            function ClearFields() {
+                $('[name="HDID"]').val(null);
+               // $('[name="CategoryId"]').val(null);
+                //$('[name="SubCategoryId"]').html("");
+                $('[name="Is_EndUserProduct"]').val(null);
+                $('[name="ProductCode"]').val(null);
+                $('[name="ProductName"]').val(null);
+                $('[name="ProductImage"]').val(null);
+                $('[name="ProductVideo"]').val(null);
+                $('[name="TagLine"]').val(null);
+                $('[name="ProductDescription"]').val(null);
+                $('[name="ProductDisplayOrder"]').val(null);
+                $('[name="SubCategoryName"]').val(null);
+                $('[name="SubCategoryDisplayOrder"]').val(null);
+                $('[name="UnitName"]').val(null);
+                $('[name="Price"]').val(null);
+
+                $('#Images-1').html("");
+
+                $('.error').html("");
+                $('[name="IsActive"]').val('true');
+                $('#btnupdate').hide();
+                $('#btnadd').show();
+            }
+
+            function BindTableData() {
+
+                $.get("@Url.Action("GetProductList", "Product")", function (data) {
+                    var myObject = JSON.parse(data);
+                    var TableDate = [];
+                    for (var i = 0; i < myObject.length; i++) {
+                        var row = [];
+                        row.push(myObject[i].CategoryName);
+                       
+                      
+                       
+                        row.push(myObject[i].ProductName);
+                        //row.push("<img src='" + myObject[i].ProductImage + "' style='height:100px;width:100px' alt='" + myObject[i].ProductName + " Image' />");
+                        //row.push(myObject[i].Price);
+                        //row.push(myObject[i].UnitName);
+                       
+                        if (myObject[i].IsActive)
+                            row.push("<span class='badge bg-success float-right'>Active</span>");
+                        else
+                            row.push("<span class='badge bg-danger float-right'>InActive</span>");
+                        if (isAddEnabled)
+                        row.push('<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + myObject[i].ProductId + ')">Edit</button>');
+                        else
+                        row.push("");
+                        //row.push('<button type="button" class="btn btn-danger btn-sm delete" onclick="DeleteData(' + myObject[i].ProductId + ')">Delete</button>');
+                        TableDate.push(row);
+                    }
+                    $('#' + tableId).DataTable({
+                        destroy: true,
+                        data: TableDate,
+                        scrollX: true,
+                        columns: [
+
+                            { title: "Category Name" },
+                       
+                            { title: "@ViewBag.Title Name" },
+                            @*{ title: "@ViewBag.Title Image" },*@
+                            //{ title: "Price" },
+                            //{ title: "Unit" },
+                         
+                            { title: "Status " },
+                            { title: " " },
+                            //{ title: " " }
+                        ]
+                    });
+                    hideshowbuttons();
+                    var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdfHtml5'
+
+                        ]
+                    }).container().appendTo($('#buttons'));
+                    $('.buttons-html5').addClass('btn btn-default btn-sm');
+                });
+            }
+    </script>
+
+</section>

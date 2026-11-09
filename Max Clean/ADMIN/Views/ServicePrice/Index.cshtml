@@ -1,0 +1,358 @@
+﻿
+@{
+    ViewBag.Title = "ServicePrice";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formserviceprice">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Service Name<span style="color:red">*</span></label>
+                                <select name="ServiceID" class="form-control">
+                                    <option value="">---Select--- </option>
+                                    @{
+                            var ServiceList = (List<API.Models.Service_Model>)ViewBag.Service;
+                            foreach (var cat in ServiceList)
+                            {
+                                <option value="@cat.ServiceID">@cat.ServiceName </option>
+                }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                       
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Category Name<span style="color:red">*</span></label>
+                                        <select name="CategoryId" class="form-control">
+                                            <option value="">---Select--- </option>
+                                            @{
+                                    var CategoryList = (List<API.Models.Category_Model>)ViewBag.Category;
+                                    foreach (var cat in CategoryList)
+                                    {
+                                        <option value="@cat.CategoryId">@cat.CategoryName </option>
+                        }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Product Name<span style="color:red">*</span></label>
+                                        <select name="ProductId" class="form-control">
+                                           
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Unit<span style="color:red">*</span></label>
+                                        <input class="form-control" type="text" name="Unit" maxlength="100" onkeypress="return IsNumericDecimal(event)">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Price<span style="color:red">*</span></label>
+                                        <input class="form-control" type="text" name="Price" maxlength="20" onkeypress="return IsNumericDecimal(event)">
+                                    </div>
+                                </div>
+                          
+                    
+                @*<div class="col-md-3">
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" type="text" name="Description" onkeypress="return NotanHTML(event)">
+            </div>
+        </div>*@
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Status<span style="color:red">*</span></label>
+                        <select class="form-control" name="IsActive">
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                            <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                            <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                            <input type="hidden" name="HDID" />
+                        </div>
+                    </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formserviceprice').validate({
+            rules: {
+                ServiceID: {
+                    required: true,
+                },
+                CategoryId: {
+                    required: true,
+                },
+                ProductId: {
+                    required: true,
+                },
+
+                Unit: {
+                    required: false,
+                },
+                Price: {
+                    required: false,
+                },
+
+            }
+        });
+
+        var form = $("#formserviceprice");
+        form.validate();
+       
+        
+
+        $(document).ready(function () {
+            BindTableData();
+                $('[name="CategoryId"]').on('change', function () {
+                GetProductByID($('[name="CategoryId"]').val());
+            });
+
+
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.ServiceID = $('[name="ServiceID"]').val();
+
+                    myobj.ProductId = $('[name="ProductId"]').val();
+                    myobj.Unit = $('[name="Unit"]').val();
+                    myobj.Price = $('[name="Price"]').val();
+                    myobj.IsActive = $('[name="IsActive"').val();
+                    setTimeout(function () {
+                        $.post("@Url.Action("AddServicePrice", "ServicePrice")", { ObjServicePrice: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                ClearFields();
+                                BindTableData();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        })
+                    },2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.ServicePriceID = $('[name="HDID"]').val();
+                    myobj.ServiceID = $('[name="ServiceID"]').val();
+                    myobj.CategoryID = $('[name="CategoryId"]').val();
+                    myobj.ProductId = $('[name="ProductId"]').val();
+                    myobj.Unit = $('[name="Unit"]').val();
+                    myobj.Price = $('[name="Price"]').val();
+                    myobj.IsActive = $('[name="IsActive"').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("UpdateServicePrice", "ServicePrice")", { ObjServicePrice: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    })
+                    }, 2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            })
+        });
+        
+        function GetData(ServicePriceID) {
+            $.get("@Url.Action("GetServicePrice", "ServicePrice")", { ServicePriceID: ServicePriceID },function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.ServicePriceID);
+                    $('[name="ServiceID"]').val(myobj.ObjectResult.ServiceID);
+                    $('[name="CategoryId"]').val(myobj.ObjectResult.CategoryID);
+                    GetProductByID(myobj.ObjectResult.CategoryID, myobj.ObjectResult.ProductId);
+                   // $('[name="ProductId"]').val(myobj.ObjectResult.ProductId);
+                    $('[name="Unit"]').val(myobj.ObjectResult.Unit);
+                    $('[name="Price"]').val(myobj.ObjectResult.Price);
+                    //$('[name="IsActive"]').val(myobj.ObjectResult.IsActive);
+
+
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val('true');
+                    else
+                        $('[name="IsActive"]').val('false');
+                    OpenCard();
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+
+       
+        function GetProductByID(CategoryID,ProductID) {
+            $("[name=ProductId]").empty();
+
+            $.get("@Url.Action("GetIntProductOnCategoryID", "OrdersList")", { CategoryID: CategoryID }, function (data) {
+            
+            var myobject = JSON.parse(data);
+                $("[name=ProductId]").append("<option value=''>---Select---</option>");
+            myobject.ObjectResult.forEach(function (index) {
+                $("[name=ProductId]").append("<option value='" + index.ProductId + "'>" + index.ProductName + "</option>");
+                });
+
+                if (ProductID != null)
+                    $("[name=ProductId]").val(ProductID);
+        });
+        }
+
+        function DeleteData(ServicePriceID) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeleteServicePrice", "ServicePrice")", { ServicePriceID: ServicePriceID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                });
+            }
+        }
+        function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="ServiceID"]').val(null);
+            $('[name="CategoryId"]').val(null);
+            $("[name=ProductId]").empty();
+            $('[name="Unit"]').val(null);
+            $('[name="Price"]').val(null);
+            $('[name="IsActive"]').val(true);
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+        }
+
+        function BindTableData() {
+            $.get("@Url.Action("GetServicePriceList", "ServicePrice")",  function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].ServiceName);
+                row.push(myObject[i].CategoryName);
+               
+                row.push(myObject[i].ProductName);
+                row.push(myObject[i].Unit);
+                row.push(myObject[i].Price);
+
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+
+                if (isAddEnabled)
+                    row.push('<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + myObject[i].ServicePriceID + ')">Edit</button>');
+                else
+                    row.push('');
+               // row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].ServicePriceID + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Service" },
+                    { title: "Category" },
+                    { title: "Product" },
+                    { title: "Unit" },
+                    { title: "Price" },
+                    { title: "Status" },
+                    { title: " " },
+                   // { title: " " }
+                ]
+            });
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+                hideshowbuttons();
+         });
+        }
+
+    </script>
+
+</section>
+
+

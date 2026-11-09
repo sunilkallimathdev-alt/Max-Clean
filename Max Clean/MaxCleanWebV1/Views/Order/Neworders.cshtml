@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Neworders";
+    Layout = "~/Views/Shared/WebMasterLogin.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 m_bottom_40">
+                <div class="center-block" id="howitworks">
+                    <h2>Book your <span>Dry Clean</span> and <span>Steam Press</span></h2>
+
+                </div>
+                <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+                    <!--tabs navigation-->
+                    <nav>
+                        <ul class="tabs_nav horizontal_list clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist" id="ulservice">
+                            <li class="f_xs_none ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="tab-1" aria-labelledby="ui-id-1" aria-selected="false" style="font-weight:bold;"><a href="#tab-1" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Dry Clean</a></li>
+                            <li class="f_xs_none ui-state-default ui-corner-top " role="tab" tabindex="0" aria-controls="tab-2" aria-labelledby="ui-id-2" aria-selected="true" style="font-weight:bold;"><a href="#tab-2" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Steam Press2</a></li>
+
+                        </ul>
+                    </nav>
+                    <!--tabs content-->
+                    <section class="tabs_content shadow r_corners" id="abc">
+                        
+                    </section>
+                    
+                </div>
+
+            </div>
+        </div>
+        <hr class="divider_type_3 m_bottom_15">
+        <a href="cart.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5 " style="float:right; ">Continue</a></span>
+
+    </div>
+</div>
+
+
+
+<script src="~/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+   var tabcount = 0;
+    $(document).ready(function () {
+        //GetCategories(1);
+        GetServices()
+    });
+    function GetServices() {
+         tabcount = 0;
+         CategoryTabs = "";
+         ServiceProductIDs = [];
+         CategoryIDs = [];
+       $.get("@Url.Action("GetServices", "Order")", function (data) {
+
+           var myObject = JSON.parse(data);
+           //myObject = myObject.ObjectResult;
+           var servicetabs = "";
+           //for (var i = 0; i < myObject.length; i++) {
+
+           //    if (i == 0) {
+           //        servicetabs += "<li class='f_xs_none ui-state-default ui-corner-top ui-tabs-active ui-state-active' role='tab' tabindex='-1' aria-controls='tab-" + myObject[i].ServiceID + "' aria-labelledby='ui-id-" + myObject[i].ServiceID + "' aria-selected='false' style='font-weight:bold;'><a href='#tab-" + myObject[i].ServiceID + "' class='bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor' role='presentation' tabindex='-1' id='ui-id-" + myObject[i].ServiceID + "'>" + myObject[i].ServiceName + "</a></li>";
+           //    } else {
+           //        servicetabs += "<li class='f_xs_none ui-state-default ui-corner-top' role='tab' tabindex='0' aria-controls='tab-" + myObject[i].ServiceID + "' aria-labelledby='ui-id-" + myObject[i].ServiceID + "' aria-selected='true' style='font-weight:bold;'><a href='#tab-" + myObject[i].ServiceID + "' class='bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor' role='presentation' tabindex='-1' id='ui-id-" + myObject[i].ServiceID + "'>" + myObject[i].ServiceName + "</a></li>";
+           //    }
+           //    GetCategoryProductsbyServiceID(myObject[i].ServiceID);
+           //    tabcount++;
+           //}
+       
+          // servicetabs += "<section class='tabs_content shadow r_corners'>";
+           for (var i = 0; i < myObject.length; i++) {
+               if (i == 0)
+                   servicetabs += "<div id='tab-1' aria-labelledby='ui-id-1' class='ui-tabs-panel ui-widget-content ui-corner-bottom' role='tabpanel' aria-expanded='false' aria-hidden='true' style='display: none;'>";
+               else
+                   servicetabs += "<div id='tab-2' aria-labelledby='ui-id-2' class='ui-tabs-panel ui-widget-content ui-corner-bottom' role='tabpanel' aria-expanded='true' aria-hidden='false' style='display: block;'>";
+               servicetabs += "<div class='accordion toggle'>";
+
+               for (var j = 0; j < myObject[i].Categorylist.length; j++) {
+                   if (j == 0)
+                       servicetabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5 active'>";
+                   else
+                       servicetabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5'>";
+                   servicetabs += "<h3 class='a_title relative tr_all_hover bg_light_color_1 color_dark '>" + myObject[i].Categorylist[j].CategoryName+"<span class='minus_icon tr_all_hover'>-</span>";
+                   servicetabs += "<span class='plus_icon tr_all_hover'>+</span>";
+                   servicetabs += "</h3>";
+                   servicetabs += "<div class='bg_light_color_3 a_content' style='display: none;'>";
+
+                   servicetabs += "</div>";
+                   servicetabs += "</div>";
+               }
+
+
+
+               servicetabs += "</div>";
+
+               servicetabs += "</div>";
+               //servicetabs += "<div id='tab-2' aria-labelledby='ui-id-2' class='ui-tabs-panel ui-widget-content ui-corner-bottom' role='tabpanel' aria-expanded='true' aria-hidden='false' style='display: block;'>";
+               //servicetabs += "<div class='accordion toggle'>";
+
+               //servicetabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5'>";
+               //servicetabs += "<h3 class='a_title relative tr_all_hover bg_light_color_1 color_dark'>";
+               //servicetabs += "Mens";
+               //servicetabs += "<span class='minus_icon tr_all_hover'>-</span>";
+               //servicetabs += "<span class='plus_icon tr_all_hover'>+</span>";
+               //servicetabs += "</h3>";
+               //servicetabs += "<div class='bg_light_color_3 a_content' style='display: none;'>";
+
+               //servicetabs += "</div>";
+               //servicetabs += "</div>";
+
+
+
+
+               //servicetabs += "</div>";
+              // servicetabs += "</div>";
+           }
+          // servicetabs += "</section>";
+
+      $("#abc").html(servicetabs);
+       });
+
+     }
+
+    function GetCategoryProductsbyServiceID(ServiceID) {
+
+        //var CategoryTabs = "";
+        var ID = ServiceID;
+        $.ajax({
+            type: "get",
+            url: "/Order/GetCategoryProductsByServiceID",
+            data: { 'ServiceID': ServiceID },
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                var myObject = data;
+                if (tabcount == 0) {
+                    CategoryTabs += "<div id='tab-" + ID + "' aria-labelledby='ui-id-" + ID + "' class='ui-tabs-panel ui-widget-content ui-corner-bottom' role='tabpanel' aria-expanded='false' aria-hidden='true' style='display:none;'>";
+                } else {
+                    CategoryTabs += "<div id='tab-" + ID + "' aria-labelledby='ui-id-" + ID + "' class='ui-tabs-panel ui-widget-content ui-corner-bottom' role='tabpanel' aria-expanded='true' aria-hidden='false' style='display:block;'>";
+                }
+                CategoryTabs += "<div class='accordion toggle'>";
+
+                for (var c = 0; c < myObject.ObjectResult.length; c++) {
+                    if (c == 0) {
+                        CategoryTabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5 active'>";
+                    } else {
+                        CategoryTabs += "<div class='accordion_item r_corners shadow wrapper m_bottom_5'>";
+                    }
+                    CategoryTabs += "<h3 class='a_title relative tr_all_hover bg_light_color_1 color_dark  '>" + myObject.ObjectResult[c].CategoryName + "<span class='minus_icon tr_all_hover'>-</span><span class='plus_icon tr_all_hover'>+</span></h3>";
+                    CategoryTabs += "<div class='bg_light_color_3 a_content' >";
+                    CategoryTabs += "<div class='table-responsive'>";
+                    CategoryTabs += "<table class='table_type_4  full_width r_corners wraper shadow t_align_l t_xs_align_c m_bottom_30'>";
+                    CategoryTabs += "<thead>";
+                    CategoryTabs += "<tr class='f_size_large' style='font-weight:bold;'>";
+
+                    CategoryTabs += "<th>Product</th>";
+                    CategoryTabs += "<th>Price</th>";
+                    CategoryTabs += "<th>Quantity</th>";
+                    CategoryTabs += "<th>Subtotal</th>";
+
+                    CategoryTabs += "</tr>";
+                    CategoryTabs += "</thead>";
+                    CategoryTabs += "<tbody>";
+
+                    for (var p = 0; p < myObject.ObjectResult[c].ProductList.length; p++) {
+                        CategoryTabs += "<tr>";
+
+                        CategoryTabs += "<td data-title='Product Image &amp; name' class='t_md_align_c'>" + myObject.ObjectResult[c].ProductList[p].ProductName + "</td>";
+
+
+
+                        CategoryTabs += "<td data-title='Price'>";
+                        CategoryTabs += "<p class='f_size_large color_dark'>" + myObject.ObjectResult[c].ProductList[p].Price + "</p>";
+                        CategoryTabs += "</td>";
+
+                        CategoryTabs += "<td data-title='Quantity'>";
+                        CategoryTabs += "<div class='clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10' style='width:103px;'>";
+                        CategoryTabs += "<button class='bg_tr d_block f_left' data-direction='down'>-</button>";
+                        CategoryTabs += "<input type='text'  readonly value='0' class='f_left'/>";
+                        CategoryTabs += "<button class='bg_tr d_block f_left' data-direction='up'>+</button>";
+                        CategoryTabs += "</div>";
+
+                        CategoryTabs += "</td>";
+
+                        CategoryTabs += "<td data-title='Subtotal'>";
+                        CategoryTabs += "<p class='f_size_large fw_medium scheme_color'>Rs 102.00</p>";
+                        CategoryTabs += "</td>";
+
+                        CategoryTabs += "</tr>";
+                    }
+                    CategoryTabs += "</tbody>";
+                    CategoryTabs += "</table>";
+                    CategoryTabs += "</div>";
+                    CategoryTabs += "</div>";
+                    CategoryTabs += "</div>";
+                }
+
+                    CategoryTabs += "</div>";
+                    CategoryTabs += "</div>";
+
+
+                //$("#cat_tab").html(CategoryTabs);
+
+            },
+            error: function (errMsg) {
+                alert(JSON.stringify(errMsg));
+            }
+        });
+
+
+
+    }
+</script>
+

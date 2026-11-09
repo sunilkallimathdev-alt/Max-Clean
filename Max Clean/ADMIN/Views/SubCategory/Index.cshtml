@@ -1,0 +1,321 @@
+﻿
+@{
+    ViewBag.Title = "SubCategory";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formsubcategory">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Category Name<span style="color:red">*</span></label>
+                                <select name="CategoryId" class="form-control ">
+                                    <option value="">---Select--- </option>
+                                    @{
+                                        var CategoryList = (List<API.Models.Category_Model>)ViewBag.Category;
+                                        foreach (var cat in CategoryList)
+                                        {
+                                            <option value="@cat.CategoryId">@cat.CategoryName </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>SubCategory Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="SubCategoryName" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CategoryIcon">SubCategory Icon <span style="color:red">(&lt; 2MB)</span></label>
+                                <input class="form-control" type="file" accept="image/*" name="SubCategoryIcon">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CategoryBanner">SubCategory Banner <span style="color:red">(&lt; 2MB)</span></label>
+                                <input class="form-control" type="file" name="SubCategoryBanner">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Display Order</label>
+                                <input class="form-control" type="text" name="SubCategoryDisplayOrder" maxlength="3" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+        var tableId = "tbl";
+
+        $('#formsubcategory').validate({
+            rules: {
+                SubCategoryName: {
+                    required: true,
+                },
+                CategoryId: {
+                    required: true,
+                },
+                SubCategoryIcon: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: false,
+                },
+                SubCategoryBanner: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: false,
+                },
+                SubCategoryDisplayOrder: {
+                    required: false,
+                },
+
+            }
+        });
+
+        var form = $("#formsubcategory");
+        form.validate();
+
+        $(document).ready(function () {
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.SubCategoryName = $('[name="SubCategoryName"]').val();
+                    myobj.CategoryId = $('[name="CategoryId"]').val();
+                    if ($('[name="SubCategoryIcon"]').val() != "") {
+                        readFile($('[name="SubCategoryIcon"]')[0].files[0], function (e) {
+                            myobj.SubCategoryIcon = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    if ($('[name="SubCategoryBanner"]').val() != "") {
+                        readFile($('[name="SubCategoryBanner"]')[0].files[0], function (e) {
+                            myobj.SubCategoryBanner = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    myobj.SubCategoryDisplayOrder = $('[name="SubCategoryDisplayOrder"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("AddSubCategory", "SubCategory")", { ObjSubCategory: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    });
+                    }, 2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.SubCategoryID = $('[name="HDID"]').val();
+                    myobj.SubCategoryName = $('[name="SubCategoryName"]').val();
+                    myobj.CategoryId = $('[name="CategoryId"]').val();
+                    if ($('[name="SubCategoryIcon"]').val() != "") {
+                        readFile($('[name="SubCategoryIcon"]')[0].files[0], function (e) {
+                            myobj.SubCategoryIcon = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    if ($('[name="SubCategoryBanner"]').val() != "") {
+                        readFile($('[name="SubCategoryBanner"]')[0].files[0], function (e) {
+                            myobj.SubCategoryBanner = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    myobj.SubCategoryDisplayOrder = $('[name="SubCategoryDisplayOrder"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+                    setTimeout(function () {
+                    $.post("@Url.Action("UpdateSubCategory", "SubCategory")", { ObjSubCategory: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode ==200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                        });
+                    }, 2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+        });
+
+        function GetData(SubCategoryID) {
+            $.get("@Url.Action("GetSubCategory", "SubCategory")", { SubCategoryID: SubCategoryID }, function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.SubCategoryID);
+                    $('[name="CategoryId"]').val(myobj.ObjectResult.CategoryId);
+                    $('[name="SubCategoryName"]').val(myobj.ObjectResult.SubCategoryName);
+                    $('[name="SubCategoryDisplayOrder"]').val(myobj.ObjectResult.SubCategoryDisplayOrder);
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val('true');
+                    else
+                        $('[name="IsActive"]').val('false');
+                    OpenCard();
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+
+        function DeleteData(SubCategoryID) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeleteSubCategory", "SubCategory")", { SubCategoryID: SubCategoryID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200)
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                    BindTableData();
+                });
+            }
+        }
+        function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="SubCategoryName"]').val(null);
+            $('[name="SubCategoryIcon"]').val(null);
+            $('[name="SubCategoryBanner"]').val(null);
+            $('[name="SubCategoryDisplayOrder"]').val(null);
+            $('[name="IsActive"]').val('true');
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+        }
+
+        function BindTableData() {
+            $.get("@Url.Action("GetSubCategoryList", "SubCategory")", function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].CategoryName);
+                row.push(myObject[i].SubCategoryName);
+                row.push("<img src='" + myObject[i].SubCategoryIcon + "' style='height:100px;width:100px' alt='" + myObject[i].SubCategoryName + " Icon' />");
+                row.push("<img src='" + myObject[i].SubCategoryBanner + "' style='height:100px;width:100px' alt='" + myObject[i].SubCategoryName + " Banner' />");
+                row.push(myObject[i].SubCategoryDisplayOrder);
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+
+                row.push('<button type="button" class="btn btn-info btn-sm" onclick="GetData(' + myObject[i].SubCategoryID + ')">Edit</button>');
+                row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].SubCategoryID + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+
+                    { title:"Category Name"},
+                    { title: "SubCategory Name" },
+                    { title: "Icon" },
+                    { title: "Banner" },
+                    { title: "DisplayOrder" },
+                    { title: "Status" },
+                    { title: " " },
+                    { title: " " },
+
+
+
+                ]
+            });
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }
+
+    </script>
+
+</section>
+
+
+
+

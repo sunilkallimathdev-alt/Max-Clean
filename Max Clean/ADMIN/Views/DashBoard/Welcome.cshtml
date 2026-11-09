@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+}
+
+@*<h1><strong> Welcome To Admin Panel</strong></h1>*@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark"></h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active"></li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div>
+             
+                @*<span class="info-box-icon"><i class="fa fa-shopping-cart"></i></span>*@
+                <div class="info-box-content">
+                    <a href="/orderslist/placeorder" class="btn btn-block btn-info"><h4 style="font-family: sans-serif;" onclick="placeOrder();"> <img  class="img-size-50" src="~/CustomFiles/washing-machine.png" /> Place New Offline Order</h4></a>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+        </div>
+    </div>
+</section>
+<div style="text-align: center; padding-top: 10%; color: gray;">
+    <h1 id="welcome"><b>Welcome To Admin Panel</b></h1>
+</div>

@@ -1,0 +1,647 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+@using API.DataAccess;
+
+@{
+    ViewBag.Title = "DashBoard";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-6 col-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active"> <a href="/orderslist/placeorder" class="btn btn-block btn-info"><h4 style="font-family: sans-serif;" onclick="placeOrder();"> <img class="img-size-32" src="~/CustomFiles/washing-machine.png" /> Place New Offline Order</h4></a></li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+    @*newly added*@
+    <div class="col-lg-12 col-6">
+        <div class="info-box">
+            <div class="col-lg-6 col-6">
+                <div class="form-group">
+                    <label> Select Store :</label>
+                    <select class="form-control" name="StoresID" id="StoresID" onchange="ddlchange( )">
+                        @{
+                            try
+                            {
+                                var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                if (user.StoreID != null)
+                                {
+                                    foreach (var str in @ViewBag.StoreList)
+                                    {
+                                        if (user.StoreID == @str.StoreID)
+                                        {
+                                            <option value="@str.StoreID">@str.StoreName</option>
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+
+                                    <option value="0">All Stores</option>
+                                    foreach (var str in @ViewBag.StoreList)
+                                    {
+                                        <option value="@str.StoreID">@str.StoreName</option>
+
+                                        @*<option value="@str.StoreID" @(str.StoreID == ViewBag.Storeid ? "selected='selected'" : "")>@str.StoreName</option>*@
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*/..newly added*@
+</div>
+
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="card">
+            <div class="header" style="padding-left:5px;">
+                <h5 style="font-weight:600">Today's Report</h5>
+            </div>
+            <div class="card-body" style="padding-bottom:unset;padding-top:unset">
+                <div class="row">
+                    <!--Todays count start-->
+                    <div class="col-lg-2 col-6">
+                        <div class="small-box" style="background-color:#27488f">
+                            <div class="inner">
+                                @{
+                                    DateTime now = System.TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+                                    var start_Date = now.Date;
+                                    var end_Date = start_Date.AddDays(1);
+                                    var LoggedUserDetails = Session["logindetails"];
+
+                                    var Loggeduser = (LoggedUserDetails != null) ? (JObject)JsonConvert.DeserializeObject(LoggedUserDetails.ToString()) : new JObject();
+                                    int StoreID;
+
+                               //newly added
+
+                                    if (@ViewBag.Storeid == 0)
+                                    {
+                                        StoreID = 0;
+                                    }
+                                    else
+                                    {
+                                        StoreID = (int)@ViewBag.Storeid;
+                                    }
+
+                               //..newly added
+
+                                    if (Loggeduser.SelectToken("StoreID") != null && Loggeduser.SelectToken("StoreID").ToString() != "")
+                                    {
+                                        StoreID = Convert.ToInt32(Loggeduser.SelectToken("StoreID"));
+                                    }
+                                    if (StoreID == 0)
+                                    {
+                                        using (maxcleanEntities context = new maxcleanEntities())
+                                        {
+                                            var ordercount = context.t_orders.Where(x => x.order_date >= start_Date && x.order_date <= end_Date).Select(x => x.order_id).Count();
+
+                                            <h3 style="color:white">@ordercount</h3>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        using (maxcleanEntities context = new maxcleanEntities())
+                                        {
+                                            var ordercount = context.t_orders.Where(x => x.order_date >= start_Date && x.order_date <= end_Date && x.store_id == StoreID).Select(x => x.order_id).Count();
+
+                                            <h3 style="color:white">@ordercount</h3>
+                                        }
+                                    }
+
+
+                                    <p style="color:white">Total Orders</p>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-6">
+
+                        <div class="small-box" style="background-color:#f7f726">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        var total = context.t_customer.Where(x => x.created_date >= start_Date && x.created_date <= end_Date).Count();
+
+                                        <h3>@total </h3>
+                                    }
+
+                                    <p>Registered Customers  </p>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-6">
+
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        double? total = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total = context.t_orders.Where(x => x.order_date >= start_Date && x.order_date <= end_Date).Sum(x => x.grandtotal_price);
+                                        }
+                                        else
+                                        {
+                                            total = context.t_orders.Where(x => x.order_date >= start_Date && x.order_date <= end_Date && x.store_id == StoreID).Sum(x => x.grandtotal_price);
+                                        }
+                                        <h3>@total &nbsp;<span>&#8377;</span></h3>
+                                    }
+
+                                    <p>Total Billing Amount  </p>
+                                }
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6">
+
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        int? total_products = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total_products = context.t_order_details.Where(x => x.t_orders.order_date >= start_Date && x.t_orders.order_date <= end_Date).Sum(c => c.quantity);
+                                        }
+                                        else
+                                        {
+                                            total_products = context.t_order_details.Where(x => x.t_orders.order_date >= start_Date && x.t_orders.order_date <= end_Date && x.t_orders.store_id == StoreID).Sum(c => c.quantity);
+                                        }
+                                        <h3>@total_products &nbsp;</h3>
+                                    }
+
+                                    <p>Total Products Received   </p>
+                                }
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        int total_del_products = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total_del_products = context.t_orders.Where(x => x.delivery_date >= start_Date && x.delivery_date < end_Date && x.order_status == 11).Select(c => c.order_id).Count();
+                                        }
+                                        else
+                                        {
+                                            total_del_products = context.t_orders.Where(x => x.delivery_date >= start_Date && x.delivery_date < end_Date && x.order_status == 11 && x.store_id == StoreID).Select(c => c.order_id).Count();
+                                        }
+                                        <h3>@total_del_products &nbsp;</h3>
+                                    }
+
+                                    <p>Total Orders Delivered   </p>
+                                }
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        double? total_del = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total_del = context.t_orders.Where(x => x.delivery_date >= start_Date && x.delivery_date <= end_Date && x.order_status == 11).Sum(x => x.grandtotal_price);
+                                        }
+                                        else
+                                        {
+                                            total_del = context.t_orders.Where(x => x.delivery_date >= start_Date && x.delivery_date <= end_Date && x.order_status == 11 && x.store_id == StoreID).Sum(x => x.grandtotal_price);
+                                        }
+                                        <h3>@total_del &nbsp; <span>&#8377;</span></h3>
+                                    }
+
+                                    <p>Total Amt. of Delivered Orders  </p>
+                                }
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Todays count end-->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="header" style="padding-left:5px;">
+                <h5 style="font-weight:600">Monthly Report</h5>
+            </div>
+            <div class="card-body" style="padding-bottom:unset;padding-top:unset">
+                <div class="row">
+                    <!--Monthly count start-->
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box" style="background-color:#27488f">
+                            <div class="inner">
+                                @{
+                                    //DateTime now = System.TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+                                    var startDate = new DateTime(now.Year, now.Month, 1);
+                                    var endDate = startDate.AddMonths(1).AddDays(-1);
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        int ordercount = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            ordercount = context.t_orders.Where(x => x.order_date >= startDate && x.order_date <= endDate).Select(x => x.order_id).Count();
+                                        }
+                                        else
+                                        {
+                                            ordercount = context.t_orders.Where(x => x.order_date >= startDate && x.order_date <= endDate && x.store_id == StoreID).Select(x => x.order_id).Count();
+                                        }
+                                        <h3 style="color:white">@ordercount</h3>
+                                    }
+                                    string[] Months = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+                                    var month = @Months[Convert.ToInt32(now.ToString("MM")) - 1];
+                                    <p style="color:white">Total Orders For Month <h4 style="color:white"> @month</h4>  </p>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="/DashBoard/ThisMonthsOrders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box" style="background-color:#f7f726">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+
+                                        var total = context.t_customer.Where(x => x.created_date >= startDate && x.created_date <= endDate).Count();
+
+                                        <h3>@total </h3>
+                                    }
+
+                                    <p>Registered Customers for month <h4> @month</h4></p>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="/DashBoard/ThisMonthsCustomers" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        double? total = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total = context.t_orders.Where(x => x.order_date >= startDate && x.order_date <= endDate).Sum(x => x.grandtotal_price);
+                                        }
+                                        else
+                                        {
+                                            total = context.t_orders.Where(x => x.order_date >= startDate && x.order_date <= endDate && x.store_id == StoreID).Sum(x => x.grandtotal_price);
+                                        }
+                                        <h3>@total &nbsp;<span>&#8377;</span></h3>
+                                    }
+
+                                    <p>Total Billing Amount For Month <h4> @month </h4>  </p>
+                                }
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="/DashBoard/CurrentMonthsBilling" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box" style="background-color:#ff9933">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        var total = context.t_delivery_boy.Where(x => x.is_active == true).Count();
+
+                                        <h3>@total</h3>
+                                    }
+
+                                    <p>Total Active Delivery Boys  <h4> &nbsp;</h4></p>
+                                }
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-android-bicycle"></i>
+                            </div>
+                            @*<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>*@
+                        </div>
+                    </div>
+                    <!--Monthly count end-->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="header" style="padding-left:5px;">
+                <h5 style="font-weight:600">Overall Report</h5>
+            </div>
+            <div class="card-body" style="padding-bottom:unset;padding-top:unset">
+                <div class="row">
+
+                    <!---total count start-->
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box" style="background-color:#27488f">
+                            <div class="inner">
+                                @{
+                                    try
+                                    {
+                                        using (maxcleanEntities context = new maxcleanEntities())
+                                        {
+                                            int ordercount = 0;
+                                            if (StoreID == 0)
+                                            {
+                                                ordercount = context.t_orders.Select(x => x.order_id).Count();
+                                            }
+                                            else
+                                            {
+                                                ordercount = context.t_orders.Where(x => x.store_id == StoreID).Select(x => x.order_id).Count();
+                                            }
+                                            <h3 style="color:white">@ordercount</h3>
+                                        }
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        throw e;
+                                    }
+                                    <p style="color:white">Total Orders Received   </p>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="/DashBoard/Orders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box" style="background-color:#f7f726">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        var total = context.t_customer.Count();
+
+                                        <h3>@total</h3>
+                                    }
+
+                                    <p>Total Registered Customers</p>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="/DashBoard/Customers" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        double? Total = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            Total = context.t_orders.Sum(x => x.grandtotal_price);
+                                        }
+                                        else
+                                        {
+                                            Total = context.t_orders.Where(x => x.store_id == StoreID).Sum(x => x.grandtotal_price);
+                                        }
+                                        <h3>@Total  &nbsp;<span>&#8377;</span></h3>
+                                        <p>Total Billing Amount</p>
+                                    }
+
+
+                                }
+
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="/DashBoard/TotalBilling" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box" style="background-color:#ff9933">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        var Total = context.t_delivery_boy.Count();
+
+                                        <h3>@Total</h3>
+                                        <p>Total Delivery Boys</p>
+                                    }
+
+
+                                }
+
+
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-android-bicycle"></i>
+                            </div>
+                            @*<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>*@
+                        </div>
+                    </div>
+                    <!---total count end-->
+
+                    <div class="col-lg-4 col-6">
+
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        int total = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total = context.t_orders.Where(x => x.order_status == 2).Count();
+                                        }
+                                        else
+                                        {
+                                            total = context.t_orders.Where(x => x.order_status == 2 && x.store_id == StoreID).Count();
+                                        }
+                                        <h3>@total </h3>
+                                    }
+
+                                    <h4>Orders Ready For Pickup</h4>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/DashBoard/PickUpOrders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-6">
+
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        int total = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total = context.t_orders.Where(x => x.order_status == 8).Count();
+                                        }
+                                        else
+                                        {
+                                            total = context.t_orders.Where(x => x.order_status == 8 && x.store_id == StoreID).Count();
+                                        }
+                                        <h3>@total </h3>
+                                    }
+
+                                    <h4>Orders Ready For Delivery</h4>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/DashBoard/DropOrders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                @{
+
+                                    using (maxcleanEntities context = new maxcleanEntities())
+                                    {
+                                        var tommorrow = now.Date.AddDays(1);
+                                        var dayafter = now.Date.AddDays(2);
+                                        int total_ = 0;
+                                        if (StoreID == 0)
+                                        {
+                                            total_ = context.t_orders.Where(x => x.delivery_date > tommorrow && x.delivery_date < dayafter).Count();
+                                        }
+                                        else
+                                        {
+                                            total_ = context.t_orders.Where(x => x.delivery_date > tommorrow && x.delivery_date < dayafter && x.store_id == StoreID).Count();
+                                        }
+                                        <h3>@total_ </h3>
+                                    }
+                                    <h4>Orders To be Delivered Tomorrow</h4>
+                                }
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/DashBoard/DeliveryOrders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </div>
+
+</section>
+<!-- /.content -->
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+
+//newly addedd
+    function ddlchange() {
+        var id = $("#StoresID").val();
+        window.location.href = "/DashBoard/Index/" + id;
+    }
+    $(document).ready(function () {
+        $("#StoresID").val("@StoreID").attr("selected", "selected");
+    });
+// ..from this
+
+</script>

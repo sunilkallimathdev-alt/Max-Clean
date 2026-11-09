@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "Coupon";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formcoupon">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Coupon Code<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="CouponCode" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Coupon Description<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="CouponDescription" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Coupon MinPrice<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="CouponMinPrice" maxlength="10" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Coupon ValidFrom </label>
+                                <input class="form-control" type="text" name="CouponValidFrom" maxlength="10" onkeypress="return IsNumericorAlphabets(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Coupon ValidUpto<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="CouponValidUpto" maxlength="10" onkeypress="return IsNumericorAlphabets(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" onclick="ClearFields()" id="btnreset">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+          var tableId = "tbl";
+
+        $('#formcoupon').validate({
+            rules: {
+                CouponCode: {
+                    required: true,
+                },
+                CouponDescription: { 
+                    required: true,
+                },
+                CouponMinPrice: {
+                    //digits: true,
+                    //minlength: 10,
+                    //maxlength: 15,
+                    required: true,
+                },
+                CouponValidFrom: {
+                    //digits: true,
+                    //minlength: 10,
+                    //maxlength: 15,
+                    required: true,
+                },
+                CouponValidUpto: {
+                    required: true,
+                },
+
+            }
+        });
+
+         var form = $("#formcoupon");
+        form.validate();
+
+        $(document).ready(function () {
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.CouponCode = $('[name="CouponCode"]').val();
+                    myobj.CouponDescription = $('[name="CouponDescription"]').val();
+                    myobj.CouponMinPrice = $('[name="CouponMinPrice"]').val();
+                    myobj.CouponValidFrom = $('[name="CouponValidFrom"]').val();
+                    myobj.CouponValidUpto = $('[name="CouponValidUpto"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("AddCoupon", "Coupon")", { ObjCoupon: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                BindTableData();
+                                SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                ClearFields();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        })
+                    },2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.CouponID = $('[name="HDID"]').val();
+                    myobj.CouponCode = $('[name="CouponCode"]').val();
+                    myobj.CouponDescription = $('[name="CouponDescription"]').val();
+                    myobj.CouponMinPrice = $('[name="CouponMinPrice"]').val();
+                    myobj.CouponValidFrom = $('[name="CouponValidFrom"]').val();
+                    myobj.CouponValidUpto = $('[name="CouponValidUpto"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("UpdateCoupon", "Coupon")", { ObjCoupon: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            BindTableData();
+                            ClearFields();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    })
+                    }, 2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            })
+        });
+
+        function GetData(CouponID) {
+         
+            $.get("@Url.Action("GetCoupon", "Coupon")", { CouponID: CouponID }, function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.CouponID);
+                    $('[name="CouponCode"]').val(myobj.ObjectResult.CouponCode);
+                    $('[name="CouponDescription"]').val(myobj.ObjectResult.CouponDescription);
+                    $('[name="CouponMinPrice"]').val(myobj.ObjectResult.CouponMinPrice);
+                    $('[name="CouponValidFrom"]').val(myobj.ObjectResult.CouponValidFrom);
+                    $('[name="CouponValidUpto"]').val(myobj.ObjectResult.CouponValidUpto);
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val('true');
+                    else
+                        $('[name="IsActive"]').val('false');
+                    OpenCard();
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+
+         function ClearFields() {
+            $('[name="HDID"]').val(null);
+             $('[name="CouponCode"]').val(null);
+             $('[name="CouponDescription"]').val(null);
+             $('[name="CouponMinPrice"]').val(null);
+             $('[name="CouponValidFrom"]').val(null);
+             $('[name="CouponValidUpto"]').val(null);
+            $('[name="IsActive"]').val('true');
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+        }
+
+        function BindTableData() {
+
+            $.get("@Url.Action("GetCouponList", "Coupon")", function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].CouponCode);
+                row.push(myObject[i].CouponDescription);
+                row.push(myObject[i].CouponMinPrice);
+                row.push(myObject[i].CouponValidFrom);
+                row.push(myObject[i].CouponValidUpto);
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+
+                row.push('<button type="button" class="btn btn-info btn-sm" onclick="GetData(' + myObject[i].CouponID + ')">Edit</button>');
+                //row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].CustomerID + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Coupon Code" },
+                    { title: "Coupon Description" },
+                    { title: "Coupon MinPrice" },
+                    { title: "Coupon ValidFrom" },
+                    { title: "CouponValidUpto" },
+                    { title: "IsActive " },
+                    //{ title: " " },
+                    { title: " " }
+                 
+                    
+                ]
+            });
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }
+
+    </script>
+
+</section>

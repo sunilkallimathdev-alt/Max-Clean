@@ -1,0 +1,278 @@
+﻿
+@{
+    ViewBag.Title = "GetOrders";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formgetorders">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>From Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="FromDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>To Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="ToDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Order Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="StatusID">
+                                    <option value="true">Pick Up</option>
+                                    <option value="false">Delivery</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="CategoryBanner">Category Banner <span style="color:red">(< 2MB)</span></label>
+                                    <input class="form-control" type="file" name="CategoryBanner">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Display Order</label>
+                                    <input class="form-control" type="text" name="DisplayOrder" maxlength="3" onkeypress="return IsNumeric(event)">
+                                </div>
+                            </div>*@
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input class="form-control" type="text" name="Description" onkeypress="return NotanHTML(event)">
+                                </div>
+                            </div>*@
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Status<span style="color:red">*</span></label>
+                                    <select class="form-control" name="IsActive">
+                                        <option value="true">Active</option>
+                                        <option value="false">InActive</option>
+                                    </select>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @*<button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>*@
+                    <button type="button" class="btn btn-success" onclick="BindTableData();" id="btnupdate">Submit </button>
+                    @*<button type="button" class="btn btn-danger" onclick="BindTableData();">Cancel</button>*@
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formgetorders').validate({
+            rules: {
+                FromDate: {
+                    required: false,
+                },
+                ToDate: {
+                    required: false,
+                },
+                OrderStatus: {
+                    required: false,
+                },
+                //CategoryIcon: {
+                //    extension: "jpg,jpeg,png",
+                //    filesize: 2097152,
+                //    required: false,
+                //},
+                //CategoryBanner: {
+                //    extension: "jpg,jpeg,png",
+                //    filesize: 2097152,
+                //    required: false,
+                //},
+                //DisplayOrder: {
+                //    required: false,
+                //},
+                //Description: {
+                //    required: false,
+                //},
+
+            }
+        });
+
+        var form = $("#formgetorders");
+        form.validate();
+
+
+        $(document).ready(function () {
+            BindTableData();
+            //$('#btnupdate').hide();
+            //$("#btnadd").click(function () {
+            @*if (form.valid()) {
+                var myobj = new Object();
+                myobj.FromDate = $('[name="FromDate"]').val();
+                myobj.ToDate = $('[name="ToDate"]').val();
+                //if ($('[name="CategoryIcon"]').val() != "") {
+                //     readFile($('[name="CategoryIcon"]')[0].files[0], function (e) {
+                //         myobj.CategoryIcon = e.target.result.replace("data:image/png;base64,", "");
+                //     });
+                //}
+                //if ($('[name="CategoryBanner"]').val() != "") {
+                //     readFile($('[name="CategoryBanner"]')[0].files[0], function (e) {
+                //         myobj.CategoryBanner = e.target.result.replace("data:image/png;base64,", "");
+                //     });
+                //}
+                //myobj.DisplayOrder = $('[name="DisplayOrder"]').val();
+                //myobj.Description = $('[name="Description"]').val();
+                //myobj.IsActive = $('[name="IsActive"]').val();
+
+                //setTimeout(function () {
+                $.post("@Url.Action("GetAllOrders", "AllOrders")", { Obj: JSON.stringify(myobj) }, function (data) {
+                    var Res = JSON.parse(data);
+                    if (Res.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                        ClearFields();
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", Res.Message);
+                })
+                //},2000);
+            }
+            else {
+                DangerAlert(" ", "Recheck the fields.");
+            }*@
+           //});
+
+
+
+
+        });
+
+        @*function GetOrders(dates) {
+            $.get("@Url.Action("GetOrders", "Reports")", { obj: dates }, function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.OrderID);
+                    $('[name="CustomerName"]').val(myobj.ObjectResult.CustomerName);
+                    $('[name="StoreName"]').val(myobj.ObjectResult.StoreName);
+                    $('[name="DeliveryTime"]').val(myobj.ObjectResult.ExpectingDeliveryDate);
+                    $('[name="Tota Price"]').val(myobj.ObjectResult.GrandTotal);
+                    //if (myobj.ObjectResult.IsActive)
+                    //    $('[name="IsActive"]').val('true');
+                    //else
+                    //    $('[name="IsActive"]').val('false');
+                    //OpenCard();
+                    //$('#btnupdate').show();
+                    //$('#btnadd').hide();
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }*@
+
+        function BindTableData() {
+
+                  var myobj = new Object();
+                  myobj.FromDate = $('[name="FromDate"]').val();
+                  myobj.ToDate = $('[name="ToDate"]').val();
+            myobj.OrderStatusID = $('[name=StatusID]').val();
+
+
+        $.get("@Url.Action("GetOrders", "Reports")", { Obj: JSON.stringify(myobj) }, function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.Result.length; i++) {
+                var row = [];
+                row.push(myObject.Result[i].OrderID);
+                row.push(myObject.Result[i].CustomerName);
+                row.push(myObject.Result[i].StoreName);
+                row.push(myObject.Result[i].ExpectingDeliveryDate);
+                row.push(myObject.Result[i].GrandTotal);
+
+
+
+
+                //row.push(myObject.Result[i].GrandTotal);
+                //row.push(myObject.Result[i].PaidAmount);
+                //row.push(myObject.Result[i].RemainingAmount);
+
+
+                //row.push('<button type="button" class="btn btn-info btn-sm" onclick="SaveID(' + myObject.Result[i].OrderID + ')">View Details</button>');
+                //row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].CategoryId + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Order ID" },
+                    { title: "Customer Name" },
+                    { title: "StoreName" },
+                    { title: "Delivery Date" },
+                    { title: "Total Price" },
+                    { title: " " },
+                ]
+            });
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+        });
+    }
+
+    </script>
+
+</section>
+

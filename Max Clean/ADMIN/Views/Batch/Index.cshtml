@@ -1,0 +1,228 @@
+﻿@model IEnumerable<API.Models.Batch_Model>
+
+@{
+    ViewBag.Title = "Batch";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <form id="formbatch">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Store Name<span style="color:red">*</span></label>
+                                <select name="StoreID" class="form-control">
+                                    <option value="">---Select--- </option>
+                                    @{
+                                        var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+                                        foreach (var store in StoreList)
+                                        {
+                                            <option value="@store.StoreID">@store.StoreName </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Batch Code<span style="color:red" maxlength="100" onkeypress="return NotanHTML(event)">*</span></label>
+                                <input class="form-control" type="text" name="BatchName" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Expiry Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="Exp_Date" maxlength="10" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    @*<button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>*@
+                    <button type="button" class="btn btn-danger" onclick="ClearFields()">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+        var tableId = "tbl";
+
+        $('#formbatch').validate({
+            rules: {
+                StoreID: {
+                    required: true,
+                },
+                BatchName: {
+                    required: true,
+                },
+                Exp_Date: {
+                    required: true,
+                },
+            }
+        });
+
+        var form = $("#formbatch");
+        form.validate();
+
+        $(document).ready(function () {
+            BlockPreviousDate("Exp_Date");
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.StoreID = $('[name="StoreID"]').val();
+                    myobj.BatchName = $('[name="BatchName"]').val();
+                    myobj.Exp_Date = $('[name="Exp_Date"]').val();
+
+                    $.post("@Url.Action("AddBatch", "Batch")", { ObjBatch: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            BindTableData();
+                            SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                            ClearFields();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message);
+                    });
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+        });
+            @*function GetData(ProductId) {
+                $.get("@Url.Action("GetProduct", "Product")", { ProductId: ProductId }, function (data) {
+                    ClearFields();
+                    var myobj = JSON.parse(data);
+                    if (myobj.ObjectResult != null) {
+                        $('[name="HDID"]').val(myobj.ObjectResult.ProductId);
+                        $('[name="CategoryId"]').val(myobj.ObjectResult.CategoryId);
+                        GetSubCategory(myobj.ObjectResult.CategoryId, myobj.ObjectResult.SubCategoryId);
+                        $('[name="MRP"]').val(myobj.ObjectResult.MRP);
+                        $('[name="OfferPrice"]').val(myobj.ObjectResult.OfferPrice);
+                        $('[name="SubCategoryId"]').val(myobj.ObjectResult.SubCategoryId);
+                        $('[name="ProductCode"]').val(myobj.ObjectResult.ProductCode);
+                        $('[name="ProductName"]').val(myobj.ObjectResult.ProductName);
+                        $('[name="ProductVideo"]').val(myobj.ObjectResult.ProductVideo);
+                        $('[name="TagLine"]').val(myobj.ObjectResult.TagLine);
+                        $('[name="ProductDescription"]').val(myobj.ObjectResult.ProductDescription);
+                        $('[name="ProductDisplayOrder"]').val(myobj.ObjectResult.ProductDisplayOrder);
+                        if (myobj.ObjectResult.IsActive)
+                            $('[name="IsActive"]').val('true');
+                        else
+                            $('[name="IsActive"]').val('false');
+                        OpenCard();
+                        $('#btnupdate').show();
+                        $('#btnadd').hide();
+                    }
+                    else {
+                        DangerAlert(" ", "Failed to get data.");
+                    }
+
+                });
+            }*@
+
+            function ClearFields() {
+                $('[name="HDID"]').val(null);
+                $('[name="StoreID"]').val(null);
+                $('[name="BatchName"]').val(null);
+                $('[name="Exp_Date"]').val(null);
+                $('#btnupdate').hide();
+                $('#btnadd').show();
+            }
+
+            function BindTableData() {
+
+                $.get("@Url.Action("GetBatchList", "Batch")", function (data) {
+                    var myObject = JSON.parse(data);
+                    var TableDate = [];
+                    for (var i = 0; i < myObject.length; i++) {
+                        var row = [];
+                        row.push(myObject[i].StoreName);
+                        row.push(myObject[i].BatchName);
+                        row.push(SplitDateTime(myObject[i].BatchStarted));
+                        row.push(SplitDateTime(myObject[i].BatchEnded));
+                        row.push(SplitDateTime(myObject[i].Exp_Date));
+                        if (myObject[i].IsActive == true)
+                            row.push("<span class='badge bg-success float-right'>Completed</span>");
+                        else if (myObject[i].IsActive == false)
+                            row.push("<span class='badge bg-warning float-right'>Yet to start</span>");
+                        else
+                            row.push("<span class='badge bg-danger float-right'>InProgress</span>");
+                        //row.push('<button type="button" class="btn btn-info btn-sm" onclick="GetData(' + myObject[i].ProductId + ')">Edit</button>');
+                        //row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].ProductId + ')">Delete</button>');
+                        TableDate.push(row);
+                    }
+                    $('#' + tableId).DataTable({
+                        destroy: true,
+                        data: TableDate,
+                        scrollX: true,
+                        columns: [
+
+                            { title: "Store Name" },
+                            { title: "@ViewBag.Title Code" },
+                            { title: "@ViewBag.Title Started" },
+                            { title: "@ViewBag.Title Ended" },
+                            { title: "Expiry Date" },
+                            { title: "Status " },
+                            //{ title: " " },
+                            //{ title: " " },
+                        ]
+                    });
+                    var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdfHtml5'
+
+                        ]
+                    }).container().appendTo($('#buttons'));
+                    $('.buttons-html5').addClass('btn btn-default btn-sm');
+                });
+            }
+    </script>
+
+</section>

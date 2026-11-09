@@ -1,0 +1,210 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using API.DataAccess;
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+}
+
+@{ string marqee_text = "";
+    try
+    {
+        using (maxcleanEntities context = new maxcleanEntities())
+        {
+            var marqeetext = context.t_marque.FirstOrDefault(x => x.is_active == true);
+            if (marqeetext != null)
+            {
+                marqee_text = marqeetext.title;
+            }
+        }
+    }
+    catch (Exception e)
+    {
+        throw e;
+    }
+}
+<marquee style="background-color:#fbe203; font-weight:bold;">@marqee_text</marquee>
+<!--slider-->
+<section class="revolution_slider">
+    <div class="r_slider">
+        <ul>
+            @{
+                var BannersList = (List<API.Models.Banner_Model>)ViewBag.Banners;
+                foreach (var bnr in BannersList)
+                {
+                    if (@bnr.Banner_Image != null)
+                    {
+                        <li class="f_left" data-transition="cube" data-slotamount="7" data-custom-thumb="@bnr.Banner_Image">
+                            <img src="@bnr.Banner_Image" alt="" data-bgrepeat="no-repeat" data-bgfit="cover" data-bgposition="center center">
+                            <div class="caption sfb stb color_light slider_title tt_uppercase t_align_c" data-x="center" data-y="270" data-speed="1600" data-easing="ease" data-start="2500" style="padding-top:10px;">@*<b class="">When stain gets tough, <br />the tough gets cleaned.</b>*@</div>
+                            <div class="caption sfb stb color_light" data-x="center" data-y="420" data-speed="1400" data-start="2900">
+
+                                @if (Session["Users"] == null)
+                                {<a href="#" onclick="showpincode();" role="button" class="zoom button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5">Order Now</a>
+
+                                }
+                                else
+                                {
+                                    <a href="/order/ordernow" role="button" class="zoom button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5">Order Now</a>
+                                }
+                            </div>
+                        </li>
+                    }
+                }
+            }
+
+        </ul>
+    </div>
+</section>
+<!--content-->
+<div class="page_content_offset" style="padding-bottom:10px;">
+    <div class="container">
+        <div class="center-block">
+            <h2>How it <span>works</span></h2>
+        </div>
+        <div class="row clearfix info_blocks_container">
+            <div class="col-lg-3 col-md-3 col-sm-3 m_bottom_45 animate_ftr animate_vertical_finished">
+                <figure class="info_block_type_2 t_align_c">
+                    <div class="icon_wrap_1 r_corners bg_light_color_1 m_bottom_15 t_align_c vc_child scheme_color d_inline_b tr_all_hover"><img class="d_inline_middle " src="~/images/Order.png" alt=""></div>
+                    <h4 class="fw_medium color_dark m_bottom_15">You Order</h4>
+                    <p class="m_bottom_10">Book your collection time online.</p>
+
+                </figure>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 m_bottom_45 animate_ftr animate_vertical_finished">
+                <figure class="info_block_type_2 t_align_c">
+                    <div class="icon_wrap_1 r_corners bg_light_color_1 m_bottom_15 t_align_c vc_child scheme_color d_inline_b tr_all_hover"><img class="d_inline_middle " src="~/images/Collect.png" alt=""></div>
+                    <h4 class="fw_medium color_dark m_bottom_15">We Collect</h4>
+                    <p class="m_bottom_10">Upon collection just have your clothes ready - we&#39;ll bring a bag.</p>
+
+                </figure>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 m_bottom_45 animate_ftr animate_vertical_finished">
+                <figure class="info_block_type_2 t_align_c">
+                    <div class="icon_wrap_1 r_corners bg_light_color_1 m_bottom_15 t_align_c vc_child scheme_color d_inline_b tr_all_hover"><img class="d_inline_middle " src="~/images/Clean.png" alt=""></div>
+                    <h4 class="fw_medium color_dark m_bottom_15">We Clean</h4>
+                    <p class="m_bottom_10">Using specialist Laundry cleaning experts we guarantee you&#39;ll be satisfied.</p>
+                </figure>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 m_bottom_45 animate_ftr animate_vertical_finished">
+                <figure class="info_block_type_2 t_align_c">
+                    <div class="icon_wrap_1 r_corners bg_light_color_1 m_bottom_15 t_align_c vc_child scheme_color d_inline_b tr_all_hover"><img class="d_inline_middle " src="~/images/Deliver.png" alt=""></div>
+                    <h4 class="fw_medium color_dark m_bottom_15">We Deliver</h4>
+                    <p class="m_bottom_10">Select your delivery time and we&#39;ll deliver to your door - too easy!</p>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="booking main-block center-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="text-align:center">Don’t wait, Book Now.</h1>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- The Modal -->
+<div id="myModalpincode" class="modals fade" role="dialog">
+    <div class="modals-dialog">
+        <div class="modals-content">
+            <div class="modals-header">
+                @*<h3 class="m_bottom_20 color_dark"> Login Successful........ </h3>*@
+                <button type="button" class="close  tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+            </div>
+            <div id="hdetails" class="modals-body">
+                <h3 class="m_bottom_20 color_dark" style="text-align:center;">Please enter your area pincode to check service availability</h3>
+                <input name="Phone-number" onkeypress='isNumber(event)' type="number" id="pincode" value="">
+                <button type="button" onclick="VerifyPincode()" id="btnpincode" class="button_type_4 tr_all_hover">submit</button>
+            </div>
+            <div class="modals-footer">
+                <p style="color:firebrick" id="returnmsg"> </p>
+                <button type="button" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+    var someSessionVariable = '@Session["Users"]';
+
+   // if (someSessionVariable != "") {
+    $(document).ready(function () {
+        if (someSessionVariable == "") {
+            $("#myModalpincode").modal({
+                backdrop: "static", //remove ability to close modal with click
+                keyboard: false, //remove option to close with keyboard
+                show: true //Display loader!
+            });
+        }
+        Update_Cart();
+    });
+    // }
+    function showpincode() {
+        $("#myModalpincode").modal({
+            backdrop: "static", //remove ability to close modal with click
+            keyboard: false, //remove option to close with keyboard
+            show: true //Display loader!
+        });
+    }
+
+    function VerifyPincode() {
+        if ($('#pincode').val() == "") {
+            alert("Enter pincode");
+        } else {
+            var date = $('#pincode').val();
+            var found = false;
+            var servingpincode = "";
+            //  var parameters = JSON.stringify(data);
+            //disable sending message for dev purpose
+            $.ajax({
+                type: "POST",
+                url: '/MaxClean/verifyPincode',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    var pincodelist = (response);
+
+                    if (pincodelist.StatusCode == 200) {
+                        for (var p = 0; p < pincodelist.ObjectResult.length; p++) {
+                            if (parseInt(date) == pincodelist.ObjectResult[p].Pincode) {
+
+                                found = true;
+                            }
+                            else { servingpincode += pincodelist.ObjectResult[p].Pincode + " , "; }
+                        }
+                    }
+                    if (found) {
+                        //$('#returnmsg').html('Sorry..! We are not serving ')
+                        window.location.href = "/order/ordernow";
+                        //  alert('Thanks for entering the pincode')
+                        localStorage.setItem("IsValidPincode", true);
+                    } else {
+                        localStorage.setItem("IsValidPincode", false);
+                        $('#returnmsg').html('Thank you for your interest in us, we"ll notify once we extend our service to your location. Currently we serve :' + servingpincode);
+                        return false;
+                    }
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                    alert("Something went wrong. Please try again later.");
+                    return false;
+                }
+            });
+        }
+    }
+
+</script>
+
+
+
+

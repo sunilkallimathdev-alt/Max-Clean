@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "DeliveryOrders";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button onclick="window.history.back();" class="btn btn-danger btn-sm">Go Back</button>
+
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid" id="date_div">
+        <form id="formgetorders">
+            <div class="card card-info" id="cardiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>From Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="FromDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>To Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="ToDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Order Status<span style="color:red">*</span></label>
+                                    <select class="form-control" name="StatusID">
+                                        <option value="2">Pick Up</option>
+                                        <option value="8">Delivery</option>
+                                    </select>
+                                </div>
+                            </div>*@
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @*<button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>*@
+                    <button type="button" class="btn btn-success" onclick="BindTableData();" id="btnupdate">Submit </button>
+                    @*<button type="button" class="btn btn-danger" onclick="BindTableData();">Cancel</button>*@
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"> Orders To Be Delivered Tomorrow</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formgetorders').validate({
+            rules: {
+                FromDate: {
+                    required: false,
+                },
+                ToDate: {
+                    required: false,
+                },
+                OrderStatus: {
+                    required: false,
+                },
+
+
+            }
+        });
+
+        var form = $("#formgetorders");
+        form.validate();
+
+
+        $(document).ready(function () {
+            $("#date_div").hide();
+            SetTodaysDate($('[name="FromDate"]').val());
+            BindTableData();
+
+        });
+
+
+
+        function BindTableData() {
+           
+                var dtToday = new Date();
+                var n =2; //number of days to add.
+                var requiredDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate() + n);
+                var month = requiredDate.getMonth() + 1;
+                var day = requiredDate.getDate();
+                var year = requiredDate.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+                var hour = requiredDate.getHours();
+                var min = requiredDate.getMinutes();
+                var ss = requiredDate.getSeconds();
+                if (hour < 10)
+                    hour = '0' + hour.toString();
+                if (min < 10)
+                    min = '0' + min.toString();
+                if (ss < 10)
+                    ss = '0' + ss.toString();
+                var Today = year + '-' + month + '-' + day;
+                $('[name="ToDate"]').val(Today);
+
+
+                var dtToday2 = new Date();
+                var tomoDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate()+1 );
+                var month = tomoDate.getMonth() + 1;
+                var day = tomoDate.getDate();
+                var year = tomoDate.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+                var Today = year + '-' + month + '-' + day;
+                $('[name="FromDate"]').val(Today)
+            
+                  var myobj = new Object();
+                  myobj.FromDate = $('[name="FromDate"]').val();
+            myobj.ToDate = $('[name="ToDate"]').val();
+            myobj.OrderStatusID = 8;
+            myobj.Reports = 1;
+
+        $.get("@Url.Action("GetOrders", "Reports")", { Obj: JSON.stringify(myobj) }, function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].OrderID);
+                row.push(myObject[i].CustomerName);
+                row.push(myObject[i].StoreName);
+                row.push(SplitDateTime(myObject[i].ExpectingDeliveryDate) + "    --  " + myObject[i].DeliveryTime);
+                row.push(myObject[i].GrandTotal);
+
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Order ID" },
+                    { title: "Customer Name" },
+                    { title: "StoreName" },
+                    { title: "Delivery Date" },
+                    { title: "Total Price" },
+
+                ]
+            });
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+        });
+    }
+
+    </script>
+
+</section>
+

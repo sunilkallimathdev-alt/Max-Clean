@@ -1,0 +1,106 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+@{ var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList; }
+@{
+    ViewBag.Title = "Order Cancel Status";
+}
+@{
+    int storeid = 0;
+    try
+    {
+        var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+        if (user.StoreID != null)
+        {
+            foreach (var str in StoreList)
+            {
+                if (user.StoreID == @str.StoreID)
+                {
+
+                    storeid = @str.StoreID;
+                    break;
+                }
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        throw ex;
+    }
+}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@ViewBag.Title</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div id="buttons"></div>
+        <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+    </div>
+
+    <!-- /.card-body -->
+</div>
+
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+    var tableId = "tbl";
+    var myobj = new Object();
+    myobj.store_id = "@storeid";
+    $.post("@Url.Action("GetOrderCancelList", "OrderCancelStatus")", { store: JSON.stringify(myobj)} ,function (data) {
+                var myObject = JSON.parse(data);
+                var TableDate = [];
+        for (var i = 0; i < myObject.length; i++)
+        {
+                var row = [];
+            row.push(myObject[i].store_code+"-"+myObject[i].order_id);
+                    row.push(myObject[i].CancelDate);
+                    
+                    if (myObject[i].is_cancel == 2) {
+                        row.push("<span class='badge bg-danger' style='font-size:12px;'>Order Cancelled</span>");
+                    }
+                    else if (myObject[i].is_cancel == 1) {
+                        row.push("<span class='badge bg-warning' style='font-size:12px'>Request For Cancellation</span>");
+            }
+            row.push(myObject[i].grandtotal_price);
+                TableDate.push(row);
+                }
+        $('#' + tableId).DataTable({
+                "filter": true, // this is for enable filter (search box)
+                "srolly": true,
+                "destroy": true,
+                "order": [[0, "desc"]],
+                data: TableDate,
+                scrollX: true,
+                responsive: true,
+
+                columns: [
+                    { title: "OrderID" },
+                    { title: "Date" },
+                    { title: "Order Cancel Status" },
+                    { title: "Amount" },
+            ],
+            "aoColumnDefs": [
+                { className: 'text-right', targets: [3] },
+                { className: 'text-center', targets: [1] },
+                {width:"10%",targets:[1,3],}
+            ]
+                });
+                hideshowbuttons();
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                         ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+   });
+
+
+</script>

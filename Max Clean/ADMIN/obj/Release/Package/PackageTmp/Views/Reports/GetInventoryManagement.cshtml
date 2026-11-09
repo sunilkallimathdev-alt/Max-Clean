@@ -1,0 +1,233 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@{
+    ViewBag.Title = "Inventory Management";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formgetinventorymanagement">
+            <div class="card card-info" id="cardiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label>From Date<span style="color:red">*</span></label>
+                                    <input class="form-control" type="date" name="FromDate" maxlength="100" onkeypress="return Date(event)">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>To Date<span style="color:red">*</span></label>
+                                    <input class="form-control" type="date" name="ToDate" maxlength="100" onkeypress="return Date(event)">
+                                </div>
+                            </div>*@
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Store Name<span style="color:red">*</span></label>
+                                <select class="form-control" name="StoreID">
+                                    @{
+                                        var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+
+                                        try
+                                        {
+                                            var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                            if (user.StoreID != null)
+                                            {
+                                                foreach (var str in StoreList)
+                                                {
+                                                    if (user.StoreID == @str.StoreID)
+                                                    {
+                                                        <option value="@str.StoreID">@str.StoreName</option>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="">---Display All---</option>
+                                                foreach (var str in StoreList)
+                                                {
+                                                    <option value="@str.StoreID">@str.StoreName</option>
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Order Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="StatusID">
+                                    <option value="5">Receivable Count</option>
+                                    <option value="6">Send To Factory</option>
+                                    <option value="7">Deliverables</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @*<button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>*@
+                    <button type="button" class="btn btn-success" onclick="BindTableData();" id="btnupdate">Submit </button>
+                    @*<button type="button" class="btn btn-danger" onclick="BindTableData();">Cancel</button>*@
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"></h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formgetinventorymanagement').validate({
+            rules: {
+                StoreName: {
+                    required: false,
+                },
+                //ToDate: {
+                //    required: false,
+                //},
+                //OrderStatus: {
+                //    required: false,
+                //},
+                //CategoryIcon: {
+                //    extension: "jpg,jpeg,png",
+                //    filesize: 2097152,
+                //    required: false,
+                //},
+                //CategoryBanner: {
+                //    extension: "jpg,jpeg,png",
+                //    filesize: 2097152,
+                //    required: false,
+                //},
+                //DisplayOrder: {
+                //    required: false,
+                //},
+                //Description: {
+                //    required: false,
+                //},
+
+            }
+        });
+
+        var form = $("#formgetinventorymanagement");
+        form.validate();
+
+
+        $(document).ready(function () {
+            BindTableData();
+        });
+
+        function BindTableData() {
+
+
+
+        }
+
+        function BindTableData() {
+
+            var StoreID = $('[name="StoreID"]').val();
+            var OrderStatusID = $('[name=StatusID]').val();
+
+            if (StoreID == "") {
+                StoreID = 0;
+            }
+
+
+            $.get("@Url.Action("GetInventoryManagement1", "Reports")", { StoreID: StoreID, OrderStatusID : OrderStatusID }, function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                if (myObject[i].Quantity > 0) {
+                    var row = [];
+
+                    row.push(myObject[i].CategoryName);
+                    row.push(myObject[i].ProductName);
+                    row.push(myObject[i].Quantity);
+
+                    //row.push('<button type="button" class="btn btn-info btn-sm" onclick="SaveID(' + myObject.Result[i].OrderID + ')">View Details</button>');
+                    //row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].CategoryId + ')">Delete</button>');
+                    TableDate.push(row);
+                }
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Category Name" },
+                    { title: "Product Name" },
+                    { title: "Quantity" },
+
+                ]
+            });
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+        });
+    }
+
+    </script>
+
+</section>
+
+
+
+
+

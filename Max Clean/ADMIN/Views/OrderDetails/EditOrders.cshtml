@@ -1,0 +1,1239 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Max Clean - @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/iCheck/all.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/select2/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/CustomFiles/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!--Toastr CSS-->
+    <link href="~/CustomFiles/dist/css/toastr.min.css" rel="stylesheet" />
+    <!--DataTable-->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/datatables/dataTables.bootstrap4.css">
+    <style>
+        #buttons {
+            padding: 5px;
+        }
+
+        .error {
+            color: red !important;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <div class="wrapper">
+            @{
+                ViewBag.Title = "Order Details";
+            }
+            @{
+                List<API.Models.orderCycle_Model> Orderstatuslist = (List<API.Models.orderCycle_Model>)ViewBag.OrderStatusList;
+                var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+                var CategoryList = (List<API.Models.Category_Model>)ViewBag.CategoryList;
+                var DeliveryBoys = (List<API.Models.DeliveryBoy_Model>)ViewBag.DeliveryBoys;
+                List<API.Models.AdminUser_Model> Adminuserslist = (List<API.Models.AdminUser_Model>)ViewBag.Adminuserlist;
+                var ServiceList = (List<API.Models.Service_Model>)ViewBag.ServiceList;
+            }
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <button onclick="window.history.back();" class="btn btn-danger btn-sm">Go Back</button>
+                            @*<h1 class="m-0 text-dark">@ViewBag.Title</h1>*@
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                @*
+                                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                                    <li class="breadcrumb-item active">@ViewBag.Title</li>*@
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <form id="formvendor">
+                        <div class="card card-info" id="carddiv">
+                            <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                                <h3 class="card-title">@ViewBag.Title</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="callout callout-success">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Order ID</h5>
+                                                        <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                            <strong><label id="txtrequestorderid"></label></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Customer Name</h5>
+                                                        <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                            <strong><label id="CustomerName"></label></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Customer Mobile No.</h5>
+                                                        <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                            <strong><label id="CustomerMobile"></label></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Receiving at Store</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="txtstorename"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Store Mobile No.</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="txtstoremobileno"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Ordered Date</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="txtorderdate"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Pickup Date</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+
+                                                            <label id="PickupDate"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivery Date</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+
+                                                            <label id="DeliveryDate"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Confirmed by</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="ConfirmedBy"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Pickup Address</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="PickupAddress"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivery Address</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="DeliveryAddress"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivery Type</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="DeliveryType"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Payment Status</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="PaymentStatus"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Reward Points Applied</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="Reward"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Payment Type</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="PaymentType"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Tag Number</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="TagNumber"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Order Status </h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="OrderStatus"></label>
+                                                            @*<select id="OrderStatusId" class="form-control">
+                                                                    <option value="">---Select--- </option>
+                                                                    @{
+                                                                    var OrderStatusList = (List
+                                                                    <API.Models.orderCycle_Model>
+                                                                        )ViewBag.OrderStatusList;
+                                                                        foreach (var cat in OrderStatusList)
+                                                                        {
+                                                                        <option value="@cat.OrderCycleID">@cat.OrderCycleStage </option>
+                                                                        }
+                                                                        }
+                                                                </select>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Remark </h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="Remark"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivered By </h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="DeliveredBy"></label>
+                                                            <select id="DeliveredById" class="form-control">
+                                                                <option value="">---Select--- </option>
+                                                                @{
+                                                                    var DeliveryBoysList = (List
+                                                                    <API.Models.DeliveryBoy_Model>
+                                                                        )ViewBag.DeliveryBoyList;
+                                                                    foreach (var DLB in DeliveryBoysList)
+                                                                    {
+                                                                        <option value="@DLB.DeliveryBoyID">@DLB.DeliveryBoyName </option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Picked by</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+
+                                                            <label id="Pickedby"></label>
+                                                            <select id="PickedbyId" class="form-control">
+                                                                <option value="">---Select--- </option>
+                                                                @{
+                                                                    var DeliveryBoyList = (List<API.Models.DeliveryBoy_Model>)ViewBag.DeliveryBoyList;
+                                                                    foreach (var DLB in DeliveryBoyList)
+                                                                    {
+                                                                        <option value="@DLB.DeliveryBoyID">@DLB.DeliveryBoyName </option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-danger edit" id="btnadd">Update OrderDetails</button>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="card col-md-12">
+                                        <div class="card-header">
+                                            <h3 class="card-title">@ViewBag.Title List</h3>
+                                        </div>
+                                        <div class="form-group" id="additems">
+                                            <label>Add More Items &nbsp;<input type="checkbox" id="addcart" /></label>
+
+                                        </div>
+                                        <div class="card-body" id="add">
+
+
+                                            <form id="formvendor">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="callout callout-success">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label>Service<span style="color:red">*</span></label>
+                                                                        <select class="form-control" name="ServiceID">
+                                                                            <option value="">---Select---</option>
+                                                                            @{
+                                                                                foreach (var src in ServiceList)
+                                                                                {
+                                                                                    <option value="@src.ServiceID">@src.ServiceName</option>
+                                                                                }
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label>Category Name<span style="color:red">*</span></label>
+                                                                        <select class="form-control" name="CategoryID">
+                                                                            <option value="">---Select---</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label>Product Name<span style="color:red">*</span></label>
+                                                                        <select class="form-control" name="ProductID">
+                                                                            <option value="">---Select---</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <div class="form-group">
+                                                                        <label>Price <span style="color:red"></span></label>
+                                                                        <input class="form-control" type="text" name="PricePerKG" readonly onkeypress="return IsNumeric(event)">
+                                                                        @*<label name="PricePerKG" class="form-control"></label>*@
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label> Quantities<span style="color:red">*</span></label>
+                                                                        <input class="form-control" type="text" name="RequestedQuantity" maxlength="50" onkeypress="return IsNumeric(event)">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <div class="form-group">
+                                                                        <label> Extra %<span style="color:red"></span></label>
+                                                                        <input class="form-control" type="text" name="Extrapercent" maxlength="10" onkeyup="calculateextraprice()" onkeypress="return IsNumericDecimal(event)">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label> Extra Price<span style="color:red"></span></label>
+                                                                        <input class="form-control" type="text" name="ExtraPrice" maxlength="50" readonly onkeypress="return IsNumeric(event)">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <button type="button" class="btn btn-success edit" id="btncartadd">Add to cart</button>
+                                                                <button type="button" class="btn btn-danger edit" onclick="Clearall();" id="btnreset">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div id="buttons"></div>
+                                            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+                                            <button type="button" class="btn btn-success edit" id="btnplaceorder" style="float:right">Place Order</button>
+
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <span id="hdd"></span>
+                            <div class="card-footer">
+
+                                <div class="row col-md-12">
+                                    <div class="col-md-3">
+                                        <h4 style="float:left">Grand Total: <label id="lblgrandtotal">0.00</label></h4>&nbsp; &nbsp;&nbsp;
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 style="float:left">&nbsp;&nbsp;  Paid Amount: <label id="AmountPaid">0.00</label></h4>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h4 style="float:left">&nbsp;&nbsp;  Balance Amount: <label id="lblBalanceAmount">0.00</label></h4>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row" id="pay">
+                                            <input class="form-control col-md-4" type="text" id="AmtPaid" maxlength="50" onkeyup="calbalance()" onkeypress="return IsNumeric(event)">
+                                            &nbsp; &nbsp;<button type="button" class="btn btn-info col-md-4 edit" id="btnPay" style="float:right">Pay Balance</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input id="statusid" type="hidden" />
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+                <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+                <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+                <script src="~/CustomFiles/js/Common_js.js"></script>
+                <script>
+                                                var HiddenField = [];
+                                                var IDs = [];
+                                                var ProductIDs = [];
+                                                var GrandTotalPrice = 0;
+                                                var tableId = "tbl";
+
+                                                var tableId = "tbl";
+                                                var TableData = [];
+                                                var DataToSave = [];
+
+                                                var ExpressCharge = 0;
+
+                                                var isAddEnabled;
+                                                var isDeleteEnbaled;
+                                                var isViewEnabled;
+                                                var ServicePrice;
+                                                $('#formvendor').validate({
+                                                    rules: {
+                                                        CustomerName: {
+                                                            required: true,
+                                                        },
+                                                        ActualDeliveryDate: {
+                                                            required: true,
+                                                        },
+                                                        PricePerKG: {
+                                                            number: true,
+                                                            required: true,
+                                                        },
+                                                        ReceivedQuantity: {
+                                                            number: true,
+                                                            required: true,
+                                                        },
+                                                        PaidAmount: {
+                                                            number: true,
+                                                            required: true,
+                                                        },
+                                                        RemainingAmount: {
+                                                            number: true,
+                                                            required: true,
+                                                        },
+                                                        GrandTotal: {
+                                                            number: true,
+                                                            required: true,
+                                                        },
+
+
+                                                    }
+                                                });
+
+                                                var form = $("#formvendor");
+                                                form.validate();
+
+                                                $(document).ready(function () {
+
+
+
+                                                    /////////****************////////////
+
+                                                    var ObjRoles = JSON.parse(localStorage.getItem('PageDetails'));
+                                                    for (var i = 0; i < ObjRoles.length; i++) {
+
+                                                        for (var j = 0; j < ObjRoles[i].PageList.length; j++) {
+                                                            var path = "/OrdersList/Index";
+                                                            var PageURL = ObjRoles[i].PageList[j].PageURL
+                                                            if (path == PageURL) {
+                                                                if (ObjRoles[i].PageList[j].Is_Add_Edit == true) {
+                                                                    isAddEnabled = true;
+                                                                } else { isAddEnabled = false; }
+                                                                if (ObjRoles[i].PageList[j].Is_Delete == true) {
+                                                                    isDeleteEnbaled = true;
+                                                                } else { isDeleteEnbaled = false; }
+                                                                if (ObjRoles[i].PageList[j].Is_view == true) {
+                                                                    isViewEnabled = true;
+                                                                } else { isViewEnabled = false; }
+
+                                                            }
+                                                        }
+
+                                                    }
+                                                    hideshowbuttons();
+
+                                                    ///////////**********************////////
+
+
+
+
+
+
+                                                    $("#add").hide();
+                                                    $("#pay").hide();
+                                                    BlockPreviousDate("ActualDeliveryDate");
+                                                    SetTodaysDate("ActualDeliveryDate");
+
+                                                    setTimeout(function () {
+                                                        $('#carddiv').removeClass('collapsed-card');
+                                                    }, 500);
+                                                    $('body').css('zoom', '80%');
+                                                    var ID = JSON.parse(localStorage.getItem("POID"));
+
+                                                    GetRequestOrders(ID);
+
+                                                    $("[name=ServiceID]").on("change", function () {
+                                                        GetCategory($("[name=ServiceID]").val());
+                                                        $("[name=ProductID]").empty();
+                                                        $("[name=PricePerKG]").val(null);
+                                                        $("[name=RequestedQuantity]").val(null);
+                                                        $("[name=Extrapercent]").val(0);
+                                                        $("[name=ExtraPrice]").val(0);
+                                                    });
+                                                    $("[name=CategoryID]").on("change", function () {
+                                                        GetProduct($("[name=CategoryID]").val());
+                                                    });
+                                                    $("[name=ProductID]").on("change", function () {
+                                                        GetPrice($("[name=ProductID]").val(), $("[name=CategoryID]").val());
+                                                    });
+                                                    $("[name=Extrapercent]").val(0);
+                                                    $("[name=ExtraPrice]").val(0);
+                                                    $("#addcart").change(function () {
+                                                        if ($("#addcart").prop('checked') == true) {
+                                                            $("#add").show();
+                                                        } else {
+                                                            $("#add").hide();
+                                                        }
+                                                    });
+
+                                                    $("#btnreset").click(function () {
+                                                        $("#add").hide();
+                                                        $("#addcart").prop("checked", false);
+                                                    });
+                                                    $("#btnadd").click(function () {
+                                                        if ($("#statusid").val() > $("#OrderStatusId").val()) {
+                                                            alert("The Order Has Already Passed this Stage");
+                                                            $("#OrderStatusId").val($("#statusid").val());
+                                                        }
+                                                        else {
+                                                            var alert1 = confirm("Do You Want Submit ?");
+                                                            if (alert1) {
+                                                                var myobj = new Object();
+                                                                myobj.DeliveredbyID = $("#DeliveredById").val();
+                                                                myobj.PickedbyID = $("#PickedbyId").val();
+
+                                                                if ($("#statusid").val() == $("#OrderStatusId").val()) {
+                                                                    myobj.orderstatusID = null;
+                                                                } else {
+                                                                    myobj.orderstatusID = $("#OrderStatusId").val();
+                                                                }
+                                                                myobj.OrderID = $("#txtrequestorderid").html();
+
+
+                                                                /**/
+                                                                $.post("@Url.Action("UpdatePurchaseOrder", "PurchaseOrder")", { ObjOrder: JSON.stringify(myobj) }, function (data) {
+                                                    /**/
+                                                    var Res = JSON.parse(data);
+                                                    if (Res.StatusCode == 200) {
+                                                        /**/
+                                                        SuccessAlert("@ViewBag.Title", "Order Details Updated.");
+                                                /**/
+                                                GetRequestOrders(ID);
+
+                                                ClearFiled();
+                                            }
+                                            else
+                                                /**/
+                                                WarningAlert("@ViewBag.Title", Res.Message);
+                                            /**/
+                                        });
+                                    }
+                                }
+                            });
+
+
+                            /////////////////////////******************************//////////////////
+
+                            $("#btncartadd").on("click", function () {
+                                var Dublicate = false;
+                                if (form.valid()) {
+                                    for (var i = 0; i < DataToSave.length; i++) {
+                                        if (DataToSave[i][0] == $("[name=ServiceID]").val() && DataToSave[i][1] == $("[name=ProductID]").val()) {
+                                            Dublicate = true
+                                            break;
+                                        }
+                                    }
+                                    if (!Dublicate) {
+                                        var Trow = [];
+                                        Trow.push($("[name=ServiceID] option:selected").text());
+                                        Trow.push($("[name=CategoryID] option:selected").text());
+                                        Trow.push($("[name=ProductID] option:selected").text());
+
+                                        Trow.push("<span id='P_" + $("[name=ServiceID]").val()+"_" + $("[name=ProductID]").val() + "' >" + $("[name=PricePerKG]").val() + " </span>");
+                                        Trow.push("<input id='Q_" + $("[name=ServiceID]").val() + "_" + $("[name=ProductID]").val() + "' onkeyup='Calculate(" + $("[name=ServiceID]").val() + "," + $("[name=ProductID]").val() + ")' value='" + $("[name=RequestedQuantity]").val() + "'  maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />");
+                                        Trow.push("<input id='EP_" + $("[name=ServiceID]").val() + "_" + $("[name=ProductID]").val() + "' onkeyup='ch(" + $("[name=ServiceID]").val() + "," + $("[name=ProductID]").val() + ")' value='" + $("[name=Extrapercent]").val() + "'  maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />");
+                                        Trow.push("<span id='ER_" + $("[name=ServiceID]").val() + "_" + $("[name=ProductID]").val() + "' >" + ($("[name=PricePerKG]").val() * $("[name=RequestedQuantity]").val()) + " </span>")
+                                        Trow.push("<span id='TP_" + $("[name=ServiceID]").val() + "_" + $("[name=ProductID]").val() + "' >" + ($("[name=PricePerKG]").val() * $("[name=RequestedQuantity]").val()) + " </span>")
+
+                                        //Trow.push("<button type='button' class='btn btn-danger btn-sm' onclick='RemoveFromCart(" + $("[name=ProductID]").val() + ")'>Delete</button>");
+                                        TableData.push(Trow);
+                                        var objIds = new Object();
+                                        objIds.ProductID = JSON.parse($("[name=ProductID]").val());
+                                        objIds.ServiceID = JSON.parse($("[name=ServiceID]").val());
+                                        IDs.push(objIds);
+                                        var Srow = [];
+                                        Srow.push(JSON.parse($("[name=ServiceID]").val()));
+                                        Srow.push(JSON.parse($("[name=ProductID]").val()));
+                                        Srow.push(JSON.parse($("[name=PricePerKG]").val()));
+                                        Srow.push(JSON.parse($("[name=RequestedQuantity]").val()));
+                                        Srow.push(0);
+                                        Srow.push(JSON.parse($("[name=Extrapercent]").val()));
+                                        Srow.push(JSON.parse($("[name=ExtraPrice]").val()));
+                                        DataToSave.push(Srow);
+
+                                        BindTableData();
+                                        SuccessAlert($("[name=ProductID] option:selected").text(), "Added to cart.");
+                                        $("[name=CategoryID]").val(null);
+                                        $("[name=ProductID]").val(null);
+                                        $("[name=PricePerKG]").val(null);
+                                        $("[name=RequestedQuantity]").val(null);
+                                        $("[name=Extrapercent]").val(0);
+                                        $("[name=ExtraPrice]").val(0);
+                                        CalculateGrandTotal();
+
+                                    }
+                                    else {
+                                        DangerAlert($("[name=ProductID] option:selected").text(), " Already exist in cart.");
+                                    }
+                                }
+                                else {
+                                    DangerAlert(" ", "Recheck the fields.");
+                                }
+                            });
+
+                            function calculateextraprice() {
+                                var price = $("[name=PricePerKG]").val();
+                                var Extrapercent = $("[name=Extrapercent]").val();
+                                var quantity = $("[name=RequestedQuantity]").val();
+                                var total = price * quantity;
+                                $("[name=ExtraPrice]").val((Extrapercent / 100) * total);
+
+                                //////***********Same Method Repeated Below********//////
+                            }
+
+                            function ch(ServiceID, ProductID) {
+
+                                var price = JSON.parse($('#ER_' + IDs[j].ServiceID + '_' + IDs[j].ProductID).val());
+                                var Extrapercent = JSON.parse($('#EP_' + IDs[j].ServiceID + '_' + IDs[j].ProductID).val());
+                                var quant = JSON.parse($('#Q_' + IDs[j].ServiceID + '_' + IDs[j].ProductID).val());
+                                var total = price * quant;
+
+                                $("[name=ExtraPrice]").val((Extrapercent / 100) * total);
+                                 //////***********Same Method Repeated Below********//////
+                            }
+
+
+                            $("#btnplaceorder").on("click", function () {
+                                if (DataToSave.length > 0) {
+
+
+                                    for (var j = 0; j < IDs.length; j++) {
+                                        for (var i = 0; i < DataToSave.length; i++) {
+                                            if (DataToSave[i][0] == IDs[j].ServiceID && DataToSave[i][1]== IDs[j].ProductID) {
+                                                DataToSave[i][3] = JSON.parse($('#Q_' + IDs[j].ServiceID + '_' + IDs[j].ProductID).val());
+                                                DataToSave[i][5] = JSON.parse($('#EP_' + IDs[j].ServiceID + '_' + IDs[j].ProductID).val());
+                                                DataToSave[i][6] = JSON.parse($('#ER_' + IDs[j].ServiceID + '_' + IDs[j].ProductID).html());
+                                                break;
+                                            }
+                                        }
+
+                                    }
+
+
+                                    var myobj = new Object();
+                                    myobj.OrderID = $("#txtrequestorderid").html();
+                                    myobj.GrandTotal = $("#lblgrandtotal").html();
+                                    myobj.RemainingAmount = $("#lblBalanceAmount").html();
+                                    myobj.PaidAmount = $("#AmountPaid").html();
+                                    myobj.PickedbyID = 0;
+                                    var Details = [];
+
+                                    DataToSave.forEach(function (index) {
+                                        var detail = new Object();
+
+                                        detail.ServiceID = index[0];
+                                        detail.ProductID = index[1];
+                                        detail.Price = index[2];
+                                        detail.Quantity = index[3];
+                                        detail.OrderDetailsID = index[4];
+                                        detail.ExtraPercent = index[5];
+                                        detail.ExtraPrice = index[6];
+                                        //detail.ProductID = index[0];
+                                        //detail.Price = index[1];
+                                        //detail.Quantity = index[2];
+                                        //detail.OrderDetailsID = index[3];
+                                        Details.push(detail);
+                                    });
+                                    myobj.PurchaseOrderDetail = Details;
+
+
+                                    /**/
+                                    $.post("@Url.Action("Updateorder", "OrderDetails")", { ObjPO: JSON.stringify(myobj) }, function (data) {
+                                                    /**/
+
+                                                    var myobj = JSON.parse(data);
+                                                    if (myobj.StatusCode == 200) {
+                                                        SuccessAlert("Order Updated Successfully with ORDERID: " + myobj.Result, " ")
+
+
+                                                        GetRequestOrders(ID);
+                                                    }
+                                                    else {
+                                                        DangerAlert("Something Went Wrong. Please retry.");
+                                                    }
+                                                });
+
+                                            }
+                                            else {
+                                                DangerAlert("Please Add products to cart.", " ");
+                                            }
+                                        });
+
+                                        ////////////////////////////***********************************//////////////////////////
+
+                                        $("#btnPay").on("click", function () {
+
+                                            var myObject = new Object();
+                                            myObject.PaidAmount = $("#AmtPaid").val();
+                                            myObject.OrderID = $("#txtrequestorderid").html();
+
+                                            /**/
+                                            $.post("@Url.Action("PayBalance", "PurchaseOrder")", { Obj: JSON.stringify(myObject) }, function (data) {
+                                                    /**/
+
+                                                    var myobj = JSON.parse(data);
+                                                    if (myobj.StatusCode == 200) {
+                                                        SuccessAlert("Balance Paid Successfully with ORDERID: " + myobj.Result, " ")
+
+                                                        $("#AmtPaid").val(null);
+                                                        GetRequestOrders(ID);
+                                                    }
+                                                    else {
+                                                        DangerAlert("Something Went Wrong. Please retry.");
+                                                    }
+
+                                                });
+                                            });
+
+                                        });
+
+                         function GetPrice(ProductID, catID) {
+                              var Category = ServicePrice.find(x => x.CategoryID == catID);
+                                 var price = Category.ProductList.find(x => x.ProductId == ProductID);
+                                 $("[name=PricePerKG]").val(price.Price);
+                         }
+
+
+                     function GetProductPrice() {
+
+
+                         $.get("@Url.Action("GetServicePrice", "OrdersList")", function (data) {
+                             var obj = JSON.parse(data);
+                             ServicePrice = obj.ObjectResult;
+                         });
+                     }
+
+
+
+         function GetCategory(ServiceId) {
+             $("[name=CategoryID]").empty();
+
+             $.get("@Url.Action("GetCategoryByServiceID", "OrdersList")", { ServiceId: ServiceId }, function (data) {
+
+                 var myobject = JSON.parse(data);
+                 ServicePrice = JSON.parse(data);
+            $("[name=CategoryID]").append("<option value=''>---Select---</option>");
+            myobject.forEach(function (index) {
+                $("[name=CategoryID]").append("<option value='" + index.CategoryID + "'>" + index.CategoryName + "</option>");
+            });
+        });
+                     }
+
+                     function GetProduct(CategoryID) {
+            $("[name=ProductID]").empty();
+
+            $.get("@Url.Action("GetIntProductOnCategoryID", "OrdersList")", { CategoryID: CategoryID }, function (data) {
+
+                 var myobject = JSON.parse(data);
+                 $("[name=ProductID]").append("<option value=''>---Select---</option>");
+                 myobject.ObjectResult.forEach(function (index) {
+                $("[name=ProductID]").append("<option value='" + index.ProductId + "'>" + index.ProductName + "</option>");
+            });
+        });
+    }
+
+                                            function calbalance() {
+                                                var amtpaid = $("#AmtPaid").val();
+                                                if (amtpaid == "" || amtpaid == 0) {
+                                                    alert("Enter Paying Amount");
+                                                }
+                                                else {
+                                                    if (amtpaid > parseInt($("#lblBalanceAmount").html())) {
+                                                        alert("Enter Amount Greater Than Balance Amount");
+                                                        $("#AmtPaid").val(null);
+                                                    }
+                                                }
+                                            }
+
+                                            function calculateextraprice() {
+                                                var price = $("[name=PricePerKG]").val();
+                                                var Extrapercent = $("[name=Extrapercent]").val();
+                                                var quant = $("[name=RequestedQuantity]").val();
+                                               // var total = price * quant;
+
+                                                $("[name=ExtraPrice]").val(Math.floor((Extrapercent / 100) * price));
+                                            }
+
+                                            function ch(ServiceID, ProductID) {
+
+                                                var price = JSON.parse($('#P_' + ServiceID + '_' + ProductID).html());
+                                                var Extrapercent = JSON.parse($('#EP_' + ServiceID + '_' + ProductID).val());
+                                                var quant = JSON.parse($('#Q_' + ServiceID + '_' + ProductID).val());
+                                               // var total = price * quant;
+
+
+                                                $('#ER_' + ServiceID + '_' + ProductID).html(Math.floor((Extrapercent / 100) * price));
+                                               // $("[name=ExtraPrice]").html((Extrapercent / 100) * price);
+                                                Calculate(ServiceID, ProductID);
+                                            }
+
+                                            function GetRequestOrders(PurchaseOrderByID) {
+                                                /**/
+                                                $.get("@Url.Action("GetOrdersById", "OrderDetails")", { ID: PurchaseOrderByID }, function (data) {
+                                                    /**/
+
+                                                    TableData = [];
+                                                    DataToSave = [];
+                                                    IDs = [];
+                                                    var myObject = JSON.parse(data);
+                                                    $("#lblgrandtotal").html(myObject.ObjectResult.GrandTotal);
+                                                    $("#AmountPaid").html(myObject.ObjectResult.PaidAmount);
+                                                    $("#lblBalanceAmount").html(myObject.ObjectResult.RemainingAmount);
+                                                    $("#txtrequestorderid").html(myObject.ObjectResult.OrderID);
+                                                    $("#txtstorename").html(myObject.ObjectResult.StoreName);
+                                                    $("#CustomerName").html(myObject.ObjectResult.CustomerName);
+                                                    $("#CustomerMobile").html("<a href='tel:" + myObject.ObjectResult.CustomerMobile + "' style='color: black;'>" + myObject.ObjectResult.CustomerMobile + "</a>");
+
+                                                    $("#txtstoremobileno").html("<a href='tel:" + myObject.ObjectResult.StoreMobileNo + "' style='color: black;'>" + myObject.ObjectResult.StoreMobileNo + "</a>");
+                                                    $("#ConfirmedBy").html(myObject.ObjectResult.ConfirmedUser);
+                                                    $("#txtorderdate").html(SplitDateTime(myObject.ObjectResult.OrderDate) + "    --  " + SplitTime(myObject.ObjectResult.OrderDate).replace("/", "-").replace("/", "-"));
+                                                    $("#Remark").html(myObject.ObjectResult.Remark);
+                                                    $("#PickupDate").html(SplitDateTime(myObject.ObjectResult.PickupDate) + "    --  " + SplitTime(myObject.ObjectResult.PickupDate).replace("/", "-").replace("/", "-"));
+                                                    $("#DeliveryDate").html(SplitDateTime(myObject.ObjectResult.ActualDeliveryDate) + "    --  " + SplitTime(myObject.ObjectResult.ActualDeliveryDate).replace("/", "-").replace("/", "-"));
+                                                    $("#OrderStatus").html(myObject.ObjectResult.OrderStatus);
+                                                    $("#OrderStatusId").val(myObject.ObjectResult.orderstatusID);
+                                                    $("#statusid").val(myObject.ObjectResult.orderstatusID);
+                                                    $("#TagNumber").html(myObject.ObjectResult.TagNumber);
+                                                    if (myObject.ObjectResult.IsExpressDelivery == true) {
+                                                        $("#DeliveryType").html("Express Delivery");
+                                                    } else {
+                                                        $("#DeliveryType").html("Normal Delivery");
+                                                    }
+
+
+                                                    if (myObject.ObjectResult.RewardPointsApplied != null)
+                                                        $("#Reward").html(myObject.ObjectResult.RewardPointsApplied);
+                                                    else
+                                                        $("#Reward").html(0);
+                                                    $("#PaymentType").html(myObject.ObjectResult.PaymentType)
+                                                    $("#PickupAddress").html(myObject.ObjectResult.PickupAddress);
+                                                    $("#DeliveryAddress").html(myObject.ObjectResult.DeliveryAddress);
+                                                    if (myObject.ObjectResult.PaymentStatus == false)
+                                                        $("#PaymentStatus").html("Partial");
+                                                    else
+                                                        $("#PaymentStatus").html("Complete");
+
+                                                    if (myObject.ObjectResult.RemainingAmount > 0) {
+                                                        $("#pay").show();
+                                                    } else {
+                                                        $("#pay").hide();
+                                                    }
+                                                    if (myObject.ObjectResult.orderstatusID > 5) {
+
+                                                        $("#additems").hide();
+                                                        $("#add").hide();
+                                                        $('#btnplaceorder').hide();
+                                                        $('#PickedbyId').hide();
+                                                    } else {
+                                                        $("#additems").show();
+                                                        $('#btnplaceorder').show();
+                                                        $('#PickedbyId').show();
+
+                                                    }
+                                                    if (myObject.ObjectResult.PickedbyID != null) {
+                                                        $("#Pickedby").html(myObject.ObjectResult.Pickedby);
+                                                        $("#PickedbyId").hide();
+                                                    }
+
+
+                                                    if (myObject.ObjectResult.DeliveredbyID != null) {
+                                                        $("#DeliveredById").hide();
+                                                        $("#DeliveredBy").html(myObject.ObjectResult.DeliveryboyName);
+                                                    }
+                                                    if (myObject.ObjectResult.orderstatusID > 10)
+                                                        $("#DeliveredById").hide();
+                                                    for (var i = 0; i < myObject.ObjectResult.PurchaseOrderDetail.length; i++) {
+                                                        var Trow = [];
+                                                        Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ServiceName);
+                                                        Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].CategoryName);
+                                                        Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ProductName);
+
+
+                                                        if (myObject.ObjectResult.orderstatusID > 5) {
+                                                            Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].UnitPrice);
+                                                            Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].Quantity);
+                                                            Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPercent);
+                                                            Trow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPrice);
+                                                            Trow.push((myObject.ObjectResult.PurchaseOrderDetail[i].UnitPrice * myObject.ObjectResult.PurchaseOrderDetail[i].Quantity) + myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPrice);
+                                                        }
+                                                        else {
+                                                            Trow.push("<span id='P_" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "_" + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID +"' >" + myObject.ObjectResult.PurchaseOrderDetail[i].UnitPrice + " </span>");
+                                                            Trow.push("<input id='Q_" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "_" + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID + "' onkeyup='Calculate(" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "," + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID +")' value='" + myObject.ObjectResult.PurchaseOrderDetail[i].Quantity + "' class='form-control' maxlength='50' onkeypress='return IsNumeric(event)' />");
+                                                            Trow.push("<input id='EP_" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "_" + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID + "' onkeyup='ch(" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "," + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID + ")' value='" + myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPercent + "' class='form-control' maxlength='50' onkeypress='return IsNumeric(event)' />");
+                                                            Trow.push("<span id='ER_" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "_" + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID + "' >" + (myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPrice) + " </span>")
+
+                                                            Trow.push("<span id='TP_" + myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID + "_" + myObject.ObjectResult.PurchaseOrderDetail[i].ProductID + "' >" + ((myObject.ObjectResult.PurchaseOrderDetail[i].UnitPrice * myObject.ObjectResult.PurchaseOrderDetail[i].Quantity) + myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPrice) + " </span>")
+
+                                                        }
+
+                                                        TableData.push(Trow);
+                                                        var Srow = [];
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID);
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ProductID);
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].UnitPrice);
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].Quantity);
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].OrderDetailsID);
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPercent);
+                                                        Srow.push(myObject.ObjectResult.PurchaseOrderDetail[i].ExtraPrice);
+                                                        DataToSave.push(Srow);
+                                                        var ObjIDs = new Object();
+                                                        ObjIDs.ServiceID = myObject.ObjectResult.PurchaseOrderDetail[i].ServiceID;
+                                                        ObjIDs.ProductID = myObject.ObjectResult.PurchaseOrderDetail[i].ProductID;
+                                                        IDs.push(ObjIDs);
+                                                    }
+                                                    BindTableData();
+
+                                                });
+                                            }
+                                            function RemoveFromCart(ProductID, ServiceID) {
+
+                                                for (var i = 0; i < DataToSave.length; i++) {
+                                                    if (DataToSave[i][0] == ServiceID, DataToSave[i][1] == ProductID) {
+                                                        DataToSave.splice(i, 1);
+                                                        TableData.splice(i, 1);
+                                                        BindTableData();
+                                                        SuccessAlert(" ", "Deleted from cart.");
+                                                        CalculateGrandTotal();
+
+                                                    }
+                                                }
+                                            }
+
+
+                                            function BindTableData() {
+                                                $('#' + tableId).DataTable({
+                                                    destroy: true,
+                                                    data: TableData,
+                                                    scrollX: true,
+                                                    scrolly: true,
+                                                    paging: false,
+                                                    searching: false,
+                                                    columns: [
+                                                        { title: "Service" },
+                                                        { title: "Category" },
+                                                        { title: "Product" },
+                                                        { title: "Unit Price" },
+                                                        { title: "Received Qty" },
+                                                        { title: "Extra %" },
+                                                        { title: "Extra Price" },
+                                                        { title: "Total Price" },
+
+                                                        //{ title: " " },
+                                                    ]
+                                                });
+                                                hideshowbuttons();
+                                            }
+                                            function Calculate(serviceid,productid) {
+                                                GrandTotalPrice = 0;
+                                                var Enter_quant = $('#Q_' + serviceid + "_" + productid).val();
+
+                                                if (Enter_quant == "")
+                                                    Enter_quant = 0;
+                                                else
+                                                    Enter_quant = JSON.parse($('#Q_' + serviceid + "_" + productid).val());
+
+                                                var UnitPrice = JSON.parse($('#P_' + serviceid + "_" + productid).html());
+                                                var ExtraPrices = JSON.parse($('#ER_' + serviceid + '_' + productid).html());
+                                                $('#TP_' + serviceid + "_" + productid).html((Enter_quant * UnitPrice) + ExtraPrices);
+
+                                                for (var i = 0; i < IDs.length; i++) {
+                                                    var price = $('#TP_' + IDs[i].ServiceID+'_'+ IDs[i].ProductID).html();
+                                                    if (price == "")
+                                                        price = 0;
+                                                    else
+                                                        price = JSON.parse($('#TP_' + IDs[i].ServiceID + '_' + IDs[i].ProductID).html());
+
+                                                    var Extraprice = $('#ER_' + IDs[i].ServiceID + '_' + IDs[i].ProductID).html();
+                                                    if (Extraprice == "")
+                                                        Extraprice = 0;
+                                                    else
+                                                        Extraprice = JSON.parse($('#ER_' + IDs[i].ServiceID + '_' + IDs[i].ProductID).html());
+
+                                                   // GrandTotalPrice = (GrandTotalPrice + price + Extraprice);
+                                                    GrandTotalPrice = (GrandTotalPrice + price);
+
+                                                }
+                                                if ($("#DeliveryType").html() == "Express Delivery") {
+                                                    ExpressCharge = GrandTotalPrice * 1.5;
+                                                    GrandTotalPrice = Math.floor(GrandTotalPrice + ExpressCharge);
+                                                    //GrandTotalPrice = (GrandTotalPrice+ 40);
+                                                }
+                                                else {
+                                                    GrandTotalPrice = Math.floor(GrandTotalPrice - ExpressCharge);
+                                                }
+                                                $("#lblgrandtotal").html(GrandTotalPrice - parseInt($("#Reward").html()));
+                                                $("#lblBalanceAmount").html(Math.floor(GrandTotalPrice - parseFloat($("#AmountPaid").html())));
+
+                                            }
+                                            function CalculateGrandTotal() {
+                                                var GrandTotal = 0;
+                                                for (var i = 0; i < DataToSave.length; i++) {
+
+                                                    GrandTotal += ((DataToSave[i][2] * DataToSave[i][3]) + DataToSave[i][6]);
+                                                }
+                                                if ($("#DeliveryType").html() == "Express Delivery") {
+                                                    ExpressCharge = GrandTotalPrice *1.5;
+                                                    GrandTotal = (GrandTotal + ExpressCharge);
+                                                   // GrandTotal = (GrandTotal + 40);
+                                                }
+                                                else {
+                                                    GrandTotal = (GrandTotal - ExpressCharge);
+                                                }
+                                                $("#lblgrandtotal").html(GrandTotal - parseInt($("#Reward").html()));
+                                                $("#lblBalanceAmount").html(Math.floor(parseFloat($("#lblgrandtotal").html()) - parseFloat($("#AmountPaid").html())));
+                                            }
+                                            function balance() {
+                                                if (parseFloat($("#lblgrandtotal").html()) < parseFloat($("#AmountPaid").html())) {
+                                                    alert("Advance Amount Is Greater Than Grand Total");
+                                                    // $("#AmountPaid").html("0");
+                                                    $("#lblBalanceAmount").html(Math.floor(parseFloat($("#lblgrandtotal").html())));
+                                                }
+                                                else {
+                                                    $("#lblBalanceAmount").html(Math.floor(parseFloat($("#lblgrandtotal").html()) - parseFloat($("#AmountPaid").html())));
+
+                                                }
+                                            }
+                                            //function checkQuantity(id) {
+                                            //    var Enter_quant = $('[name="ReceivingQuantity_' + id + '"]').val();
+
+                                            //    if (Enter_quant == "")
+                                            //        Enter_quant = 0;
+                                            //    else
+                                            //        Enter_quant = JSON.parse($('[name="ReceivingQuantity_' + id + '"]').val());
+
+                                            //    var Rqst_quant = JSON.parse($('#RQ_' + id).html());
+                                            //    if (Enter_quant > Rqst_quant) {
+                                            //        alert("Entered Quantity Is More Than Requested Quantity");
+                                            //        $('[name="ReceivingQuantity_' + id + '"]').val(0);
+                                            //    }
+                                            //    else {
+                                            //        Calculate(id);
+                                            //    }
+                                            //}
+
+                                            function ClearFiled() {
+                                                $("#txtrequestorderid").html("");
+                                                $("#txtstorename").html("");
+                                                $("#txtstoremobileno").html("");
+                                                $("#txtrequestedqty").html("");
+                                                $("#txtorderdate").html("");
+                                                $("#txtremark").html("");
+                                                GetRequestOrders();
+                                                $('[name="ActualDeliveryDate"]').val(SetTodaysDate("ActualDeliveryDate"));
+                                                $('[name="PricePerKG"]').val(null);
+                                                $('[name="ReceivedQuantity"]').val(null);
+                                                $('[name="PaidAmount"]').val(null);
+                                                $('[name="RemainingAmount"]').val(null);
+                                                $('[name="GrandTotal"]').val(null);
+                                                $('[name="Remark"]').val(null);
+                                                $("#CustomerName").html("");
+                                                $("#CustomerMobile").html("");
+                                                $('[name="txtremark"]').val(null);
+                                                $('#' + tableId).html("");
+                                                $('[name="PayingAmount"]').val(null);
+                                                $("#grandtotal").html("");
+                                            }
+                                            function Clearall() {
+                                                $("[name=ProductID]").val(null);
+                                                $("[name=PricePerKG]").val(null);
+                                                $("[name=RequestedQuantity]").val(null);
+                                            }
+
+                                            function hideshowbuttons() {
+                                                if (isAddEnabled) {
+                                                    $("#btnadd").show();
+                                                    $(".edit").show();
+                                                    $("#btnreset").show();
+                                                }
+                                                else {
+                                                    $("#btnadd").hide();
+                                                    $(".edit").hide();
+                                                    $("#btnreset").hide();
+                                                }
+                                                if (isDeleteEnbaled)
+                                                    $(".delete").show();
+                                                else
+                                                    $(".delete").hide();
+
+                                            }
+                </script>
+            </section>
+        </div>
+        <footer class="main-footer">
+            <strong>Copyright &copy;2018 All rights reserved.</strong> Designed and Developed By <a href="http://mindmapstechnologies.com" target="_blank"><img src="http://cubspreschool.myprelaunch.in/images/mmt_fevicon.png" style="height: 15px"> MindMaps Technologies</a>.
+
+            <div class="float-right d-none d-sm-inline-block">
+
+            </div>
+        </footer>
+    </div>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="~/CustomFiles/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/CustomFiles/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="~/CustomFiles/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/CustomFiles/plugins/select2/select2.full.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="~/CustomFiles/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="~/CustomFiles/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <!-- bootstrap time picker -->
+    <script src="~/CustomFiles/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="~/CustomFiles/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="~/CustomFiles/plugins/iCheck/icheck.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/CustomFiles/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/CustomFiles/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/CustomFiles/dist/js/demo.js"></script>
+    <!--Toastr Min-->
+    <script src="~/CustomFiles/dist/js/toastr.min.js"></script>
+    <link href="~/CustomFiles/dist/css/loader.css" rel="stylesheet" />
+    <script>
+        //setTimeout(function () { $('body').css('zoom', '80%')}, 2000);
+        $('#loader-wrapper').css('display', 'none');
+        $(document).ajaxStart(function () {
+            $('#loader-wrapper').css('display', 'block');
+        }).ajaxStop(function () {
+            $('#loader-wrapper').css('display', 'none');
+        });
+
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+            CloseCard();
+        });
+        function OpenCard() {
+            $('#carddiv').removeClass('collapsed-card');
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+        }
+        function CloseCard() {
+            $('#carddiv').addClass('collapsed-card');
+        }
+        function SuccessAlert(Title, Message) {
+            toastr.success(Message, Title)
+        }
+        function WarningAlert(Title, Message) {
+            toastr.warning(Message, Title)
+        }
+        function DangerAlert(Title, Message) {
+            toastr.error(Message, Title)
+        }
+
+    </script>
+</body>
+</html>
+
+

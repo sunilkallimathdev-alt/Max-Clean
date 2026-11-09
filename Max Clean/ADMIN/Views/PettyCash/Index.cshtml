@@ -1,0 +1,339 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+
+@{
+    ViewBag.Title = "Petty Cash";
+
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+@{ var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList; }
+
+<section class="content">
+    <div class="container-fluid">
+        <form id="PettyCash">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Add @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5">
+
+                            <div class="form-group">
+                                <label>Store Name<span style="color:red">*</span></label>
+                                <select class="form-control" name="StoreID" id="StoreID" onchange="GetBalance() ">
+
+                                    @{
+
+                                        try
+                                        {
+                                            var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                            if (user.StoreID != null)
+                                            {
+                                                foreach (var str in StoreList)
+                                                {
+                                                    if (user.StoreID == @str.StoreID)
+                                                    {
+                                                        <option value="@str.StoreID">@str.StoreName</option>
+
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="0">---Select---</option>
+                                                foreach (var str in StoreList)
+                                                {
+                                                    <option value="@str.StoreID">@str.StoreName</option>
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 " style="padding-top:32px">
+                            <label style="font-size:18px" id="lblBalanceText"> Balance : </label> <label class="lbl" id="lbl1" style="font-size:18px"> </label>
+                        </div>
+                    </div>
+
+                    <div id="submenu">
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Amount<span style="color:red">*</span></label>
+                                    <input class="form-control" type="number" name="Amount" maxlength="100" onkeypress="return NotanHTML(event)">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Date<span style="color:red">*</span></label>
+                                    <input class="form-control" type="date" name="Date" maxlength="10" onkeypress="return IsNumeric(event)">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Note<span style="color:red">*</span></label>
+                                    <textarea class="form-control" type="text" name="Reason" id="Reason" maxlength="200" onkeypress="return NotanHTML(event)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                            <!--button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>-->
+                            <button type="button" class="btn btn-danger" onclick="ClearFields()" id="btnreset">Cancel</button>
+
+                            @*<input type="hidden" name="HDID" />*@
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card" id="HGrid">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#PettyCash').validate({
+            rules: {
+                StoreID: {
+                    required: true,
+                },
+                Amount: {
+                    required: true,
+                },
+                Reason: {
+
+                    required: true,
+                },
+                Date: {
+
+                    required: true,
+                },
+
+            }
+        });
+        var form = $("#PettyCash");
+        form.validate();
+
+
+
+        $(document).ready(function () {
+
+            BindTableData();
+            GetBalance();
+            //$("#balance").hide();
+            $("#submenu").hide();
+
+            $('#StoreID').change(function () {
+
+                if ($('#StoreID').val() != '0') {
+                    //$("#balance").show();
+                    $("#submenu").show();
+                }
+                else {
+                    //$("#balance").hide();
+                    $("#submenu").hide();
+                }
+            });
+
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.Store_Id = $('[name="StoreID"]').val();
+                    myobj.Amount = $('[name="Amount"]').val();
+                    myobj.Reason = $('[name="Reason"]').val();
+                    myobj.Date = $('[name="Date"]').val();
+
+                    setTimeout(function () {
+                        $.post("@Url.Action("AddPettyCash", "PettyCash")", { ObjPCash: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                BindTableData();
+                                SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                //$("#balance").hide();
+                                $("#submenu").hide();
+                                ClearFields();
+                                GetBalance();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        })
+                    }, 000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+
+        });
+
+        function BindTableData() {
+            var myobj = new Object();
+            @* myobj.Store_Id = "@storeid";*@
+            myobj.Store_Id = $("#StoreID").val();
+
+             $.post("@Url.Action("GetPettyCashList", "PettyCash")", { Store: JSON.stringify(myobj) }, function (data) {
+                    var myObject = JSON.parse(data);
+
+                    var TableDate = [];
+                    for (var i = 0; i < myObject.length; i++) {
+                        var row = [];
+                        row.push( myObject[i].Pdate );
+                       // row.push( myObject[i].Store_Name);
+                        row.push( myObject[i].Reason );
+                    /*row.push("<span  style='float:right'>" + myObject[i].Amount + "</span>");*/
+                        row.push( myObject[i].Amount );
+
+                        TableDate.push(row);
+                    }
+                    $('#' + tableId).DataTable({
+                        destroy: true,
+                        data: TableDate,
+                        scrollX: true,
+                        responsive: true,
+                        order: [[0, "desc"]],
+
+                        columns: [
+                            { title: "Date", type: "us_datetime" },
+                           // { title: "Store Name" },
+                            { title: "Note" },
+                            { title: "Amount" },
+
+                        ],
+                        "aoColumnDefs": [
+
+                            { className: 'text-right', targets: [2] },
+                            { className: 'text-center', targets: [0] },
+                            { width: "10%", targets: [0,2] }, { width: "80%", targets: [1] }
+                        ]
+                    });
+                    hideshowbuttons();
+                    var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdfHtml5'
+
+                        ]
+                    }).container().appendTo($('#buttons'));
+                    $('.buttons-html5').addClass('btn btn-default btn-sm');
+                });
+        }
+
+        function ClearFields() {
+            $('[name="Date"]').val(null);
+            //$('[name="StoreID"]').val(null);
+            $('[name="Reason"]').val(null);
+            $('[name="Amount"]').val(null);
+
+        }
+
+        function GetBalance() {
+
+            var str = $('#StoreID').val();
+
+            if (str == "0") {
+                $("#HGrid").hide();
+                $("#submenu").hide();
+            }
+            else {
+                $("#HGrid").show();
+                $("#submenu").show();
+
+            }
+
+
+            var myobj = new Object();
+            myobj.Store_Id = $("#StoreID").val();
+            var intstoreid = parseInt(myobj.Store_Id);
+            $.post("@Url.Action("GetPCashUtilizationList", "PCashUtilization")", { Store_Id: JSON.stringify(myobj) }, function (data) {
+
+                var myObject = JSON.parse(data);
+                var stid = parseInt($("#StoreID").val());
+
+                if ($.isNumeric(stid) == false) {
+
+                    $('#lbl1').text("");
+                    $('#lblBalanceText').text("");
+                } else {
+                    if ($.isNumeric(intstoreid)) {
+                        if (myObject.length != 0) {
+
+                            if ((myObject[0].BalanceAmount) <= 1000) {
+                                $('#lblBalanceText').text("Balance : ");
+                                $('#lbl1').css({ "color": "red" });
+                                $('#lbl1').text(myObject[0].BalanceAmount);
+
+                            } else {
+                                $('#lblBalanceText').text("Balance : ");
+                                $('#lbl1').css({ "color": "MediumSeaGreen" });
+                                $('#lbl1').text(myObject[0].BalanceAmount);
+                            }
+
+                        } else {
+                            $('#lbl1').text("");
+                            $('#lblBalanceText').text("");
+
+                        }
+
+                    } else {
+                        $('#lbl1').text("");
+                        $('#lblBalanceText').text("");
+                    }
+                }
+            });
+            BindTableData();
+        }
+
+    </script>
+</section>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa8995c086f2461fb46f215095c26e07" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="maxcleanModel.t_banner" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_category" Width="1.5" PointX="8.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_customer" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_customer_rating" Width="1.5" PointX="10.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_delivery_boy" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_deliveryboy_deviceid" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_deliveryboy_incentives" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_enquiries" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_exception" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_gallery" Width="1.5" PointX="2.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_incentives_transaction" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_marque" Width="1.5" PointX="14.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_order_cylce" Width="1.5" PointX="5.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_order_details" Width="1.5" PointX="13.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_paymentstatus" Width="1.5" PointX="15.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_pickuptimeslabs" Width="1.5" PointX="5.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_pincodes" Width="1.5" PointX="5.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_product" Width="1.5" PointX="11" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_promocode" Width="1.5" PointX="0.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_promotions" Width="1.5" PointX="15.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_reward" Width="1.5" PointX="8" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_role" Width="1.5" PointX="3.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_service" Width="1.5" PointX="11" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_service_price" Width="1.5" PointX="13.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_store" Width="1.5" PointX="3.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_tag_details" Width="1.5" PointX="12.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_taggs" Width="1.5" PointX="10.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_test" Width="1.5" PointX="2.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_user" Width="1.5" PointX="5.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.tbl_admin_category" Width="1.5" PointX="4.25" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.tbl_admin_pages" Width="1.5" PointX="6.5" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.tbl_roles_privileges" Width="1.5" PointX="8.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_admin_users" Width="1.5" PointX="15.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_brands" Width="1.5" PointX="16.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_cities" Width="1.5" PointX="16.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_coupun" Width="1.5" PointX="17.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_customer_details" Width="1.5" PointX="17.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_dealoftheday" Width="1.5" PointX="18.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_delete_order" Width="1.5" PointX="12.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_delete_order_details" Width="1.5" PointX="18.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_delivery_details" Width="1.5" PointX="14.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_delivery_locations" Width="1.5" PointX="16.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_enquiry" Width="1.5" PointX="18.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maxcleanModel.t_gst" Width="1.5" PointX="19.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="maxcleanModel.t_category_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_product_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_customer_rating_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_reward_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_deliveryboy_deviceid_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_deliveryboy_incentives_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_incentives_transaction_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_order_details_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_order_details_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_pincodes_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_service_price_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_user_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.tbl_roles_privileges_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_service_price_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_user_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.t_tag_details_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.tbl_admin_pages_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="maxcleanModel.tbl_roles_privileges_ibfk_4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="maxcleanModel.t_petty_cash" Width="1.5" PointX="5.75" PointY="37.125" />
+        <EntityTypeShape EntityType="maxcleanModel.t_petty_cash_utilization" Width="1.5" PointX="5.75" PointY="44.875" />
+        <AssociationConnector Association="maxcleanModel.t_petty_cash_ibfk_1" />
+        <AssociationConnector Association="maxcleanModel.t_petty_cash_utilization_ibfk_1" />
+        <EntityTypeShape EntityType="maxcleanModel.t_orders" Width="1.5" PointX="8" PointY="5.25" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_1" />
+        <AssociationConnector Association="maxcleanModel.t_customer_rating_ibfk_1" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_3" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_6" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_4" />
+        <AssociationConnector Association="maxcleanModel.t_order_details_ibfk_5" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_2" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_5" />
+        <AssociationConnector Association="maxcleanModel.t_orders_ibfk_7" />
+        <AssociationConnector Association="maxcleanModel.t_tag_details_ibfk_5" />
+        <AssociationConnector Association="maxcleanModel.t_taggs_ibfk_1" />
+        <EntityTypeShape EntityType="maxcleanModel.t_expenses" Width="1.5" PointX="9" PointY="29.375" />
+        <AssociationConnector Association="maxcleanModel.t_expenses_ibfk_1" />
+        <AssociationConnector Association="maxcleanModel.t_expenses_ibfk_2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

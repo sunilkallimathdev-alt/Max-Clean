@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/MainMaster.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <section class="col-lg-12 col-md-12 col-sm-12">
+                <div class="center-block" id="howitworks">
+                    <h2>  <span style="color:#ffd923;">Contact Us</span></h2>
+                </div>
+
+                <div class="r_corners photoframe map_container shadow m_bottom_45">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12098.04228269596!2d-74.00499255597757!3d40.70677554722762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2z0J3RjNGOLdCZ0L7RgNC6!5e0!3m2!1sru!2s!4v1393474990482"></iframe>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-4 col-sm-4 m_xs_bottom_30">
+                        <h2 class="color_dark m_bottom_25">Contact Info</h2>
+                        <ul class="c_info_list">
+                            <li class="m_bottom_10">
+                                <div class="clearfix m_bottom_15">
+                                    <i class="fa fa-map-marker f_left color_dark"></i>
+                                    <p class="contact_e">
+                                        #90/1, Wheeler Road Extention<br> D'costa Square First Cross,<br> St Thomas Town, Post,<br> Bengaluru, Karnataka 560084
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="m_bottom_10">
+                                <div class="clearfix m_bottom_10">
+                                    <i class="fa fa-phone f_left color_dark"></i>
+                                    <p class="contact_e">+91 9900318000</p>
+                                </div>
+                            </li>
+                            <li class="m_bottom_10">
+                                <div class="clearfix m_bottom_10">
+                                    <i class="fa fa-envelope f_left color_dark"></i>
+                                    <a class="contact_e default_t_color" href="mailto:info@maxcleanlaundry.in">info@maxcleanlaundry.in</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <i class="fa fa-clock-o f_left color_dark"></i>
+                                    <p class="contact_e">Monday - Friday: 08.00-20.00 <br>Saturday: 09.00-15.00<br> Sunday: closed</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 m_xs_bottom_30">
+                        <h2 class="color_dark m_bottom_25">Contact Form</h2>
+                        <p class="m_bottom_10">Send an email. All fields with an <span class="scheme_color">*</span> are required.</p>
+                        <ul>
+                            <li class="clearfix m_bottom_15">
+                                <div class="f_left half_column">
+                                    <label for="cf_name" class="required d_inline_b m_bottom_5">Your Name</label>
+                                    <input type="text" id="cf_name" name="cf_name" class="full_width r_corners">
+                                </div>
+                                <div class="f_left half_column">
+                                    <label for="cf_email" class="required d_inline_b m_bottom_5">Email</label>
+                                    <input type="email" id="cf_email" name="cf_email" class="full_width r_corners">
+                                </div>
+                            </li>
+                            <li class="m_bottom_15">
+                                <label for="cf_subject" class=" required d_inline_b m_bottom_5">Mobile Number</label>
+                                <input type="text" onkeypress="return isNumber(event)" id="cf_mobilenumber" name="cf_subject" class="full_width r_corners">
+                            </li>
+                            <li class="m_bottom_15">
+                                <label for="cf_message" class="d_inline_b m_bottom_5 required">Message</label>
+                                <textarea id="cf_message" name="cf_message" class="full_width r_corners"></textarea>
+                            </li>
+                            <li>
+                                <button id="btngetcontactdetails" class="button_type_4 bg_light_color_2 r_corners mw_0 tr_all_hover color_dark">Send</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!--right column-->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            alert("Please enter only Numbers.");
+            return false;
+        }
+        return true;
+    }
+
+    function validateEmail(email) {
+        var emailReg = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/;
+        return emailReg.test(String(email).toLowerCase());
+}
+
+
+        $(function () {
+            $("#btngetcontactdetails").click(function () {
+                var name = $("#cf_name").val();
+                var email = $("#cf_email").val();
+                var mobile = $("#cf_mobilenumber").val();
+                var msg = $("#cf_message").val();
+
+                if (name == '') {
+                    alert("Name cannot be empty");
+                    return;
+                }
+                else if (mobile == '' || mobile == null) {
+                    alert("mobilenumber cannot be empty");
+                    return;
+                }
+                else if (mobile.length < 10 || mobile.length > 10) {
+                    alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
+                    return ;
+                }
+                //else if (email != '' && email != null) {
+                //    if (validateEmail(email)) {
+                //        alert("Email id is not valid");
+                //        return ;
+                //    }
+                //}
+                else if (msg == '') {
+                    alert("Message cannot be empty");
+                    return;
+                }
+                else {
+
+                $.ajax({
+                   type: "POST",
+                   url: '@Url.Action("registerdetails", "index")',
+                    contentType: "application/json; charset=utf-8",
+                    data: '{"name":"' + name + '","mobile":"' + mobile + '","email":"' + email + '","msg":"' + msg + '"}',
+                   dataType: "json",
+                    success: function (response) {
+                        if (response.result == 'Success')
+                        {
+                            alert("Successfully sent the details")
+                        }
+                        else
+                        { alert('Failed, Please check/enter the details'); }
+                    },
+                   error: function() { alert('A error'); }
+                    });
+                }
+            });
+        });
+</script>
+

@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "TotalBilling";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button onclick="window.history.back();" class="btn btn-danger btn-sm">Go Back</button>
+
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formallorders">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>From Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="FromDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>To Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="ToDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @*<button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>*@
+                    <button type="button" class="btn btn-success" onclick="BindTableData();" id="btnupdate">Submit </button>
+                    @*<button type="button" class="btn btn-danger" onclick="BindTableData();">Cancel</button>*@
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        @*<div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>*@
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formallorders').validate({
+            rules: {
+                FromDate: {
+                    required: false,
+                },
+                ToDate: {
+                    required: false,
+                },
+              
+            }
+        });
+
+        var form = $("#formallorders");
+        form.validate();
+
+
+        $(document).ready(function () {
+            BindTableData();
+          
+        });
+
+         
+
+
+        function SaveID(ID) {                                       //orderdetails loni function edi gurthupettuko
+            var POID = ID;
+            localStorage.setItem("POID", ID);
+
+
+            window.location.href = "/OrderDetails/Index";
+        }
+
+
+    function BindTableData() {
+
+                  var myobj = new Object();
+                  myobj.FromDate = $('[name="FromDate"]').val();
+                  myobj.ToDate = $('[name="ToDate"]').val();
+
+
+        $.get("@Url.Action("GetAllOrders", "AllOrders")", { Obj: JSON.stringify(myobj) }, function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.Result.length; i++) {
+                var row = [];
+                row.push(myObject.Result[i].OrderID);
+                row.push(myObject.Result[i].GrandTotal);
+                row.push(myObject.Result[i].Advance_Amount);
+                row.push(myObject.Result[i].PaidAmount);
+                row.push(myObject.Result[i].RemainingAmount);
+                var pmtstat = myObject.Result[i].PaymentStatus;
+
+                if (myObject.Result[i].PaymentStatus == "partial") {
+                    row.push("Partial");
+                }
+                else if (myObject.Result[i].PaymentStatus == "pending") {
+                    row.push("Pending");
+                }
+                else if (myObject.Result[i].PaymentStatus == "complete") {
+                    row.push("Completed");
+                }
+                row.push('<button type="button" class="btn btn-info btn-sm" onclick="SaveID(' + myObject.Result[i].OrderID + ')">View Details</button>');
+                //row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].CategoryId + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                order: [[0, "desc"]],
+                columns: [
+                    { title: "Order ID" },
+                    { title: "Grand Total" },
+                    { title: "Advance Amt" },
+                    { title: "Paid Amt" },
+                    { title: "Balance" },
+                    { title: "Payment Status" },
+                    { title: " " },
+                ]
+            });
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+        });
+    }
+
+    </script>
+
+</section>
+
+

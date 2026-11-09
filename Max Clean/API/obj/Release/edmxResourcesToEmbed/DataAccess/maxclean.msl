@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="maxcleanModelStoreContainer" CdmEntityContainer="maxcleanEntities">
+    <EntitySetMapping Name="t_banner">
+      <EntityTypeMapping TypeName="maxcleanModel.t_banner">
+        <MappingFragment StoreEntitySet="t_banner">
+          <ScalarProperty Name="banner_id" ColumnName="banner_id" />
+          <ScalarProperty Name="banner_name" ColumnName="banner_name" />
+          <ScalarProperty Name="banner_image" ColumnName="banner_image" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_category">
+      <EntityTypeMapping TypeName="maxcleanModel.t_category">
+        <MappingFragment StoreEntitySet="t_category">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="service_id" ColumnName="service_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_icon" ColumnName="category_icon" />
+          <ScalarProperty Name="category_banner" ColumnName="category_banner" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_customer">
+      <EntityTypeMapping TypeName="maxcleanModel.t_customer">
+        <MappingFragment StoreEntitySet="t_customer">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="alt_mobile_no" ColumnName="alt_mobile_no" />
+          <ScalarProperty Name="IsMobileVerified" ColumnName="IsMobileVerified" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="old_balance" ColumnName="old_balance" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="deliveryAddress" ColumnName="deliveryAddress" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="pickup_address_type" ColumnName="pickup_address_type" />
+          <ScalarProperty Name="delivery_address_type" ColumnName="delivery_address_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_customer_rating">
+      <EntityTypeMapping TypeName="maxcleanModel.t_customer_rating">
+        <MappingFragment StoreEntitySet="t_customer_rating">
+          <ScalarProperty Name="customer_rating_id" ColumnName="customer_rating_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_delivery_boy">
+      <EntityTypeMapping TypeName="maxcleanModel.t_delivery_boy">
+        <MappingFragment StoreEntitySet="t_delivery_boy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="vehicle_no" ColumnName="vehicle_no" />
+          <ScalarProperty Name="licence_no" ColumnName="licence_no" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="languages_known" ColumnName="languages_known" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_deliveryboy_deviceid">
+      <EntityTypeMapping TypeName="maxcleanModel.t_deliveryboy_deviceid">
+        <MappingFragment StoreEntitySet="t_deliveryboy_deviceid">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="delivery_boy_id" ColumnName="delivery_boy_id" />
+          <ScalarProperty Name="deviceId" ColumnName="deviceId" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_deliveryboy_incentives">
+      <EntityTypeMapping TypeName="maxcleanModel.t_deliveryboy_incentives">
+        <MappingFragment StoreEntitySet="t_deliveryboy_incentives">
+          <ScalarProperty Name="db_incentive_id" ColumnName="db_incentive_id" />
+          <ScalarProperty Name="delivery_boy_id" ColumnName="delivery_boy_id" />
+          <ScalarProperty Name="incentives" ColumnName="incentives" />
+          <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_enquiries">
+      <EntityTypeMapping TypeName="maxcleanModel.t_enquiries">
+        <MappingFragment StoreEntitySet="t_enquiries">
+          <ScalarProperty Name="contact_us_id" ColumnName="contact_us_id" />
+          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_exception">
+      <EntityTypeMapping TypeName="maxcleanModel.t_exception">
+        <MappingFragment StoreEntitySet="t_exception">
+          <ScalarProperty Name="exception_id" ColumnName="exception_id" />
+          <ScalarProperty Name="exception_type" ColumnName="exception_type" />
+          <ScalarProperty Name="exception_Error" ColumnName="exception_Error" />
+          <ScalarProperty Name="exception_Page" ColumnName="exception Page" />
+          <ScalarProperty Name="inner_exception" ColumnName="inner_exception" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_gallery">
+      <EntityTypeMapping TypeName="maxcleanModel.t_gallery">
+        <MappingFragment StoreEntitySet="t_gallery">
+          <ScalarProperty Name="gallery_id" ColumnName="gallery_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="is_image" ColumnName="is_image" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_incentives_transaction">
+      <EntityTypeMapping TypeName="maxcleanModel.t_incentives_transaction">
+        <MappingFragment StoreEntitySet="t_incentives_transaction">
+          <ScalarProperty Name="incentive_transaction_id" ColumnName="incentive_transaction_id" />
+          <ScalarProperty Name="deliveryboy_incentive_id" ColumnName="deliveryboy_incentive_id" />
+          <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+          <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="note" ColumnName="note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_marque">
+      <EntityTypeMapping TypeName="maxcleanModel.t_marque">
+        <MappingFragment StoreEntitySet="t_marque">
+          <ScalarProperty Name="marque_id" ColumnName="marque_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_order_cylce">
+      <EntityTypeMapping TypeName="maxcleanModel.t_order_cylce">
+        <MappingFragment StoreEntitySet="t_order_cylce">
+          <ScalarProperty Name="order_cycle_id" ColumnName="order_cycle_id" />
+          <ScalarProperty Name="order_cycle_stage" ColumnName="order_cycle_stage" />
+          <ScalarProperty Name="diplay_order" ColumnName="diplay_order" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_order_details">
+      <EntityTypeMapping TypeName="maxcleanModel.t_order_details">
+        <MappingFragment StoreEntitySet="t_order_details">
+          <ScalarProperty Name="order_details_id" ColumnName="order_details_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="service_id" ColumnName="service_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="delivered_quantity" ColumnName="delivered_quantity" />
+          <ScalarProperty Name="remaining_quantity" ColumnName="remaining_quantity" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="extra_charge_percentage" ColumnName="extra_charge_percentage" />
+          <ScalarProperty Name="extra_charge_price" ColumnName="extra_charge_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_paymentstatus">
+      <EntityTypeMapping TypeName="maxcleanModel.t_paymentstatus">
+        <MappingFragment StoreEntitySet="t_paymentstatus">
+          <ScalarProperty Name="paymentStatus_id" ColumnName="paymentStatus_id" />
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="bank_name" ColumnName="bank_name" />
+          <ScalarProperty Name="txn_date" ColumnName="txn_date" />
+          <ScalarProperty Name="mode_of_payment" ColumnName="mode_of_payment" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_pickuptimeslabs">
+      <EntityTypeMapping TypeName="maxcleanModel.t_pickuptimeslabs">
+        <MappingFragment StoreEntitySet="t_pickuptimeslabs">
+          <ScalarProperty Name="timeslab_id" ColumnName="timeslab_id" />
+          <ScalarProperty Name="timeslab" ColumnName="timeslab" />
+          <ScalarProperty Name="timevalue" ColumnName="timevalue" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_pincodes">
+      <EntityTypeMapping TypeName="maxcleanModel.t_pincodes">
+        <MappingFragment StoreEntitySet="t_pincodes">
+          <ScalarProperty Name="pincode_id" ColumnName="pincode_id" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_product">
+      <EntityTypeMapping TypeName="maxcleanModel.t_product">
+        <MappingFragment StoreEntitySet="t_product">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_image" ColumnName="product_image" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_promocode">
+      <EntityTypeMapping TypeName="maxcleanModel.t_promocode">
+        <MappingFragment StoreEntitySet="t_promocode">
+          <ScalarProperty Name="promocode_id" ColumnName="promocode_id" />
+          <ScalarProperty Name="promocode_name" ColumnName="promocode_name" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_promotions">
+      <EntityTypeMapping TypeName="maxcleanModel.t_promotions">
+        <MappingFragment StoreEntitySet="t_promotions">
+          <ScalarProperty Name="subscribe_id" ColumnName="subscribe_id" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_reward">
+      <EntityTypeMapping TypeName="maxcleanModel.t_reward">
+        <MappingFragment StoreEntitySet="t_reward">
+          <ScalarProperty Name="reward_id" ColumnName="reward_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_rewardpoints" ColumnName="customer_rewardpoints" />
+          <ScalarProperty Name="customer_usedrewards" ColumnName="customer_usedrewards" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_role">
+      <EntityTypeMapping TypeName="maxcleanModel.t_role">
+        <MappingFragment StoreEntitySet="t_role">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_service">
+      <EntityTypeMapping TypeName="maxcleanModel.t_service">
+        <MappingFragment StoreEntitySet="t_service">
+          <ScalarProperty Name="service_id" ColumnName="service_id" />
+          <ScalarProperty Name="service_name" ColumnName="service_name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_service_price">
+      <EntityTypeMapping TypeName="maxcleanModel.t_service_price">
+        <MappingFragment StoreEntitySet="t_service_price">
+          <ScalarProperty Name="service_price_id" ColumnName="service_price_id" />
+          <ScalarProperty Name="service_id" ColumnName="service_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_store">
+      <EntityTypeMapping TypeName="maxcleanModel.t_store">
+        <MappingFragment StoreEntitySet="t_store">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="store_name" ColumnName="store_name" />
+          <ScalarProperty Name="manager_name" ColumnName="manager_name" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="radius" ColumnName="radius" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitute" ColumnName="longitute" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="store_code" ColumnName="store_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_tag_details">
+      <EntityTypeMapping TypeName="maxcleanModel.t_tag_details">
+        <MappingFragment StoreEntitySet="t_tag_details">
+          <ScalarProperty Name="tag_details_id" ColumnName="tag_details_id" />
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_taggs">
+      <EntityTypeMapping TypeName="maxcleanModel.t_taggs">
+        <MappingFragment StoreEntitySet="t_taggs">
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="sent_to_factory_on" ColumnName="sent_to_factory_on" />
+          <ScalarProperty Name="received_from_factory" ColumnName="received_from_factory" />
+          <ScalarProperty Name="tag_number" ColumnName="tag_number" />
+          <ScalarProperty Name="tag_note" ColumnName="tag_note" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_test">
+      <EntityTypeMapping TypeName="maxcleanModel.t_test">
+        <MappingFragment StoreEntitySet="t_test">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_user">
+      <EntityTypeMapping TypeName="maxcleanModel.t_user">
+        <MappingFragment StoreEntitySet="t_user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="alt_mobile_no" ColumnName="alt_mobile_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_admin_category">
+      <EntityTypeMapping TypeName="maxcleanModel.tbl_admin_category">
+        <MappingFragment StoreEntitySet="tbl_admin_category">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="font_awsome" ColumnName="font_awsome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_admin_pages">
+      <EntityTypeMapping TypeName="maxcleanModel.tbl_admin_pages">
+        <MappingFragment StoreEntitySet="tbl_admin_pages">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="page_name" ColumnName="page_name" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="li_id" ColumnName="li_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_roles_privileges">
+      <EntityTypeMapping TypeName="maxcleanModel.tbl_roles_privileges">
+        <MappingFragment StoreEntitySet="tbl_roles_privileges">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="admin_page_id" ColumnName="admin_page_id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="is_view_enabled" ColumnName="is_view_enabled" />
+          <ScalarProperty Name="is_add_edit_enabled" ColumnName="is_add_edit_enabled" />
+          <ScalarProperty Name="is_delete_enabled" ColumnName="is_delete_enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_admin_users">
+      <EntityTypeMapping TypeName="maxcleanModel.t_admin_users">
+        <MappingFragment StoreEntitySet="t_admin_users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="token_id" ColumnName="token_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_brands">
+      <EntityTypeMapping TypeName="maxcleanModel.t_brands">
+        <MappingFragment StoreEntitySet="t_brands">
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+          <ScalarProperty Name="brand_name" ColumnName="brand_name" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_cities">
+      <EntityTypeMapping TypeName="maxcleanModel.t_cities">
+        <MappingFragment StoreEntitySet="t_cities">
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+          <ScalarProperty Name="home_delivery_available" ColumnName="home_delivery_available" />
+          <ScalarProperty Name="city_image" ColumnName="city_image" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_coupun">
+      <EntityTypeMapping TypeName="maxcleanModel.t_coupun">
+        <MappingFragment StoreEntitySet="t_coupun">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="coupun_name" ColumnName="coupun_name" />
+          <ScalarProperty Name="coupun_code" ColumnName="coupun_code" />
+          <ScalarProperty Name="discount_amount" ColumnName="discount_amount" />
+          <ScalarProperty Name="discount_percent" ColumnName="discount_percent" />
+          <ScalarProperty Name="offers_in_percent" ColumnName="offers_in_percent" />
+          <ScalarProperty Name="minmum_amount_purches" ColumnName="minmum_amount_purches" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_customer_details">
+      <EntityTypeMapping TypeName="maxcleanModel.t_customer_details">
+        <MappingFragment StoreEntitySet="t_customer_details">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="delivery_address" ColumnName="delivery_address" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_dealoftheday">
+      <EntityTypeMapping TypeName="maxcleanModel.t_dealoftheday">
+        <MappingFragment StoreEntitySet="t_dealoftheday">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="actual_price" ColumnName="actual_price" />
+          <ScalarProperty Name="descount_percentage" ColumnName="descount_percentage" />
+          <ScalarProperty Name="descounted_price" ColumnName="descounted_price" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_delete_order">
+      <EntityTypeMapping TypeName="maxcleanModel.t_delete_order">
+        <MappingFragment StoreEntitySet="t_delete_order">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="temp_order_id" ColumnName="temp_order_id" />
+          <ScalarProperty Name="paypal_transaction_id" ColumnName="paypal_transaction_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="ordered_date" ColumnName="ordered_date" />
+          <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="shipping_name" ColumnName="shipping_name" />
+          <ScalarProperty Name="shipping_emailId" ColumnName="shipping_emailId" />
+          <ScalarProperty Name="shipping_conctactno" ColumnName="shipping_conctactno" />
+          <ScalarProperty Name="shipping_address" ColumnName="shipping_address" />
+          <ScalarProperty Name="shipping_landmark" ColumnName="shipping_landmark" />
+          <ScalarProperty Name="shipping_city" ColumnName="shipping_city" />
+          <ScalarProperty Name="shipping_pincode" ColumnName="shipping_pincode" />
+          <ScalarProperty Name="billing_name" ColumnName="billing_name" />
+          <ScalarProperty Name="billing_emailId" ColumnName="billing_emailId" />
+          <ScalarProperty Name="billing_conctactno" ColumnName="billing_conctactno" />
+          <ScalarProperty Name="billing_address" ColumnName="billing_address" />
+          <ScalarProperty Name="billing_landmark" ColumnName="billing_landmark" />
+          <ScalarProperty Name="billing_city" ColumnName="billing_city" />
+          <ScalarProperty Name="billing_pincode" ColumnName="billing_pincode" />
+          <ScalarProperty Name="coupon_code" ColumnName="coupon_code" />
+          <ScalarProperty Name="coupon_discountprice" ColumnName="coupon_discountprice" />
+          <ScalarProperty Name="warehouse_pickup" ColumnName="warehouse_pickup" />
+          <ScalarProperty Name="warehouse_pickup_discount" ColumnName="warehouse_pickup_discount" />
+          <ScalarProperty Name="shippingcharges" ColumnName="shippingcharges" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="OrderFrom" ColumnName="OrderFrom" />
+          <ScalarProperty Name="payment_mode" ColumnName="payment_mode" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="recipt_number" ColumnName="recipt_number" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="tax_percent" ColumnName="tax_percent" />
+          <ScalarProperty Name="dispatch_id" ColumnName="dispatch_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="PaymentPending" ColumnName="PaymentPending" />
+          <ScalarProperty Name="Confirm" ColumnName="Confirm" />
+          <ScalarProperty Name="InTransit" ColumnName="InTransit" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Rejected" ColumnName="Rejected" />
+          <ScalarProperty Name="DeliveryFailed" ColumnName="DeliveryFailed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_delete_order_details">
+      <EntityTypeMapping TypeName="maxcleanModel.t_delete_order_details">
+        <MappingFragment StoreEntitySet="t_delete_order_details">
+          <ScalarProperty Name="order_detail_id" ColumnName="order_detail_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="actual_price" ColumnName="actual_price" />
+          <ScalarProperty Name="discount_price" ColumnName="discount_price" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_delivery_details">
+      <EntityTypeMapping TypeName="maxcleanModel.t_delivery_details">
+        <MappingFragment StoreEntitySet="t_delivery_details">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="store_manager_name" ColumnName="store_manager_name" />
+          <ScalarProperty Name="store_name" ColumnName="store_name" />
+          <ScalarProperty Name="store_number" ColumnName="store_number" />
+          <ScalarProperty Name="store_emailid" ColumnName="store_emailid" />
+          <ScalarProperty Name="store_address" ColumnName="store_address" />
+          <ScalarProperty Name="store_landmark" ColumnName="store_landmark" />
+          <ScalarProperty Name="store_city" ColumnName="store_city" />
+          <ScalarProperty Name="store_pincode" ColumnName="store_pincode" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_delivery_locations">
+      <EntityTypeMapping TypeName="maxcleanModel.t_delivery_locations">
+        <MappingFragment StoreEntitySet="t_delivery_locations">
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="location_name" ColumnName="location_name" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="location_image_url" ColumnName="location_image_url" />
+          <ScalarProperty Name="is_home_delivery_available" ColumnName="is_home_delivery_available" />
+          <ScalarProperty Name="markup_price" ColumnName="markup_price" />
+          <ScalarProperty Name="min_amount" ColumnName="min_amount" />
+          <ScalarProperty Name="free_shipping_price" ColumnName="free_shipping_price" />
+          <ScalarProperty Name="shipping_charges" ColumnName="shipping_charges" />
+          <ScalarProperty Name="estimated_delivery" ColumnName="estimated_delivery" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_enquiry">
+      <EntityTypeMapping TypeName="maxcleanModel.t_enquiry">
+        <MappingFragment StoreEntitySet="t_enquiry">
+          <ScalarProperty Name="enquiry_id" ColumnName="enquiry_id" />
+          <ScalarProperty Name="enquiry_name" ColumnName="enquiry_name" />
+          <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_gst">
+      <EntityTypeMapping TypeName="maxcleanModel.t_gst">
+        <MappingFragment StoreEntitySet="t_gst">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="percentage_of_gst" ColumnName="percentage_of_gst" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_StoreAtYourLoc" FunctionName="maxcleanModel.Store.SP_StoreAtYourLoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="maxcleanModel.SP_StoreAtYourLoc_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="t_petty_cash">
+      <EntityTypeMapping TypeName="maxcleanModel.t_petty_cash">
+        <MappingFragment StoreEntitySet="t_petty_cash">
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
+          <ScalarProperty Name="Petty_Cash_Id" ColumnName="Petty_Cash_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_petty_cash_utilization">
+      <EntityTypeMapping TypeName="maxcleanModel.t_petty_cash_utilization">
+        <MappingFragment StoreEntitySet="t_petty_cash_utilization">
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Balance_Amount" ColumnName="Balance_Amount" />
+          <ScalarProperty Name="Debited_Amount" ColumnName="Debited_Amount" />
+          <ScalarProperty Name="Credited_Amount" ColumnName="Credited_Amount" />
+          <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
+          <ScalarProperty Name="Petty_Cash_Utilization_id" ColumnName="Petty_Cash_Utilization_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_orders">
+      <EntityTypeMapping TypeName="maxcleanModel.t_orders">
+        <MappingFragment StoreEntitySet="t_orders">
+          <ScalarProperty Name="reason_order_cancel" ColumnName="reason_order_cancel" />
+          <ScalarProperty Name="is_cancel" ColumnName="is_cancel" />
+          <ScalarProperty Name="delivery_address_type" ColumnName="delivery_address_type" />
+          <ScalarProperty Name="pickup_address_type" ColumnName="pickup_address_type" />
+          <ScalarProperty Name="is_mobileorder" ColumnName="is_mobileorder" />
+          <ScalarProperty Name="timeslab_id" ColumnName="timeslab_id" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="deleted_date" ColumnName="deleted_date" />
+          <ScalarProperty Name="deleted_by" ColumnName="deleted_by" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="promocode_discount" ColumnName="promocode_discount" />
+          <ScalarProperty Name="delivery_charge" ColumnName="delivery_charge" />
+          <ScalarProperty Name="promocode_amount" ColumnName="promocode_amount" />
+          <ScalarProperty Name="promocode" ColumnName="promocode" />
+          <ScalarProperty Name="is_promocode_applied" ColumnName="is_promocode_applied" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="is_tagged" ColumnName="is_tagged" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="admin_sign_at_delivery" ColumnName="admin_sign_at_delivery" />
+          <ScalarProperty Name="sent_from_store_by" ColumnName="sent_from_store_by" />
+          <ScalarProperty Name="admin_sign_at_pickup" ColumnName="admin_sign_at_pickup" />
+          <ScalarProperty Name="Received_at_store_by" ColumnName="Received_at_store_by" />
+          <ScalarProperty Name="cust_sign_at_delivery" ColumnName="cust_sign_at_delivery" />
+          <ScalarProperty Name="cust_sign_at_pickup" ColumnName="cust_sign_at_pickup" />
+          <ScalarProperty Name="is_outlet_order" ColumnName="is_outlet_order" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="rewardsapplied" ColumnName="rewardsapplied" />
+          <ScalarProperty Name="Invoice_No" ColumnName="Invoice_No" />
+          <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+          <ScalarProperty Name="payment_Status" ColumnName="payment_Status" />
+          <ScalarProperty Name="balance_amount" ColumnName="balance_amount" />
+          <ScalarProperty Name="paid_amount" ColumnName="paid_amount" />
+          <ScalarProperty Name="advance_amount" ColumnName="advance_amount" />
+          <ScalarProperty Name="grandtotal_price" ColumnName="grandtotal_price" />
+          <ScalarProperty Name="old_balance" ColumnName="old_balance" />
+          <ScalarProperty Name="express_delivery_price" ColumnName="express_delivery_price" />
+          <ScalarProperty Name="delivered_by" ColumnName="delivered_by" />
+          <ScalarProperty Name="is_express_delivery" ColumnName="is_express_delivery" />
+          <ScalarProperty Name="pickedup_by" ColumnName="pickedup_by" />
+          <ScalarProperty Name="confirmed_by" ColumnName="confirmed_by" />
+          <ScalarProperty Name="delivery_time" ColumnName="delivery_time" />
+          <ScalarProperty Name="pickup_address" ColumnName="pickup_address" />
+          <ScalarProperty Name="pickup_time" ColumnName="pickup_time" />
+          <ScalarProperty Name="pickup_date" ColumnName="pickup_date" />
+          <ScalarProperty Name="delivery_address" ColumnName="delivery_address" />
+          <ScalarProperty Name="expected_delivery_date" ColumnName="expected_delivery_date" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_expenses">
+      <EntityTypeMapping TypeName="maxcleanModel.t_expenses">
+        <MappingFragment StoreEntitySet="t_expenses">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Store_Id" ColumnName="Store_Id" />
+          <ScalarProperty Name="Expenses_Id" ColumnName="Expenses_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

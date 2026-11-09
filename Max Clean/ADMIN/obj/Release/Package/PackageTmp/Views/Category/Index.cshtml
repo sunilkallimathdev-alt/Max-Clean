@@ -1,0 +1,430 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formcategory">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @*<div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Service Name<span style="color:red">*</span></label>
+                                                            <select name="ServiceID" class="form-control">
+                                                                <option value="">---Select--- </option>
+                                                                @{
+                                                var ServiceList = (List<API.Models.Service_Model>)ViewBag.Service;
+                                                foreach (var cat in ServiceList)
+                                                {
+                                                    <option value="@cat.ServiceID">@cat.ServiceName </option>
+                            }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>*@
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Category Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="CategoryName" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CategoryIcon">Category Icon <span style="color:red">(< 2MB)</span></label>
+                                <input class="form-control" type="file" accept="image/*" name="CategoryIcon">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CategoryBanner">Category Banner <span style="color:red">(< 2MB)</span></label>
+                                <input class="form-control" type="file" name="CategoryBanner">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Display Order</label>
+                                <input class="form-control" type="text" name="DisplayOrder" maxlength="3" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input class="form-control" type="text" name="Description" onkeypress="return NotanHTML(event)">
+                                </div>
+                            </div>*@
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group" id="CategoryIcon1">
+                                @*<label for="CategoryBanner"> Icon Image <span style="color:red"; 'height:100px;width:100px'>(< 2MB)</span></label>
+                                    <img src="CategoryIcon" alt="Icon" style= 'width:100px;height:100px'/>*@
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group" id="CategoryBanner1">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>DisplayOrder</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formcategory').validate({
+            rules: {
+                //ServiceID: {
+                //    required: true,
+                //},
+                CategoryName: {
+                    required: true,
+                },
+                CategoryIcon: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: false,
+                },
+                CategoryBanner: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: false,
+                },
+                DisplayOrder: {
+                    required: false,
+                },
+                Description: {
+                    required: false,
+                },
+
+            }
+        });
+
+        var form = $("#formcategory");
+        form.validate();
+
+        $(document).ready(function () {
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (isAddEnabled == true) {
+                    if (form.valid()) {
+                        var myobj = new Object();
+                        //myobj.ServiceID = $('[name="ServiceID"]').val();
+                        myobj.CategoryName = $('[name="CategoryName"]').val();
+                        if ($('[name="CategoryIcon"]').val() != "") {
+                            readFile($('[name="CategoryIcon"]')[0].files[0], function (e) {
+                                myobj.CategoryIcon = e.target.result.replace("data:image/png;base64,", "");
+                            });
+                        }
+                        if ($('[name="CategoryBanner"]').val() != "") {
+                            readFile($('[name="CategoryBanner"]')[0].files[0], function (e) {
+                                myobj.CategoryBanner = e.target.result.replace("data:image/png;base64,", "");
+                            });
+                        }
+                        myobj.DisplayOrder = $('[name="DisplayOrder"]').val();
+                        myobj.Description = $('[name="Description"]').val();
+                        myobj.IsActive = $('[name="IsActive"]').val();
+
+                        setTimeout(function () {
+                            $.post("@Url.Action("AddCategory", "Category")", { ObjCategory: JSON.stringify(myobj) }, function (data) {
+                                var Res = JSON.parse(data);
+                                if (Res.StatusCode == 200) {
+                                    SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                    ClearFields();
+                                    BindTableData();
+                                }
+                                else
+                                    WarningAlert("@ViewBag.Title", Res.Message);
+                            })
+                        }, 2000);
+                    }
+                    else {
+                        DangerAlert(" ", "Recheck the fields.");
+                    }
+                } else {
+                    DangerAlert("Sorry No access To Add");
+                }
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.CategoryId = $('[name="HDID"]').val();
+                    //myobj.ServiceID = $('[name="ServiceID"]').val();
+                    myobj.CategoryName = $('[name="CategoryName"]').val();
+                    if ($('[name="CategoryIcon"]').val() != "") {
+                        readFile($('[name="CategoryIcon"]')[0].files[0], function (e) {
+                            myobj.CategoryIcon = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    if ($('[name="CategoryBanner"]').val() != "") {
+                        readFile($('[name="CategoryBanner"]')[0].files[0], function (e) {
+                            myobj.CategoryBanner = e.target.result.replace("data:image/png;base64,", "");
+                        });
+                    }
+                    myobj.DisplayOrder = $('[name="DisplayOrder"]').val();
+                    myobj.Description = $('[name="Description"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+                    setTimeout(function () {$.post("@Url.Action("UpdateCategory", "Category")", { ObjCategory: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    })
+                    }, 2000);
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            })
+        });
+
+        function GetData(CategoryId) {
+            $.get("@Url.Action("GetCategory", "Category")", { CategoryId: CategoryId }, function (data) {
+                ClearFields();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.CategoryId);
+                    //$('[name="ServiceID"]').val(myobj.ObjectResult.ServiceID);
+                    $('[name="CategoryName"]').val(myobj.ObjectResult.CategoryName);
+                    $('[name="DisplayOrder"]').val(myobj.ObjectResult.DisplayOrder);
+                    $('[name="Description"]').val(myobj.ObjectResult.Description);
+
+                    $('#CategoryBanner1').html("<img src='" + myobj.ObjectResult.CategoryBanner + "' alt='" + myobj.ObjectResult.CategoryName+"' style='height:100px;width:100px'/>");
+                    $('#CategoryIcon1').html("<img src='" + myobj.ObjectResult.CategoryIcon + "' alt='" + myobj.ObjectResult.CategoryName + "'  style='height:100px;width:100px'/>");
+
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val('true');
+                    else
+                        $('[name="IsActive"]').val('false');
+                    OpenCard();
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+
+        function DeleteData(CategoryId) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeleteCategory", "Category")", { CategoryId: CategoryId }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                });
+            }
+        }
+        function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="CategoryName"]').val(null);
+            //$('[name="ServiceID"]').val(null);
+            $('[name="CategoryIcon"]').val(null);
+            $('[name="CategoryBanner"]').val(null);
+            $('[name="DisplayOrder"]').val(null);
+            $('[name="Description"]').val(null);
+            $('[name="IsActive"]').val('true');
+
+            $('#CategoryIcon1').html("");
+            $('#CategoryBanner1').html("");
+
+
+            $('.error').html("");
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+        }
+
+        @*function BindTableData() {
+            $.get("@Url.Action("GetCategoryList", "Category")", function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                //row.push(myObject[i].ServiceName);
+                row.push(myObject[i].CategoryName);
+                //row.push("<img src='" + myObject[i].CategoryIcon + "' style='height:100px;width:100px' alt='" + myObject[i].CategoryName + " Icon' />");
+                //row.push("<img src='" + myObject[i].CategoryBanner + "' style='height:100px;width:100px' alt='" + myObject[i].CategoryName + " Banner' />");
+                row.push(myObject[i].DisplayOrder);
+
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+
+                row.push('<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + myObject[i].CategoryId + ')">Edit</button>');
+                //row.push('<button type="button" class="btn btn-danger btn-sm delete" onclick="DeleteData(' + myObject[i].CategoryId + ')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    //{ title: "Service Name" },
+                    { title: "Category Name" },
+                    //{ title: "Icon" },
+                    //{ title: "Banner" },
+                    { title: "DisplayOrder" },
+                    { title: "Status " },
+                    //{ title: " " },
+                    { title: " " }
+                ]
+            });
+
+            hideshowbuttons();
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }*@
+
+        function BindTableData() {
+
+            $("#" + tableId).DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "srolly": true,
+            "destroy": true,
+            "responsive": true,
+            "ajax": {
+                "url": "/Category/LoadData",
+                "type": "POST",
+                "datatype": "json",
+                "filter": true,
+                "scroll": "true",
+                "searching": true,
+            },
+            "columns": [
+                { "data": "CategoryName", "name": "CategoryName", "autoWidth": true },
+                { "data": "DisplayOrder", "name": "DisplayOrder", "autoWidth": true },
+                 {
+                     "render": function (data, type, full, meta) {
+                         if (full.IsActive)
+                             return '<span class="badge bg-success float-right">Active</span>';
+                         else
+                             return '<span class="badge bg-danger float-right">InActive</span>';
+                    }
+                },
+                {
+                    "render": function (data, type, full, meta) {
+                        if (isAddEnabled)
+                            return '<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + full.CategoryId + ')">Edit</button>';
+                        return '';
+                    }
+                },
+            ],
+            "aoColumnDefs": [
+                {
+                    bSortable: false,
+                    aTargets: [-1, -2]
+                },
+                {
+                    searchable: true,
+                    aTargets: [1]
+                }
+            ]
+
+        });
+        }
+
+    </script>
+
+</section>
+

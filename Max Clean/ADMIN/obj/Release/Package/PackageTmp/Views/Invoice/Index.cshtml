@@ -1,0 +1,153 @@
+﻿
+@{
+
+    API.Models.PurchaseOrder_Model Details = (API.Models.PurchaseOrder_Model)ViewBag.OrderDetails;
+    Layout = null;
+    string zero = ".00";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="maxLogo" style="width:100%;border:none !important;">
+        <tr>
+            <td style="border:none !important;"><img src="~/CustomFiles/maxclean-logo.png" style="margin:auto;display:block;width:100px;height:50px;" /></td>
+            <td style="border:none !important;"><p style="text-align:right;">24/7 pick up and drop  | No Holidays | Customer care No.9900318000</p></td>
+        </tr>
+    </table>
+
+
+    <table style="table-layout:fixed;width:100%;border:none !important;">
+        <tr>
+            <td style="border:none !important;text-align:left;width:100px;">Customer Name: @Details.CustomerName </td>
+            <td style="border:none !important;text-align:left;width:100px;">Invoice No: @Details.Store_code-@Details.OrderID</td>
+            <td style="border:none !important;text-align:left;width:100px;">Delivery Date: @Details.ActualDeliveryDate.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td style="border:none !important;text-align:left;width:100px;">Customer Mobile:  @Details.CustomerMobile</td>
+            <td style="border:none !important;text-align:left;width:100px;">Booking Date:  @Details.OrderDate.ToString("dd/MM/yyyy")</td>
+
+
+            @{
+
+                if (Details.IsExpressDelivery == true)
+                {
+                    <td style="border:none !important;text-align:left;font-weight:500;">Delivery Type: Express Delivery</td>
+                }
+                else
+                {
+                    <td style="border:none !important;text-align:left;font-weight:500;">Delivery Type: Normal Delivery</td>
+                }
+            }
+
+
+
+        </tr>
+    </table>
+    <table style="table-layout:fixed;width:100%;">
+        <tr>
+            <th style="width:45px;">Sl.No</th>
+            <th style="width:100px;">Particulars</th>
+            <th style="width:60px;">Rate</th>
+            <th style="width:60px;">Quantity</th>
+            <th style="width:60px;">Extra %</th>
+            <th style="width:60px;">Extra Price</th>
+            <th style="width:60px;">Total Amount</th>
+        </tr>
+        @{
+            for (int i = 0; i < Details.PurchaseOrderDetail.Count(); i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td style="height:10px;">@Details.PurchaseOrderDetail[i].ProductName</td>
+                    <td>@Details.PurchaseOrderDetail[i].UnitPrice</td>
+                    <td>@Details.PurchaseOrderDetail[i].Quantity</td>
+                    <td>@Details.PurchaseOrderDetail[i].ExtraPercent</td>
+
+
+                    <td style="text-align:right;">@string.Format("{0:0.00}", Details.PurchaseOrderDetail[i].ExtraPrice)</td>
+                    <td style="text-align:right;">@string.Format("{0:0.00}", Details.PurchaseOrderDetail[i].Price)</td>
+
+
+                </tr>
+            }
+        }
+        <tr>
+            <td colspan="7" style="text-align:left;height:50px;">Remarks:@Details.Remark</td>
+        </tr>
+        <tr>
+            @if (Details.IsExpressDelivery == false && Details.Delivery_charge == 0)
+            {
+                <td colspan="3" style="text-align:center;"> Previous Balance: @string.Format("{0:0.00}", Details.OldBalanceApplied)</td>
+            }
+            else if ((Details.IsExpressDelivery == false && Details.Delivery_charge != 0))
+            {
+
+                <td colspan="2" style="text-align:center;"> Previous Balance: @string.Format("{0:0.00}", Details.OldBalanceApplied)</td>
+                <td style="text-align:center;">Delivery Charge: @string.Format("{0:0.00}", Details.Delivery_charge)</td>
+            }
+            else if ((Details.IsExpressDelivery == true && Details.Delivery_charge == 0))
+            {
+                <td colspan="2" style="text-align:center;"> Previous Balance: @string.Format("{0:0.00}", Details.OldBalanceApplied)</td>
+                <td style="text-align:center;">Express Delivery Charge: @string.Format("{0:0.00}", Details.ExpressChargeApplied)</td>
+            }
+            else if (Details.IsExpressDelivery == true && Details.Delivery_charge != 0)
+            {
+                <td style="text-align:center;"> Previous Balance: @string.Format("{0:0.00}", Details.OldBalanceApplied)</td>
+                <td style="text-align:center;">Express Delivery Charge: @string.Format("{0:0.00}", Details.ExpressChargeApplied)</td>
+                <td style="text-align:center;">Delivery Charge: @string.Format("{0:0.00}", Details.Delivery_charge)</td>
+            }
+            @{
+                if (Details.IsPromocodeApplied == true)
+                {
+                    <td style="text-align:center;">Promocode Discount Amt: @string.Format("{0:0.00}", Details.Promocode_Amount)</td>
+                }
+                else
+                {
+                    <td style="text-align:center;">Reward Points Applied: @string.Format("{0:0.00}", Details.RewardPointsApplied)</td>
+                }
+            }
+            <td style="text-align:center;width:150px;">Grand Total Amt: @string.Format("{0:0.00}", Details.GrandTotal)</td>
+            <td style="text-align:center;width:150px;">Paid Amt: @string.Format("{0:0.00}", Details.PaidAmount)</td>
+            <td style="text-align:center;width:150px;">Balance Amt: @string.Format("{0:0.00}", Details.RemainingAmount)</td>
+        </tr>
+        <tr>
+            <td colspan="4">Customer Signature<br /><br /> -----------------</td>
+            <td colspan="3"> For Max Clean <br /><br />Authorised Signatory</td>
+        </tr>
+    </table>
+
+    <div>
+        @*<p style="text-align:center;"> @System.Net.WebUtility.HtmlDecode(System.Net.WebUtility.HtmlEncode(Details.StoreAddress))</p>*@
+        <p style="text-align:center;"> @Details.StoreAddress</p>
+        @*<p style="text-align:center;">No.91/1, Wheeler Road Extension, D’costa Square First Cross, St.Thomas Town Post, Bangalore – 560084.</p>*@
+    </div>
+
+</body>
+</html>
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+    $(document).ready(function () {
+
+        window.print();
+
+    });
+</script>
+

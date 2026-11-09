@@ -1,0 +1,410 @@
+﻿@using API.Models;
+@using System.Collections;
+@{
+    ViewBag.Title = "ordernow";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+
+    List<Service_Model> lstservice = (List<Service_Model>)ViewBag.services;
+    ArrayList myproducts = new ArrayList();
+    var array = new List<string>();
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 m_bottom_40">
+                <div class="center-block" id="howitworks">
+                    <h2>Book your <span>Dry Clean</span> and <span>Steam Press</span></h2>
+
+                </div>
+                <a href="#" onclick="cubprize();"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5 " style="float:right; ">Continue</span></a>
+                <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+                    <!--tabs navigation-->
+                    <nav>
+                        <ul class="tabs_nav horizontal_list clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                            @*<li class="f_xs_none ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="tab-1" aria-labelledby="ui-id-1" aria-selected="false" style="font-weight:bold;"><a href="#tab-1" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Dry Clean</a></li>
+                                <li class="f_xs_none ui-state-default ui-corner-top " role="tab" tabindex="0" aria-controls="tab-2" aria-labelledby="ui-id-2" aria-selected="true" style="font-weight:bold;"><a href="#tab-2" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Steam Press2</a></li>*@
+                            @if (lstservice != null)
+                            {
+                                int count = 0;
+                                foreach (var resvalue in lstservice)
+                                {
+                                    if (count == 0)
+                                    {
+                                        <li class="f_xs_none ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="tab-1" aria-labelledby="ui-id-1" aria-selected="false" style="font-weight:bold;">
+                                            <a href="#tab-@resvalue.ServiceID" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-@resvalue.ServiceID"> @resvalue.ServiceName </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="f_xs_none ui-state-default ui-corner-top " role="tab" tabindex="0" aria-controls="tab-2" aria-labelledby="ui-id-2" aria-selected="true" style="font-weight:bold;">
+                                            <a href="#tab-@resvalue.ServiceID" class="bg_light_color_1 color_dark tr_delay_hover r_corners d_block ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-@resvalue.ServiceID"> @resvalue.ServiceName </a>
+                                        </li>
+                                    }
+                                    count++;
+                                }
+                            }
+
+                        </ul>
+                    </nav>
+                    <!--tabs content-->
+                    <section class="tabs_content shadow r_corners">
+
+                        @if (lstservice != null)
+                        {
+
+
+                            foreach (var resvalue in lstservice)
+                            {
+
+
+
+                                if (resvalue.ServiceID == 1)
+                                {
+                                    <div id="tab-@resvalue.ServiceID" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+
+                                        <div class="accordion toggle">
+                                            @foreach (var rescat in resvalue.Categorylist.ToList())
+                                            {
+                                                <div class="accordion_item r_corners shadow wrapper m_bottom_5 active">
+                                                    <h3 class="a_title relative tr_all_hover bg_light_color_1 color_dark ">
+                                                        <span id="CN_@rescat.CategoryID"> @rescat.CategoryName</span>
+                                                        <span class="minus_icon tr_all_hover">-</span>
+                                                        <span class="plus_icon tr_all_hover">+</span>
+                                                    </h3>
+                                                    <div class="bg_light_color_3 a_content" style="display: none;">
+                                                        <div class="table-responsive">
+                                                            <table class="table_type_4  full_width r_corners wraper shadow t_align_l t_xs_align_c m_bottom_30">
+                                                                <thead>
+                                                                    <tr class="f_size_large" style="text-align:center;">
+                                                                        <!--titles for td-->
+                                                                        <th style="font-weight:800;">Product</th>
+                                                                        <th style="font-weight:800;">Price</th>
+                                                                        <th style="font-weight:800;">Quantity</th>
+                                                                        <th style="font-weight:800;">Subtotal</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var resproduct in rescat.ProductList.ToList())
+                                                                    {
+
+                                                                        string ids = @String.Format("{0}-{1}-{2}", resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString());
+                                                                        <tr>
+                                                                            <!--Product name and image-->
+                                                                            <td data-title="Product Image &amp; name" class="t_md_align_c">
+                                                                                <a href="#" class="d_inline_b m_left_5 color_dark" id="PN_@resproduct.ProductId">@resproduct.ProductName </a>
+                                                                            </td>
+                                                                            <!--product key-->
+                                                                            <!--product price-->
+                                                                            <td data-title="Price">
+                                                                                <input type="text" value="@resproduct.Price" readonly="readonly" class="f_size_large color_dark" style="border-radius: 5px;" tabindex="-1" id="prd_@String.Format("{0}-{1}-{2}",resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString())" />
+                                                                            </td>
+                                                                            <!--quanity-->
+                                                                            <td data-title="Quantity">
+                                                                                <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10" style="width:103px;">
+                                                                                    <button onclick="calculateprizedown(@resvalue.ServiceID.ToString(), @rescat.CategoryID.ToString(), @resproduct.ProductId.ToString())" class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                                                    <input id="qty_@String.Format("{0}-{1}-{2}", resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString())" type="text" name="" readonly="" min="0" value="0" class="f_left">
+                                                                                    <button onclick="calculateprizeup(@resvalue.ServiceID.ToString(), @rescat.CategoryID.ToString(), @resproduct.ProductId.ToString())" class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                                                </div>
+
+                                                                            </td>
+                                                                            <!--subtotal-->
+                                                                            <td data-title="Subtotal">
+                                                                                <input type="text" id="sub_@String.Format("{0}-{1}-{2}", resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString())" value="0" readonly="readonly" class="f_size_large fw_medium scheme_color subtotalid" />
+
+
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr></tr>
+
+                                                                    }
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        </div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div id="tab-@resvalue.ServiceID" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display: block;">
+
+                                        <div class="accordion toggle">
+                                            @foreach (var rescat in resvalue.Categorylist.ToList())
+                                            {
+                                                <div class="accordion_item r_corners shadow wrapper m_bottom_5 active">
+                                                    <h3 class="a_title relative tr_all_hover bg_light_color_1 color_dark ">
+                                                        <span id="CN_@rescat.CategoryID"> @rescat.CategoryName</span>
+                                                        <span class="minus_icon tr_all_hover">-</span>
+                                                        <span class="plus_icon tr_all_hover">+</span>
+                                                    </h3>
+                                                    <div class="bg_light_color_3 a_content" style="display: none;">
+                                                        <div class="table-responsive">
+                                                            <table class="table_type_4  full_width r_corners wraper shadow t_align_l t_xs_align_c m_bottom_30">
+                                                                <thead>
+                                                                    <tr class="f_size_large" style="font-weight:bold;">
+                                                                        <!--titles for td-->
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Subtotal</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var resproduct in rescat.ProductList.ToList())
+                                                                    {
+
+                                                                        string ids = @String.Format("{0}-{1}-{2}", resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString());
+                                                                        <tr>
+                                                                            <!--Product name and image-->
+                                                                            <td data-title="Product Image &amp; name" class="t_md_align_c">
+                                                                                <a href="#" class="d_inline_b m_left_5 color_dark" id="PN_@resproduct.ProductId">@resproduct.ProductName </a>
+                                                                            </td>
+                                                                            <!--product key-->
+                                                                            <!--product price-->
+                                                                            <td data-title="Price">
+                                                                                <input type="text" value="@resproduct.Price" readonly="readonly" class="f_size_large color_dark" style="border-radius: 5px;" tabindex="-1" id="prd_@String.Format("{0}-{1}-{2}", resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString())" />
+                                                                            </td>
+                                                                            <!--quanity-->
+                                                                            <td data-title="Quantity">
+                                                                                <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10" style="width:103px;">
+                                                                                    <button onclick="calculateprizedown(@resvalue.ServiceID.ToString(), @rescat.CategoryID.ToString(), @resproduct.ProductId.ToString())" class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                                                    <input id="qty_@String.Format("{0}-{1}-{2}",resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString())" type="text" name="" readonly="" min="0" value="0" class="f_left">
+                                                                                    <button onclick="calculateprizeup(@resvalue.ServiceID.ToString(), @rescat.CategoryID.ToString(), @resproduct.ProductId.ToString())" class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                                                </div>
+
+                                                                            </td>
+                                                                            <!--subtotal-->
+                                                                            <td data-title="Subtotal">
+                                                                                <input type="text" id="sub_@String.Format("{0}-{1}-{2}", resvalue.ServiceID.ToString(), rescat.CategoryID.ToString(), resproduct.ProductId.ToString())" value="0" readonly="readonly" class="f_size_large fw_medium scheme_color subtotalid" />
+
+                                                                            </td>
+
+                                                                        </tr>
+                                                                        <tr></tr>
+                                                                    }
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+                        }
+
+
+                    </section>
+                </div>
+            </div>
+        </div>
+        <hr class="divider_type_3 m_bottom_15">
+        <a href="#" onclick="cubprize();"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5 " style="float:right; ">Continue</span></a>
+
+    </div>
+</div>
+<script src="~/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+
+    @*var ids =@myproducts;
+
+    var values=@Session["qtyobject"];*@
+    var data = [];
+    var Cart_Products = [];
+    var Products_Exist = localStorage.getItem("Order_Object");
+    if (Products_Exist != null) {
+        Cart_Products = JSON.parse(localStorage.getItem("Order_Object"));
+        fill_grid();
+    }
+
+    function fill_grid() {
+
+        for (var p = 0; p < Cart_Products.length; p++) {
+
+
+            $("#qty_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID).val(Cart_Products[p].Quantity);
+            $("#sub_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID).val(Cart_Products[p].Price);
+
+        }
+
+    }
+   // localStorage.removeItem("Order_Object");
+
+    window.setInterval(function () {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+        data = [];
+        for (var i = 0; i < sids.length; i++) {
+            //if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+           // }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            var srcid = ID.split("-")[0];
+            var catid = ID.split("-")[1];
+            var prdid = ID.split("-")[2];
+
+            if ($("#qty_" + srcid + "-" + catid + "-" + prdid).val() == "-1") {
+                $("#qty_" + srcid + "-" + catid + "-" + prdid).val(0)
+            }
+        }
+
+    }, 5);
+    function calculateprizedown(id1, id2, id3) {
+        productid = "";
+        productid += id1 + "-" + id2 + "-" + id3;
+        if (parseInt($('#qty_' + productid).val()) > 0) {
+            var qty = parseInt($('#qty_' + productid).val()) - 1;
+            if (qty == -1 || qty == 0) {
+                qty = 0;
+                $('#qty_' + productid).val('0');
+            }
+            var unitprize = parseInt($('#prd_' + productid).val());
+            var result = qty * unitprize;
+            $('#sub_' + productid).val(result);
+        } else {
+            $('#qty_' + productid).val(0);
+
+        }
+    }
+
+    function calculateprizeup(id1, id2, id3) {
+        productid = "";
+        productid += id1 + "-" + id2 + "-" + id3;
+        var qty = parseInt($('#qty_' + productid).val()) + 1;
+        //if (qty == -1 || qty == 0) {
+        //    qty = 0;
+        //    $('#qty_' + productid).val('0');
+        //}
+        var unitprize = parseInt($('#prd_' + productid).val());
+        var result = qty * unitprize;
+        $('#sub_' + productid).val(result);
+    }
+
+    function cubprize() {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+         data = [];
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            var srcid = ID.split("-")[0];
+            var catid = ID.split("-")[1];
+            var prdid = ID.split("-")[2];
+                        var myobj = new Object();
+                        myobj.ServiceID = parseInt(srcid);
+                        myobj.ServiceName = $("#ui-id-" + srcid).html();
+                        myobj.CategoryID = parseInt(catid);
+                        myobj.CategoryName = $("#CN_" + catid).html();
+                        myobj.ProductID = parseInt(prdid);
+                        myobj.ProductName = $("#PN_" + prdid).html();
+                        myobj.UnitPrice = parseInt($("#prd_" + srcid + "-" + catid + "-" + prdid).val());
+                        myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val());
+                        myobj.Price = parseInt($("#sub_" + srcid + "-" + catid + "-" + prdid).val());
+                        data.push(myobj);
+
+
+        }
+        //var temp_cart = [];
+
+
+        //for (var d = 0; d < data.length; d++) {
+
+
+        //    for (var p = 0; p < Cart_Products.length; p++) {
+
+        //        if (Cart_Products[p].ServiceID == data[d].ServiceID && Cart_Products[p].ProductID == data[d].ProductID) {
+
+        //            Cart_Products[p].Quantity += data[d].Quantity;
+        //            Cart_Products[p].Price = Cart_Products[p].Quantity * Cart_Products[p].UnitPrice;
+
+        //        }
+        //        else {
+
+
+        //            temp_cart.push(data[d]);
+
+        //        }
+        //    }
+
+        //}
+        //if (Cart_Products.length == 0) {
+           Cart_Products = data;
+        //}
+        //for (var t = 0; t < temp_cart.length; t++) {
+
+        //    Cart_Products.push(temp_cart[t]);
+
+        //}
+
+        localStorage.setItem("Order_Object", JSON.stringify(Cart_Products));
+        window.location.href = '/Order/Cart';
+    }
+
+    function update_local() {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+        data = [];
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            var srcid = ID.split("-")[0];
+            var catid = ID.split("-")[1];
+            var prdid = ID.split("-")[2];
+
+            var myobj = new Object();
+            myobj.ServiceID = parseInt(srcid);
+            myobj.ServiceName = $("#ui-id-" + srcid).html();
+            myobj.CategoryID = parseInt(catid);
+            myobj.CategoryName = $("#CN_" + catid).html();
+            myobj.ProductID = parseInt(prdid);
+            myobj.ProductName = $("#PN_" + prdid).html();
+            myobj.UnitPrice = parseInt($("#prd_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Price = parseInt($("#sub_" + srcid + "-" + catid + "-" + prdid).val());
+            data.push(myobj);
+
+        }
+
+        localStorage.setItem("Order_Object", JSON.stringify(data));
+
+    }
+    $(document).ready(function () {
+
+        Update_Cart();
+    });
+</script>
+

@@ -1,0 +1,741 @@
+﻿@using API.Models;
+@{
+    ViewBag.Title = "Index";
+    var Services = (List<Service_Model>)ViewBag.Service;
+}
+
+<section>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12 howit-work main-block center-block" id="howitworks">
+                <h2>Book your <span>Dry Clean</span> and <span>Ironing</span></h2>
+                <h6>Its time to book our Dry Clean and Ironing service.</h6>
+            </div>
+
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
+                <div class="prd-mta">
+                    <a href="javascript:AddToCart()" title="" itemprop="url">Add to cart</a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="prd-mta">
+                    <a href="javascript:ContinueToCart()" title="" itemprop="url">Continue to cart</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+
+            @foreach (Service_Model serv in Services)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" id="@serv.ServiceID" data-toggle="tab" onclick="GetCategories('@serv.ServiceID')" href="#@serv.ServiceName">@serv.ServiceName</a>
+                </li>
+            }
+            @*<li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1">STEAM PRESS / IRONING</a>
+                </li>*@
+
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active">
+                <br>
+                <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12">
+                                        <div class="tgl" id="tgl">
+                                            @*<div class="tgl-itm activate">
+                                                        <h5 class="active rd4" itemprop="headline" data-toggle="collapse" href="#Mens" aria-expanded="false" aria-controls="Mens">Mens<i class="fa fa-plus"></i></h5>
+                                                        <div class="tgl-cnt">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Product</th>
+                                                                            <th>Price</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Subtotal</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> SHIRT</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>79.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="4">
+                                                                            </td>
+                                                                            <td><span>316.00</span></td>
+                                                                        </tr>
+                                                                    <td>
+                                                                        <label class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <span class="custom-control-description"> T-SHIRT</span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td><span>69.00</span></td>
+                                                                    <td data-th="Quantity" style="width:20%;">
+                                                                        <input type="number" class="form-control text-center" value="3">
+                                                                    </td>
+                                                                    <td><span>207.00</span></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <div class="tgl-itm">
+                                                    <h5 class="rd4" itemprop="headline">LADIES WEAR<i class="fa fa-plus"></i></h5>
+                                                    <div class="tgl-cnt">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Subtotal</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> DRESS TOP SHORT</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>69.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="6">
+                                                                        </td>
+                                                                        <td><span>414.00</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> DRESS TOP LONG</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>99.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="5">
+                                                                        </td>
+                                                                        <td><span>495.00</span></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tgl-itm">
+                                                        <h5 class="rd4" itemprop="headline">KIDS WEAR<i class="fa fa-plus"></i></h5>
+                                                        <div class="tgl-cnt">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Product</th>
+                                                                            <th>Price</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Subtotal</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> KIDS BLAZER / WAIST COAT</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>99.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="3">
+                                                                            </td>
+                                                                            <td><span>297.00</span></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> FROCK - SMALL</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>159.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="4">
+                                                                            </td>
+                                                                            <td><span>636.00</span></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tgl-itm">
+                                                        <h5 class="rd4" itemprop="headline">ACCESSORIES<i class="fa fa-plus"></i></h5>
+                                                        <div class="tgl-cnt">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Product</th>
+                                                                            <th>Price</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Subtotal</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> SOCKS PAIR / VEST</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>39.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="4">
+                                                                            </td>
+                                                                            <td><span>156.00</span></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> UNDERGARMENT</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>49.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="3">
+                                                                            </td>
+                                                                            <td><span>147.00</span></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tgl-itm">
+                                                        <h5 class="rd4" itemprop="headline">FOAM WASH / LAUNDRY<i class="fa fa-plus"></i></h5>
+                                                        <div class="tgl-cnt">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Product</th>
+                                                                            <th>Price</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Subtotal</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> SHOES (PER PAIR)</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>350.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="1">
+                                                                            </td>
+                                                                            <td><span>350.00</span></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input">
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description"> BAG - SMALL</span>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><span>250.00</span></td>
+                                                                            <td data-th="Quantity" style="width:20%;">
+                                                                                <input type="number" class="form-control text-center" value="1">
+                                                                            </td>
+                                                                            <td><span>250.00</span></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            @*<div id="menu1" class="container tab-pane fade">
+                    <div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12">
+                                            <div class="tgl" id="tgl">
+                                                <div class="tgl-itm ">
+                                                    <h5 class=" rd4" itemprop="headline">Mens<i class="fa fa-plus"></i></h5>
+                                                    <div class="tgl-cnt">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Subtotal</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> SHIRT</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>79.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="4">
+                                                                        </td>
+                                                                        <td><span>316.00</span></td>
+                                                                    </tr>
+                                                                <td>
+                                                                    <label class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description"> T-SHIRT</span>
+                                                                    </label>
+                                                                </td>
+                                                                <td><span>69.00</span></td>
+                                                                <td data-th="Quantity" style="width:20%;">
+                                                                    <input type="number" class="form-control text-center" value="3">
+                                                                </td>
+                                                                <td><span>207.00</span></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tgl-itm">
+                                                    <h5 class="rd4" itemprop="headline">LADIES WEAR<i class="fa fa-plus"></i></h5>
+                                                    <div class="tgl-cnt">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Subtotal</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> DRESS TOP SHORT</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>69.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="6">
+                                                                        </td>
+                                                                        <td><span>414.00</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> DRESS TOP LONG</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>99.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="5">
+                                                                        </td>
+                                                                        <td><span>495.00</span></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tgl-itm">
+                                                    <h5 class="rd4" itemprop="headline">KIDS WEAR<i class="fa fa-plus"></i></h5>
+                                                    <div class="tgl-cnt">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Subtotal</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> KIDS BLAZER / WAIST COAT</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>99.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="3">
+                                                                        </td>
+                                                                        <td><span>297.00</span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <label class="custom-control custom-checkbox">
+                                                                                <input type="checkbox" class="custom-control-input">
+                                                                                <span class="custom-control-indicator"></span>
+                                                                                <span class="custom-control-description"> FROCK - SMALL</span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td><span>159.00</span></td>
+                                                                        <td data-th="Quantity" style="width:20%;">
+                                                                            <input type="number" class="form-control text-center" value="4">
+                                                                        </td>
+                                                                        <td><span>636.00</span></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div class="prd-mta">
+                        <a href="javascript:AddToCart()" title="" itemprop="url">Add to cart</a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="prd-mta">
+                        <a href="javascript:ContinueToCart()" title="" itemprop="url">Continue to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<script>
+
+    var myObject;
+    var ActiveSLinkID;
+    var cartItems;
+
+
+    $(document).ready(function () {
+
+        $('#' +@Services[0].ServiceID).click();
+      //  HideTheColumns();
+
+
+        $([id ^= "Qnt_"]).keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+
+                return;
+
+
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+
+    })
+
+
+
+    function GetCategories(id) {
+
+
+           var user = "@Session["CurrentUser"]";
+           var HideDisplay = "";
+           if (user == "") {
+               HideDisplay = 'style="Display:none;"';
+           } else {
+               HideDisplay = "";
+           }
+
+        ActiveSLinkID = id;
+        $('#tgl').html("");
+         $.post("@Url.Action("GetCategories", "Cleaning")", { id: id }, function (data) {
+               myObject = data;
+             if (myObject != null) {
+                 for (i = 0; i < myObject.length; i++) {
+                     var design = "";
+                     var name = myObject[i].CategoryName.replace(/\s/g, '');
+                     if (i == 0) {
+
+                         design = '<div class="tgl-itm activate">';
+                         design = design + '<h5 class="active rd4" itemprop="headline"  href="#Mens" aria-expanded="false" aria-controls="Mens">' + myObject[i].CategoryName+'<i class="fa fa-plus"></i></h5>';
+                         design = design + '<div class="tgl-cnt" style="display: block;"><div class="table-responsive"> <table class="table"><thead> <tr> <th>Product</th><th  ' + HideDisplay +'>Price</th>';
+                         design = design + '<th  ' + HideDisplay + '>Quantity</th><th  ' + HideDisplay +'>Subtotal</th> </tr> </thead> <tbody id="' + name +'">';
+                         design = design + '</tbody></table></div></div></div>';
+
+
+                     } else {
+                         design = '<div class="tgl-itm">';
+                         design = design + '<h5 class="rd4" itemprop="headline">' + myObject[i].CategoryName;
+                         design = design + '<i class="fa fa-plus"></i></h5> <div class="tgl-cnt"><div class="table-responsive"><table class="table"><thead><tr> <th>Product</th><th ' + HideDisplay + '>Price</th><th ' + HideDisplay + '>Quantity</th><th ' + HideDisplay +'>Subtotal</th></tr></thead><tbody id="' + name +'">';
+                         design = design + '</tbody ></table ></div ></div ></div > ';
+                     }
+                     $('#tgl').append(design);
+
+                 }
+
+
+
+                 //Internal Loop to fetch every product under the above category
+                 for (i = 0; i < myObject.length; i++) {
+
+                     var parentTag = myObject[i].CategoryName.replace(/[^a-zA-Z]/g, "");
+                     for (j = 0; j < myObject[i].ProductList.length; j++) {
+                         var des = "";
+                         var id = i + '_' + j;
+                         var tag = ActiveSLinkID + "_" + myObject[i].CategoryID + "_" + myObject[i].ProductList[j].ProductId;
+
+                         des = des + ' <tr> <td> <label class="custom-control custom-checkbox"><input type="checkbox" name="' + tag + '" id="' + tag +'" class="custom-control-input">';
+                         des = des + '<span class="custom-control-indicator"></span> <span  class="custom-control-description"> ' + myObject[i].ProductList[j].ProductName + '</span> </label></td> <td  ' + HideDisplay + '><span id="Amnt_' + tag + '">' + myObject[i].ProductList[j].Price + '</span></td><td data-th="Quantity"  ' + HideDisplay +' style="width:20%;">';
+                         des = des + '<input  type="number" min=0 onkeypress="return event.charCode >= 48" id="Qnt_' + tag + '" onchange="Calculate(Amnt_' + tag + ',Sub_' + tag + ',Qnt_' + tag + ')" class="form-control text-center" value="0"> </td>  <td  ' + HideDisplay +'><span id="Sub_' + tag +'">0</span></td> </tr>';
+                         var id = '#' + parentTag;
+                         jQuery(id).append(des);
+                     }
+                 }
+
+
+                 //Prepare its responsive actions -- initiate.
+                 $('#tgl .tgl-cnt').hide();
+                 $('#tgl h5:first').addClass('active').next().slideDown(500).parent().addClass("activate");
+                 $('#tgl h5').on("click", function () {
+                     if ($(this).next().is(':hidden')) {
+                         $('#tgl h5').removeClass('active').next().slideUp(500).parent().removeClass("activate");
+                         $(this).toggleClass('active').next().slideDown(500).parent().toggleClass("activate");
+                         return false;
+                     }
+                 });
+
+                 UpdateListFromCart();
+             }
+         });
+    }
+
+    function Calculate(amn, sub, qnt) {
+        var amount = $(amn).text();
+        var Quantity = $(qnt).val();
+        $(sub).text(amount * Quantity);
+    }
+
+
+    function AddToCart() {
+           var user = "@Session["CurrentUser"]";
+
+           if (user != "") {
+
+
+        var data = get_selected_checkboxes_array();
+        TempCart = GetItemsforCart(data);
+        cartItems = JSON.parse(localStorage.getItem("Cart"));
+        var i = 0;
+        var j = 0;
+
+            if (cartItems != null && TempCart != null && cartItems != undefined && TempCart != undefined) {
+                var ItemsincartCount = cartItems.length;
+                for (j = 0; j < TempCart.length; j++) {
+                    var alreadyAdded = false;
+                   for (i = 0; i < ItemsincartCount; i++) {
+
+                        if (cartItems[i].CategoryID == TempCart[j].CategoryID && cartItems[i].ProductId == TempCart[j].ProductId && cartItems[i].Service_ID == TempCart[j].Service_ID) {
+
+                            alreadyAdded = true;
+                            cartItems[i] = TempCart[j];
+                        }
+                    }
+                   if (!alreadyAdded){
+                       cartItems[cartItems.length] = TempCart[j];
+                   }
+
+                }
+            } else {
+                cartItems = TempCart;
+            }
+
+
+        calculatesubtotal(); // Calculate the components and update the cart on backend
+        localStorage.setItem("Cart", JSON.stringify(cartItems));
+        CartUpdate(); // Change in UI
+        alert("Added to cart!");
+        // CartUpdate();
+        //window.location.pathname = "/Cart/Cart";
+
+           } else {
+               alert("Please login to add items.");
+           }
+    }
+
+    function ContinueToCart() {
+        cartItems = JSON.parse(localStorage.getItem("Cart"));
+        if (cartItems.length>0) {
+            window.location.pathname = "/Cart/Cart";
+        } else {
+            alert("Please add to cart before proceeding.");
+        }
+
+    }
+
+    // Get Data from the cart and update the loaded components accordingly
+    function UpdateListFromCart() {
+        cartItems = JSON.parse(localStorage.getItem("Cart"));
+        if (cartItems != null) {
+            for (i = 0; i < cartItems.length; i++) {
+                var tag = cartItems[i].Service_ID + "_" + cartItems[i].CategoryID + "_" + cartItems[i].ProductId;
+
+                $('#'+ tag ).attr('checked', true);
+                $('#Qnt_' + tag).val(cartItems[i].Quantity);
+                $('#Sub_' + tag).text(cartItems[i].SubTotal);
+            }
+        }
+    }
+
+
+
+    function get_selected_checkboxes_array() {
+        var ch_list = Array();
+        $("input:checkbox[type=checkbox]:checked").each(function ()
+        {
+            ch_list.push($(this).attr("id")); //get ids of all the checkbox (ID of each checkbox is asigned in the form Cat-Index_Prod-Index. Note: not the id of the element but the index of loop)
+        });
+        return ch_list;
+    }
+
+    function GetItemsforCart(temp) { //Index of all the checked items
+        var elementArray = [];
+        for (i = 0; i < temp.length; i++) { // loop through and grab the elements from the categories.
+            var tempIDs = temp[i].split('_');
+            var tempServID = tempIDs[0];
+            var tempCatID = tempIDs[1];
+            var tempProdID = tempIDs[2];
+
+            //Get the data from UI by recreating the tag's ids using the elements details
+            var currentCat
+
+            for (j = 0; j < myObject.length; j++){
+                for (k = 0; k < myObject[j].ProductList.length; k++){
+                    if (myObject[j].ProductList[k].ProductId == tempProdID && myObject[j].CategoryID == tempCatID) {
+                        var obj = myObject[j].ProductList[k];
+                        currentCat = myObject[j].CategoryName;
+
+                    }
+                }
+            }
+
+            tag = temp[i];
+            obj.Quantity = $("#Qnt_" + tag).val();
+            obj.SubTotal = $("#Sub_" + tag).text();
+            obj.Service = $("#" + tempServID).text();
+            obj.Service_ID = tempServID;
+            obj.CategoryName = currentCat;
+            obj.CategoryID = tempCatID;
+            obj.InputIndex = temp;
+
+            if (obj.Quantity>0){    // check for the quantity for 0s and negs
+                elementArray.push(obj);
+            }
+        }
+        return elementArray;
+    }
+
+    function calculatesubtotal() {
+        var ttl = 0;
+        var itmemum = 0;
+        for (i = 0; i < cartItems.length; i++) {
+            ttl = ttl + parseInt(cartItems[i].SubTotal, 10);
+            itmemum = itmemum + parseInt(cartItems[i].Quantity);
+        }
+        localStorage.setItem("CartTotal", ttl);
+        $('#CartItemCount').html(itmemum);
+        $('#TotalCartDD').html(ttl);
+
+        return ttl;
+    }
+
+
+    @*function HideTheColumns() {
+           var user = "@Session["CurrentUser"]";
+
+           if (user == "") {
+               $("#_Product_Mens").hide();
+               $("#_Price").hide();
+               $("#_Subtotal").hide();
+           } else {
+               $("#_Product").show();
+               $("#_Price").show();
+               $("#_Subtotal").show();
+           }
+    }*@
+</script>
+
+
+
+
+
+
+

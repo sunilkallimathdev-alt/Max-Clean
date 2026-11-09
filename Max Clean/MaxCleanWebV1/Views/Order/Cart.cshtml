@@ -1,0 +1,1084 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30">
+                <div class="center-block" id="howitworks">
+                    <h2><span>Cart</span> </h2>
+
+                </div>
+
+                <!--cart table-->
+                <div class="table-responsive">
+                    <table class="table_type_4  full_width r_corners wraper shadow t_align_l t_xs_align_c m_bottom_30">
+                        <thead>
+                            <tr class="f_size_large" style="font-weight:800;">
+                                <!--titles for td-->
+                                <th style="font-weight:800;">#</th>
+                                <th style="font-weight:800;">Services</th>
+                                <th style="font-weight:800;">Category</th>
+                                <th style="width:300px;font-weight:800; text-align:center;">Product</th>
+                                <th style="font-weight:800;">Price</th>
+                                <th style="font-weight:800;">Quantity</th>
+                                <th style="font-weight:800;">Subtotal</th>
+                                <th style="font-weight:800;">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+
+                </div>
+                <!--tabs-->
+            </section>
+            <!--right column-->
+
+        </div>
+        <div class="row clearfix d_xs_none">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                <a href="/order/ordernow"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue adding</span></a>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                @if (Session["Users"] == null)
+                {
+                    <p style="font-weight:600;color:forestgreen;">Please login to redeem your reward points</p>
+                }
+                else
+                {
+                    <p style="font-weight:600;color:forestgreen;"></p>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <a href="#" onclick="continue_Order()()"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></span></a>
+            </div>
+
+        </div>
+        <div class="row clearfix d_none d_xs_block">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                <a href="/order/ordernow"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue adding</span></a>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                @if (Session["Users"] == null)
+                {
+                    <p style="font-weight:600;color:forestgreen;">Please login to redeem your reward points</p>
+                }
+                else
+                {
+                    <p style="font-weight:600;color:forestgreen;"></p>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <a href="#" onclick="continue_Order()()"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></span></a>
+            </div>
+
+        </div>
+    </div>
+    <div id="myModal_otp_password" class="modals fade" role="dialog">
+        <div class="modals-dialog">
+            <div class="modals-content">
+                <div class="modals-header">
+                    <button type="button" class="close  tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div id="OTP_div" class="modals-body">
+                    <h3 class="m_bottom_20 color_dark" style="text-align:center;">Enter OTP</h3>
+                    <input name="txt_OTP" type="text" id="txt_OTP" value="">
+                    <button type="button" onclick="VerifyOTP()" id="btn_otp" class="button_type_4 tr_all_hover">submit</button>
+                </div>
+                @*<div id="Password_div" class="modals-body">
+                        <h3 class="m_bottom_20 color_dark" style="text-align:center;">Enter Password</h3>
+                        <input name="txt_Password" type="text" id="txt_Password" value="">
+                        <button type="button" onclick="Verify_Password()" id="btn_otp" class="button_type_4 tr_all_hover">submit</button>
+                    </div>*@
+                <div class="modals-footer">
+                    <p style="color:firebrick" id="returnmsg"> </p>
+                    <button type="button" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div id="myModal_mobile" class="modals fade" role="dialog">
+        <div class="modals-dialog">
+            <div class="modals-content">
+                <div class="modals-header">
+                    @*<h3 class="m_bottom_20 color_dark"> Login Successful........ </h3>*@
+                    <button type="button" class="close  tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                </div>
+                <div id="hdetails" class="modals-body">
+                    <h3 class="m_bottom_20 color_dark" style="text-align:center;">Please enter your mobile number</h3>
+                    <input name="Phone-number" onkeypress='isNumber(event)' type="text" id="mobile" value="">
+                    <button type="button" onclick="Verify_mobile()" id="btnmobile" class="button_type_4 tr_all_hover">Verify</button>
+                </div>
+                <div class="modals-footer">
+                    <p style="color:firebrick" id="returnmsg"> </p>
+                    <button type="button" id="btnclose" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<script src="~/js/jquery-2.1.0.min.js"></script>
+<script>
+    var Previous_Balance = @ViewBag.Old_Balance
+         var Cust_Rewards = @ViewBag.Cust_Rewards
+var cart__total = 0;
+             window.setInterval(function () {
+
+                 var sids = $(".subtotalid");
+                 var idvalues = [];
+                 data = [];
+                 for (var i = 0; i < sids.length; i++) {
+                     //if ($(sids[i]).val() != '0') {
+                     idvalues.push($(sids[i]).attr('id'));
+
+                     // }
+                 }
+                 for (var c = 0; c < idvalues.length; c++) {
+
+                     var ID = idvalues[c].split("_")[1];
+                     var srcid = ID.split("-")[0];
+                     var catid = ID.split("-")[1];
+                     var prdid = ID.split("-")[2];
+
+                     if ($("#qty_" + srcid + "-" + catid + "-" + prdid).val() == "-1") {
+                         $("#qty_" + srcid + "-" + catid + "-" + prdid).val(0)
+                     }
+
+
+                 }
+
+
+             }, 5);
+     $(document).ready(function () {
+            //if (Islogin != true) {
+            //    alert("Please Login");
+            //    window.location.href = '/MaxClean/Home';
+                 //}
+
+         BindProducts();
+         $("#promo_div").hide();
+         $("#rewrd_div").hide();
+         if (localStorage.getItem("promo") == "true") {
+             $("#txt_Promocode").val(localStorage.getItem("promocode_"));
+             $('#checkbox_promo').prop('checked', true);
+             $('#checkbox_rwds').prop('checked', false);
+             if (cart__total > 499) {
+                 Apply_Promocode();
+                 Validate_Promocode();
+             }
+         }
+
+         if (localStorage.getItem("rwd") == "true") {
+             $('#checkbox_promo').prop('checked', false);
+             $('#checkbox_rwds').prop('checked', true);
+             Apply_Rewards();
+         }
+         //localStorage.getItem("promocode_")
+         //$("#txt_Promocode").val();
+        //$("#promo_div").hide();
+        //$("#rewrd_div").hide();
+        $('#checkbox_rwds').change(function () {
+            Apply_Rewards();
+        });
+
+        $('#checkbox_promo').change(function () {
+            Apply_Promocode();
+        });
+        $('#Check_Express_Delivery').change(function () {
+            Calculate_Express_del();
+        });
+        Cal_GrandTotal();
+    });
+
+    function BindProducts() {
+
+        var Cart_Products = JSON.parse(localStorage.getItem("Order_Object"));
+        Products = "";
+        var CartTotal = 0;
+        for (var p = 0; p < Cart_Products.length; p++) {
+            Products += "<tr>";
+
+            Products += "<td data-title='SKU'>"+(p+1)+"</td>";
+            Products += "<td data-title='Product Image &amp; name' class='t_md_align_c'>";
+            Products += "<a href='#' class='d_inline_b m_left_5 color_dark' id='ui-id-" + Cart_Products[p].ServiceID+"'>" + Cart_Products[p].ServiceName+"</a>";
+            Products += "</td>";
+            Products += "<td data-title='SKU' id='CN_" + Cart_Products[p].CategoryID+"'>" + Cart_Products[p].CategoryName + "</td>";
+            Products += "<td data-title='SKU' id='PN_"+ Cart_Products[p].ProductID+"'>" + Cart_Products[p].ProductName +"</td>";
+
+            Products += "<td data-title='Price'>";
+           // Products += "<p class='f_size_large color_dark' id='prd_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID+"'>" + Cart_Products[p].UnitPrice +"</p>";
+            Products += "<input type='number' value='" + Cart_Products[p].UnitPrice + "' readonly='readonly'  class='f_size_large r_corners color_dark' tabindex='-1' id='prd_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID +"' style='width:150px;'/>";
+            Products += "</td>";
+
+            Products += "<td data-title='Quantity'>";
+            Products += "<div class='clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10' style='width:103px;'>";
+            Products += "<button onclick='calculateprizedown(" + Cart_Products[p].ServiceID + "," + Cart_Products[p].CategoryID + "," + Cart_Products[p].ProductID +")' class='bg_tr d_block f_left' data-direction='down'>-</button>";
+            Products += "<input type='text' name='' readonly='' id='qty_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID + "' value='" + Cart_Products[p].Quantity +"' class='f_left r_corners'>";
+            Products += "<button onclick='calculateprizeup("+Cart_Products[p].ServiceID + "," + Cart_Products[p].CategoryID + "," + Cart_Products[p].ProductID+")' class='bg_tr d_block f_left' data-direction='up'>+</button>";
+            Products += "</div>";
+
+            Products += "</td>";
+
+            Products += "<td data-title='Subtotal'>";
+            //Products += "<p class='f_size_large color_dark' id='sub_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID +"' >" + Cart_Products[p].Price +"</p>";
+            Products += "<input type='text' id='sub_" + Cart_Products[p].ServiceID + "-" + Cart_Products[p].CategoryID + "-" + Cart_Products[p].ProductID + "' value='" + Cart_Products[p].Price + "' readonly='readonly' class='subtotalid f_size_large r_corners fw_medium scheme_color'style='width:150px;' />";
+            Products += "</td>";
+            Products += "<td data-title='Subtotal'>";
+            Products += "<a href='#' onclick='Remove(" + Cart_Products[p].ServiceID + "," + Cart_Products[p].ProductID+")' class='color_dark' ><i class='fa fa-times f_size_medium m_right_5'></i>Remove</a><br>";
+            Products += "</td>";
+            Products += "</tr>";
+            CartTotal += Cart_Products[p].Price;
+        }
+
+
+        Products += "<tr>";
+        Products += "<td colspan='7'>";
+        Products += "<p class='fw_medium f_size_large t_align_r t_xs_align_c' style='float:right;'>	Previous Balance :</p> </br>";
+        Products += "<p class='fw_medium f_size_large t_align_r t_xs_align_c' style='float:right;'> Cart Total :</p></br>";
+        Products += "<p class='fw_medium f_size_large t_align_r t_xs_align_c' style='float:right;'> Delivery Charge :</p>";
+        Products += "</td>";
+
+        Products += "<td colspan='1'>";
+        Products += "<p class='fw_medium f_size_large color_dark' style='text-align:right;'>" + Previous_Balance + "</p>";
+        Products += "<p class='fw_medium f_size_large color_dark' id='cart_total' style='text-align:right;'>" + CartTotal + "</p>";
+        Products += "<p class='fw_medium f_size_large color_dark' id='Delivery_Charge' style='text-align:right;'>0</p>";
+        Products += "</td>";
+
+        Products += "</tr>";
+
+
+        Products += "<tr>";
+        Products += "<td colspan='6'>";
+        Products += "<span style='float:right;'>";
+        Products += "<input type='checkbox'  class='d_none' name='Check_Express_Delivery' id='Check_Express_Delivery'>";
+        Products += "<label for='Check_Express_Delivery'>Express Delivery</label>";
+        Products += "</span>";
+        Products += "</td>";
+        Products += "<td colspan='1'>";
+        Products += "<p class='fw_medium f_size_large t_align_r t_xs_align_c' style='float:right;'>Express Delivery Charge :</p>";
+        Products += "</td>";
+        Products += "<td colspan='1'>";
+        Products += "<p class='fw_medium f_size_large color_dark' id='Express_Delivery_Charge' style='text-align:right;'>0</p>";
+        Products += "</td>";
+
+        Products += "</tr>";
+
+        Products += "<tr>";
+
+        Products += "<td colspan='4'>";
+       // Products += "<p class='fw_medium f_size_large  t_xs_align_c ' style='float:right;'>";
+
+        Products += "<span id='checkbox_rewards_div'>";
+        Products += "<input type='checkbox'  class='d_none' name='checkbox_rwds' id='checkbox_rwds'>";
+        Products += "<label for='checkbox_rwds'>Use Rewards Points <b id='cust_rwds'>" + Cust_Rewards + "</b> &nbsp;&nbsp;</label>";
+        Products += "</span>";
+
+        Products += "<span id='checkbox_promo_div'>";
+        Products += "<input type='checkbox'  class='d_none' name='checkbox_promo' id='checkbox_promo'>";
+        Products += "<label for='checkbox_promo'> Promo Code</label>";
+        Products += "</span>";
+
+       // Products += "</p>";
+        Products += "</td>";
+
+        Products += "<td colspan='1'>";
+        Products += "<div id='promo_div'>";
+        Products += "<input type='text' placeholder='Enter Promo code' name='' id='txt_Promocode' style='text- transform:uppercase;width:150px;'  class='r_corners f_size_medium'><p style='color:blue;cursor:pointer;' onclick='Validate_Promocode();' >Apply</p>";
+        Products += "</div>";
+        Products += "<div id='rewrd_div'>";
+        Products += "<input type='text' name='' class='r_corners f_size_medium' id='Reward_Applied' style='width:150px;'  readonly><p style='color: green'>Rewards Applied</p>";
+        Products += "</div>";
+        Products += "</td>";
+
+        Products += "<td colspan='2'>";
+        Products += "<p  class='fw_medium f_size_large t_align_r t_xs_align_c' style='float:right;'>Discount Applied</p>";
+        Products += "</td>";
+
+        Products += "<td colspan='1'>";
+       // Products += "<form class='d_ib_offset_0 d_inline_middle half_column d_xs_block w_xs_full m_xs_bottom_5'>";
+        Products += "<input type='text' readonly class='r_corners f_size_medium' style='text-align:right;' id='Discount_Applied' value='0'>";
+       // Products += "</form>";
+        Products += "</td>";
+
+        Products += "</tr>";
+
+        Products += "<tr>";
+        Products += "<td colspan='7'>";
+        Products += "<p class='fw_medium f_size_large t_align_r t_xs_align_c' style='float:right;'>Total:</p>";
+        Products += "</td>";
+        Products += "<td colspan='1'>";
+        Products += "<p class='fw_medium f_size_large color_dark' style='text-align:right;' id='Grand_total'></p>";
+        Products += "</td>";
+        Products += "</tr>";
+        $("#tbody").html(Products);
+        var isexp = localStorage.getItem("Isexp");
+        if (isexp == "1") {
+            $('#Check_Express_Delivery').prop('checked', true);
+            Calculate_Express_del();
+        }
+        if (CartTotal < 500) {
+            $("#checkbox_promo_div").hide();
+            $("#promo_div").hide();
+            $('#checkbox_promo').prop('checked', false);
+        }
+        if (Cust_Rewards < 100 || Cart_Products.length<1) {
+            $("#checkbox_rewards_div").hide();
+            $("#rewrd_div").hide();
+            $('#checkbox_rwds').prop('checked', false);
+        }
+        cart__total = CartTotal;
+    }
+
+    function show_mobilemodal() {
+        $("#myModal_mobile").modal({
+            backdrop: "static", //remove ability to close modal with click
+            keyboard: false, //remove option to close with keyboard
+            show: true //Display loader!
+        });
+    }
+    function Verify_mobile() {
+        $("#btnclose").click();
+          $.post("@Url.Action("verify_mobile", "Order")", { mobile: $("#mobile").val() }, function (data) {
+
+
+              var reg_cust = JSON.parse(data);
+              if (reg_cust.CustomerID != 0) {
+                  var myobj = JSON.parse(data);
+                var objcust = new Object();
+                objcust.CustomerName = myobj.CustomerName;
+                objcust.MobileNumber = myobj.MobileNumber;
+                objcust.Address = myobj.Address;
+                objcust.EmailID = myobj.EmailID;
+                objcust.Pincode = myobj.Pincode;
+                localStorage.setItem("objcust", JSON.stringify(objcust));
+                continue_Order();
+            }
+            else {
+                  sendOTP_Now($("#mobile").val());
+                $("#myModal").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
+               // alert("Something Went Wrong. Please retry.");
+            }
+
+
+
+        });
+    }
+
+    function continue_Order() {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+        data = [];
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            var srcid = ID.split("-")[0];
+            var catid = ID.split("-")[1];
+            var prdid = ID.split("-")[2];
+
+            var myobj = new Object();
+            myobj.ServiceID = parseInt(srcid);
+            myobj.ServiceName = $("#ui-id-" + srcid).html();
+            myobj.CategoryID = parseInt(catid);
+            myobj.CategoryName = $("#CN_" + catid).html();
+            myobj.ProductID = parseInt(prdid);
+            myobj.ProductName = $("#PN_" + prdid).html();
+            myobj.UnitPrice = parseInt($("#prd_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Price = parseInt($("#sub_" + srcid + "-" + catid + "-" + prdid).val());
+            data.push(myobj);
+
+            //    }
+
+            //}
+
+            //for (var d = 0; d < data.length; d++) {
+            //    Cart_Products.push(d);
+            //}
+
+        }
+        var myobj = new Object();
+        myobj.CustomerName = null;
+        myobj.CustomerMobile = null;
+        myobj.CustomerEmail = null;
+        myobj.PickupAddress = null;
+        myobj.PickupDate = null;
+        myobj.ConfirmedBy = null;
+        myobj.Pickedby = null;
+        myobj.DeliveryAddress = null;
+        myobj.ActualDeliveryDate = null;
+        myobj.PickupTime = null;
+        myobj.DeliveryTime = null;
+        myobj.StoreID = null;
+        myobj.orderstatusID = 2;
+        myobj.PaidAmount = null;
+        myobj.Remark = null;
+        myobj.PaymentType = null;
+        myobj.Invoice_No = null;
+        myobj.Pincode = 0;
+        myobj.GrandTotal = parseInt($("#Grand_total").html());
+        myobj.RemainingAmount = null;
+        myobj.OldBalanceApplied = Previous_Balance;
+        myobj.IsOutletOrder = false;
+        if ($("#checkbox_rwds").prop('checked') == true) {
+            myobj.IsReward = true;
+            myobj.RewardPointsApplied = $("#Discount_Applied").val();
+        } else {
+            myobj.IsReward = false;
+            myobj.RewardPointsApplied = 0;
+        }
+        if ($("#checkbox_promo").prop('checked') == true) {
+            myobj.IsPromocodeApplied = true;
+            myobj.Promocode = $('#txt_Promocode').val();
+            myobj.Promocode_Amount = $("#Discount_Applied").val();
+        } else {
+            myobj.IsPromocodeApplied = false;
+            myobj.Promocode = null;
+            myobj.Promocode_Amount = 0;
+        }
+        if ($("#Check_Express_Delivery").prop('checked') == true) {
+            myobj.IsExpressDelivery = true;
+            myobj.ExpressChargeApplied = parseInt($("#Express_Delivery_Charge").html());
+        }
+        else {
+            myobj.IsExpressDelivery = false;
+            myobj.ExpressChargeApplied = 0;
+        }
+
+
+        myobj.Delivery_charge = parseInt($("#Delivery_Charge").html());
+        var Details = [];
+
+
+        myobj.PurchaseOrderDetail = data;
+        localStorage.setItem("Full_Order", JSON.stringify(myobj));
+        window.location.href = '/Order/Address';
+    }
+
+    function Apply_Rewards() {
+        var applied_rewards = 0;
+        if ($("#checkbox_rwds").prop('checked') == true) {
+            $("#promo_div").hide();
+            $("#rewrd_div").show();
+            $('#checkbox_promo').prop('checked', false);
+
+            if (Cust_Rewards < 100) {
+                alert("Cannot redeem Reward Points");
+                $("#Reward_Applied").val(applied_rewards);
+            } else {
+                var cart_total = parseInt($("#cart_total").html());
+                if (cart_total > 499) {
+                    applied_rewards = 100;
+                } else {
+                    applied_rewards = 50;
+                }
+                $("#Reward_Applied").val(applied_rewards);
+            }
+            $("#Discount_Applied").val(applied_rewards);
+
+
+            Cal_GrandTotal();
+        } else {
+           // $("#promo_div").show();
+            $("#Discount_Applied").val(0);
+            $("#rewrd_div").hide();
+            $("#Reward_Applied").val(0);
+            $('#checkbox_rwds').prop('checked', false);
+            Cal_GrandTotal();
+        }
+
+    }
+
+    function Calculate_Express_del() {
+        var EXP_Del = 0
+        if ($("#Check_Express_Delivery").prop('checked') == true) {
+            var sids = $(".subtotalid");
+            var idvalues = [];
+            CartTotal = 0
+            for (var i = 0; i < sids.length; i++) {
+                if ($(sids[i]).val() != '0') {
+                    idvalues.push($(sids[i]).attr('id'));
+
+                }
+            }
+            for (var c = 0; c < idvalues.length; c++) {
+
+                var ID = idvalues[c].split("_")[1];
+                CartTotal += parseInt($("#sub_" + ID).val());
+            }
+
+            EXP_Del = (50 / 100) * CartTotal;
+            localStorage.setItem("Isexp", "1");
+        } else {
+            localStorage.setItem("Isexp", "0");
+            EXP_Del = 0;
+        }
+        $("#Express_Delivery_Charge").html(EXP_Del);
+        Cal_GrandTotal();
+    }
+
+    function Apply_Promocode() {
+
+        if ($("#checkbox_promo").prop('checked') == true) {
+      
+            $("#promo_div").show();
+            $("#rewrd_div").hide();
+            $("#Reward_Applied").val(0);
+            $('#checkbox_rwds').prop('checked', false);
+            $("#Discount_Applied").val(0);
+            Cal_GrandTotal();
+        } else {
+            $("#promo_div").hide();
+            $("#Discount_Applied").val(0);
+            //$("#rewrd_div").show();
+            $('#checkbox_promo').prop('checked', false);
+            Cal_GrandTotal();
+        }
+
+    }
+
+    function calculateprizedown(id1, id2, id3) {
+        productid = "";
+        productid += id1 + "-" + id2 + "-" + id3;
+        if (parseInt($('#qty_' + productid).val()) > 0) {
+            var qty = parseInt($('#qty_' + productid).val()) - 1;
+            if (qty == -1 || qty == 0) {
+                qty = 0;
+                $('#qty_' + productid).val('0');
+            }
+            var unitprize = parseInt($('#prd_' + productid).val());
+            var result = qty * unitprize;
+            $('#sub_' + productid).val(result);
+
+            Cal_CartTotal();
+
+
+            var sids = $(".subtotalid");
+            var idvalues = [];
+            data = [];
+            for (var i = 0; i < sids.length; i++) {
+                if ($(sids[i]).val() != '0') {
+                    idvalues.push($(sids[i]).attr('id'));
+
+                }
+            }
+            for (var c = 0; c < idvalues.length; c++) {
+
+                var ID = idvalues[c].split("_")[1];
+                var srcid = ID.split("-")[0];
+                var catid = ID.split("-")[1];
+                var prdid = ID.split("-")[2];
+
+                var myobj = new Object();
+                myobj.ServiceID = parseInt(srcid);
+                myobj.ServiceName = $("#ui-id-" + srcid).html();
+                myobj.CategoryID = parseInt(catid);
+                myobj.CategoryName = $("#CN_" + catid).html();
+                myobj.ProductID = parseInt(prdid);
+                myobj.ProductName = $("#PN_" + prdid).html();
+                myobj.UnitPrice = parseInt($("#prd_" + srcid + "-" + catid + "-" + prdid).val());
+                if (srcid == id1 && catid == id2 && prdid == id3)
+                    myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val()) - 1;
+                else
+                    myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val());
+                myobj.Price = parseInt($("#sub_" + srcid + "-" + catid + "-" + prdid).val());
+                data.push(myobj);
+
+            }
+
+            localStorage.setItem("Order_Object", JSON.stringify(data));
+
+            Calculate_Express_del();
+            Cal_GrandTotal();
+            //update_local();
+        }
+    }
+
+    function calculateprizeup(id1, id2, id3) {
+        productid = "";
+        productid += id1 + "-" + id2 + "-" + id3;
+        var qty = parseInt($('#qty_' + productid).val()) + 1;
+
+        var unitprize = parseInt($('#prd_' + productid).val());
+        var result = qty * unitprize;
+        $('#sub_' + productid).val(result);
+        if ($("#checkbox_rwds").prop('checked') == true) {
+            Apply_Rewards();
+        }
+        Cal_CartTotal();
+
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+        data = [];
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            var srcid = ID.split("-")[0];
+            var catid = ID.split("-")[1];
+            var prdid = ID.split("-")[2];
+
+            var myobj = new Object();
+            myobj.ServiceID = parseInt(srcid);
+            myobj.ServiceName = $("#ui-id-" + srcid).html();
+            myobj.CategoryID = parseInt(catid);
+            myobj.CategoryName = $("#CN_" + catid).html();
+            myobj.ProductID = parseInt(prdid);
+            myobj.ProductName = $("#PN_" + prdid).html();
+            myobj.UnitPrice = parseInt($("#prd_" + srcid + "-" + catid + "-" + prdid).val());
+            if (srcid == id1 && catid == id2 && prdid == id3)
+                myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val()) + 1;
+            else
+                myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Price = parseInt($("#sub_" + srcid + "-" + catid + "-" + prdid).val());
+            data.push(myobj);
+
+        }
+
+        localStorage.setItem("Order_Object", JSON.stringify(data));
+
+        Calculate_Express_del();
+        Cal_GrandTotal();
+       // update_local();
+    }
+
+    function Remove(id1, id2) {
+
+        var r = confirm("Are you Sure Want to delete ?");
+        var promo = false;
+        var promocode_ = "";
+        var rwd = false;
+        if ($("#checkbox_promo").prop('checked') == true) {
+            localStorage.setItem("promo", true);
+            localStorage.setItem("rwd", false);
+            localStorage.setItem("promocode_", $("#txt_Promocode").val());
+        } else {
+            localStorage.setItem("promo", false);
+
+        }
+        if ($("#checkbox_rwds").prop('checked') == true) {
+            localStorage.setItem("rwd", true);
+            localStorage.setItem("promo", false);
+        } else {
+            localStorage.setItem("rwd", false);
+        }
+        if (r == true) {
+            Cart_Products = JSON.parse(localStorage.getItem("Order_Object"));
+            for (var i = 0; i < Cart_Products.length; i++) {
+                if (Cart_Products[i].ServiceID == id1, Cart_Products[i].ProductID == id2) {
+                    Cart_Products.splice(i, 1);
+                   // alert("Successfully Deleted from cart.");
+                }
+            }
+            localStorage.setItem("Order_Object", JSON.stringify(Cart_Products));
+            BindProducts();
+            Apply_Rewards();
+            Apply_Promocode();
+            location.reload();
+
+            //if (rwd == true) {
+            //    $('#checkbox_rwds').prop('checked', true);
+            //}
+            //if (promo == true) {
+            //    $('#checkbox_promo').prop('checked', true);
+            //    $("#txt_Promocode").val(promocode_);
+            //}
+
+            //BindProducts();
+            //Apply_Rewards();
+            //Apply_Promocode();
+        }
+
+
+    }
+
+    function update_local() {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+        data = [];
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            var srcid = ID.split("-")[0];
+            var catid = ID.split("-")[1];
+            var prdid = ID.split("-")[2];
+
+            var myobj = new Object();
+            myobj.ServiceID = parseInt(srcid);
+            myobj.ServiceName = $("#ui-id-" + srcid).html();
+            myobj.CategoryID = parseInt(catid);
+            myobj.CategoryName = $("#CN_" + catid).html();
+            myobj.ProductID = parseInt(prdid);
+            myobj.ProductName = $("#PN_" + prdid).html();
+            myobj.UnitPrice = parseInt($("#prd_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Quantity = parseInt($("#qty_" + srcid + "-" + catid + "-" + prdid).val());
+            myobj.Price = parseInt($("#sub_" + srcid + "-" + catid + "-" + prdid).val());
+            data.push(myobj);
+
+        }
+
+        localStorage.setItem("Order_Object", JSON.stringify(data));
+        //Update_Cart();
+    }
+
+    function Cal_CartTotal() {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+         CartTotal = 0
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            CartTotal += parseInt($("#sub_" + ID).val());
+        }
+
+        $("#cart_total").html(CartTotal)
+        if (CartTotal < 500) {
+            $("#checkbox_promo_div").hide();
+        } else {
+            $("#checkbox_promo_div").show();
+        }
+
+
+    }
+
+    function Cal_GrandTotal() {
+
+        var sids = $(".subtotalid");
+        var idvalues = [];
+        CartTotal = 0;
+        var Grand_Total = 0;
+        for (var i = 0; i < sids.length; i++) {
+            if ($(sids[i]).val() != '0') {
+                idvalues.push($(sids[i]).attr('id'));
+
+            }
+        }
+        for (var c = 0; c < idvalues.length; c++) {
+
+            var ID = idvalues[c].split("_")[1];
+            CartTotal += parseInt($("#sub_" + ID).val());
+        }
+        Grand_Total += CartTotal;
+        Grand_Total += Previous_Balance;
+        var Exp_del = parseInt($("#Express_Delivery_Charge").html());
+        if (Exp_del > 0 && Exp_del != null) {
+            Grand_Total += Exp_del;
+        }
+        Grand_Total -= $("#Discount_Applied").val();
+
+        if (Grand_Total < 350) {
+            $("#Delivery_Charge").html("50");
+        } else {
+            $("#Delivery_Charge").html("0");
+        }
+
+
+
+        Grand_Total += parseInt($("#Delivery_Charge").html());
+
+
+        $("#Grand_total").html(Grand_Total);
+       // update_local();
+        Update_Cart();
+    }
+
+    function Validate_Promocode() {
+        var Obj = new Object();
+        Obj.Promocode_Name = $('#txt_Promocode').val();
+        $.post("@Url.Action("ValidatePromocode", "Order")", { ObjPromocode: JSON.stringify(Obj) }, function (data) {
+            var myobj = JSON.parse(data);
+            if (myobj.StatusCode == 200) {
+
+                var Discount_percent = myobj.ObjectResult.Discount || 0
+                var Cart_total = parseInt($("#cart_total").html());
+                $("#Discount_Applied").val(Math.floor((Discount_percent / 100) * Cart_total));
+                Cal_GrandTotal();
+            } else {
+                $("#Discount_Applied").val(0);
+                Cal_GrandTotal();
+                alert("Invalid Promocode")
+            }
+        });
+    }
+
+    function sendOTP_Now(Mobile) {
+
+
+
+
+            var data = {
+                'Mobile': Mobile
+            };
+
+            var parameters = JSON.stringify(data);
+            //disable sending message for dev purpose
+            $.ajax({
+                type: "POST",
+                url: '/MaxClean/SendOTP',
+                data: parameters,
+                async: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.StatusCode == 200) {
+                        if (response != null) {
+                            if (response.ObjectResult > 1) {
+                                //var OTP = prompt("Please enter OTP you just recieved on your mobile number.", "Enter OTP");
+                                AssignedOTP = response.ObjectResult;
+                                console.log("Successfully sent OTP to the number.");
+                                //VerifysendOTP();
+                                //alert("Thank you, your mobile number is now verified.");
+
+                                //Open the OTP entry model
+                                $("#myModal").modal({
+                                    backdrop: "static", //remove ability to close modal with click
+                                    keyboard: false, //remove option to close with keyboard
+                                    show: true //Display loader!
+                                });
+
+                            } else if (response.ObjectResult == -1) {
+                                alert("This number already exists. Please try another number or login using the same.");
+                                return false;
+                            }
+                        } else {
+                            alert("There was an error while sending an OTP. Please try again later.");
+                        }
+                    } else if (response.StatusCode == 400) {
+                        alert("This number already exists. Please try another number or login using the same.");
+
+                        return false;
+                    }
+
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                    alert("Something went wrong. Please try again later.");
+                    return false;
+                }
+            });
+
+    }
+
+</script>
+<style>
+
+    /*.modals-open {
+            overflow: hidden;
+        }*/
+
+    .modals {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        outline: 0;
+    }
+
+
+    .modals-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .modals-dialog {
+        position: relative;
+        width: auto;
+        height: auto;
+        margin: 0.5rem;
+        pointer-events: none;
+    }
+
+    .modal-dialog,
+    .modal-content {
+        height: auto;
+    }
+
+    .modals.fade .modals-dialog {
+        transition: -webkit-transform 0.3s ease-out;
+        transition: transform 0.3s ease-out;
+        transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+        -webkit-transform: translate(0, -25%);
+        transform: translate(0, -25%);
+    }
+
+    .modals.show .modals-dialog {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+
+    .modals-dialog-centered {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        min-height: calc(100% - (0.5rem * 2));
+    }
+
+    .modals-content {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+    }
+
+    .modals-backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        background-color: #000;
+    }
+
+        .modals-backdrop.fade {
+            opacity: 0;
+        }
+
+        .modals-backdrop.show {
+            opacity: 0.5;
+        }
+
+    .modals-header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+    }
+
+        .modals-header .close {
+            padding: 1rem;
+            margin: -1rem -1rem -1rem auto;
+        }
+
+    .modals-title {
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+    .modals-body {
+        position: relative;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+
+    .modals-footer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        padding: 1rem;
+        border-top: 1px solid #e9ecef;
+    }
+
+        .modals-footer > :not(:first-child) {
+            margin-left: .25rem;
+        }
+
+        .modals-footer > :not(:last-child) {
+            margin-right: .25rem;
+        }
+
+    .modals-scrollbar-measure {
+        position: absolute;
+        top: -9999px;
+        width: 50px;
+        height: 50px;
+        overflow: scroll;
+    }
+
+    @@media (min-width: 576px) {
+        .modals-dialog {
+            max-width: 500px;
+            margin: 1.75rem auto;
+        }
+
+        .modals-dialog-centered {
+            min-height: calc(100% - (1.75rem * 2));
+        }
+
+        .modals-sm {
+            max-width: 300px;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .modals-lg {
+            max-width: 800px;
+        }
+    }
+</style>

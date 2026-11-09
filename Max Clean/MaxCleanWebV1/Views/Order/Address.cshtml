@@ -1,0 +1,1099 @@
+﻿
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@{
+    ViewBag.Title = "AddAddressDetails";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+}
+
+<div class="page_content_offset" style="padding:22px;">
+    <div class="container">
+        <div class="row clearfix d_xs_none">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="/Order/cart"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue to cart</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="#" onclick="validation()"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+
+        </div>
+        <div class="row clearfix d_none d_xs_block">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="/Order/cart"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue to cart</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="#" onclick="validation()"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <!--left content column-->
+            <div class="center-block" id="howitworks">
+                <h2> <span>Address</span></h2>
+            </div>
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30" id="mobileverify_section">
+                <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45">
+                    <div class="modals-dialog">
+                        <div class="modals-content">
+                            <div class="modals-header">
+                                <h3 class="m_bottom_20 color_dark" style="text-align:center;">Please enter your mobile number</h3>
+                            </div>
+                            <div id="hdetails" class="modals-body">
+                                <input name="Phone-number" onkeypress='isNumber(event)' type="text" id="mobile" value="">
+                                <button type="button" onclick="sendOTP_Now()" id="btnmobile" class="button_type_4 tr_all_hover">Verify</button>
+                            </div>
+
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30" id="address_section">
+
+                <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45" style="font-weight:510;">
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-6 m_xs_bottom_30">
+                            <h5 class="fw_medium m_bottom_15">PickUp Address</h5>
+                            <form>
+                                <ul>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="P_Name" class="d_inline_b m_bottom_5 required">Name</label>
+                                                <input type="text" onkeyup="copy_address();" id="P_Name" name="P_Name" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="P_Mobile" class="d_inline_b m_bottom_5 required">Mobile number</label>
+                                                <input type="text" onkeyup="copy_address();" id="P_Mobile" name="P_Mobile" class="r_corners full_width">
+
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="P_Email" class="m_bottom_5 d_inline_b required">Email</label><br>
+                                                <input type="text" onkeyup="copy_address();" name="P_Email" id="P_Email" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="P_Pincode" class="m_bottom_5 d_inline_b required">Pincode</label><br>
+                                                <input type="text" onkeyup="copy_address();" name="P_Pincode" id="P_Pincode" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <li class="m_bottom_15">
+                                        <label for="P_Address" class="d_inline_b m_bottom_5 required">Address</label>
+                                        <textarea id="P_Address" name="P_Address" onkeyup="copy_address();" class="r_corners notes full_width" style="height:90px;"></textarea>
+                                    </li>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="f_name_1" class="d_inline_b m_bottom_5 required">Preferred pick up date</label>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <input type="date" id="PickupDate" onchange="set_deliveryDate();" name="PickupDate" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <input type="time" id="PickUPTime" onblur="verify_time();" name="PickUPTime" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="f_name_1" class="d_inline_b m_bottom_5"> Any remarks?</label>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <textarea id="Remark" class="r_corners notes full_width" style="height:60px;"></textarea>
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <p style="font-weight:600;color:red">Pickup time cutoff is 7:30 PM</p>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <h5 class="fw_medium m_bottom_15">Delivery Address</h5>
+                            <form>
+                                <ul>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="D_Name" class="d_inline_b m_bottom_5 required">Name</label>
+                                                <input type="text" id="D_Name" name="D_Name" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+
+                                            <li class="m_bottom_15">
+                                                <label for="D_Mobile" class="d_inline_b m_bottom_5 required">Mobile number</label>
+                                                <input type="text" id="D_Mobile" name="D_Mobile" class="r_corners full_width">
+
+                                            </li>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+
+                                            <li class="m_bottom_15">
+                                                <label for="D_Email" class="m_bottom_5 d_inline_b required">Email</label><br>
+                                                <input type="text" name="D_Email" id="D_Email" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="D_Pincode" class="m_bottom_5 d_inline_b required">Pincode</label><br>
+                                                <input type="text" name="D_Pincode" id="D_Pincode" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <li class="m_bottom_15">
+                                        <label for="D_Address" class="d_inline_b m_bottom_5 required">Address</label>
+                                        <textarea id="D_Address" name="D_Address" class="r_corners notes full_width" style="height:90px;"></textarea>
+                                    </li>
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="ActualDeliveryDate" class="d_inline_b m_bottom_5 required"> Preferred delivery date</label>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <input type="date" id="ActualDeliveryDate" name="ActualDeliveryDate" readonly class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    @*<div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                        <li class="m_bottom_15">
+                                        <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                        <input type="checkbox" class="d_none" name="checkbox_6" id="checkbox_6">
+                                        <label for="checkbox_6">Normal</label>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                        <input type="checkbox" class="d_none" name="checkbox_6" id="checkbox_7">
+                                        <label for="checkbox_7">Express</label>
+                                        </div>
+                                        </div>
+                                        </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                        <li class="m_bottom_15">
+                                        <label for="address_1" class="d_inline_b m_bottom_5" style="color:#ffd923;font-weight:bold;">Order Type: Normal Delivery.</label>
+                                        </li>
+                                        </div>
+                                        </div>*@
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="row clearfix d_xs_none">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="/Order/cart"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue to cart</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="#" onclick="validation()"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+
+        </div>
+        <div class="row clearfix d_none d_xs_block">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="/Order/cart"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue to cart</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="#" onclick="validation()"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+        </div>
+        <br />
+        <label style="color:#114e9a;float:right;font-weight:bold;">For any query call: +91 9900318000</label>
+    </div>
+</div>
+
+<div id="myModal_otp_password" class="modals fade" role="dialog">
+    <div class="modals-dialog">
+        <div class="modals-content">
+            <div class="modals-header">
+                <button type="button" class="close  tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modals-body">
+                <h3 class="m_bottom_20 color_dark" style="text-align:center;">Enter OTP</h3>
+                <input name="txt_OTP" type="text" id="userOTP" value="">
+                <button type="button" onclick="Verify_OTP()" id="btn_otp" class="button_type_4 tr_all_hover">submit</button>
+            </div>
+            <div class="modals-footer">
+                <p style="color:firebrick" id="returnmsg"> </p>
+                <button type="button" id="btnclose" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div id="myModalpincode" class="modals fade" role="dialog">
+    <div class="modals-dialog">
+        <div class="modals-content">
+            <div class="modals-header">
+                @*<h3 class="m_bottom_20 color_dark"> Login Successful........ </h3>*@
+                <button type="button" class="close  tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+            </div>
+            <div id="hdetails" class="modals-body">
+                <h3 class="m_bottom_20 color_dark" style="text-align:center;">Please enter your area pincode to check service availability</h3>
+                <input name="Phone-number" onkeypress='isNumber(event)' type="text" id="pincode" value="">
+                <button type="button" onclick="VerifyPincode()" id="btnpincode" class="button_type_4 tr_all_hover">submit</button>
+            </div>
+            <div class="modals-footer">
+                <p style="color:firebrick" id="returnmsg"> </p>
+                <button type="button" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script src="~/js/jquery-2.1.0.min.js"></script>
+<script>
+    function verify_time() {
+        var dtToday = new Date();
+
+        var current_hour = dtToday.getHours();
+
+        var time_ = $("#PickUPTime").val();
+        var hour = parseInt(time_.split(':')[0]);
+        var minutes = parseInt(time_.split(':')[1]);
+        if (hour > 19) {
+            alert("Pickup Time cutoff is 7:30 PM");
+            SetTime("PickUPTime");
+            var time_ = $("#PickUPTime").val();
+            var hour = parseInt(time_.split(':')[0]);
+            var minutes = parseInt(time_.split(':')[1]);
+            if (hour > 19 && minutes > 29) {
+                SettomorrowDate("PickupDate");
+                $("#PickUPTime").val("08:00");
+            } else {
+                if ((hour + 1) == 25) {
+                    hour = 0;
+                }
+                var time_string = "";
+                time_string += (hour + 1) + ":" + minutes;
+                $("#PickUPTime").val(time_string);
+            }
+        } else {
+            if (hour > 19 && minutes > 29) {
+                SettomorrowDate("PickupDate");
+                $("#PickUPTime").val("08:00");
+            } else {
+                if (hour > (current_hour + 1)) {
+
+                } else {
+                    if ((hour + 1) == 25) {
+                        hour = 0;
+                    }
+                    var time_string = "";
+                    time_string += (hour + 1) + ":" + minutes;
+                    $("#PickUPTime").val(time_string);
+                }
+            }
+        }
+    }
+    function set_deliveryDate() {
+
+        var pickup_date = $("#PickupDate").val();
+        var dtToday = new Date(pickup_date);
+        var n = 4;
+        var full_rde = localStorage.getItem("Full_Order");
+        if (full_rde != null) {
+            var exist = JSON.parse(localStorage.getItem("Full_Order"));
+            if (exist != null) {
+                if (exist.IsExpressDelivery == true) {
+                    n = 1;
+                } else {
+                    n = 4;
+                }
+            }
+        } else {
+            n = 4; //number of days to add.
+        }
+        var requiredDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate() + n);
+        var month = requiredDate.getMonth() + 1;
+        var day = requiredDate.getDate();
+        var year = requiredDate.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var hour = requiredDate.getHours();
+        var min = requiredDate.getMinutes();
+        var ss = requiredDate.getSeconds();
+        if (hour < 10)
+            hour = '0' + hour.toString();
+        if (min < 10)
+            min = '0' + min.toString();
+        if (ss < 10)
+            ss = '0' + ss.toString();
+        var Today = year + '-' + month + '-' + day;
+        $('[name="ActualDeliveryDate"]').val(Today);
+
+    }
+    function BlockPreviousDate(FieldID) {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('[name="' + FieldID + '"]').attr('min', maxDate);
+    }
+    function SetTodaysDate(FieldID) {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var hour = dtToday.getHours();
+        var min = dtToday.getMinutes();
+        var ss = dtToday.getSeconds();
+        if (hour < 10)
+            hour = '0' + hour.toString();
+        if (min < 10)
+            min = '0' + min.toString();
+        if (ss < 10)
+            ss = '0' + ss.toString();
+        //var Today = year + '-' + month + '-' + day + "T" + hour + ":" + min + ":" + ss;
+        var Today = year + '-' + month + '-' + day;
+        $('[name="' + FieldID + '"]').val(Today);
+    }
+    function SetDeliveryDate(FieldID) {
+        var dtToday = new Date();
+        var n = 4;
+        var full_rde = localStorage.getItem("Full_Order");
+        if (full_rde != null) {
+            var exist = JSON.parse(localStorage.getItem("Full_Order"));
+            if (exist != null) {
+                if (exist.IsExpressDelivery == true) {
+                    n = 1;
+                } else {
+                    n = 4;
+                }
+            }
+        } else {
+            n = 4; //number of days to add.
+        }
+        var requiredDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate() + n);
+        var month = requiredDate.getMonth() + 1;
+        var day = requiredDate.getDate();
+        var year = requiredDate.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var hour = requiredDate.getHours();
+        var min = requiredDate.getMinutes();
+        var ss = requiredDate.getSeconds();
+        if (hour < 10)
+            hour = '0' + hour.toString();
+        if (min < 10)
+            min = '0' + min.toString();
+        if (ss < 10)
+            ss = '0' + ss.toString();
+        var Today = year + '-' + month + '-' + day;
+        $('[name="' + FieldID + '"]').val(Today);
+    }
+    function SettomorrowDate(FieldID) {
+        var dtToday = new Date();
+        var n = 1;
+
+        var requiredDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate() + n);
+        var month = requiredDate.getMonth() + 1;
+        var day = requiredDate.getDate();
+        var year = requiredDate.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var hour = requiredDate.getHours();
+        var min = requiredDate.getMinutes();
+        var ss = requiredDate.getSeconds();
+        if (hour < 10)
+            hour = '0' + hour.toString();
+        if (min < 10)
+            min = '0' + min.toString();
+        if (ss < 10)
+            ss = '0' + ss.toString();
+        var Today = year + '-' + month + '-' + day;
+        $('[name="' + FieldID + '"]').val(Today);
+    }
+    function SetTime(FieldID) {
+        var dtToday = new Date();
+
+        var hour = dtToday.getHours();
+        var min = dtToday.getMinutes();
+        var ss = dtToday.getSeconds();
+        if (hour < 10)
+            hour = '0' + hour.toString();
+        if (min < 10)
+            min = '0' + min.toString();
+        if (ss < 10)
+            ss = '0' + ss.toString();
+        var Today = hour + ":" + min;
+        //var Today = year + '-' + month + '-' + day;
+        $('[name="' + FieldID + '"]').val(Today);
+    }
+</script>
+<script type="text/javascript">
+    @{
+        Customer_Model login =(Customer_Model)Session["Users"];
+        int Isexist = 0;
+        Customer_Model user = new Customer_Model();
+        if (login != null) {
+            user = login;
+            Isexist = 1;
+        }
+       // if (user == null)
+        //{
+          //  Response.Redirect("/MaxClean/Home");
+        //}
+            }
+    var Isexist = "@Isexist"
+    //var Isexist = localStorage.getItem("objcust");
+    if (Isexist != "0")
+    {
+        //var user = JSON.parse(Isexist)
+        var CustomerName = "@user.CustomerName"
+        var MobileNumber = "@user.MobileNumber"
+        var Address = "@user.Address"
+        var EmailID = "@user.EmailID"
+        var Pincode = "@user.Pincode"
+    }
+    var cart_product = [];
+    var popup_count = 0;
+    var pin_found = false;
+    //window.setInterval(function () {
+
+    //    //if (Isexist == "0") {
+    //    //        $("#login_link1")[0].click();
+
+    //    //}
+    //}, 5);
+    $(document).ready(function () {
+        Update_Cart();
+        if (Isexist == "0") {
+            $("#address_section").hide();
+            $("#mobileverify_section").show();
+        } else {
+            $("#address_section").show();
+            $("#mobileverify_section").hide();
+        }
+        if (JSON.parse(localStorage.getItem("IsValidPincode")) == false) {
+
+        }
+        if (Isexist == "0") {
+
+            //$("#login_link1")[0].click();
+            //$('#login_up2').trigger("click");
+            //register_link
+            //$("#P_Name").prop('readonly', true);
+            //$("#P_Mobile").focus();
+            //$("#P_Mobile").prop('placeholder', "Enter Mobile Number");
+            //$("#P_Email").prop('readonly', true);
+            //$("#P_Address").prop('readonly', true);
+            //$("#P_Pincode").prop('readonly', true);
+
+            //$("#D_Name").prop('readonly', true);
+            //$("#D_Mobile").prop('readonly', true);
+            //$("#D_Email").prop('readonly', true);
+            //$("#D_Address").prop('readonly', true);
+            //$("#D_Pincode").prop('readonly', true);
+
+
+        }
+
+        var order = localStorage.getItem("Full_Order");
+
+        BlockPreviousDate("PickupDate");
+
+        SetTodaysDate("PickupDate");
+
+        SetDeliveryDate("ActualDeliveryDate");
+        SetTime("PickUPTime");
+        var time_ = $("#PickUPTime").val();
+        var hour = parseInt(time_.split(':')[0]);
+        var minutes = parseInt(time_.split(':')[1]);
+        if (hour > 19 && minutes > 29) {
+            SettomorrowDate("PickupDate");
+            $("#PickUPTime").val("08:00");
+        } else {
+            if ((hour + 1) == 25) {
+                hour = 0;
+            }
+            var time_string = "";
+            time_string += (hour+1) + ":" + minutes;
+            $("#PickUPTime").val(time_string);
+        }
+        localStorage.setItem("Full_Order", order);
+
+        $("#P_Name").val(CustomerName);
+        $("#P_Mobile").val(MobileNumber);
+        $("#P_Email").val(EmailID);
+        $("#P_Address").val(Address);
+        $("#P_Pincode").val(Pincode);
+
+        $("#D_Name").val(CustomerName);
+        $("#D_Mobile").val(MobileNumber);
+        $("#D_Email").val(EmailID);
+        $("#D_Address").val(Address);
+        $("#D_Pincode").val(Pincode);
+    });
+
+    function VerifyPincode() {
+
+        var date = $("#P_Pincode").val();
+        var found = false;
+        var servingpincode = "";
+        //  var parameters = JSON.stringify(data);
+        //disable sending message for dev purpose
+        $.ajax({
+            type: "POST",
+            url: '/MaxClean/verifyPincode',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (response) {
+
+                var pincodelist = (response);
+
+                if (pincodelist.StatusCode == 200) {
+                    for (var p = 0; p < pincodelist.ObjectResult.length; p++) {
+                        if (parseInt(date) == pincodelist.ObjectResult[p].Pincode) {
+
+                            pin_found = true;
+                        }
+                        else { servingpincode += pincodelist.ObjectResult[p].Pincode + " , "; }
+                    }
+                }
+                if (pin_found) {
+                    //$('#returnmsg').html('Sorry..! We are not serving ')
+                   // window.location.href = "/order/ordernow";
+                    //  alert('Thanks for entering the pincode')
+                    localStorage.setItem("IsValidPincode", true);
+                    return true
+                } else {
+                    localStorage.setItem("IsValidPincode", false);
+                    alert('Thank you for your interest in us, we"ll notify once we extend our service to your location. Currently we serve :' + servingpincode);
+                    //$('#returnmsg').html('Thank you for your interest in us, we"ll notify once we extend our service to your location. Currently we serve :' + servingpincode);
+                    return false;
+                }
+            },
+            error: function (e) {
+                console.log(JSON.stringify(e));
+                alert("Something went wrong. Please try again later.");
+                return false;
+            }
+        });
+    }
+
+
+    function Verify_mobile() {
+
+        if ($("#mobile").val() != "") {
+
+
+            $.post("@Url.Action("verify_mobile", "Order")", { mobile: $("#mobile").val() }, function (data) {
+
+
+                var reg_cust = JSON.parse(data);
+                if (reg_cust.CustomerID != 0) {
+                    var myobj = JSON.parse(data);
+
+                    $("#P_Name").val(myobj.CustomerName);
+                    $("#P_Mobile").val(myobj.MobileNumber);
+                    $("#P_Email").val(myobj.EmailID);
+                    $("#P_Address").val(myobj.Address);
+                    $("#P_Pincode").val(myobj.Pincode);
+
+                    $("#D_Name").val(myobj.CustomerName);
+                    $("#D_Mobile").val(myobj.MobileNumber);
+                    $("#D_Email").val(myobj.EmailID);
+                    $("#D_Address").val(myobj.Address);
+                    $("#D_Pincode").val(myobj.Pincode);
+                    $("#mobileverify_section").hide();
+                    $("#address_section").show();
+                    Isexist = "1";
+                }
+                else {
+                    //sendOTP_Now($("#mobile").val());
+                    //$("#myModal_otp_password").modal({
+                    //    backdrop: "static", //remove ability to close modal with click
+                    //    keyboard: false, //remove option to close with keyboard
+                    //    show: true //Display loader!
+                    //});
+                    //$("#txt_OTP").focus();
+                    Isexist = "1";
+                    $("#mobileverify_section").hide();
+                    $("#address_section").show();
+                    // alert("Something Went Wrong. Please retry.");
+                }
+
+
+
+            });
+
+
+        } else {
+            alert("Please Enter Mobile No.");
+        }
+    }
+    function validate_Email(email) {
+        //var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        //    return emailReg.test(String(email).toLowerCase());
+        var pattern = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (pattern.test(email))
+            return true;
+        else
+            return false;
+    }
+    function validation() {
+        VerifyPincode()
+        var name = $("#P_Name").val();
+        var mobile = $("#P_Mobile").val();
+        var email = $("#P_Email").val();
+        var pincode = $("#P_Pincode").val();
+        var address = $("#P_Address").val();
+        var date = $("#PickupDate").val();
+        var ActualDeliveryDate = $("#ActualDeliveryDate").val();
+        if (name == '') {
+            alert("Name cannot be empty");
+            return false;
+        }
+        else if (mobile == '' || mobile == null) {
+            alert("mobilenumber cannot be empty");
+            return false;
+        }
+        else if (mobile.length < 10 || mobile.length > 10) {
+            alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
+            return false;
+        }
+        else if (email == '' || email == null) {
+            alert("Email-Id cannot be empty");
+            return false;
+        }
+        else if (!validate_Email(email)) {
+            alert("Email id is not valid");
+            return false;
+        }
+        else if (pincode == '') {
+            alert("Pincode cannot be empty");
+            return false;
+        }
+        else if (pincode.length != 6) {
+            alert("Pincode. is not valid, Please Enter 6 Digit Pincode");
+            return false;
+        }
+        else if (pin_found != true) {
+            return false;
+        }
+        else if (address == '') {
+            alert("address cannot be empty");
+            return false;
+        }
+        else if (date == '') {
+            alert("Pickup date cannot be empty");
+            return false;
+        }
+        else if (ActualDeliveryDate == '') {
+            alert("Delivery Date  cannot be empty");
+            return false;
+        } else {
+            Confirm_order();
+        }
+    }
+
+    function Confirm_order() {
+        if (Isexist == "0") {
+            $("#mobileverify_section").show();
+            $("#address_section").hide();
+        } else {
+
+            if ($("#P_Address").val() == null || $("#P_Address").val() == "")
+            {
+                alert("Please enter pickup Address")
+            }
+            else {
+
+                var Order = JSON.parse(localStorage.getItem("Full_Order"));
+                Order.CustomerName = $("#P_Name").val();
+                Order.CustomerMobile = $("#P_Mobile").val();
+                Order.CustomerEmail = $("#P_Email").val();
+                Order.PickupAddress = $("#P_Address").val();
+                Order.PickupDate = $("#PickupDate").val();
+                Order.PickupTime = $("#PickUPTime").val();
+                Order.DeliveryAddress = $("#D_Address").val();
+                Order.ActualDeliveryDate = $("#ActualDeliveryDate").val();
+                Order.Pincode = $("#P_Pincode").val();
+                Order.StoreID = 1;
+
+                Order.Remark = $("#Remark").val();
+
+                $.post("@Url.Action("Place_order", "Order")", { ObjOrder: JSON.stringify(Order) }, function (data) {
+
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+
+                        //alert("Order Placed");
+                        localStorage.removeItem("Full_Order");
+                        localStorage.removeItem("Order_Object");
+                        //window.location.href = "/Maxclean/home";
+                        var orderidvalue = myobj.Result;
+                        localStorage.clear();
+                        window.location.href = "/Order/OrderConfirmation/" + orderidvalue;
+                        //windowlocation.href = "@*@Url.Action("OrderConfirmation", "order", new { id = "orderid" }).replace("orderid",orderidvalue)*@;
+                    }
+                    else {
+                        alert("Something Went Wrong. Please retry.");
+                    }
+
+                });
+            }
+        }
+
+    }
+    function copy_address() {
+        $("#D_Name").val($("#P_Name").val());
+        $("#D_Mobile").val($("#P_Mobile").val());
+        $("#D_Email").val($("#P_Email").val());
+        $("#D_Pincode").val($("#P_Pincode").val());
+        $("#D_Address").val($("#P_Address").val());
+
+    }
+    function sendOTP_Now(Mobile) {
+        var mobile = $("#mobile").val();
+        // sendOTP_Now($("#mobile").val());
+        if (mobile != "" && mobile.length == 10) {
+            $("#myModal_otp_password").modal({
+                backdrop: "static", //remove ability to close modal with click
+                keyboard: false, //remove option to close with keyboard
+                show: true //Display loader!
+            });
+            $("#txt_OTP").focus();
+            $("#mobileverify_section").show();
+            $("#address_section").hide();
+            var data = {
+                'Mobile': mobile
+            };
+
+            var parameters = JSON.stringify(data);
+            //disable sending message for dev purpose
+            $.ajax({
+                type: "POST",
+                url: '/MaxClean/SendOTP',
+                data: parameters,
+                async: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.StatusCode == 200) {
+                        if (response != null) {
+                            if (response.ObjectResult > 1) {
+                                //var OTP = prompt("Please enter OTP you just recieved on your mobile number.", "Enter OTP");
+                                AssignedOTP = response.ObjectResult;
+                                console.log("Successfully sent OTP to the number.");
+
+
+                            } else if (response.ObjectResult == -1) {
+                                alert("This number already exists. Please try another number or login using the same.");
+                                return false;
+                            }
+                        } else {
+                            alert("There was an error while sending an OTP. Please try again later.");
+                        }
+                    } else if (response.StatusCode == 400) {
+                        alert("This number already exists. Please try another number or login using the same.");
+
+                        return false;
+                    }
+
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                    alert("Something went wrong. Please try again later.");
+                    return false;
+                }
+            });
+        } else {
+            alert("Enter valid Mobile No.");
+        }
+    }
+
+    function Verify_OTP() {
+        var data = {
+            'otp': $('#userOTP').val(),
+            'mobile': $("#mobile").val()
+        };
+
+        var parameters = JSON.stringify(data);
+        $.ajax({
+                type: "POST",
+                url: '/MaxClean/Verify_OTP',
+                data: parameters,
+                async: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var myobj = response;
+                    if (myobj.StatusCode ==200) {
+                         $('#btn_otp').prop("disabled", true);
+                          $('#btnclose').click();
+
+                          $("#mobileverify_section").hide();
+                          $("#address_section").show();
+                         $("#D_Mobile").val($("#mobile").val());
+                         $("#P_Mobile").val($("#mobile").val());
+                        //Isexist = "1";
+                         Verify_mobile();
+                    }
+                     else {
+                        alert("Incorrect OTP. Please try again.");
+                        $('#btn_otp').prop("disabled", false);
+                    }
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                    alert("Something went wrong. Please try again later.");
+                   
+                }
+    });
+
+        //if ($('#userOTP').val() == AssignedOTP) {
+        //    $('#btn_otp').prop("disabled", true);
+        //    $('#btnclose').click();
+
+        //    $("#mobileverify_section").hide();
+        //    $("#address_section").show();
+        //    $("#D_Mobile").val($("#mobile").val());
+        //    $("#P_Mobile").val($("#mobile").val());
+        //    //Isexist = "1";
+        //    Verify_mobile();
+        //} else {
+        //    alert("Incorrect OTP. Please try again.");
+        //    $('#btn_otp').prop("disabled", false);
+        //}
+    }
+</script>
+<style>
+
+    /*.modals-open {
+            overflow: hidden;
+        }*/
+
+    .modals {
+        position: absolute;
+        top: 100px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        outline: 0;
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+
+    .modals-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .modals-dialog {
+        position: relative;
+        width: auto;
+        height: auto;
+        margin: 0.5rem;
+        pointer-events: none;
+        top: 25%;
+    }
+
+    .modal-dialog,
+    .modal-content {
+        height: auto;
+    }
+
+    .modals.fade .modals-dialog {
+        transition: -webkit-transform 0.3s ease-out;
+        transition: transform 0.3s ease-out;
+        transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+        -webkit-transform: translate(0, -25%);
+        transform: translate(0, -25%);
+    }
+
+    .modals.show .modals-dialog {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+
+    .modals-dialog-centered {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        min-height: calc(100% - (0.5rem * 2));
+    }
+
+    .modals-content {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+    }
+
+    .modals-backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        background-color: #000;
+    }
+
+        .modals-backdrop.fade {
+            opacity: 0;
+        }
+
+        .modals-backdrop.show {
+            opacity: 0.5;
+        }
+
+    .modals-header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+    }
+
+        .modals-header .close {
+            padding: 1rem;
+            margin: -1rem -1rem -1rem auto;
+        }
+
+    .modals-title {
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+    .modals-body {
+        position: relative;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+
+    .modals-footer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        padding: 1rem;
+        border-top: 1px solid #e9ecef;
+    }
+
+        .modals-footer > :not(:first-child) {
+            margin-left: .25rem;
+        }
+
+        .modals-footer > :not(:last-child) {
+            margin-right: .25rem;
+        }
+
+    .modals-scrollbar-measure {
+        position: absolute;
+        top: -9999px;
+        width: 50px;
+        height: 50px;
+        overflow: scroll;
+    }
+
+    @@media (min-width: 576px) {
+        .modals-dialog {
+            max-width: 500px;
+            margin: 1.75rem auto;
+        }
+
+        .modals-dialog-centered {
+            min-height: calc(100% - (1.75rem * 2));
+        }
+
+        .modals-sm {
+            max-width: 300px;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .modals-lg {
+            max-width: 800px;
+        }
+    }
+</style>

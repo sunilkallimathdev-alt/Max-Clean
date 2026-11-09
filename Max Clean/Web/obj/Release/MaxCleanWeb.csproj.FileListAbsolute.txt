@@ -1,0 +1,523 @@
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\ApplicationInsights.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\csc.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\csc.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\csc.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\csi.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\csi.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\csi.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.Win32.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.AppContext.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Collections.Immutable.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Console.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Diagnostics.Process.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Diagnostics.StackTrace.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.Compression.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.FileSystem.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.FileSystem.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.Pipes.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Reflection.Metadata.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.AccessControl.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Claims.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.Encoding.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Principal.Windows.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Threading.Thread.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.ValueTuple.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.ReaderWriter.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.XmlDocument.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.XPath.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.XPath.XDocument.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\vbc.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\vbc.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\vbc.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\VBCSCompiler.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\roslyn\VBCSCompiler.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\MaxCleanWeb.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\MaxCleanWeb.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\MaxCleanWeb.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Antlr3.Runtime.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\API.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.Agent.Intercept.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.DependencyCollector.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.Web.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.WindowsServer.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.ApplicationInsights.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.Web.Infrastructure.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Newtonsoft.Json.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Net.Http.Formatting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Helpers.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.WebHost.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Mvc.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Optimization.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Razor.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Deployment.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Razor.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\WebGrease.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\EntityFramework.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\API.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\API.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Net.Http.Formatting.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Helpers.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.WebHost.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Mvc.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.Razor.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Deployment.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Razor.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Antlr3.Runtime.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Newtonsoft.Json.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.ApplicationInsights.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.DependencyCollector.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.WindowsServer.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.Web.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.csprojResolveAssemblyReference.cache
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.csproj.CoreCompileInputs.cache
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\ApplicationInsights.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\csc.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\csc.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\csc.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\csi.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\csi.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\csi.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\Microsoft.Win32.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.AppContext.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Collections.Immutable.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Console.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Diagnostics.Process.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Diagnostics.StackTrace.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.Compression.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.FileSystem.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.FileSystem.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.IO.Pipes.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Reflection.Metadata.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.AccessControl.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Claims.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.Encoding.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Security.Principal.Windows.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Threading.Thread.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.ValueTuple.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.ReaderWriter.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.XmlDocument.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.XPath.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\System.Xml.XPath.XDocument.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\vbc.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\vbc.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\vbc.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\VBCSCompiler.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\roslyn\VBCSCompiler.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\MaxCleanWeb.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\MaxCleanWeb.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\MaxCleanWeb.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Antlr3.Runtime.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\API.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.Agent.Intercept.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.DependencyCollector.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.Web.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.WindowsServer.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.ApplicationInsights.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.Web.Infrastructure.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Newtonsoft.Json.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Net.Http.Formatting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Helpers.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.WebHost.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Mvc.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Optimization.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Razor.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Deployment.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Razor.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\WebGrease.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\EntityFramework.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\API.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\API.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Net.Http.Formatting.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Helpers.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Http.WebHost.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Mvc.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.Razor.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Deployment.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\System.Web.WebPages.Razor.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Antlr3.Runtime.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Newtonsoft.Json.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.ApplicationInsights.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.DependencyCollector.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.WindowsServer.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\Microsoft.AI.Web.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.csprojResolveAssemblyReference.cache
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.csproj.CoreCompileInputs.cache
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\obj\Release\MaxCleanWeb.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\Archive\Dev\Max Clean Admin\MaxCleanWeb\bin\MySql.Data.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\ApplicationInsights.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\csc.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\csc.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\csc.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\csi.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\csi.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\csi.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.AppContext.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Collections.Immutable.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Console.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Diagnostics.Process.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.IO.Compression.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.IO.FileSystem.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.IO.Pipes.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Reflection.Metadata.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.AccessControl.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.Claims.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Security.Principal.Windows.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Threading.Thread.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.ValueTuple.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Xml.XmlDocument.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Xml.XPath.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\vbc.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\vbc.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\vbc.rsp
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\VBCSCompiler.exe
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\roslyn\VBCSCompiler.exe.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\MaxCleanWeb.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\MaxCleanWeb.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\MaxCleanWeb.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Antlr3.Runtime.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\API.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.Agent.Intercept.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.DependencyCollector.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.Web.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.WindowsServer.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.ApplicationInsights.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.Owin.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.Web.Infrastructure.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Newtonsoft.Json.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Owin.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Net.Http.Formatting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Helpers.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Http.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Http.Owin.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Http.WebHost.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Mvc.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Optimization.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Razor.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.WebPages.Deployment.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.WebPages.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.WebPages.Razor.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\WebGrease.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\MySql.Data.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\EntityFramework.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\API.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\API.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.Owin.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Net.Http.Formatting.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Helpers.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Http.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Http.Owin.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Http.WebHost.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Mvc.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.Razor.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.WebPages.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.WebPages.Deployment.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\System.Web.WebPages.Razor.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Antlr3.Runtime.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Newtonsoft.Json.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.ApplicationInsights.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.DependencyCollector.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.WindowsServer.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\bin\Microsoft.AI.Web.xml
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\obj\Release\MaxCleanWeb.csprojResolveAssemblyReference.cache
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\obj\Release\MaxCleanWeb.csproj.CoreCompileInputs.cache
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\obj\Release\MaxCleanWeb.dll
+G:\MindMaps\1_WorkingCentre\WebApps\Max_Clean\SSFConnected\Web\obj\Release\MaxCleanWeb.pdb
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\ApplicationInsights.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csc.exe
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csc.exe.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csc.rsp
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csi.exe
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csi.exe.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csi.rsp
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.AppContext.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Console.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.Compression.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.Pipes.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Claims.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Threading.Thread.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.ValueTuple.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.XPath.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\vbc.exe
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\vbc.exe.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\vbc.rsp
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\VBCSCompiler.exe
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\MaxCleanWeb.dll.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\MaxCleanWeb.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\MaxCleanWeb.pdb
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Antlr3.Runtime.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\API.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.Web.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.ApplicationInsights.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.Owin.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Newtonsoft.Json.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Owin.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Net.Http.Formatting.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Helpers.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.Owin.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.WebHost.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Mvc.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Razor.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\WebGrease.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.Cors.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\MySql.Data.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\EntityFramework.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Linq.Dynamic.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Cors.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\API.pdb
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\API.dll.config
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.Owin.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Net.Http.Formatting.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Helpers.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.Owin.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.WebHost.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Mvc.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Razor.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Antlr3.Runtime.pdb
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Newtonsoft.Json.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.ApplicationInsights.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.Web.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.Cors.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\bin\MySql.Data.xml
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\obj\Release\MaxCleanWeb.csprojAssemblyReference.cache
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\obj\Release\MaxCleanWeb.csproj.CoreCompileInputs.cache
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\obj\Release\MaxCleanWeb.csproj.CopyComplete
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\obj\Release\MaxCleanWeb.dll
+C:\Users\balajikn\Documents\Balaji\MMT\2020\Max Clean_21_02_2019\Max Clean\Web\obj\Release\MaxCleanWeb.pdb
+F:\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.csprojAssemblyReference.cache
+F:\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.csproj.CoreCompileInputs.cache
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\ApplicationInsights.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\csc.exe
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\csc.exe.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\csc.rsp
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\csi.exe
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\csi.exe.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\csi.rsp
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.AppContext.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Collections.Immutable.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Console.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Diagnostics.Process.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.IO.Compression.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.IO.FileSystem.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.IO.Pipes.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Reflection.Metadata.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.AccessControl.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.Claims.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Security.Principal.Windows.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Threading.Thread.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.ValueTuple.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Xml.XmlDocument.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Xml.XPath.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\vbc.exe
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\vbc.exe.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\vbc.rsp
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\VBCSCompiler.exe
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\roslyn\VBCSCompiler.exe.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\MaxCleanWeb.dll.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\MaxCleanWeb.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\MaxCleanWeb.pdb
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Antlr3.Runtime.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\API.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.Web.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.WindowsServer.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.ApplicationInsights.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.Owin.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Newtonsoft.Json.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Owin.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Net.Http.Formatting.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Helpers.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.Owin.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.WebHost.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Mvc.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Razor.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.WebPages.Deployment.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.WebPages.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.WebPages.Razor.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\WebGrease.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.Cors.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\MySql.Data.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\EntityFramework.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Linq.Dynamic.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Cors.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\API.pdb
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\API.dll.config
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.Owin.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Net.Http.Formatting.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Helpers.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.Owin.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.WebHost.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Mvc.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Razor.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.WebPages.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.WebPages.Deployment.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.WebPages.Razor.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Antlr3.Runtime.pdb
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Newtonsoft.Json.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.ApplicationInsights.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.WindowsServer.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\Microsoft.AI.Web.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\bin\System.Web.Http.Cors.xml
+F:\Mindmaps Work\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.csprojAssemblyReference.cache
+F:\Mindmaps Work\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.csproj.CoreCompileInputs.cache
+F:\Mindmaps Work\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.csproj.CopyComplete
+F:\Mindmaps Work\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.dll
+F:\Mindmaps Work\Max Clean\Max Clean\Web\obj\Release\MaxCleanWeb.pdb

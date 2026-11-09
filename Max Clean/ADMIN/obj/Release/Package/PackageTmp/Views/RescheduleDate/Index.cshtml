@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewBag.Title = "Reschedule Date";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="card card-info" id="cardiv">
+            <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                <h3 class="card-title"></h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Order ID<span style="color:red">*</span></label>
+                            <input class="form-control" type="text" name="OrderID" maxlength="100" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-info" onclick="GetData()" id="btnradd">Get Order</button>
+                <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                <input type="hidden" name="HDID" />
+            </div>
+        </div>
+
+    </div>
+    <div class="card" id="orderdetails">
+        <div class="card-header">
+            <h5 class="card-title"><strong> Order Details</strong></h5>
+        </div>
+        <!-- /.card-header -->
+        <form id="formorderdetails">
+            <div class="card-body">
+                <div class="callout callout-info">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Order ID</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="orderid"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Ordered Date</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="orderdate"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <h5>Pickup Date</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="PickUpDate" name="PickUpDate"></label></strong>
+                                    <input class="form-control" type="date" @*data-date-format="dd/mm/yyyy"*@ id="Pickup" name="Pickup" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Pickup Time</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="prePickUptime" name="prePickUptime"></label></strong>
+                                    <input class="form-control" type="time" id="PickUPTime" name="PickUPTime" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <h5>Delivery Date</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="DeliveryDate" name="DeliveryDate"></label></strong>
+                                    <input class="form-control" type="date" @*data-date-format="dd/mm/yyyy"*@ id="Delivery" name="Delivery" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Delivery Time</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="preDeliveryTime" name="preDeliveryTime"></label></strong>
+                                    <input class="form-control" type="time" id="DeliveryTime" name="DeliveryTime" />
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <h5>Order Status</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="OrderStatus"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h5>Note : </h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="Note" name="Note"></label></strong>
+                                    <textarea class="form-control" type="text" id="EnteredNote" name="EnteredNote"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <br /><br /><br /><br />
+                                <button type="button" class="btn btn-success" id="btnadd">Reschedule</button>
+                                <button type="button" class="btn btn-danger" id="btnreset" onclick="Clear()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </form>
+    </div>
+</section>
+<input type="hidden" id="orderID" />
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+
+        var tableId = "tbl";
+
+        $('#formorderdetails').validate({
+            rules: {
+                CategoryName: {
+                    required: true,
+                },
+                CategoryIcon: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: false,
+                },
+                CategoryBanner: {
+                    extension: "jpg,jpeg,png",
+                    filesize: 2097152,
+                    required: false,
+                },
+                DisplayOrder: {
+                    required: false,
+                },
+                Description: {
+                    required: false,
+                },
+
+            }
+        });
+
+        var form = $("#formcategory");
+        form.validate();
+
+        $(document).ready(function () {
+
+            $('#orderdetails').hide();
+
+            $("#btnadd").click(function () {
+
+                var myobj = new Object();
+                myobj.OrderID = $('#orderID').val();
+                    myobj.PickupDate = $('[name="Pickup"]').val();
+                    myobj.PickupTime = $('[name="PickUPTime"]').val();
+                    myobj.DeliveryTime = $('[name="DeliveryTime"]').val();
+                    if ($('[name="Delivery"]').val()!=null)
+                        myobj.ExpectingDeliveryDate = $('[name="Delivery"]').val();
+
+                    myobj.RescheduledNote = $('[name="EnteredNote"]').val();
+
+                    $.post("@Url.Action("Updateorder","RescheduleDate")", { Obj: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("", "Rescheduled Successfully.");
+                            $('#orderdetails').hide();
+                            $('[name="OrderID"]').val(null);
+                            Clear();
+                        }
+                        else
+                            WarningAlert("", Res.Message);
+                    });
+
+
+            })
+        });
+
+        function GetData() {
+            var OrderID = $('[name="OrderID"]').val();
+            //alert(OrderID.split('-')[1]);
+            if (OrderID != null && OrderID.split('-')[1] != undefined) {
+                $.get("@Url.Action("GetOrdersById", "OrderDetails")", { ID: OrderID.split('-')[1] }, function (data) {
+                    $('#orderdetails').show();
+                    var myObject = JSON.parse(data);
+                    if (myObject.ObjectResult != null) {
+                        $("#orderID").val(myObject.ObjectResult.OrderID);
+                        $('#orderid').html(myObject.ObjectResult.Store_code+"-"+myObject.ObjectResult.OrderID);
+                        $('#orderdate').html(SplitDateTime(myObject.ObjectResult.OrderDate));
+                        
+                        $('[name="prePickUptime"]').html(tConvert(myObject.ObjectResult.PickupTime));
+                        $('[name="preDeliveryTime"]').html(tConvert(myObject.ObjectResult.DeliveryTime));
+                        $('[name="PickUpDate"]').html(SplitDateTime(myObject.ObjectResult.PickupDate));
+                        $('[name="DeliveryDate"]').html(SplitDateTime(myObject.ObjectResult.ActualDeliveryDate));
+                        $('[name="Note"]').html(myObject.ObjectResult.RescheduledNote);
+                        $('#OrderStatus').html(myObject.ObjectResult.OrderStatus);
+                        if (myObject.ObjectResult.orderstatusID > 4) {
+                            $("#Pickup").hide();
+                            $("#PickUPTime").hide();
+                           
+                        }
+                        if (myObject.ObjectResult.orderstatusID > 10) {
+                            $("#Delivery").hide();
+                            $("#DeliveryTime").hide();
+                            $("#EnteredNote").hide();
+                        }
+
+                        $("#orderdetails").show();
+                    }
+                    else {
+                        DangerAlert(" ", "Order Not Found");
+                    }
+                });
+            } else {
+                WarningAlert("", "Enter Valid OrderID");
+                $('[name="OrderID"]').focus();
+            }
+        }
+
+
+        function ClearFields() {
+            $('[name="OrderID"]').val(null);
+        }
+        function Clear() {
+            $('[name="Pickup"]').val(null);
+            $('[name="PickUPTime"]').val(null);
+            $('[name="DeliveryTime"]').val(null);
+            $('[name="Delivery"]').val(null);
+            $('[name="prePickUptime"]').html("");
+            $('[name="preDeliveryTime"]').html("");
+            $('[name="EnteredNote"]').val(null);
+            $("#orderdetails").hide();
+        }
+</script>
+
+
+

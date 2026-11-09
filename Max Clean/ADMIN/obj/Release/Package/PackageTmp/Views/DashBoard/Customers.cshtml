@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Customers";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button onclick="window.history.back();" class="btn btn-danger btn-sm">Go Back</button>
+               
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+
+        var tableId = "tbl";
+
+        $(document).ready(function () {
+            BindTableData();
+
+        });
+
+
+
+        function BindTableData() {
+
+            $.get("@Url.Action("GetCustomerList", "Customer")", function (data) {
+                var myObject = JSON.parse(data);
+                var TableDate = [];
+                for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].CustomerName);
+                row.push("<a href=mailto:" + myObject[i].EmailID + ">" + myObject[i].EmailID + "</a>");
+                row.push("<a href=tel:" + myObject[i].MobileNumber + ">" + myObject[i].MobileNumber + "</a>");
+                row.push("<a href=tel:" + myObject[i].AltMobileNumber + ">" + myObject[i].AltMobileNumber + "</a>");
+                row.push(myObject[i].CustomerRewardPoints);
+
+                TableDate.push(row);
+                }
+                $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                responsive: true,
+                columns: [
+                    { title: "Customer Name" },
+                    { title: "EmailID" },
+                    { title: "Mobile Number" },
+                    { title: "Alt MobileNumber" },
+                    { title: " Customer Reward Points" }
+                ]
+                });
+                hideshowbuttons();
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }
+
+    </script>
+
+</section>

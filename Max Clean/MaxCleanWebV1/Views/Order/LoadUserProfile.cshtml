@@ -1,0 +1,90 @@
+﻿@using API.Models;
+@{
+    ViewBag.Title = "LoadUserProfile";
+    Layout = "~/Views/Shared/WebMasterLogin.cshtml";
+
+    Customer_Model user = (Customer_Model)Session["CurrentUser"];
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <h3 class="fw_medium m_bottom_15">Profiles</h3>
+        <div class="row clearfix">
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30">
+                <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45">
+                    <form>
+                        <ul>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required">Name:</label>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Email:</label>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Address:</label>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Mobile Number:</label>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Alternative Number:</label>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Password:</label>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Confirm password:</label>
+                                    </li>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                                    <li class="m_bottom_15">
+                                        <input type="text" id="u_name" name="" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <input type="text" id="u_email" name="" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <textarea type="text" id="u_address" name="" class="r_corners full_width" style="height:60px;"></textarea>
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <input type="text" id="u_mobileNumber" name="" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <input type="text" id="u_alterNativeNumber" name="" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <input type="password" id="u_passWord" name="" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <input type="password" id="u_confirmPasswords" name="" class="r_corners full_width">
+                                    </li>
+                                    <button class="sy_button t_align_c twitter" style="font-size:15px;font-weight:bold;">Save Changes</button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                </div>
+                            </div>
+                        </ul>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var CategoryTabs = "";
+
+    $(document).ready(function () {
+
+         //Fill in the form
+        $('#u_name').val("@user.CustomerName");
+        $('#u_email').val("@user.EmailID");
+        $('#u_address').val("@user.Address");
+        $('#u_mobileNumber').val("@user.MobileNumber");
+        $('#u_alterNativeNumber').val("@user.AltMobileNumber");
+        $('#u_passWord').val("@user.Password");
+        $('#u_confirmPasswords').val("@user.Password");
+    });
+</script>

@@ -1,0 +1,1168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="maxcleanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="maxcleanEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_StoreAtYourLoc" ReturnType="Collection(maxcleanModel.SP_StoreAtYourLoc_Result)">
+      <Parameter Name="UserLattitude" Mode="In" Type="String" />
+      <Parameter Name="UserLongitude" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="t_banner" EntityType="maxcleanModel.t_banner" />
+    <EntitySet Name="t_category" EntityType="maxcleanModel.t_category" />
+    <EntitySet Name="t_customer" EntityType="maxcleanModel.t_customer" />
+    <EntitySet Name="t_delivery_boy" EntityType="maxcleanModel.t_delivery_boy" />
+    <EntitySet Name="t_deliveryboy_deviceid" EntityType="maxcleanModel.t_deliveryboy_deviceid" />
+    <EntitySet Name="t_deliveryboy_incentives" EntityType="maxcleanModel.t_deliveryboy_incentives" />
+    <EntitySet Name="t_enquiries" EntityType="maxcleanModel.t_enquiries" />
+    <EntitySet Name="t_exception" EntityType="maxcleanModel.t_exception" />
+    <EntitySet Name="t_gallery" EntityType="maxcleanModel.t_gallery" />
+    <EntitySet Name="t_incentives_transaction" EntityType="maxcleanModel.t_incentives_transaction" />
+    <EntitySet Name="t_marque" EntityType="maxcleanModel.t_marque" />
+    <EntitySet Name="t_order_cylce" EntityType="maxcleanModel.t_order_cylce" />
+    <EntitySet Name="t_order_details" EntityType="maxcleanModel.t_order_details" />
+    <EntitySet Name="t_orders" EntityType="maxcleanModel.t_orders" />
+    <EntitySet Name="t_product" EntityType="maxcleanModel.t_product" />
+    <EntitySet Name="t_promocode" EntityType="maxcleanModel.t_promocode" />
+    <EntitySet Name="t_promotions" EntityType="maxcleanModel.t_promotions" />
+    <EntitySet Name="t_reward" EntityType="maxcleanModel.t_reward" />
+    <EntitySet Name="t_role" EntityType="maxcleanModel.t_role" />
+    <EntitySet Name="t_service" EntityType="maxcleanModel.t_service" />
+    <EntitySet Name="t_service_price" EntityType="maxcleanModel.t_service_price" />
+    <EntitySet Name="t_store" EntityType="maxcleanModel.t_store" />
+    <EntitySet Name="t_tag_details" EntityType="maxcleanModel.t_tag_details" />
+    <EntitySet Name="t_taggs" EntityType="maxcleanModel.t_taggs" />
+    <EntitySet Name="t_user" EntityType="maxcleanModel.t_user" />
+    <EntitySet Name="tbl_admin_category" EntityType="maxcleanModel.tbl_admin_category" />
+    <EntitySet Name="tbl_admin_pages" EntityType="maxcleanModel.tbl_admin_pages" />
+    <EntitySet Name="tbl_roles_privileges" EntityType="maxcleanModel.tbl_roles_privileges" />
+    <EntitySet Name="t_admin_users" EntityType="maxcleanModel.t_admin_users" />
+    <EntitySet Name="t_brands" EntityType="maxcleanModel.t_brands" />
+    <EntitySet Name="t_cities" EntityType="maxcleanModel.t_cities" />
+    <EntitySet Name="t_coupun" EntityType="maxcleanModel.t_coupun" />
+    <EntitySet Name="t_customer_details" EntityType="maxcleanModel.t_customer_details" />
+    <EntitySet Name="t_dealoftheday" EntityType="maxcleanModel.t_dealoftheday" />
+    <EntitySet Name="t_delete_order" EntityType="maxcleanModel.t_delete_order" />
+    <EntitySet Name="t_delete_order_details" EntityType="maxcleanModel.t_delete_order_details" />
+    <EntitySet Name="t_delivery_details" EntityType="maxcleanModel.t_delivery_details" />
+    <EntitySet Name="t_delivery_locations" EntityType="maxcleanModel.t_delivery_locations" />
+    <EntitySet Name="t_enquiry" EntityType="maxcleanModel.t_enquiry" />
+    <EntitySet Name="t_gst" EntityType="maxcleanModel.t_gst" />
+    <AssociationSet Name="t_category_ibfk_1" Association="maxcleanModel.t_category_ibfk_1">
+      <End Role="t_service" EntitySet="t_service" />
+      <End Role="t_category" EntitySet="t_category" />
+    </AssociationSet>
+    <AssociationSet Name="t_product_ibfk_1" Association="maxcleanModel.t_product_ibfk_1">
+      <End Role="t_category" EntitySet="t_category" />
+      <End Role="t_product" EntitySet="t_product" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_1" Association="maxcleanModel.t_orders_ibfk_1">
+      <End Role="t_customer" EntitySet="t_customer" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_reward_ibfk_1" Association="maxcleanModel.t_reward_ibfk_1">
+      <End Role="t_customer" EntitySet="t_customer" />
+      <End Role="t_reward" EntitySet="t_reward" />
+    </AssociationSet>
+    <AssociationSet Name="t_deliveryboy_deviceid_ibfk_1" Association="maxcleanModel.t_deliveryboy_deviceid_ibfk_1">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_deliveryboy_deviceid" EntitySet="t_deliveryboy_deviceid" />
+    </AssociationSet>
+    <AssociationSet Name="t_deliveryboy_incentives_ibfk_1" Association="maxcleanModel.t_deliveryboy_incentives_ibfk_1">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_deliveryboy_incentives" EntitySet="t_deliveryboy_incentives" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_3" Association="maxcleanModel.t_orders_ibfk_3">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_6" Association="maxcleanModel.t_orders_ibfk_6">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_incentives_transaction_ibfk_1" Association="maxcleanModel.t_incentives_transaction_ibfk_1">
+      <End Role="t_deliveryboy_incentives" EntitySet="t_deliveryboy_incentives" />
+      <End Role="t_incentives_transaction" EntitySet="t_incentives_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_4" Association="maxcleanModel.t_orders_ibfk_4">
+      <End Role="t_order_cylce" EntitySet="t_order_cylce" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_order_details_ibfk_3" Association="maxcleanModel.t_order_details_ibfk_3">
+      <End Role="t_service" EntitySet="t_service" />
+      <End Role="t_order_details" EntitySet="t_order_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_order_details_ibfk_4" Association="maxcleanModel.t_order_details_ibfk_4">
+      <End Role="t_product" EntitySet="t_product" />
+      <End Role="t_order_details" EntitySet="t_order_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_order_details_ibfk_5" Association="maxcleanModel.t_order_details_ibfk_5">
+      <End Role="t_orders" EntitySet="t_orders" />
+      <End Role="t_order_details" EntitySet="t_order_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_2" Association="maxcleanModel.t_orders_ibfk_2">
+      <End Role="t_user" EntitySet="t_user" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_5" Association="maxcleanModel.t_orders_ibfk_5">
+      <End Role="t_store" EntitySet="t_store" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_tag_details_ibfk_5" Association="maxcleanModel.t_tag_details_ibfk_5">
+      <End Role="t_orders" EntitySet="t_orders" />
+      <End Role="t_tag_details" EntitySet="t_tag_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_taggs_ibfk_1" Association="maxcleanModel.t_taggs_ibfk_1">
+      <End Role="t_orders" EntitySet="t_orders" />
+      <End Role="t_taggs" EntitySet="t_taggs" />
+    </AssociationSet>
+    <AssociationSet Name="t_service_price_ibfk_2" Association="maxcleanModel.t_service_price_ibfk_2">
+      <End Role="t_product" EntitySet="t_product" />
+      <End Role="t_service_price" EntitySet="t_service_price" />
+    </AssociationSet>
+    <AssociationSet Name="t_user_ibfk_1" Association="maxcleanModel.t_user_ibfk_1">
+      <End Role="t_role" EntitySet="t_role" />
+      <End Role="t_user" EntitySet="t_user" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_roles_privileges_ibfk_3" Association="maxcleanModel.tbl_roles_privileges_ibfk_3">
+      <End Role="t_role" EntitySet="t_role" />
+      <End Role="tbl_roles_privileges" EntitySet="tbl_roles_privileges" />
+    </AssociationSet>
+    <AssociationSet Name="t_service_price_ibfk_1" Association="maxcleanModel.t_service_price_ibfk_1">
+      <End Role="t_service" EntitySet="t_service" />
+      <End Role="t_service_price" EntitySet="t_service_price" />
+    </AssociationSet>
+    <AssociationSet Name="t_user_ibfk_2" Association="maxcleanModel.t_user_ibfk_2">
+      <End Role="t_store" EntitySet="t_store" />
+      <End Role="t_user" EntitySet="t_user" />
+    </AssociationSet>
+    <AssociationSet Name="t_tag_details_ibfk_4" Association="maxcleanModel.t_tag_details_ibfk_4">
+      <End Role="t_taggs" EntitySet="t_taggs" />
+      <End Role="t_tag_details" EntitySet="t_tag_details" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_admin_pages_ibfk_1" Association="maxcleanModel.tbl_admin_pages_ibfk_1">
+      <End Role="tbl_admin_category" EntitySet="tbl_admin_category" />
+      <End Role="tbl_admin_pages" EntitySet="tbl_admin_pages" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_roles_privileges_ibfk_4" Association="maxcleanModel.tbl_roles_privileges_ibfk_4">
+      <End Role="tbl_admin_pages" EntitySet="tbl_admin_pages" />
+      <End Role="tbl_roles_privileges" EntitySet="tbl_roles_privileges" />
+    </AssociationSet>
+    <EntitySet Name="t_pincodes" EntityType="maxcleanModel.t_pincodes" />
+    <AssociationSet Name="t_pincodes_ibfk_1" Association="maxcleanModel.t_pincodes_ibfk_1">
+      <End Role="t_store" EntitySet="t_store" />
+      <End Role="t_pincodes" EntitySet="t_pincodes" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="SP_StoreAtYourLoc_Result" />
+  <EntityType Name="t_banner">
+    <Key>
+      <PropertyRef Name="banner_id" />
+    </Key>
+    <Property Name="banner_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="banner_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="banner_image" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="update_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_id" Type="Int32" />
+    <Property Name="category_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="category_icon" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="category_banner" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="display_order" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+    <NavigationProperty Name="t_service" Relationship="maxcleanModel.t_category_ibfk_1" FromRole="t_category" ToRole="t_service" />
+    <NavigationProperty Name="t_product" Relationship="maxcleanModel.t_product_ibfk_1" FromRole="t_category" ToRole="t_product" />
+  </EntityType>
+  <EntityType Name="t_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="alt_mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsMobileVerified" Type="Boolean" />
+    <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="old_balance" Type="Double" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+    <Property Name="pincode" Type="Int32" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_orders_ibfk_1" FromRole="t_customer" ToRole="t_orders" />
+    <NavigationProperty Name="t_reward" Relationship="maxcleanModel.t_reward_ibfk_1" FromRole="t_customer" ToRole="t_reward" />
+  </EntityType>
+  <EntityType Name="t_delivery_boy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="vehicle_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="licence_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="languages_known" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="t_deliveryboy_deviceid" Relationship="maxcleanModel.t_deliveryboy_deviceid_ibfk_1" FromRole="t_delivery_boy" ToRole="t_deliveryboy_deviceid" />
+    <NavigationProperty Name="t_deliveryboy_incentives" Relationship="maxcleanModel.t_deliveryboy_incentives_ibfk_1" FromRole="t_delivery_boy" ToRole="t_deliveryboy_incentives" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_orders_ibfk_3" FromRole="t_delivery_boy" ToRole="t_orders" />
+    <NavigationProperty Name="t_orders1" Relationship="maxcleanModel.t_orders_ibfk_6" FromRole="t_delivery_boy" ToRole="t_orders" />
+  </EntityType>
+  <EntityType Name="t_deliveryboy_deviceid">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="delivery_boy_id" Type="Int32" />
+    <Property Name="deviceId" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="t_delivery_boy" Relationship="maxcleanModel.t_deliveryboy_deviceid_ibfk_1" FromRole="t_deliveryboy_deviceid" ToRole="t_delivery_boy" />
+  </EntityType>
+  <EntityType Name="t_deliveryboy_incentives">
+    <Key>
+      <PropertyRef Name="db_incentive_id" />
+    </Key>
+    <Property Name="db_incentive_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="delivery_boy_id" Type="Int32" />
+    <Property Name="incentives" Type="Double" />
+    <Property Name="amount_paid" Type="Double" />
+    <Property Name="balance" Type="Double" />
+    <NavigationProperty Name="t_delivery_boy" Relationship="maxcleanModel.t_deliveryboy_incentives_ibfk_1" FromRole="t_deliveryboy_incentives" ToRole="t_delivery_boy" />
+    <NavigationProperty Name="t_incentives_transaction" Relationship="maxcleanModel.t_incentives_transaction_ibfk_1" FromRole="t_deliveryboy_incentives" ToRole="t_incentives_transaction" />
+  </EntityType>
+  <EntityType Name="t_enquiries">
+    <Key>
+      <PropertyRef Name="contact_us_id" />
+    </Key>
+    <Property Name="contact_us_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contact_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mobile_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="message" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="update_by" Type="Int32" />
+    <Property Name="update_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_exception">
+    <Key>
+      <PropertyRef Name="exception_id" />
+    </Key>
+    <Property Name="exception_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="exception_type" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="exception_Error" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="exception_Page" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="inner_exception" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_gallery">
+    <Key>
+      <PropertyRef Name="gallery_id" />
+    </Key>
+    <Property Name="gallery_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="is_image" Type="Boolean" />
+    <Property Name="url" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="update_by" Type="Int32" />
+    <Property Name="update_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_incentives_transaction">
+    <Key>
+      <PropertyRef Name="incentive_transaction_id" />
+    </Key>
+    <Property Name="incentive_transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="deliveryboy_incentive_id" Type="Int64" />
+    <Property Name="amount_paid" Type="Double" />
+    <Property Name="payment_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="transaction_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="note" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_deliveryboy_incentives" Relationship="maxcleanModel.t_incentives_transaction_ibfk_1" FromRole="t_incentives_transaction" ToRole="t_deliveryboy_incentives" />
+  </EntityType>
+  <EntityType Name="t_marque">
+    <Key>
+      <PropertyRef Name="marque_id" />
+    </Key>
+    <Property Name="marque_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_order_cylce">
+    <Key>
+      <PropertyRef Name="order_cycle_id" />
+    </Key>
+    <Property Name="order_cycle_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_cycle_stage" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="diplay_order" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_orders_ibfk_4" FromRole="t_order_cylce" ToRole="t_orders" />
+  </EntityType>
+  <EntityType Name="t_order_details">
+    <Key>
+      <PropertyRef Name="order_details_id" />
+    </Key>
+    <Property Name="order_details_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Int64" />
+    <Property Name="service_id" Type="Int32" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="delivered_quantity" Type="Int32" />
+    <Property Name="remaining_quantity" Type="Int32" />
+    <Property Name="unit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="total_price" Type="Double" />
+    <Property Name="extra_charge_percentage" Type="Decimal" />
+    <Property Name="extra_charge_price" Type="Double" />
+    <NavigationProperty Name="t_service" Relationship="maxcleanModel.t_order_details_ibfk_3" FromRole="t_order_details" ToRole="t_service" />
+    <NavigationProperty Name="t_product" Relationship="maxcleanModel.t_order_details_ibfk_4" FromRole="t_order_details" ToRole="t_product" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_order_details_ibfk_5" FromRole="t_order_details" ToRole="t_orders" />
+  </EntityType>
+  <EntityType Name="t_orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="order_date" Type="DateTime" Nullable="false" />
+    <Property Name="delivery_date" Type="DateTime" Nullable="false" />
+    <Property Name="expected_delivery_date" Type="DateTime" />
+    <Property Name="delivery_address" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="pickup_date" Type="DateTime" Nullable="false" />
+    <Property Name="pickup_time" Type="Time" Nullable="false" />
+    <Property Name="pickup_address" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="delivery_time" Type="Time" Nullable="false" />
+    <Property Name="confirmed_by" Type="Int32" />
+    <Property Name="pickedup_by" Type="Int32" />
+    <Property Name="is_express_delivery" Type="Boolean" />
+    <Property Name="delivered_by" Type="Int32" />
+    <Property Name="express_delivery_price" Type="Double" Nullable="false" />
+    <Property Name="old_balance" Type="Double" Nullable="false" />
+    <Property Name="grandtotal_price" Type="Double" />
+    <Property Name="advance_amount" Type="Double" />
+    <Property Name="paid_amount" Type="Double" />
+    <Property Name="balance_amount" Type="Double" />
+    <Property Name="payment_Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="payment_type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Invoice_No" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="rewardsapplied" Type="Double" />
+    <Property Name="order_status" Type="Int32" />
+    <Property Name="is_outlet_order" Type="Boolean" />
+    <Property Name="cust_sign_at_pickup" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="cust_sign_at_delivery" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="Received_at_store_by" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="admin_sign_at_pickup" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="sent_from_store_by" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="admin_sign_at_delivery" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="is_tagged" Type="Boolean" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="note" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="is_promocode_applied" Type="Boolean" Nullable="false" />
+    <Property Name="promocode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="promocode_amount" Type="Double" Nullable="false" />
+    <Property Name="delivery_charge" Type="Double" Nullable="false" />
+    <Property Name="promocode_discount" Type="Double" Nullable="false" />
+    <Property Name="is_deleted" Type="Boolean" />
+    <Property Name="deleted_by" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="deleted_date" Type="DateTime" />
+    <Property Name="pincode" Type="Int32" />
+    <NavigationProperty Name="t_customer" Relationship="maxcleanModel.t_orders_ibfk_1" FromRole="t_orders" ToRole="t_customer" />
+    <NavigationProperty Name="t_delivery_boy" Relationship="maxcleanModel.t_orders_ibfk_3" FromRole="t_orders" ToRole="t_delivery_boy" />
+    <NavigationProperty Name="t_delivery_boy1" Relationship="maxcleanModel.t_orders_ibfk_6" FromRole="t_orders" ToRole="t_delivery_boy" />
+    <NavigationProperty Name="t_order_cylce" Relationship="maxcleanModel.t_orders_ibfk_4" FromRole="t_orders" ToRole="t_order_cylce" />
+    <NavigationProperty Name="t_order_details" Relationship="maxcleanModel.t_order_details_ibfk_5" FromRole="t_orders" ToRole="t_order_details" />
+    <NavigationProperty Name="t_user" Relationship="maxcleanModel.t_orders_ibfk_2" FromRole="t_orders" ToRole="t_user" />
+    <NavigationProperty Name="t_store" Relationship="maxcleanModel.t_orders_ibfk_5" FromRole="t_orders" ToRole="t_store" />
+    <NavigationProperty Name="t_tag_details" Relationship="maxcleanModel.t_tag_details_ibfk_5" FromRole="t_orders" ToRole="t_tag_details" />
+    <NavigationProperty Name="t_taggs" Relationship="maxcleanModel.t_taggs_ibfk_1" FromRole="t_orders" ToRole="t_taggs" />
+  </EntityType>
+  <EntityType Name="t_product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="product_image" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+    <NavigationProperty Name="t_category" Relationship="maxcleanModel.t_product_ibfk_1" FromRole="t_product" ToRole="t_category" />
+    <NavigationProperty Name="t_order_details" Relationship="maxcleanModel.t_order_details_ibfk_4" FromRole="t_product" ToRole="t_order_details" />
+    <NavigationProperty Name="t_service_price" Relationship="maxcleanModel.t_service_price_ibfk_2" FromRole="t_product" ToRole="t_service_price" />
+  </EntityType>
+  <EntityType Name="t_promocode">
+    <Key>
+      <PropertyRef Name="promocode_id" />
+    </Key>
+    <Property Name="promocode_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="promocode_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_promotions">
+    <Key>
+      <PropertyRef Name="subscribe_id" />
+    </Key>
+    <Property Name="subscribe_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="update_by" Type="Int32" />
+    <Property Name="update_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_reward">
+    <Key>
+      <PropertyRef Name="reward_id" />
+    </Key>
+    <Property Name="reward_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="customer_rewardpoints" Type="Double" />
+    <Property Name="customer_usedrewards" Type="Double" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="update_by" Type="Int32" />
+    <Property Name="update_date" Type="DateTime" />
+    <NavigationProperty Name="t_customer" Relationship="maxcleanModel.t_reward_ibfk_1" FromRole="t_reward" ToRole="t_customer" />
+  </EntityType>
+  <EntityType Name="t_role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+    <NavigationProperty Name="t_user" Relationship="maxcleanModel.t_user_ibfk_1" FromRole="t_role" ToRole="t_user" />
+    <NavigationProperty Name="tbl_roles_privileges" Relationship="maxcleanModel.tbl_roles_privileges_ibfk_3" FromRole="t_role" ToRole="tbl_roles_privileges" />
+  </EntityType>
+  <EntityType Name="t_service">
+    <Key>
+      <PropertyRef Name="service_id" />
+    </Key>
+    <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="display_order" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="update_by" Type="Int32" />
+    <Property Name="update_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="t_category" Relationship="maxcleanModel.t_category_ibfk_1" FromRole="t_service" ToRole="t_category" />
+    <NavigationProperty Name="t_order_details" Relationship="maxcleanModel.t_order_details_ibfk_3" FromRole="t_service" ToRole="t_order_details" />
+    <NavigationProperty Name="t_service_price" Relationship="maxcleanModel.t_service_price_ibfk_1" FromRole="t_service" ToRole="t_service_price" />
+  </EntityType>
+  <EntityType Name="t_service_price">
+    <Key>
+      <PropertyRef Name="service_price_id" />
+    </Key>
+    <Property Name="service_price_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_id" Type="Int32" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="unit" Type="Int32" />
+    <Property Name="price" Type="Double" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="t_product" Relationship="maxcleanModel.t_service_price_ibfk_2" FromRole="t_service_price" ToRole="t_product" />
+    <NavigationProperty Name="t_service" Relationship="maxcleanModel.t_service_price_ibfk_1" FromRole="t_service_price" ToRole="t_service" />
+  </EntityType>
+  <EntityType Name="t_store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="manager_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="pincode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="radius" Type="Decimal" />
+    <Property Name="latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="longitute" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+    <Property Name="store_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_orders_ibfk_5" FromRole="t_store" ToRole="t_orders" />
+    <NavigationProperty Name="t_user" Relationship="maxcleanModel.t_user_ibfk_2" FromRole="t_store" ToRole="t_user" />
+    <NavigationProperty Name="t_pincodes" Relationship="maxcleanModel.t_pincodes_ibfk_1" FromRole="t_store" ToRole="t_pincodes" />
+  </EntityType>
+  <EntityType Name="t_tag_details">
+    <Key>
+      <PropertyRef Name="tag_details_id" />
+    </Key>
+    <Property Name="tag_details_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tag_id" Type="Int64" />
+    <Property Name="order_id" Type="Int64" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_tag_details_ibfk_5" FromRole="t_tag_details" ToRole="t_orders" />
+    <NavigationProperty Name="t_taggs" Relationship="maxcleanModel.t_tag_details_ibfk_4" FromRole="t_tag_details" ToRole="t_taggs" />
+  </EntityType>
+  <EntityType Name="t_taggs">
+    <Key>
+      <PropertyRef Name="tag_id" />
+    </Key>
+    <Property Name="tag_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Int64" />
+    <Property Name="sent_to_factory_on" Type="DateTime" Nullable="false" />
+    <Property Name="received_from_factory" Type="DateTime" Nullable="false" />
+    <Property Name="tag_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tag_note" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="created_date" Type="DateTime" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_taggs_ibfk_1" FromRole="t_taggs" ToRole="t_orders" />
+    <NavigationProperty Name="t_tag_details" Relationship="maxcleanModel.t_tag_details_ibfk_4" FromRole="t_taggs" ToRole="t_tag_details" />
+  </EntityType>
+  <EntityType Name="t_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="alt_mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" />
+    <NavigationProperty Name="t_orders" Relationship="maxcleanModel.t_orders_ibfk_2" FromRole="t_user" ToRole="t_orders" />
+    <NavigationProperty Name="t_role" Relationship="maxcleanModel.t_user_ibfk_1" FromRole="t_user" ToRole="t_role" />
+    <NavigationProperty Name="t_store" Relationship="maxcleanModel.t_user_ibfk_2" FromRole="t_user" ToRole="t_store" />
+  </EntityType>
+  <EntityType Name="tbl_admin_category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="display_order" Type="Int32" />
+    <Property Name="font_awsome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_admin_pages" Relationship="maxcleanModel.tbl_admin_pages_ibfk_1" FromRole="tbl_admin_category" ToRole="tbl_admin_pages" />
+  </EntityType>
+  <EntityType Name="tbl_admin_pages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="page_name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="display_order" Type="Int32" />
+    <Property Name="li_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="tbl_admin_category" Relationship="maxcleanModel.tbl_admin_pages_ibfk_1" FromRole="tbl_admin_pages" ToRole="tbl_admin_category" />
+    <NavigationProperty Name="tbl_roles_privileges" Relationship="maxcleanModel.tbl_roles_privileges_ibfk_4" FromRole="tbl_admin_pages" ToRole="tbl_roles_privileges" />
+  </EntityType>
+  <EntityType Name="tbl_roles_privileges">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="admin_page_id" Type="Int32" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="is_view_enabled" Type="Boolean" />
+    <Property Name="is_add_edit_enabled" Type="Boolean" />
+    <Property Name="is_delete_enabled" Type="Boolean" />
+    <NavigationProperty Name="t_role" Relationship="maxcleanModel.tbl_roles_privileges_ibfk_3" FromRole="tbl_roles_privileges" ToRole="t_role" />
+    <NavigationProperty Name="tbl_admin_pages" Relationship="maxcleanModel.tbl_roles_privileges_ibfk_4" FromRole="tbl_roles_privileges" ToRole="tbl_admin_pages" />
+  </EntityType>
+  <EntityType Name="t_admin_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="user_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="Int64" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="DateTime" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="token_id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_brands">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="Int32" Nullable="false" />
+    <Property Name="brand_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_cities">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="Int32" Nullable="false" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="city_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="home_delivery_available" Type="Boolean" />
+    <Property Name="city_image" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="t_coupun">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="created_date" />
+      <PropertyRef Name="updated_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="coupun_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="coupun_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="discount_amount" Type="Decimal" />
+    <Property Name="discount_percent" Type="Decimal" />
+    <Property Name="offers_in_percent" Type="Boolean" />
+    <Property Name="minmum_amount_purches" Type="Decimal" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+    <Property Name="updated_by" Type="Int32" />
+  </EntityType>
+  <EntityType Name="t_customer_details">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="customer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mobile_no" Type="Int64" />
+    <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="delivery_address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_dealoftheday">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="created_date" />
+      <PropertyRef Name="updated_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="start_date" Type="DateTime" />
+    <Property Name="end_date" Type="DateTime" />
+    <Property Name="start_time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="end_time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="actual_price" Type="Decimal" />
+    <Property Name="descount_percentage" Type="Decimal" />
+    <Property Name="descounted_price" Type="Decimal" />
+    <Property Name="location_id" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_delete_order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int64" Nullable="false" />
+    <Property Name="temp_order_id" Type="Int32" />
+    <Property Name="paypal_transaction_id" Type="Int32" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="ordered_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="total_amount" Type="Decimal" />
+    <Property Name="location_id" Type="Int32" />
+    <Property Name="shipping_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_conctactno" Type="Int64" />
+    <Property Name="shipping_address" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_landmark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_pincode" Type="Int32" />
+    <Property Name="billing_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="billing_emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="billing_conctactno" Type="Int64" />
+    <Property Name="billing_address" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="billing_landmark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="billing_city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="billing_pincode" Type="Int32" />
+    <Property Name="coupon_code" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="coupon_discountprice" Type="Decimal" />
+    <Property Name="warehouse_pickup" Type="Boolean" />
+    <Property Name="warehouse_pickup_discount" Type="Decimal" />
+    <Property Name="shippingcharges" Type="Decimal" />
+    <Property Name="order_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OrderFrom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="payment_mode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="recipt_number" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="created_date" Type="DateTime" />
+    <Property Name="updated_date" Type="DateTime" />
+    <Property Name="tax_percent" Type="Decimal" />
+    <Property Name="dispatch_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="PaymentPending" Type="DateTime" />
+    <Property Name="Confirm" Type="DateTime" />
+    <Property Name="InTransit" Type="DateTime" />
+    <Property Name="Delivered" Type="DateTime" />
+    <Property Name="Rejected" Type="DateTime" />
+    <Property Name="DeliveryFailed" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_delete_order_details">
+    <Key>
+      <PropertyRef Name="order_detail_id" />
+    </Key>
+    <Property Name="order_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="actual_price" Type="Decimal" />
+    <Property Name="discount_price" Type="Decimal" />
+    <Property Name="order_id" Type="Int64" />
+    <Property Name="created_date" Type="DateTime" />
+    <Property Name="updated_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_delivery_details">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <Property Name="location_id" Type="Int32" />
+    <Property Name="store_manager_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="store_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="store_number" Type="Int64" />
+    <Property Name="store_emailid" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="store_address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="store_landmark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="store_city" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="store_pincode" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="DateTime" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="t_delivery_locations">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="Int32" Nullable="false" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="location_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="display_order" Type="Int32" />
+    <Property Name="location_image_url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="is_home_delivery_available" Type="Boolean" />
+    <Property Name="markup_price" Type="Decimal" />
+    <Property Name="min_amount" Type="Int32" />
+    <Property Name="free_shipping_price" Type="Int32" />
+    <Property Name="shipping_charges" Type="Int32" />
+    <Property Name="estimated_delivery" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_date" Type="DateTime" />
+    <Property Name="updated_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="t_enquiry">
+    <Key>
+      <PropertyRef Name="enquiry_id" />
+      <PropertyRef Name="created_date" />
+      <PropertyRef Name="updated_date" />
+    </Key>
+    <Property Name="enquiry_id" Type="Int32" Nullable="false" />
+    <Property Name="enquiry_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contact_no" Type="Int64" />
+    <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Nullable="false" />
+    <Property Name="updated_by" Type="Int32" />
+  </EntityType>
+  <EntityType Name="t_gst">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="percentage_of_gst" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <Association Name="t_category_ibfk_1">
+    <End Type="maxcleanModel.t_service" Role="t_service" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_category" Role="t_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="t_category">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_product_ibfk_1">
+    <End Type="maxcleanModel.t_category" Role="t_category" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_product" Role="t_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="t_product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_1">
+    <End Type="maxcleanModel.t_customer" Role="t_customer" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_reward_ibfk_1">
+    <End Type="maxcleanModel.t_customer" Role="t_customer" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_reward" Role="t_reward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="t_reward">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_deliveryboy_deviceid_ibfk_1">
+    <End Type="maxcleanModel.t_delivery_boy" Role="t_delivery_boy" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_deliveryboy_deviceid" Role="t_deliveryboy_deviceid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_deliveryboy_deviceid">
+        <PropertyRef Name="delivery_boy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_deliveryboy_incentives_ibfk_1">
+    <End Type="maxcleanModel.t_delivery_boy" Role="t_delivery_boy" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_deliveryboy_incentives" Role="t_deliveryboy_incentives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_deliveryboy_incentives">
+        <PropertyRef Name="delivery_boy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_3">
+    <End Type="maxcleanModel.t_delivery_boy" Role="t_delivery_boy" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="pickedup_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_6">
+    <End Type="maxcleanModel.t_delivery_boy" Role="t_delivery_boy" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="delivered_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_incentives_transaction_ibfk_1">
+    <End Type="maxcleanModel.t_deliveryboy_incentives" Role="t_deliveryboy_incentives" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_incentives_transaction" Role="t_incentives_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_deliveryboy_incentives">
+        <PropertyRef Name="db_incentive_id" />
+      </Principal>
+      <Dependent Role="t_incentives_transaction">
+        <PropertyRef Name="deliveryboy_incentive_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_4">
+    <End Type="maxcleanModel.t_order_cylce" Role="t_order_cylce" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_order_cylce">
+        <PropertyRef Name="order_cycle_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="order_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_order_details_ibfk_3">
+    <End Type="maxcleanModel.t_service" Role="t_service" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_order_details" Role="t_order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="t_order_details">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_order_details_ibfk_4">
+    <End Type="maxcleanModel.t_product" Role="t_product" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_order_details" Role="t_order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="t_order_details">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_order_details_ibfk_5">
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_order_details" Role="t_order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="t_order_details">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_2">
+    <End Type="maxcleanModel.t_user" Role="t_user" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="confirmed_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_5">
+    <End Type="maxcleanModel.t_store" Role="t_store" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_tag_details_ibfk_5">
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_tag_details" Role="t_tag_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="t_tag_details">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_taggs_ibfk_1">
+    <End Type="maxcleanModel.t_orders" Role="t_orders" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_taggs" Role="t_taggs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="t_taggs">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_service_price_ibfk_2">
+    <End Type="maxcleanModel.t_product" Role="t_product" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_service_price" Role="t_service_price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="t_service_price">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_user_ibfk_1">
+    <End Type="maxcleanModel.t_role" Role="t_role" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_user" Role="t_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="t_user">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_roles_privileges_ibfk_3">
+    <End Type="maxcleanModel.t_role" Role="t_role" Multiplicity="0..1" />
+    <End Type="maxcleanModel.tbl_roles_privileges" Role="tbl_roles_privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="tbl_roles_privileges">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_service_price_ibfk_1">
+    <End Type="maxcleanModel.t_service" Role="t_service" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_service_price" Role="t_service_price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="t_service_price">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_user_ibfk_2">
+    <End Type="maxcleanModel.t_store" Role="t_store" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_user" Role="t_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="t_user">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_tag_details_ibfk_4">
+    <End Type="maxcleanModel.t_taggs" Role="t_taggs" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_tag_details" Role="t_tag_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_taggs">
+        <PropertyRef Name="tag_id" />
+      </Principal>
+      <Dependent Role="t_tag_details">
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_admin_pages_ibfk_1">
+    <End Type="maxcleanModel.tbl_admin_category" Role="tbl_admin_category" Multiplicity="0..1" />
+    <End Type="maxcleanModel.tbl_admin_pages" Role="tbl_admin_pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_admin_category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_admin_pages">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_roles_privileges_ibfk_4">
+    <End Type="maxcleanModel.tbl_admin_pages" Role="tbl_admin_pages" Multiplicity="0..1" />
+    <End Type="maxcleanModel.tbl_roles_privileges" Role="tbl_roles_privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_admin_pages">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_roles_privileges">
+        <PropertyRef Name="admin_page_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="t_pincodes">
+    <Key>
+      <PropertyRef Name="pincode_id" />
+    </Key>
+    <Property Name="pincode_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pincode" Type="Int32" />
+    <Property Name="store_id" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="t_store" Relationship="maxcleanModel.t_pincodes_ibfk_1" FromRole="t_pincodes" ToRole="t_store" />
+  </EntityType>
+  <Association Name="t_pincodes_ibfk_1">
+    <End Type="maxcleanModel.t_store" Role="t_store" Multiplicity="0..1" />
+    <End Type="maxcleanModel.t_pincodes" Role="t_pincodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="t_pincodes">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

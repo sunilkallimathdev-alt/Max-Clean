@@ -1,0 +1,232 @@
+﻿
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+
+@{
+    ViewBag.Title = "Transfered Order";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+@{ var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList; }
+<section class="content">
+    <div class="container-fluid">
+        <form id="PettyCash">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title"> @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5">
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>Order ID<span style="color:red">*</span></label>
+                                    <input class="form-control" type="text" name="OrderID" maxlength="100">
+                                    </div>
+                                    <label>Store</label><br>
+                                    <label></label>
+
+                                    <label>Transfer To:<span style="color:red">*</span></label>
+                                    <select class="form-control" name="StoreID" id="StoreID" onchange="BindTableDatas()">
+
+                                        @{
+                                            try
+                                            {
+                                                var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                                if (user.StoreID != null)
+                                                {
+                                                    foreach (var str in StoreList)
+                                                    {
+                                                        if (user.StoreID == @str.StoreID)
+                                                        {
+                                                            <option value="@str.StoreID">@str.StoreName</option>
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="0">--select--</option>
+                                                    foreach (var str in StoreList)
+                                                    {
+                                                        <option value="@str.StoreID">@str.StoreName</option>
+                                                    }
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                throw ex;
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div id="hidegrid">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Title List</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="buttons"></div>
+                <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $(document).ready(function () {
+            BindTableDatas();
+
+            $("#hidegrid").hide();
+
+            $('#StoreID').change(function () {
+
+                if ($('#StoreID').val() != '0') {
+                    $("#hidegrid").show();
+                }
+                else {
+                    $("#hidegrid").hide();
+                }
+            });
+
+        });
+
+
+        function BindTableDatas() {
+          var myobj = new Object();
+           myobj.Store_Id = $("#StoreID").val();
+
+            $.post("@Url.Action("GetOrderCancelRequestList","OrderCancelRequests")", { store: JSON.stringify(myobj) }, function (data) {
+
+                var myObject = JSON.parse(data);
+
+                var TableDate = [];
+                for (var i = 0; i < myObject.length; i++) {
+                    var row = [];
+                    row.push("<span>" + myObject[i].order_id+"</span>");
+                    row.push("<span>" + myObject[i].CancelDate + "</p>");
+
+                   if (myObject[i].is_cancel == 1) {
+                        row.push("<span class='badge bg-warning' style='font-size:12px;'>Cancel Order Request</span>");
+                    }
+                    else if (myObject[i].is_cancel == 2) {
+                       row.push("<span class='badge bg-danger' style='font-size:12px'>Order Cancelled</span>");
+                    }
+                    if (myObject[i].is_cancel == 2) {
+                        row.push("");
+                    } else {
+                       row.push("<span style='text-align:left;'><button  style='margin-right: 10px;' onclick='Accept(" + myObject[i].order_id + ")' class='btn btn-success btn-sm'>Accept to Cancel The Order</button><button onclick='Reject(" + myObject[i].order_id + ")' class='btn btn-danger btn-sm'>Reject to Cancel The Order</button> </span>");
+                    }
+                    TableDate.push(row);
+                }
+                $('#' + tableId).DataTable({
+                    destroy: true,
+                    data: TableDate,
+                    scrollX: true,
+                    responsive: true,
+                    columns: [
+                        { title: "OrderID"},
+                        { title: "Date"},
+                        { title: "Request Status" },
+                        { title: "Action" },
+                    ]
+                });
+                hideshowbuttons();
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5',
+                    ]
+                }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+            });
+        }
+
+        //Accept Request
+        function Accept(id) {
+
+            var alert = confirm("Are you sure?,You want to Cancel The Order");
+            if (alert) {
+                var myobj = new Object();
+
+                myobj.order_id = id;
+                myobj.is_cancel = 2;
+                $.get("@Url.Action("CancelOrder","OrderDetails")", { order: JSON.stringify(myobj) }, function (data) {
+                    var myObject = JSON.parse(data);
+
+                    if (myObject.Result == -1) {
+                        WarningAlert("Order Cancellation Failed,some Issue");
+                    } else if (myObject.Result == 2) {
+                        SuccessAlert(" Order Cancelled Successfully");
+                    } else {
+                        WarningAlert("Order Cancellation Failed,some Issue");
+                    }
+                    BindTableDatas();
+                })
+
+            }
+        }
+
+        function Reject(id) {
+           var alert = confirm("Are you sure?,You want to Reject The Cancel Order");
+            if (alert) {
+                var myobj = new Object();
+                myobj.order_id = id;
+                myobj.is_cancel = null;
+                $.get("@Url.Action("CancelOrder","OrderDetails")", { order: JSON.stringify(myobj) }, function (data) {
+                    var myObject = JSON.parse(data);
+                    console.log(myObject.Result);
+                    if (myObject.Result == -2) {
+                        WarningAlert("not Concelled,some Issue");
+                    } else if (typeof myObject.Result == "undefined") {
+                        WarningAlert("Successfully, Order Cancel Request Rejected");
+                    } else {
+                        WarningAlert("Not Effected ,Some Issue");
+                    }
+                    BindTableDatas();
+                })
+            }
+        }
+
+    </script>
+</section>
+
+
+

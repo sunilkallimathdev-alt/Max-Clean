@@ -1,0 +1,269 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Max Clean - @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/iCheck/all.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/select2/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/CustomFiles/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!--Toastr CSS-->
+    <link href="~/CustomFiles/dist/css/toastr.min.css" rel="stylesheet" />
+    <!--DataTable-->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/datatables/dataTables.bootstrap4.css">
+    <style>
+        #buttons {
+            padding: 5px;
+        }
+
+        .error {
+            color: red !important;
+        }
+    </style>
+    <script>
+
+        sessionStorage.clear();
+    </script>
+</head>
+<body class="hold-transition sidebar-mini">
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Max Clean  | Log in</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    </head>
+    <body class="hold-transition login-page">
+        <script>
+            if (sessionStorage.getItem("LoginID") != null) {
+                window.location.href = "/category/index";
+            }
+        </script>
+        <div class="login-box">
+            <div class="login-logo">
+                <a href=""><b>Max Clean</b></a>
+
+            </div>
+            <!-- /.login-logo -->
+            <div class="card">
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg">Sign in to start your session</p>
+                    <form  method="post">
+                        <div class="form-group has-feedback row">
+                            <span class="fa fa-envelope form-control-feedback col-sm-2"></span>
+                            <input type="text" id="Username" class="form-control col-sm-10" placeholder="Username">
+                        </div>
+                        <div class="form-group has-feedback row">
+                            <span class="fa fa-lock form-control-feedback col-sm-2"></span>
+                            <input type="password" id="Password" class="form-control col-sm-10" placeholder="Password">
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                @*<div class="checkbox icheck">
+                                    <label>
+                                        <input type="checkbox"> Remember Me
+                                    </label>
+                                </div>*@
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-4">
+                                <button onclick="SignIn();" id="btnsubmit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </form>
+                    @*<div class="social-auth-links text-center mb-3">
+                            <p>- OR -</p>
+                            <a href="#" class="btn btn-block btn-primary">
+                                <i class="fa fa-facebook mr-2"></i> Sign in using Facebook
+                            </a>
+                            <a href="#" class="btn btn-block btn-danger">
+                                <i class="fa fa-google-plus mr-2"></i> Sign in using Google+
+                            </a>
+                        </div>*@
+                    <!-- /.social-auth-links -->
+                    @*<p class="mb-1">
+                            <a href="#">I forgot my password</a>
+                        </p>
+                        <p class="mb-0">
+                            <a href="register.html" class="text-center">Register a new membership</a>
+                        </p>*@
+                </div>
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+        <!-- /.login-box -->
+        <!-- jQuery -->
+        @*<script src="../../plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- iCheck -->
+        <script src="../../plugins/iCheck/icheck.min.js"></script>*@
+
+    </body>
+</html>
+
+@*<div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>*@
+
+<!-- jQuery -->
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+
+<!-- DataTables -->
+<script src="~/CustomFiles/plugins/datatables/jquery.dataTables.js"></script>
+<script src="~/CustomFiles/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="~/CustomFiles/js/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="~/CustomFiles/js/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="~/CustomFiles/js/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="~/CustomFiles/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="~/CustomFiles/plugins/select2/select2.full.min.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="~/CustomFiles/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="~/CustomFiles/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="~/CustomFiles/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="~/CustomFiles/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="~/CustomFiles/plugins/iCheck/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="~/CustomFiles/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="~/CustomFiles/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/CustomFiles/dist/js/demo.js"></script>
+<!--Toastr Min-->
+<script src="~/CustomFiles/dist/js/toastr.min.js"></script>
+<link href="~/CustomFiles/dist/css/loader.css" rel="stylesheet" />
+<script>
+    //setTimeout(function () { $('body').css('zoom', '80%')}, 2000);
+    $('#loader-wrapper').css('display', 'none');
+    $(document).ajaxStart(function () {
+        $('#loader-wrapper').css('display', 'block');
+    }).ajaxStop(function () {
+        $('#loader-wrapper').css('display', 'none');
+    });
+
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        CloseCard();
+    });
+    function OpenCard() {
+        $('#carddiv').removeClass('collapsed-card');
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+    }
+    function CloseCard() {
+        $('#carddiv').addClass('collapsed-card');
+    }
+    function SuccessAlert(Title, Message) {
+        toastr.success(Message, Title)
+    }
+    function WarningAlert(Title, Message) {
+        toastr.warning(Message, Title)
+    }
+    function DangerAlert(Title, Message) {
+        toastr.error(Message, Title)
+    }
+
+</script>
+
+<script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' // optional
+                })
+            })
+
+            $(document).ready(function () {
+
+            });
+
+            function keyPressListener(e) {
+                if (e.keyCode == 13) {
+                    SignIn();
+                }
+            }
+
+            function SignIn() {
+                document.getElementById("btnsubmit").disabled = true;
+                var UserName = $('#Username').val();
+                var Password = $('#Password').val();
+                if (UserName != "" && Password != "") {
+                    var myobject = new Object();
+                    myobject.UserName = UserName;
+                    myobject.EmailId = UserName;
+                    myobject.Password = Password;
+
+                    $.post("@Url.Action("Login", "Login")", { objlogin: myobject }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res != null) {
+                            sessionStorage.setItem('LoginID', JSON.stringify(Res.UserID));
+                            sessionStorage.setItem('RoleID', JSON.stringify(Res.RoleID));
+                            document.cookie = "LoginID=" + JSON.stringify(Res.UserID) + "";
+                            document.cookie = "RoleID=" + JSON.stringify(Res.RoleID) + "";
+                            window.location.href = "/category/index";
+                        }
+                        else {
+                            alert('Invalid Username or Password');
+                            document.getElementById("btnsubmit").disabled = false;
+                        }
+                    })
+
+
+                }
+            }
+                //else {
+                //    alert("Please Enter Username and Password");
+                //    document.getElementById("btnsubmit").disabled = false;
+                //}
+
+
+</script>
+</body>
+</html>
+

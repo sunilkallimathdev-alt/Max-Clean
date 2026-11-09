@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "CartDetails";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30">
+                <div class="center-block" id="howitworks">
+                    <h2><span>Cart</span> </h2>
+
+                </div>
+                <!--cart table-->
+                <div class="table-responsive">
+                    <table class="table_type_4  full_width r_corners wraper shadow t_align_l t_xs_align_c m_bottom_30">
+                        <thead>
+                            <tr class="f_size_large" style="font-weight:bold;">
+                                <!--titles for td-->
+                                <th>Sl. No.</th>
+                                <th style="width:300px;">Product</th>
+                                <th>Services</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!--Product name and image-->
+                                <td data-title="SKU">1</td>
+                                <td data-title="Product Image &amp; name" class="t_md_align_c">
+                                    <a href="#" class="d_inline_b m_left_5 color_dark">Eget elementum vel</a>
+                                </td>
+                                <!--product key-->
+                                <td data-title="SKU">Dry Clean</td>
+                                <!--product price-->
+                                <td data-title="Price">
+                                    <p class="f_size_large color_dark">102.00</p>
+                                </td>
+                                <!--quanity-->
+                                <td data-title="Quantity">
+                                    <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10" style="width:103px;">
+                                        <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                        <input type="text" name="" readonly="" value="1" class="f_left">
+                                        <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                    </div>
+
+                                </td>
+                                <!--subtotal-->
+                                <td data-title="Subtotal">
+                                    <p class="f_size_large color_dark">102.00</p>
+                                </td>
+                                <td data-title="Subtotal">
+                                    <a href="#" class="color_dark "><i class="fa fa-times f_size_medium m_right_5"></i>Remove</a><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!--Product name and image-->
+                                <td data-title="SKU">2</td>
+                                <td data-title="Product Image &amp; name" class="t_md_align_c">
+                                    <a href="#" class="d_inline_b m_left_5 color_dark">Eget elementum vel</a>
+                                </td>
+                                <!--product key-->
+                                <td data-title="SKU">Dry Clean</td>
+                                <!--product price-->
+                                <td data-title="Price">
+                                    <p class="f_size_large color_dark">102.00</p>
+                                </td>
+                                <!--quanity-->
+                                <td data-title="Quantity">
+                                    <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10" style="width:103px;">
+                                        <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                        <input type="text" name="" readonly="" value="1" class="f_left">
+                                        <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                    </div>
+
+                                </td>
+                                <!--subtotal-->
+                                <td data-title="Subtotal">
+                                    <p class="f_size_large color_dark">Rs 102.00</p>
+                                </td>
+                                <td data-title="Subtotal">
+                                    <a href="#" class="color_dark"><i class="fa fa-times f_size_medium m_right_5 "></i>Remove</a><br>
+                                </td>
+                            </tr>
+                            <!--prices-->
+                            <tr>
+                                <td colspan="6">
+                                    <p class="fw_medium f_size_large t_align_r t_xs_align_c" style="float:right;">	Your Balance:</p>
+                                </td>
+                                <td colspan="1">
+                                    <p class="fw_medium f_size_large color_dark">Rs 74.96</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <p class="fw_medium f_size_large t_align_r t_xs_align_c" style="float:right;">Your Cart Total:</p>
+                                </td>
+                                <td colspan="1">
+                                    <p class="fw_medium f_size_large color_dark">Rs 101.05</p>
+                                </td>
+                            </tr>
+
+                            <!--total-->
+                            <tr>
+                                <td colspan="6">
+                                    <p class="fw_medium f_size_large t_align_r t_xs_align_c " style="float:right;">
+                                        <input type="checkbox" checked="" class="d_none" name="checkbox_6" id="checkbox_6">
+                                        <label for="checkbox_6">Rewords Points</label>
+                                        <input type="checkbox" checked="" class="d_none" name="checkbox_7" id="checkbox_7">
+                                        <label for="checkbox_7"> Promo Code</label>
+                                    </p>
+                                </td>
+                                <td colspan="1">
+                                    <form class="d_ib_offset_0 d_inline_middle half_column d_xs_block w_xs_full m_xs_bottom_5">
+                                        <input type="text" placeholder="Enter your coupon code" name="" class="r_corners f_size_medium">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--tabs-->
+            </section>
+            <!--right column-->
+
+        </div>
+        <div class="row clearfix d_xs_none">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="/order/ordernow"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue adding</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="address.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+
+        </div>
+        <div class="row clearfix d_none d_xs_block">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="/order/ordernow"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue adding</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="address.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+

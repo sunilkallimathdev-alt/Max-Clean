@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "DeliveryBoy Incentives";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <form id="formvendor">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title"></h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>DeliveryBoy Name / Mobile No.<span style="color:red">*</span></label>
+                                <select class="form-control" name="DeliveryBoyID">
+                                    <option value="">---Select---</option>
+                                    @{
+                                        var DeliveryBoyList = (List<API.Models.DeliveryBoy_Model>)ViewBag.DeliveryBoy;
+                                        foreach (var dvb in DeliveryBoyList)
+                                        {
+                                            <option value= "@dvb.DeliveryBoyID" > @dvb.DeliveryBoyName / @dvb.DeliveryBoyMobileNumber </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+            <span style="color:red">Please select Delivery Boy for transaction details.</span>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="mytable" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+        var table = $('#mytable');
+        var ID = 0;
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#carddiv').removeClass('collapsed-card');
+            }, 500);
+            $("[name=DeliveryBoyID]").change(function () {
+                GetAllDeliveryBoyIncentives($("[name=DeliveryBoyID]").val());
+            });
+
+            // Add event listener for opening and closing details
+            $('#mytable').on('click', 'td.details-control', function () {
+                var tr = $(this).parents('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+        function GetAllDeliveryBoyIncentives(DeliveryBoyID) {
+            $.get("@Url.Action("GetAllDeliveryBoyIncentivesByDeliveryBoyID", "DeliveryBoyIncentives")", { DeliveryBoyID: DeliveryBoyID }, function (data) {
+                var myobj = JSON.parse(data);
+                myobj = myobj.ObjectResult;
+                var TableData = [];
+              
+                var row = [];
+                if (myobj.TransactionList != null)
+                    row.push(myobj.TransactionList);
+
+                    row.push(myobj.DeliveryBoyIncentiveID);
+                    row.push(myobj.DeliveryBoyName);
+                   
+                    row.push(myobj.GrandTotal);
+                    row.push(myobj.PaidAmount);
+                    if (myobj.RemainingAmount > 0) {
+                        row.push('<input class="form-control" type="text" id="pay_' + myobj.DeliveryBoyID + '" value="' + myobj.RemainingAmount + '" maxlength="10" onkeypress="return IsNumericDecimal(event)">');
+                      //  row.push('<input class="form-control" type="text" id="note_' + myobj.DeliveryBoyIncentiveID + '" onkeypress="return NotanHTML(event)">');
+                        row.push('<button type="button" class="btn btn-success btn-sm edit" onclick="MakePayment(' + myobj.DeliveryBoyID + ')">Make Payment</button>');
+                    }
+                    else {
+                        row.push(myobj.RemainingAmount);
+                       // row.push('');
+                        row.push('');
+                    }
+                    //row.push('<button type="button" class="btn btn-info btn-sm" onclick="SendInvoice(' + myobj[i].VendorPaymentOrderID + ')">Send Invoice</button>');
+                    TableData.push(row);
+                
+                BindDataTable(TableData);
+            });
+        }
+
+        function MakePayment(DeliveryBoyID) {
+            if (confirm("Payment Cant be edited. Make Payment?")) {
+
+                var myobj = new Object();
+                myobj.DeliveryBoyID = DeliveryBoyID;
+                myobj.PaidAmount = $('#pay_' + DeliveryBoyID).val();
+
+                //myobj.PaymentType=
+               // myobj.Note = $('#note_' + DeliveryBoyIncentiveID).val();
+                $.post("@Url.Action("MakePayment", "DeliveryBoyIncentives")", { strpay: JSON.stringify(myobj) }, function (data) {
+                    var Res = JSON.parse(data);
+                    if (Res.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                        GetAllDeliveryBoyIncentives($("[name=DeliveryBoyID]").val());
+                    }
+                    else {
+                        WarningAlert("@ViewBag.Title", Res.Message);
+                    }
+                });
+            }
+        }
+
+        function SendInvoice(DeliveryBoyID) {
+            $.get("@Url.Action("SendInvoice", "DeliveryBoyIncentives")", { DeliveryBoyID: DeliveryBoyID }, function (data) {
+                var Res = JSON.parse(data);
+                if (Res.StatusCode == 200) {
+                    SuccessAlert("@ViewBag.Title", "Invoice Mailed To DeliveryBoy.");
+                }
+                else {
+                    WarningAlert("@ViewBag.Title", Res.Message);
+                }
+             });
+        }
+
+        function BindDataTable(TableData) {
+            table = $('#mytable').addClass('nowrap').DataTable({
+                data: TableData,
+                "destroy": true,
+                "scrollX": true,
+                "columns": [
+                    {
+                        "class": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                   
+
+                    { title: "DeliveryBoy Incentive ID" },
+                    { title: "Name " },
+                    { title: "Grand Total" },
+                    { title: "Amount Paid" },
+                    { title: "Balance" },
+                   
+                    { title: "" },
+                ]
+                
+            });
+            hideshowbuttons();
+            var buttons = new $.fn.dataTable.Buttons($('#mytable').DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+            $('.buttons-html5').addClass('btn btn-default btn-sm');
+        }
+
+        /* Formatting function for row details - modify as you need */
+        function format(d) {
+            // `d` is the original data object for the row
+            var string = "";
+            string += '<table cellpadding="5" cellspacing="0" border="0" style="margin-left:20%;">';
+            string+='<thead>';
+            string+='<tr>';
+            string+='<th>Payment Transaction ID</th>';
+            string+='<th>Paid Amount</th>';
+            //string+='<th>Payment Type</th>';
+            string+='<th>Transaction Date</th>';
+           // string+='<th>Note</th>';
+            string+='</tr>';
+            string+='</thead>';
+            string += '<tbody>';
+            for (var i = 0; i < d[0].length; i++) {
+                string+= '<tr>';
+                string += '<th>' + d[0][i].IncentiveTransactionID+'</th>';
+                string += '<th>' + d[0][i].PaidAmountTrs+'</th>';
+                //string += '<th>' + d[0][i].PaymentType +'</th>';
+               // string += '<th>' + d[0][i].TransactionDate.replace("T", " ") + '</th>';
+                string += '<th>' + SplitDateTime(d[0][i].TransactionDate) + "    --  " + SplitTime(d[0][i].TransactionDate).replace("/", "-").replace("/", "-") + '</th>';
+               // if (d[0][i].Note != null)
+               //     string += '<th>' + d[0][i].Note + '</th>';
+               // else
+               //     string += '<th></th>';
+                string+= '</tr>';
+                }
+            string += '</tbody>';
+            return string;
+        }
+    </script>
+</section>

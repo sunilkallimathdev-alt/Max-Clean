@@ -1,0 +1,699 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Company - @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/iCheck/all.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/select2/select2.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/CustomFiles/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!--Toastr CSS-->
+    <link href="~/CustomFiles/dist/css/toastr.min.css" rel="stylesheet" />
+    <!--DataTable-->
+    <link rel="stylesheet" href="~/CustomFiles/plugins/datatables/dataTables.bootstrap4.css">
+    <style>
+        #buttons {
+            padding: 5px;
+        }
+
+        .error {
+            color: red !important;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <div class="wrapper">
+            @{
+                ViewBag.Title = "Order Details";
+            }
+
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <button onclick="window.history.back();" class="btn btn-danger btn-sm">Go Back</button>
+                            @*<h1 class="m-0 text-dark">@ViewBag.Title</h1>*@
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                @*<li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                                    <li class="breadcrumb-item active">@ViewBag.Title</li>*@
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <form id="formvendor">
+                        <div class="card card-info" id="carddiv">
+                            <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                                <h3 class="card-title">@ViewBag.Title</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="callout callout-success">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Order ID</h5>
+                                                        <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                            <strong><label id="txtrequestorderid"></label></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Customer Name</h5>
+                                                        <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                            <strong><label id="VendorPaymentOrderID"></label></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Customer Mobile No.</h5>
+                                                        <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                            <strong><label id="VendorMobile"></label></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Receiving at Store</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="txtstorename"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Store Mobile No.</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="txtstoremobileno"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Ordered  Date&Time</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="txtorderdate"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Picked by</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+
+                                                            <label id="Pickedby"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Pickup  Date&Time</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+
+                                                            <label id="PickupDate"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivery Date@*&Time*@</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+
+                                                            <label id="DeliveryDate"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @*<div class="col-md-2">
+            <div class="form-group">
+                <h5>Delivery Time</h5>
+                <div class="callout callout-info" style="background-color:#117a8b21">
+
+                    <label id="DeliveryTime"></label>
+                </div>
+            </div>
+        </div>*@
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Confirmed by</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="ConfirmedBy"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Pickup Address</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="PickupAddress"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivery Address</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="DeliveryAddress"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Payment Status</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="PaymentStatus"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Order Status </h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="OrderStatus"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Remark </h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="Remark"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Delivered By </h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="DeliveredBy"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <h5>Payment Type</h5>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="PaymentType"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2" id="invoice_div">
+                                                    <div class="form-group">
+                                                        <label>Invoice No.</label>
+                                                        <div class="callout callout-info" style="background-color:#117a8b21">
+                                                            <label id="Invoice_No" name="Invoice_No"></label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card col-md-12">
+                                        <div class="card-header">
+                                            <h3 class="card-title">@ViewBag.Title List</h3>
+                                        </div>
+
+
+                                    
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <div id="buttons"></div>
+                                                <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+
+                                    </div>
+                            </div>
+                            <span id="hdd"></span>
+                            <div class="card-footer">
+                    
+                                <div class="row col-md-12">
+                                    <div class="col-md-2">
+                                        <h3 id="OldBalance">Previous Balance : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="ExpressDeliveryCharge">Express Delivery Charge :</h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="Reward">Rewards : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="Promocode">Promocode : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="Promocode_Amount">Promocode Discount : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="Delivery_charge">Delivery charge : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="grandtotal">Grand Total : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="AmountPaid">Amount Paid : </h3>&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h3 id="BalanceAmount">Balance Amount : </h3><br />
+                                    </div>
+                                </div>
+                  
+                                </div>
+                            </div>
+                    </form>
+                </div>
+                <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+                <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+                <script src="~/CustomFiles/js/Common_js.js"></script>
+                <script>
+        //var HiddenField = [];
+        //var IDs = [];
+        //var ProductIDs = [];
+        //var GrandTotalPrice = 0;
+        //var tableId = "tbl";
+                    var HiddenField = [];
+                    var IDs = [];
+                    var ProductIDs = [];
+                    var GrandTotalPrice = 0;
+                    var tableId = "tbl";
+
+                    var tableId = "tbl";
+                    var TableData = [];
+                    var DataToSave = [];
+
+     
+                    $('#formvendor').validate({
+                        rules: {
+                            CustomerName: {
+                                required: true,
+                            },
+                            ActualDeliveryDate: {
+                                required: true,
+                            },
+                            PricePerKG: {
+                                number: true,
+                                required: true,
+                            },
+                            ReceivedQuantity: {
+                                number: true,
+                                required: true,
+                            },
+                            PaidAmount: {
+                                number: true,
+                                required: true,
+                            },
+                            RemainingAmount: {
+                                number: true,
+                                required: true,
+                            },
+                            GrandTotal: {
+                                number: true,
+                                required: true,
+                            },
+                        }
+                    });
+
+        var form = $("#formvendor");
+        form.validate();
+
+        $(document).ready(function () {
+
+            BlockPreviousDate("ActualDeliveryDate");
+            SetTodaysDate("ActualDeliveryDate");
+                      
+            setTimeout(function () {
+                $('#carddiv').removeClass('collapsed-card');
+            }, 500);
+                    $('body').css('zoom', '80%');
+            var ID = JSON.parse(localStorage.getItem("POID"));
+            //localStorage.removeItem("POID");
+            GetRequestOrders(ID);
+
+
+
+            @*$("#btnadd").click(function () {
+                if (form.valid()) {
+                    var alert1 = confirm("Once submitted can't be edited.Is it ok?");
+                    if (alert1) {
+                        var myobj = new Object();
+                        myobj.VendorPurchaseOrderID = $("#txtrequestorderid").html();
+                        myobj.PaidAmount = $('[name="PayingAmount"]').val();
+                        myobj.ActualDeliveryDate = $('[name="ActualDeliveryDate"]').val();
+                        myobj.Remark = $('[name="txtremark"]').val();
+
+                        var details = [];
+                            for (var j = 0; j < IDs.length; j++) {
+                                var obj = new Object();
+                                obj.ReceivedQuantity = $('[name="ReceivingQuantity_' + IDs[j] + '"]').val();
+                                obj.ProductID = ProductIDs[j];
+                                details.push(obj);
+                            }
+
+                            myobj.PurchaseOrderDetail = details;
+
+
+                        myobj.IsActive = true;
+                        $.post("@Url.Action("UpdatePurchaseOrder", "PurchaseOrder")", { ObjOrder: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                SuccessAlert("@ViewBag.Title", "Added to stock.");
+                                alert("Goods Received Successfully");
+                                window.close();
+                                ClearFiled();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        });
+                    }
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });*@
+        });
+
+        function GetRequestOrders(PurchaseOrderByID) {
+            $.get("@Url.Action("GetOrdersById", "OrderDetails")", { ID: PurchaseOrderByID }, function (data) {
+
+
+                //var myObject = JSON.parse(data);
+                //    $("#grandtotal").html("Grand Total : " + myObject.ObjectResult.GrandTotal);
+                //    $("#AmountPaid").html("Amount Paid : " + myObject.ObjectResult.PaidAmount);
+                //    $("#BalanceAmount").html("Balance Amount : " + myObject.ObjectResult.RemainingAmount);
+                //    $("#txtrequestorderid").html(myObject.ObjectResult.OrderID);
+                //    $("#txtstorename").html(myObject.ObjectResult.StoreName);
+                //    $("#VendorPaymentOrderID").html(myObject.ObjectResult.CustomerName)
+                //    $("#VendorMobile").html("<a href='tel:" + myObject.ObjectResult.CustomerMobile + "' style='color: black;'>" + myObject.ObjectResult.CustomerMobile + "</a>");
+
+                //    $("#txtstoremobileno").html("<a href='tel:" + myObject.ObjectResult.StoreMobileNo + "' style='color: black;'>" + myObject.ObjectResult.StoreMobileNo + "</a>");
+                //    $("#ConfirmedBy").html(myObject.ObjectResult.ConfirmedUser);
+                //    $("#txtrequesteddate").html(SplitDateTime(myObject.ObjectResult.OrderDate).replace("/", "-").replace("/", "-") + " / " + SplitDateTime(myObject.ObjectResult.ActualDeliveryDate).replace("/", "-").replace("/", "-"));
+                //    $("#Remark").html(myObject.ObjectResult.Remark);
+                //    $("#Pickedby").html(myObject.ObjectResult.DeliveryboyName + "  /  " + myObject.ObjectResult.PickupTime);
+                //    $("#DeliveryTime").html(SplitTime(myObject.ObjectResult.OrderDate).replace("/", "-").replace("/", "-")); 
+                //    $("#OrderStatus").html(myObject.ObjectResult.OrderStatus);
+                //var TableDate = [];
+
+                var myObject = JSON.parse(data);
+                $("#grandtotal").html("Grand Total : " + myObject.ObjectResult.GrandTotal);
+                $("#AmountPaid").html("Amount Paid : " + myObject.ObjectResult.PaidAmount);
+                $("#BalanceAmount").html("Balance Amount : " + myObject.ObjectResult.RemainingAmount);
+                $("#txtrequestorderid").html(myObject.ObjectResult.OrderID);
+                $("#txtstorename").html(myObject.ObjectResult.StoreName);
+                $("#VendorPaymentOrderID").html(myObject.ObjectResult.CustomerName);
+                $("#VendorMobile").html("<a href='tel:" + myObject.ObjectResult.CustomerMobile + "' style='color: black;'>" + myObject.ObjectResult.CustomerMobile + "</a>");
+
+                $("#txtstorename").html(myObject.ObjectResult.ReceivingatStore);
+                $("#txtstoremobileno").html("<a href='tel:" + myObject.ObjectResult.StoreMobileNo + "' style='color: black;'>" + myObject.ObjectResult.StoreMobileNo + "</a>");
+                $("#txtorderdate").html(SplitDateTime(myObject.ObjectResult.OrderDate) + "    --  " + SplitTime(myObject.ObjectResult.OrderDate).replace("/", "-").replace("/", "-"));
+                    $("#Pickedby").html(myObject.ObjectResult.Pickedby);
+                    $("#PickupDate").html(SplitDateTime(myObject.ObjectResult.PickupDate) + "    --  " + myObject.ObjectResult.PickupTime);
+                    //$("#DeliveryDate").html(SplitDateTime(myObject.ObjectResult.ActualDeliveryDate) + "    --  " + myObject.ObjectResult.DeliveryTime);
+                    $("#DeliveryDate").html(SplitDateTime(myObject.ObjectResult.ActualDeliveryDate));
+                $("#ConfirmedBy").html(myObject.ObjectResult.ConfirmedUser);
+                $("#PickupAddress").html(myObject.ObjectResult.PickupAddress);
+                    $("#DeliveryAddress").html(myObject.ObjectResult.DeliveryAddress);
+                    if (myObject.ObjectResult.PaymentStatus == "partial")
+                        $("#PaymentStatus").html("Partial");
+                    else if (myObject.ObjectResult.PaymentStatus == "pending")
+                        $("#PaymentStatus").html("Pending");
+                    else if (myObject.ObjectResult.PaymentStatus == "complete")
+                        $("#PaymentStatus").html("Completed");
+                    $("#Invoice_No").html(myObject.ObjectResult.Invoice_No);
+                $("#OrderStatus").html(myObject.ObjectResult.OrderStatus);
+                $("#Remark").html(myObject.ObjectResult.Remark);
+                $("#DeliveredBy").html(myObject.ObjectResult.DeliveryboyName);
+                $("#PaymentType").html(myObject.ObjectResult.PaymentType);
+                    //if (myObject.ObjectResult.PaymentType == "Card") {
+                    //    $("#invoice_div").show();
+                    //    $("#Invoice_No").html(myObject.ObjectResult.Invoice_No)
+                    //} else {
+                    //    $("#invoice_div").hide();
+                    //}
+                    if (myObject.ObjectResult.PaymentStatus == "partial")
+                        $("#PaymentStatus").html("Partial");
+                    else if (myObject.ObjectResult.PaymentStatus == "pending")
+                        $("#PaymentStatus").html("Pending");
+                    else if (myObject.ObjectResult.PaymentStatus == "complete")
+                        $("#PaymentStatus").html("Completed");
+
+                    $("#ExpressDeliveryCharge").val("Express Delivery Charge : " +myObject.ObjectResult.ExpressChargeApplied);
+                    $("#OldBalance").val("Previous Balance : " +myObject.ObjectResult.OldBalanceApplied);
+                    if (myObject.ObjectResult.RewardPointsApplied != null)
+                        $("#Reward").val(myObject.ObjectResult.RewardPointsApplied);
+                    else
+                        $("#Reward").val(0);
+                    $("#Promocode").html("Promocode : " + myObject.ObjectResult.Promocode);
+                    $("#Promocode_Discount").html("Promocode Discount : " + myObject.ObjectResult.Promocode_Discount);
+                    $("#Promocode_Amount").html("Promocode Amount : " + myObject.ObjectResult.Promocode_Amount);
+                    $("#Delivery_charge").html("Delivery Charge : " + myObject.ObjectResult.Delivery_charge);
+
+                //$("#txtrequesteddate").html(SplitDateTime(myObject.ObjectResult.OrderDate).replace("/", "-").replace("/", "-") + " / " + SplitDateTime(myObject.ObjectResult.ActualDeliveryDate).replace("/", "-").replace("/", "-"));
+               
+                ////$("#Pickedby").html(myObject.ObjectResult.DeliveryboyName + "  /  " + myObject.ObjectResult.PickupTime);
+                //$("#DeliveryTime").html(SplitTime(myObject.ObjectResult.OrderDate).replace("/", "-").replace("/", "-"));
+                
+                var TableDate = [];
+                
+                for (var i = 0; i < myObject.ObjectResult.PurchaseOrderDetail.length; i++) {
+                var row = [];
+                row.push(myObject.ObjectResult.PurchaseOrderDetail[i].CategoryName);
+                    row.push(myObject.ObjectResult.PurchaseOrderDetail[i].ProductName);
+                    row.push(myObject.ObjectResult.PurchaseOrderDetail[i].Quantity);
+                    row.push(myObject.ObjectResult.PurchaseOrderDetail[i].Price);
+             
+                TableDate.push(row);
+                }
+                //$('#hdd').html(HiddenField);
+                $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+               
+                columns: [
+                    { title: "Category" },
+                    { title: "Product Name" },
+                    { title: "Quantity " },
+                    { title: "Price" },
+
+                    ]
+                });
+           });
+        }
+                    function BindTableData() {
+                        $('#' + tableId).DataTable({
+                            destroy: true,
+                            data: TableData,
+                           
+                            scrolly: true,
+                            paging: false,
+                            searching: false,
+                            columns: [
+                                { title: "Category Name" },
+                                { title: "Product Name" },
+                                { title: "Price Per KG" },
+                                { title: "Received Qty" },
+                                { title: "Total Price" },
+
+                                //{ title: " " },
+                            ]
+                        });
+
+                    }
+
+        //function Calculate(id) {
+        //    GrandTotalPrice = 0;
+        //    var Enter_quant = $('[name="ReceivingQuantity_' + id + '"]').val();
+
+        //    if (Enter_quant == "")
+        //        Enter_quant = 0;
+        //    else
+        //        Enter_quant = JSON.parse($('[name="ReceivingQuantity_' + id + '"]').val());
+
+        //    var UnitPrice = JSON.parse($('#UP_' + id).html());
+        //    $('#H_' + id).val((Enter_quant * UnitPrice));
+
+        //    for (var i = 0; i < IDs.length; i++) {
+        //        var price = $('#H_' + IDs[i]).val();
+        //        if (price == "")
+        //            price = 0;
+        //        else
+        //            price =  JSON.parse($('#H_' + IDs[i]).val());
+        //        GrandTotalPrice = GrandTotalPrice + price;
+        //    }
+        //    $("#grandtotal").html("Grand Total : " + GrandTotalPrice);
+
+        //}
+
+        //function checkQuantity(id) {
+        //    var Enter_quant = $('[name="ReceivingQuantity_' + id + '"]').val();
+
+        //    if (Enter_quant == "")
+        //        Enter_quant = 0;
+        //    else
+        //        Enter_quant = JSON.parse($('[name="ReceivingQuantity_' + id + '"]').val());
+
+        //    var Rqst_quant = JSON.parse($('#RQ_' + id).html());
+        //    if (Enter_quant > Rqst_quant) {
+        //        alert("Entered Quantity Is More Than Requested Quantity");
+        //        $('[name="ReceivingQuantity_' + id + '"]').val(0);
+        //    }
+        //    else {
+        //        Calculate(id);
+        //    }
+        //}
+
+        //function ClearFiled() {
+        //    $("#txtrequestorderid").html("");
+        //    $("#txtstorename").html("");
+        //    $("#txtstoremobileno").html("");
+        //    $("#txtrequestedqty").html("");
+        //    $("#txtrequesteddate").html("");
+        //    $("#txtremark").html("");
+        //    GetRequestOrders();
+        //    $('[name="ActualDeliveryDate"]').val(SetTodaysDate("ActualDeliveryDate"));
+        //    $('[name="PricePerKG"]').val(null);
+        //    $('[name="ReceivedQuantity"]').val(null);
+        //    $('[name="PaidAmount"]').val(null);
+        //    $('[name="RemainingAmount"]').val(null);
+        //    $('[name="GrandTotal"]').val(null);
+        //    $('[name="Remark"]').val(null);
+        //    $("#VendorPaymentOrderID").html("");
+        //    $("#VendorMobile").html("");
+        //    $('[name="txtremark"]').val(null);
+        //    $('#' + tableId).html("");
+        //    $('[name="PayingAmount"]').val(null);
+        //    $("#grandtotal").html("");
+        //}
+                </script>
+            </section>
+        </div>
+        <footer class="main-footer">
+            <strong>Copyright &copy;2018 All rights reserved.</strong> Designed and Developed By <a href="http://testurl.com" target="_blank"><img src="testcompany/mmt_fevicon.png" style="height: 15px"> testcompanys Technologies</a>.
+
+            <div class="float-right d-none d-sm-inline-block">
+
+            </div>
+        </footer>
+    </div>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="~/CustomFiles/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/CustomFiles/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="~/CustomFiles/js/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="~/CustomFiles/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/CustomFiles/plugins/select2/select2.full.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="~/CustomFiles/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="~/CustomFiles/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <!-- bootstrap time picker -->
+    <script src="~/CustomFiles/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="~/CustomFiles/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="~/CustomFiles/plugins/iCheck/icheck.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/CustomFiles/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/CustomFiles/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/CustomFiles/dist/js/demo.js"></script>
+    <!--Toastr Min-->
+    <script src="~/CustomFiles/dist/js/toastr.min.js"></script>
+    <link href="~/CustomFiles/dist/css/loader.css" rel="stylesheet" />
+    <script>
+                //setTimeout(function () { $('body').css('zoom', '80%')}, 2000);
+                $('#loader-wrapper').css('display', 'none');
+                $(document).ajaxStart(function () {
+                    $('#loader-wrapper').css('display', 'block');
+                }).ajaxStop(function () {
+                    $('#loader-wrapper').css('display', 'none');
+                });
+
+                $(function () {
+                    //Initialize Select2 Elements
+                    $('.select2').select2();
+                    CloseCard();
+                });
+                function OpenCard() {
+                    $('#carddiv').removeClass('collapsed-card');
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+                }
+                function CloseCard() {
+                    $('#carddiv').addClass('collapsed-card');
+                }
+                function SuccessAlert(Title, Message) {
+                    toastr.success(Message, Title)
+                }
+                function WarningAlert(Title, Message) {
+                    toastr.warning(Message, Title)
+                }
+                function DangerAlert(Title, Message) {
+                    toastr.error(Message, Title)
+                }
+
+    </script>
+</body>
+</html>
+

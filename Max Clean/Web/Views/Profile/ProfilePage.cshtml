@@ -1,0 +1,200 @@
+﻿@using API.Models;
+@{
+    ViewBag.Title = "ProfilePage";
+    Customer_Model user = (Customer_Model)Session["CurrentUser"];
+    
+}
+ 
+<h4 id="LoginHeader" style="display:none;text-align:center;color:red;">Please Login to see this page</h4>
+  <section id="Userform">
+    <div class="container">
+        <div class="row m-y-2">
+            <div class="col-lg-10 push-lg-2">
+                <div class="tab-pane" id="edit">
+                    <br />
+                    <h2>Profile</h2>
+                    <br />
+                    <form role="form" action="~/Profile/ProfileUpdate" method="post" onsubmit="return ValidateUpdateForm()">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Your name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" id="ProName" name="ProName" type="text" >
+                                <label id="LblProName" style="color:red; display:none;">Invalid name</label>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" id="ProEmail" name="ProEmail" type="email" placeholder="email@xyz.abc">
+                                <label id="LblProEmail" style="color:red; display:none;">Invalid EmailID</label>
+                            </div>
+                        </div>
+                   
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" id="ProAddr" name="ProAddr" type="text" value="" >
+                                <label id="LblProAddr" style="color:red; display:none;">Invalid Address</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Mobile Number</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" maxlength="10" name="ProMobile" id="ProMobile" type="text" value="" >
+                                <label id="LblProMobile" style="color:red; display:none;">Invalid mobile number</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Alternative mobile</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" maxlength="10" name="ProAltNum" id="ProAltNum" type="text" value="" >
+                                <label id="LblProAltNum" style="color:red; display:none;">Invalid mobile number</label>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" id="ProPwd" name="ProPwd" type="password" placeholder="Password">
+                                <label id="LblProPwd" style="color:red; display:none;">Invalid password</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" id="ProAltPwd" name="ProAltPwd" type="password" placeholder="Re enter password">
+                                <label id="LblProAltPwd" style="color:red; display:none;">Both pasword must be same.</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <label style="color:red;">@TempData["UpdateResponse"]</label><br>
+                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <hr>
+
+</section>
+
+<script>
+    $(document).ready(function () {
+    
+            $('#LoginHeader').hide();
+            $('#Userform').show();
+
+            //Fill in the form
+            $('#ProName').val("@user.CustomerName");
+            $('#ProEmail').val("@user.EmailID");
+            $('#ProAddr').val("@user.Address");
+            $('#ProMobile').val("@user.MobileNumber");
+            $('#ProAltNum').val("@user.AltMobileNumber");
+            $('#ProPwd').val("@user.Password");
+            $('#ProAltPwd').val("@user.Password");
+       
+
+    }
+    )
+
+    //Restrict the input too numbers only.
+    $("#ProMobile").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+            // let it happen, don't do anything
+
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+    $("#ProAltNum").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+            // let it happen, don't do anything
+
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+
+    function ValidateUpdateForm() {
+        var flag = true;
+
+        if (!$('#ProName').val()) {
+            $('#LblProName').show();
+            flag = false;
+        } else {
+            $('#LblProName').hide();
+        }
+
+        if (!$('#ProEmail').val()) {
+            $('#LblProEmail').show();
+            flag = false;
+        } else {
+            $('#LblProEmail').hide();
+        }
+
+        if (!$('#ProAddr').val()) {
+            $('#LblProAddr').show();
+            flag = false;
+        } else {
+            $('#LblProAddr').hide();
+        }
+
+        if (!$('#ProMobile').val()) {
+            $('#LblProMobile').show();
+            flag = false;
+        } else {
+            if ($('#RAltMobile').val() > 999999999){
+                $('#LblProMobile').show();
+                flag = false;
+            } else
+                $('#LblProMobile').hide();
+        }
+
+
+        if (!$('#ProPwd').val()) {
+            $('#LblProPwd').show();
+            flag = false;
+        } else {
+            $('#LblProPwd').hide();
+        }
+
+        var data1 = $('#ProAltPwd').val();
+        var data2 = $('#ProPwd').val();
+        if (!(data1 === data2)) {
+            $('#LblProAltPwd').show();
+            flag = false;
+        } else {
+            $('#LblProAltPwd').hide();
+        }
+
+        return flag;
+    }
+</script>

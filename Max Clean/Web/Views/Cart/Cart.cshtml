@@ -1,0 +1,196 @@
+﻿@using API.Models;
+@{
+    ViewBag.Title = "Cart";
+  
+}
+<div id="CartAvailable">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 howit-work main-block center-block" id="howitworks">
+                <h2><span>CART</span></h2>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>id #</th>
+                        <th>Product</th>
+                        <th>Services</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size:15px;" id="cartbody">
+                    @*Dynamically generated from the javascript that fetches from the cart locally stored in browser on page ready.*@
+                </tbody>
+                <tfoot>
+                    <tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Your Balance: </td>
+                        <td id="UserOldBalance"><strong></strong></td>
+                        <td></td>
+                    </tr>
+
+                   </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Your Cart Total: </td>
+                        <td id="totalPriice"><strong></strong></td>
+                        <td></td>
+                    </tr>
+                 
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="padding-bottom:20px;">
+            <div class="col-md-6 col-sm-12 actions">
+                <a href="~/cleaning/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue adding</a>
+
+            </div>
+            <div class="col-md-6 col-sm-12 actions">
+                <a class="btn btn-success btn-block" href="javascript:takeUsToAddress()">Checkout <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="CartNotAvailable">
+    <h3 style="text-align:center;">There are no items in the cart!!</h3>
+    <div class="col-md-6 col-sm-12 actions">
+        <a href="~/cleaning/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue adding</a>
+    </div>
+</div>
+
+<div style="text-align:center;" id="AmountNote">NOTE: This total may vary.</div>
+<script>
+    var cartItems;
+    $(document).ready(function () {
+        cartItems = JSON.parse(localStorage.getItem("Cart"));
+
+
+        var OldBalance = @(((Customer_Model)Session["CurrentUser"]).OldBalance);
+        if (OldBalance == null || OldBalance == undefined) {
+            OldBalance = 0;
+        }
+
+        if (cartItems == null || cartItems == undefined || cartItems.length == 0) {
+            $('#CartAvailable').hide();
+            $('#CartNotAvailable').show();
+            $('#AmountNote').hide();
+        } else {
+            $('#CartAvailable').show();
+            $('#CartNotAvailable').hide();
+            $('#AmountNote').show();
+        }
+        var Item;
+        var tempamnt = parseInt(localStorage.getItem("CartTotal"));
+        tempamnt = tempamnt + OldBalance;
+        if (tempamnt == null) {
+            tempamnt = 0;
+        }
+        $('#totalPriice').html("Rs. " + tempamnt);
+        for (i = 0; i < cartItems.length;i++){
+            Item = "";
+            Item = '<tr id="' + i +'"><td>' + (i + 1) + '</td><td>' + cartItems[i].ProductId + '</td><td>' + cartItems[i].ProductName + '</td><td>' + cartItems[i].Service + '</td><td><span>' + cartItems[i].Price +'</span></td><td data-th="Quantity" style="width:15%;">';
+            Item = Item + '<input id="vip_' + i +'" type="number" min="0" onkeypress="return event.charCode >= 48" onchange="UpdateAmounts('+i+')" class="form-control text-center" value="' + cartItems[i].Quantity + '"></td><td><span id = "subttl_'+i+'"> Rs. ' + cartItems[i].SubTotal +'</span></td><td class="actions" data-th="">';
+            Item = Item + '<button class="btn btn-danger btn-sm" onclick = "RemoveItemFromCart(' + i +')"><i class="fa fa-trash-o"></i></button></td></tr>';
+            $('#cartbody').append(Item);
+        }
+        if (OldBalance > 0) {
+            $('#UserOldBalance').html("Rs. " + OldBalance);
+        } else {
+            $('#UserOldBalance').html("Rs. 0");
+        }
+
+
+
+    });
+
+    function takeUsToAddress() {
+        if ("@(Session["CurrentUser"] is Customer_Model)" == "True") {
+            var cartt = JSON.parse(localStorage.getItem("Cart"));
+            if (cartt != null && cartt != undefined && cartt.length != 0) {
+                window.location.pathname = "CustomerOrder/Customer_Address";
+            } else {
+                alert("You must add items to cart before proceeding.");
+            }
+        } else {
+            alert("Please login before continuing.");
+            window.location.pathname = "Home/Index";
+        }
+    }
+
+    function RemoveItemFromCart(index) {
+        var cmf = confirm("Are you sure you want to remove this item from cart?");
+        if (cmf == true) {
+            cartItems.splice(index, 1);
+            calculatesubtotal();
+            $('#totalPriice').html("Total: Rs. " + localStorage.getItem("CartTotal"));
+            localStorage.setItem("Cart", JSON.stringify(cartItems));
+            CartUpdate();
+            $('#' + index).remove();
+        }
+
+        cartItems = JSON.parse(localStorage.getItem("Cart"));
+        if (cartItems == null || cartItems == undefined || cartItems.length == 0) {
+            $('#CartAvailable').hide();
+            $('#CartNotAvailable').show();
+            $('#AmountNote').hide();
+        } else {
+            $('#CartAvailable').show();
+            $('#CartNotAvailable').hide();
+            $('#AmountNote').show();
+        }
+
+    }
+
+    function calculatesubtotal() {
+        var ttl = 0;
+
+        for (i = 0; i < cartItems.length; i++) {
+            ttl = ttl + parseInt(cartItems[i].SubTotal, 10);
+        }
+
+        localStorage.setItem("CartTotal", ttl);
+
+        //update the cart drop down.
+        $('#CartItemCount').html(cartItems.length);
+        $('#TotalCartDD').html(ttl);
+        CartUpdate();
+        return ttl;
+    }
+
+    function UpdateAmounts(index) {
+        if ($('#vip_' + index).val() > 0) {
+            cartItems[index].Quantity = $('#vip_' + index).val();
+            cartItems[index].SubTotal = cartItems[index].Price * cartItems[index].Quantity;
+            calculatesubtotal();
+            localStorage.setItem("Cart", JSON.stringify(cartItems));
+            $('#subttl_' + index).html("Rs. " + cartItems[index].SubTotal);
+            $('#totalPriice').html("Total: Rs. " + localStorage.getItem("CartTotal"));
+
+            CartUpdate();
+        }
+
+        if ($('#vip_' + index).val() == 0) {
+            RemoveItemFromCart(index);
+        }
+    }
+
+
+
+</script>

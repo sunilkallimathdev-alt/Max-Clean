@@ -1,0 +1,252 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@{
+    ViewBag.Title = "AddAddressDetails";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <div class="center-block" id="howitworks">
+                <h2> <span>Address</span></h2>
+
+            </div>
+            <section class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30">
+                <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45">
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-6 m_xs_bottom_30">
+                            <h5 class="fw_medium m_bottom_15">PickUp Address</h5>
+                            <form>
+                                <ul>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="P_Name" class="d_inline_b m_bottom_5 required">Name</label>
+                                                <input type="text" id="P_Name" name="P_Name" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="P_Mobile" class="d_inline_b m_bottom_5 required">Mobile number</label>
+                                                <input type="text" id="P_Mobile" name="P_Mobile" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <li class="m_bottom_15">
+                                        <label for="P_Email" class="m_bottom_5 d_inline_b required">Email</label><br>
+                                        <input type="text" name="P_Email" id="P_Email" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="P_Address" class="d_inline_b m_bottom_5 required">Address</label>
+                                        <textarea id="P_Address" name="P_Address" class="r_corners notes full_width" style="height:90px;"></textarea>
+                                    </li>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="f_name_1" class="d_inline_b m_bottom_5 required">Preferable pick up date & time</label>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <input type="date" id="m_name_1" name="" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <input type="time" id="m_name_1" name="" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="f_name_1" class="d_inline_b m_bottom_5"> Any remarks?</label>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <textarea id="notes" class="r_corners notes full_width" style="height:60px;"></textarea>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <h5 class="fw_medium m_bottom_15">Delivery Address</h5>
+                            <form>
+                                <ul>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="D_Name" class="d_inline_b m_bottom_5 required">Name</label>
+                                                <input type="text" id="D_Name" name="D_Name" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="D_Mobile" class="d_inline_b m_bottom_5 required">Mobile number</label>
+                                                <input type="text" id="D_Mobile" name="D_Mobile" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <li class="m_bottom_15">
+                                        <label for="D_Email" class="m_bottom_5 d_inline_b required">Email</label><br>
+                                        <input type="text" name="D_Email" id="D_Email" class="r_corners full_width">
+                                    </li>
+                                    <li class="m_bottom_15">
+                                        <label for="D_Address" class="d_inline_b m_bottom_5 required">Address</label>
+                                        <textarea id="D_Address" name="D_Address" class="r_corners notes full_width" style="height:90px;"></textarea>
+                                    </li>
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="f_name_1" class="d_inline_b m_bottom_5 required"> Preferable delivery date</label>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <input type="date" id="m_name_1" name="" class="r_corners full_width">
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                                        <input type="checkbox"  class="d_none" name="checkbox_6" id="checkbox_6">
+                                                        <label for="checkbox_6">Normal</label>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                                        <input type="checkbox"  class="d_none" name="checkbox_6" id="checkbox_7">
+                                                        <label for="checkbox_7">Express</label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <li class="m_bottom_15">
+                                                <label for="address_1" class="d_inline_b m_bottom_5" style="color:#ffd923;font-weight:bold;">Order Type: Normal Delivery.</label>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--right column-->
+
+        </div>
+        <div class="row clearfix d_xs_none">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="cart.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue to cart</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="payment.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+
+        </div>
+        <div class="row clearfix d_none d_xs_block">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <a href="cart.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: left;"><i class="fa fa-angle-left"></i>Continue to cart</a></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a href="payment.html"><span class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Confirm Order<i class="fa fa-angle-right"></i></a></span>
+            </div>
+
+        </div>
+        <br />
+        <label style="color:#114e9a;float:right;font-weight:bold;">For any query call: +91 9900318000</label>
+    </div>
+</div>
+<script src="~/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+    @{
+        var login = Session["logindetails"];
+        dynamic user = null;
+        if (login != null) {
+            user = (JObject)JsonConvert.DeserializeObject(Session["logindetails"].ToString());
+        }
+        }
+    var Isexist = @user
+    if(Isexist != undefined && Isexist != "" && Isexist != null) {
+
+        var CustomerName = "@user.SelectToken("CustomerName").ToString()"
+        var MobileNumber = "@user.SelectToken("MobileNumber")"
+        var Address = "@user.SelectToken("Address")"
+        var EmailID = "@user.SelectToken("EmailID")"
+    }
+    var myobj = new Object();
+        myobj.CustomerName = null;
+    myobj.CustomerMobile = null;
+    myobj.CustomerEmail = null;
+    myobj.PickupAddress = null;
+    myobj.PickupDate = null;
+    myobj.ConfirmedBy = null;
+    myobj.Pickedby = null;
+    myobj.DeliveryAddress = null;
+    myobj.ActualDeliveryDate = null;
+    myobj.PickupTime = null;
+    myobj.DeliveryTime = null;
+    myobj.StoreID = null;
+    myobj.orderstatusID = null;
+    myobj.PaidAmount = null;
+    myobj.Remark = null;
+    myobj.PaymentType = null;
+    myobj.Invoice_No = null;
+
+    myobj.GrandTotal = null;
+    myobj.RemainingAmount = null;
+    myobj.OldBalanceApplied = null;
+    myobj.IsOutletOrder = true;
+    myobj.RewardPointsApplied = null;
+    myobj.IsReward = false;
+    myobj.IsExpressDelivery = true;
+    myobj.ExpressChargeApplied = null;
+
+ 
+        myobj.IsPromocodeApplied = false;
+        myobj.Promocode = null;
+        myobj.Promocode_Amount = 0;
+    
+
+        myobj.Delivery_charge = null;
+
+
+    var Details = [];
+
+
+        myobj.PurchaseOrderDetail = Details;
+
+    localStorage.setItem("Order_Object", myobj);
+    $(document).ready(function () {
+
+
+
+        $("#P_Name").val(CustomerName);
+        $("#P_Mobile").val(MobileNumber);
+        $("#P_Email").val(EmailID);
+        $("#P_Address").val(Address);
+
+        $("#D_Name").val(CustomerName);
+        $("#D_Mobile").val(MobileNumber);
+        $("#D_Email").val(EmailID);
+        $("#D_Address").val(Address);
+    });
+
+    
+</script>

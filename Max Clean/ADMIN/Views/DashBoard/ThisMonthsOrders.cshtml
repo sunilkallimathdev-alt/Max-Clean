@@ -1,0 +1,195 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+@{
+    ViewBag.Title = "ThisMonthsOrders";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button onclick="window.history.back();" class="btn btn-danger btn-sm">Go Back</button>
+
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section id="section5" class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header row">
+                <div class="col-md-2">
+                    <h3 class="card-title">Orders Placed</h3>
+                </div>
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Orders Received From : </label>
+                                <select class="form-control" name="StoresID">
+                                    @{
+                                        var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+                                        try
+                                        {
+
+                                            <option value="0">---Select---</option>
+                                            foreach (var str in StoreList)
+                                            {
+                                                <option value="@str.StoreID">@str.StoreName</option>
+                                            }
+
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="buttons2"></div>
+                <table id="tbl2" class="table table-bordered nopadding table-striped" style="width:100%" cellpadding="0" cellspacing="0">
+
+                    <thead>
+                        <tr>
+                            <th>OrderID</th>
+                            <th>Customer</th>
+                            <th>Delivery Date</th>
+                            <th>Total Amt</th>
+                            <th>Bal. Amt</th>
+                            <th>Total Qty</th>
+                            <th>Delivery Type</th>
+                            <th>Order Type</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</section>
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        var StoresID = $('[name="StoresID"]').val();
+
+        BindorderTableData(StoresID);
+        $('[name="StoresID"]').change(function () {
+            var StoresID = $('[name="StoresID"]').val();
+
+            BindorderTableData(StoresID);
+        });
+
+    });
+
+    function BindorderTableData(storeID) {
+        var IDs = [];
+        //var myObject = JSON.parse(data);
+        var TableDate = [];
+
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = new Date(y, m, 1);
+        var lastDay = new Date(y, m + 1, 0);
+         var Myobj = new Object();
+        Myobj.StoreID = storeID;
+        Myobj.FromDate = firstDay;
+        Myobj.ToDate = lastDay;
+
+
+        $("#tbl2").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
+            "filter": true, // this is for enable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "srolly": true,
+            "destroy": true,
+            "order": [[0, "desc"]],
+            "ajax": {
+                "url": "/OrdersList/LoadData",
+                "type": "POST",
+                "datatype": "json",
+                "data": { obj: JSON.stringify(Myobj) },
+                "filter": true,
+                "scroll": true,
+                "searching": true,
+            },
+            "columns": [
+                { "data": "OrderID", "name": "OrderID", "autoWidth": true },
+                {
+                    "name": "CustomerName",
+                    "render": function (data, type, full, meta) {
+                        return full.CustomerName + "/ " + full.CustomerMobile;
+                    }
+                },
+                {
+                    "name": "ExpectingDeliveryDate",
+                    "render": function (data, type, full, meta) {
+                        return SplitDate(full.ExpectingDeliveryDate);
+                    }
+                },
+                { "data": "GrandTotal", "name": "GrandTotal", "autoWidth": true },
+                { "data": "RemainingAmount", "name": "RemainingAmount", "autoWidth": true },
+                { "data": "TotalQuantity", "name": "TotalQuantity", "autoWidth": true },
+                {
+                    "name": "IsExpressDelivery",
+                    "render": function (data, type, full, meta) {
+                        if (full.IsExpressDelivery)
+                            return '<span class="badge bg-danger float-right">Express</span>';
+                        else
+                            return '<span class="badge bg-info float-right">Normal</span>';
+                    }
+                },
+                {
+                    "name": "IsOutletOrder",
+                    "render": function (data, type, full, meta) {
+                        if (full.IsOutletOrder)
+                            return '<span class="badge bg-secondary float-right">Offline</span>';
+                        else
+                            return '<span class="badge bg-success float-right">Online</span>';
+                    }
+                },
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<button onclick="SaveID(' + full.OrderID + ');" class="btn btn-info btn-sm">view Details</button>';
+                    }
+                },
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<a href="/Invoice/Index/' + full.OrderID + '" target="blank" class="btn btn-success btn-sm">Invoice</a>';
+                    }
+                },
+            ],
+            "aoColumnDefs": [
+                {
+                    bSortable: false,
+                    aTargets: [-1, -2,]
+                },
+                {
+                    searchable: true,
+                    aTargets: [1, 2, 4, 5, 6, 9]
+                }
+            ]
+
+        });
+        hideshowbuttons();
+    }
+    function SaveID(ID) {                                       //orderdetails loni function edi gurthupettuko
+        var POID = ID;
+        localStorage.setItem("POID", ID);
+
+        window.location.href = "/OrderDetails/Index";
+    }
+</script>

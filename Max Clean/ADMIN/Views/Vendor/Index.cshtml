@@ -1,0 +1,447 @@
+﻿
+@{
+    ViewBag.Title = "Vendor";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formvendor">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Vendor Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="VendorName" maxlength="100" onkeypress=" return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Mobile Number<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="MobileNumber" maxlength="10" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Alt.MobileNumber</label>
+                                <input class="form-control" type="text" name="AltMobileNumber" maxlength="10" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>EmailID</label>
+                                <input class="form-control" type="text" name="EmailID" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" type="text" name="Address" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" name="City" maxlength="100" onkeypress=" return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input class="form-control" type="text" name="State" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input class="form-control" type="text" name="Country" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>PinCode</label>
+                                <input class="form-control" type="text" name="PinCode" maxlength="6" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Latitude <a href="http://www.mapcoordinates.net/en" target="_blank"><small style="color:#9c27b0">Get Latitude and Logitude.</small></a></label>
+                                <input class="form-control" type="text" name="Latitude" maxlength="20" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Longitude</label>
+                                <input class="form-control" type="text" name="Longitude" maxlength="100" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>HSN</label>
+                                <input class="form-control" type="text" name="HSN" maxlength="100" onkeypress="return IsNumericorAlphabets(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Bank</label>
+                                <input class="form-control" type="text" name="Bank" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>BankAccountNo</label>
+                                <input class="form-control" type="text" name="BankAccountNo" maxlength="30" onkeypress="return IsNumeric(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>IFSC</label>
+                                <input class="form-control" type="text" name="IFSC" maxlength="30" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <textarea class="form-control" type="text" name="Remark" onkeypress="return NotanHTML(event)"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" onclick="ClearFields()" id="btnreset">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formvendor').validate({
+            rules: {
+                VendorName: {
+                    required: true,
+                },
+                MobileNumber: {
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 15,
+                    required: true,
+                },
+                AltMobileNumber: {
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 15,
+                    required: false,
+                },
+                EmailID: {
+                    email: true,
+                    required: false,
+                },
+                Address: {
+                    required: false,
+                },
+                City: {
+                    required: false,
+                },
+                State: {
+                    required: false,
+                },
+                Country: {
+                    required: false,
+                },
+                PinCode: {
+                    digits: true,
+                    required: false,
+                },
+                Latitude: {
+                    required: false,
+                },
+                Longitude: {
+                    required: false,
+                },
+                HSN: {
+                    required: false,
+                },
+                Bank: {
+                    required: false,
+                },
+                BankAccountNo: {
+                    required: false,
+                },
+                IFSC: {
+                    required: false,
+                },
+                Remark: {
+                    required: false,
+                },
+            }
+        });
+
+        var form = $("#formvendor");
+        form.validate();
+
+        $(document).ready(function () {
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.VendorName = $('[name="VendorName"]').val();
+                    myobj.MobileNumber = $('[name="MobileNumber"]').val();
+                    myobj.AltMobileNumber = $('[name="AltMobileNumber"]').val();
+                    myobj.EmailID = $('[name="EmailID"]').val();
+                    myobj.Address = $('[name="Address"]').val();
+                    myobj.City = $('[name="City"]').val();
+                    myobj.State = $('[name="State"]').val();
+                    myobj.Country = $('[name="Country"]').val();
+                    myobj.PinCode = $('[name="PinCode"]').val();
+                    myobj.Latitude = $('[name="Latitude"]').val();
+                    myobj.Longitude = $('[name="Longitude"]').val();
+                    myobj.HSN = $('[name="HSN"]').val();
+                    myobj.Bank = $('[name="Bank"]').val();
+                    myobj.BankAccountNo = $('[name="BankAccountNo"]').val();
+                    myobj.IFSC = $('[name="IFSC"]').val();
+                    myobj.Remark = $('[name="Remark"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    $.post("@Url.Action("AddVendor", "Vendor")", { ObjVendor: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    });
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.VendorID = $('[name="HDID"]').val();
+                    myobj.VendorName = $('[name="VendorName"]').val();
+                    myobj.MobileNumber = $('[name="MobileNumber"]').val();
+                    myobj.AltMobileNumber = $('[name="AltMobileNumber"]').val();
+                    myobj.EmailID = $('[name="EmailID"]').val();
+                    myobj.Address = $('[name="Address"]').val();
+                    myobj.City = $('[name="City"]').val();
+                    myobj.State = $('[name="State"]').val();
+                    myobj.Country = $('[name="Country"]').val();
+                    myobj.PinCode = $('[name="PinCode"]').val();
+                    myobj.Latitude = $('[name="Latitude"]').val();
+                    myobj.Longitude = $('[name="Longitude"]').val();
+                    myobj.HSN = $('[name="HSN"]').val();
+                    myobj.Bank = $('[name="Bank"]').val();
+                    myobj.BankAccountNo = $('[name="BankAccountNo"]').val();
+                    myobj.IFSC = $('[name="IFSC"]').val();
+                    myobj.Remark = $('[name="Remark"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+
+                    $.post("@Url.Action("UpdateVendor", "Vendor")", { ObjVendor: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    });
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+
+                BindTableData();
+
+            });
+        });
+
+        function GetData(VendorID) {
+            ClearFields();
+            $.get("@Url.Action("GetVendor", "Vendor")", { VendorID: VendorID }, function (data) {
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.VendorID);
+                    $('[name="VendorName"]').val(myobj.ObjectResult.VendorName);
+                    $('[name="MobileNumber"]').val(myobj.ObjectResult.MobileNumber);
+                    $('[name="AltMobileNumber"]').val(myobj.ObjectResult.AltMobileNumber);
+                    $('[name="EmailID"]').val(myobj.ObjectResult.EmailID);
+                    $('[name="Address"]').val(myobj.ObjectResult.Address);
+                    $('[name="City"]').val(myobj.ObjectResult.City);
+                    $('[name="State"]').val(myobj.ObjectResult.State);
+                    $('[name="Country"]').val(myobj.ObjectResult.Country);
+                    $('[name="PinCode"]').val(myobj.ObjectResult.PinCode);
+                    $('[name="Latitude"]').val(myobj.ObjectResult.Latitude);
+                    $('[name="Longitude"]').val(myobj.ObjectResult.Longitude);
+                    $('[name="HSN"]').val(myobj.ObjectResult.HSN);
+                    $('[name="Bank"]').val(myobj.ObjectResult.Bank);
+                    $('[name="BankAccountNo"]').val(myobj.ObjectResult.BankAccountNo);
+                    $('[name="IFSC"]').val(myobj.ObjectResult.IFSC);
+                    $('[name="Remark"]').val(myobj.ObjectResult.Remark);
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val("true");
+                    else
+                        $('[name="IsActive"]').val("false");
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+                    OpenCard();
+                }
+            });
+        }
+        function DeleteData(VendorID) {
+            var alert = confirm("Are you sure want to cancel request?");
+            if (alert) {
+                var myobj = new Object();
+                $.post("@Url.Action("DeleteVendor", "Vendor")", { VendorID: VendorID }, function (data) {
+                    var Res = JSON.parse(data);
+                    if (Res.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", Res.Message);
+                    BindTableData();
+
+                });
+            }
+        }
+        function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="VendorName"]').val(null);
+            $('[name="MobileNumber"]').val(null);
+            $('[name="AltMobileNumber"]').val(null);
+            $('[name="EmailID"]').val(null);
+            $('[name="Address"]').val(null);
+            $('[name="City"]').val(null);
+            $('[name="Country"]').val(null);
+            $('[name="PinCode"]').val(null);
+            $('[name="Latitude"]').val(null);
+            $('[name="Longitude"]').val(null);
+            $('[name="IsActive"]').val(null);
+            $('[name="State"]').val(null);
+            $('[name="City"]').val(null);
+            $('[name="HSN"]').val(null);
+            $('[name="Bank"]').val(null);
+            $('[name="BankAccountNo"]').val(null);
+            $('[name="IFSC"]').val(null);
+            $('[name="Remark"]').val(null);
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+
+        }
+
+
+
+        function BindTableData() {
+
+            $.get("@Url.Action("GetVendorList", "Vendor")", function (data) {
+                var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].VendorName);
+                row.push("<a href=tel:" + myObject[i].MobileNumber+">"+myObject[i].MobileNumber+"</a>");
+                row.push("<a href=mailto:" + myObject[i].EmailID + ">" + myObject[i].EmailID + "</a>");
+                row.push(myObject[i].City);
+                row.push(myObject[i].State);
+                row.push(myObject[i].Country);
+                row.push(myObject[i].PinCode);
+                if (myObject[i].IsActive)
+                    row.push("<span class='badge bg-success float-right'>Active</span>");
+                else
+                    row.push("<span class='badge bg-danger float-right'>InActive</span>");
+                row.push('<button type="button" class="btn btn-info btn-sm" onclick="GetData(' + myObject[i].VendorID+')">Edit</button>');
+                row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].VendorID+')">Delete</button>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Vendor Name" },
+                    { title: "Mobile Number" },
+                    { title: "EmailID" },
+                    { title: "City" },
+                    { title: "State" },
+                    { title: "Country" },
+                    { title: "PinCode" },
+                    { title: "Status " },
+                    { title: " " },
+                    { title: " " },
+                ]
+            });
+                var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5',
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+         });
+        }
+
+    </script>
+</section>

@@ -1,0 +1,158 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Customer Orders";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-8">
+                <button onclick="window.history.back();" class="btn btn-info btn-sm">Go Back</button>
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-4">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formgetorders">
+            <div class="card card-info" id="cardiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">Name : <span id="Name"> </span></h3>
+                    <h3 class="card-title">Email : <span id="Email"></span></h3>
+                    <h3 class="card-title">Mobile :<span id="Mobile"></span></h3>
+                    <h6 class="card-title" style="float:right">Average Billing :<span id="Average"></span></h6>
+                </div>
+                
+             
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%"></table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formgetorders').validate({
+            rules: {
+                FromDate: {
+                    required: false,
+                },
+                ToDate: {
+                    required: false,
+                },
+                OrderStatus: {
+                    required: false,
+                }
+               
+
+            }
+        });
+
+        var form = $("#formgetorders");
+        form.validate();
+
+
+        $(document).ready(function () {
+            var CustomerID ='@Request.QueryString["ID"]';
+            BindTableData(CustomerID);
+
+
+
+        });
+
+
+
+        function BindTableData(CustomerID) {
+
+
+
+            $.get("@Url.Action("GetCustomerOrdersByID", "Reports")", { CustomerID: CustomerID }, function (data) {
+                var myObject = JSON.parse(data);
+                var TableDate = [];
+                var Grandtotal = 0;
+                var ords = 0;
+                $("#Name").html(myObject[0].CustomerName);
+                $("#Mobile").html(myObject[0].CustomerMobile);
+                $("#Email").html(myObject[0].CustomerEmail);
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(myObject[i].OrderID);
+             
+                row.push(SplitDateTime(myObject[i].OrderDate) + "    --  " + SplitTime(myObject[i].OrderDate).replace("/", "-").replace("/", "-"));
+                row.push(myObject[i].GrandTotal);
+                row.push(myObject[i].PaidAmount);
+                row.push(myObject[i].RemainingAmount);
+
+
+
+
+                //row.push(myObject.Result[i].GrandTotal);
+                //row.push(myObject.Result[i].PaidAmount);
+                //row.push(myObject.Result[i].RemainingAmount);
+
+
+                //row.push('<button type="button" class="btn btn-info btn-sm" onclick="SaveID(' + myObject.Result[i].OrderID + ')">View Details</button>');
+                //row.push('<button type="button" class="btn btn-danger btn-sm" onclick="DeleteData(' + myObject[i].CategoryId + ')">Delete</button>');
+                TableDate.push(row);
+                ords = ords + 1;
+                Grandtotal = Grandtotal + myObject[i].GrandTotal;
+                }
+                $("#Average").html(Math.floor(Grandtotal / ords));
+
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Order ID" },
+                    { title: "Order Date" },
+                    { title: "Grand Total" },
+                    { title: "Paid Amount" },
+                    { title: "Remaining Amount" },
+
+                ]
+            });
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+                $('.buttons-html5').addClass('btn btn-default btn-sm');
+        });
+    }
+
+    </script>
+
+</section>
+
+
+
+
+

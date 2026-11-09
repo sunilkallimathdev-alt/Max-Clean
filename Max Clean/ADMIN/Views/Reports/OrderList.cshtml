@@ -1,0 +1,272 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@{
+    /**/
+
+    ViewBag.Title = "Order Report";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formcashflow">
+            <div class="card card-info" id="cardiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>From Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="FromDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>To Date<span style="color:red">*</span></label>
+                                <input class="form-control" type="date" name="ToDate" maxlength="100" onkeypress="return Date(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Store Name<span style="color:red">*</span></label>
+                                <select class="form-control" name="StoreID" onchange="BindorderTableData()">
+
+                                    @{
+                                        var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+
+                                        try
+                                        {
+                                            var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                            if (user.StoreID != null)
+                                            {
+                                                foreach (var str in StoreList)
+                                                {
+                                                    if (user.StoreID == @str.StoreID)
+                                                    {
+                                                        <option value="@str.StoreID">@str.StoreName</option>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="">---Display All---</option>
+                                                foreach (var str in StoreList)
+                                                {
+                                                    <option value="@str.StoreID">@str.StoreName</option>
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+
+
+                                </select>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @*<button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>*@
+                    <button type="button" class="btn btn-success" onclick="BindorderTableData();" id="btnupdate">Submit</button>
+                    @*<button type="button" class="btn btn-danger" onclick="BindTableData();">Cancel</button>*@
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>OrderID</th>
+                        <th>Customer</th>
+                        <th>Exp. Delivery Date</th>
+                        <th>Total Amt</th>
+                        <th>Bal. Amt</th>
+                        <th>Total Qty</th>
+                        <th>Delivery Type</th>
+                        <th>Order Type</th>
+                        <th>Order Status</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+
+
+        var tableId = "tbl";
+
+        $('#formcashflow').validate({
+            rules: {
+                FromDate: {
+                    required: false,
+                },
+                ToDate: {
+                    required: false,
+                },
+                StoreName: {
+                    required: false,
+                }
+
+            }
+        });
+
+        var form = $("#formcashflow");
+        form.validate();
+
+
+        $(document).ready(function () {
+            BindorderTableData();
+            
+
+
+        });
+
+        
+
+
+   
+
+
+        function BindorderTableData() {
+            var IDs = [];
+            //var myObject = JSON.parse(data);
+            var TableDate = [];
+            var dropdownoption = "";
+
+
+           
+
+            var Myobj = new Object();
+            Myobj.StoreID = $('[name="StoreID"]').val();
+            Myobj.FromDate = $('[name="FromDate"]').val();
+            Myobj.ToDate = $('[name="ToDate"]').val();
+
+
+            $("#" + tableId).DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for enable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "srolly": true,
+                "destroy": true,
+                "order": [[0, "desc"]],
+                "ajax": {
+                    "url": "/OrdersList/LoadData",
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": { obj: JSON.stringify(Myobj) },
+                    "filter": true,
+                    "scroll": true,
+                    "searching": true,
+                },
+                "columns": [
+
+                    {
+                        "name": "OrderID",
+                        "render": function (data, type, full, meta) {
+                            return full.Store_code + "_" + full.OrderID;
+                        }
+                    },
+                    {
+                        "name": "CustomerName",
+                        "render": function (data, type, full, meta) {
+                            return full.CustomerName + " - " + full.CustomerMobile;
+                        }
+                    },
+                    {
+                        "name": "ExpectingDeliveryDate",
+                        "render": function (data, type, full, meta) {
+                            return SplitDate(full.ExpectingDeliveryDate);
+                        }
+                    },
+                    { "data": "GrandTotal", "name": "GrandTotal", "autoWidth": true },
+                    { "data": "RemainingAmount", "name": "RemainingAmount", "autoWidth": true },
+                    { "data": "TotalQuantity", "name": "TotalQuantity", "autoWidth": true },
+                    {
+                        "name": "IsExpressDelivery",
+                        "render": function (data, type, full, meta) {
+                            if (full.IsExpressDelivery)
+                                return '<span class="badge bg-danger float-right">Express</span>';
+                            else
+                                return '<span class="badge bg-info float-right">Normal</span>';
+                        }
+                    },
+                    {
+                        "name": "IsOutletOrder",
+                        "render": function (data, type, full, meta) {
+                            if (full.IsOutletOrder)
+                                return '<span class="badge bg-secondary float-right">Offline</span>';
+                            else
+                                return '<span class="badge bg-success float-right">Online</span>';
+                        }
+                    },
+                    { "data": "OrderStatus", "name": "OrderStatus", "autoWidth": true }
+
+                ],
+                "aoColumnDefs": [
+                    //{
+                    //    bSortable: false,
+                    //    aTargets: [-1, -2, -3, -4, -5, -9, -10]
+                    //},
+                    {
+                        searchable: true,
+                        aTargets: [1, 2, 4, 5, 6, 8]
+                    }, { width: "18%", targets: [-1,1] }
+                ]
+
+            });
+            hideshowbuttons();
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+            $('.buttons-html5').addClass('btn btn-default btn-sm');
+        }
+    </script>
+
+</section>
+

@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/WebMaster.cshtml";
+}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--left content column-->
+            <section class="col-lg-12 col-md-12 col-sm-12">
+                <div class="center-block" id="howitworks">
+                    <h2>  <span>Contact Us</span></h2>
+
+                </div>
+
+                <div class="r_corners photoframe map_container shadow m_bottom_45">
+                   @* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12098.04228269596!2d-74.00499255597757!3d40.70677554722762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2z0J3RjNGOLdCZ0L7RgNC6!5e0!3m2!1sru!2s!4v1393474990482"></iframe>*@
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62196.050671793455!2d77.5592072436828!3d13.01954360094833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16ef1b9bf221%3A0x546699e6bc1035bc!2sMax+Clean+Laundry!5e0!3m2!1sen!2sin!4v1549016947820" ></iframe>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-4 col-sm-4 m_xs_bottom_30">
+                        <h2 class="color_dark m_bottom_25">Contact Info</h2>
+                        <ul class="c_info_list">
+                            <li class="m_bottom_10">
+                                <div class="clearfix m_bottom_15">
+                                    <i class="fa fa-map-marker f_left color_dark"></i>
+                                    <p class="contact_e">
+                                        #90/1, Wheeler Road Extention<br> D'costa Square First Cross,<br> St Thomas Town, Post,<br> Bengaluru, Karnataka 560084
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="m_bottom_10">
+                                <div class="clearfix m_bottom_10">
+                                    <i class="fa fa-phone f_left color_dark"></i>
+                                    <p class="contact_e"><a href="tel:+91 9900318000"> +91 9900318000</a></p>
+                                </div>
+                            </li>
+                            <li class="m_bottom_10">
+                                <div class="clearfix m_bottom_10">
+                                    <i class="fa fa-envelope f_left color_dark"></i>
+                                    <a class="contact_e default_t_color" href="mailto:info@maxcleanlaundry.in">info@maxcleanlaundry.in</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <i class="fa fa-clock-o f_left color_dark"></i>
+                                    <p class="contact_e">Monday - Friday: 08.00-20.00 <br>Saturday: 09.00-15.00<br> Sunday: closed</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 m_xs_bottom_30">
+                        <h2 class="color_dark m_bottom_25">Contact Form</h2>
+                        <p class="m_bottom_10">Send an email. All fields with an <span class="scheme_color">*</span> are required.</p>
+                        <ul>
+                            <li class="clearfix m_bottom_15">
+                                <div class="f_left half_column">
+                                    <label for="cf_name" class="required d_inline_b m_bottom_5">Your Name</label>
+                                    <input type="text" id="cf_name" name="cf_name" class="full_width r_corners">
+                                </div>
+                                <div class="f_left half_column">
+                                    <label for="cf_email" class="required d_inline_b m_bottom_5">Email</label>
+                                    <input type="email" id="cf_email" name="cf_email" class="full_width r_corners">
+                                </div>
+                            </li>
+                            <li class="m_bottom_15">
+                                <label for="cf_subject" class=" required d_inline_b m_bottom_5">Mobile Number</label>
+                                <input type="number" onkeypress="return isNumber(event)" pattern="\d{3}[\-]\d{3}[\-]\d{4}"  id="cf_mobilenumber" name="cf_subject" class="full_width r_corners">
+                            </li>
+                            <li class="m_bottom_15">
+                                <label for="cf_message" class="d_inline_b m_bottom_5 required">Message</label>
+                                <textarea id="cf_message" name="cf_message" class="full_width r_corners"></textarea>
+                            </li>
+                            <li>
+                                <button type="submit" id="btngetcontactdetails" onclick="SaveDetails();" class="button_type_4 bg_light_color_2 r_corners mw_0 tr_all_hover color_dark">Send</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!--right column-->
+        </div>
+    </div>
+</div>
+<!--social widgets-->
+<ul class="social_widgets d_xs_none">
+    <!--facebook-->
+    <!--twitter feed-->
+    <li class="relative">
+        <a href="/order/ordernow"><span class=" zoom button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5" style="float: right;">Order Now</a></span>
+    </li>
+    <!--contact form-->
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        Update_Cart();
+    });
+
+
+    function Update_Cart() {
+
+            // if ((window.location.pathname).toLowerCase() == "/order/cart")
+            // update_local();
+            var Cart_Pducts = [];
+            var ttal = 0
+            var Products_Exist = localStorage.getItem("Order_Object");
+            if (Products_Exist != null)
+                Cart_Pducts = JSON.parse(localStorage.getItem("Order_Object"));
+            var _Products = "";
+
+            _Products += "<div class='f_size_medium sc_header'>Recently added item(s)</div>";
+            _Products += "<ul class='products_list' style='height:200px; overflow-y:scroll;' >";
+            for (var p = 0; p < Cart_Pducts.length; p++) {
+
+
+                _Products += "<li>";
+                _Products += "<div class='clearfix'>";
+                _Products += "<div class='f_left product_description'>";
+                _Products += "<a href='#' class='color_dark d_block'>" + Cart_Pducts[p].CategoryName + " / " + Cart_Pducts[p].ProductName + "</a>";
+                _Products += "<a href='#' class='color_dark d_block'>" + Cart_Pducts[p].ServiceName + "</a>";
+                _Products += "</div>";
+                _Products += "<div class='f_left f_size_medium'>";
+                _Products += "<div class='clearfix'>";
+                _Products += Cart_Pducts[p].Quantity + " x <b class='color_dark'>" + Cart_Pducts[p].UnitPrice + "</b>";
+                _Products += "</div>";
+
+                _Products += "</div>";
+                _Products += "</div>";
+                _Products += "</li>";
+
+                ttal += Cart_Pducts[p].Price;
+
+
+            }
+            _Products += "</ul>";
+            _Products += "<ul class='total_price bg_light_color_1 t_align_r color_dark'>";
+            _Products += "<li>Total: <b class='f_size_large bold scheme_color sc_price t_align_l d_inline_b m_left_15'>" + ttal + "</b></li>";
+            _Products += "</ul>";
+            _Products += "<div class='sc_footer t_align_c'>";
+            _Products += "<a href='/Order/Cart' role='button' class='button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5'>View Cart</a>";
+            _Products += "<a href='/Order/Address' role='button' class='button_type_4 bg_scheme_color d_inline_middle r_corners tr_all_hover color_light'>Checkout</a>";
+            _Products += "</div>";
+            if (Cart_Pducts.length < 1) {
+                _Products += "<div class='sc_footer t_align_c'>";
+                _Products += "<p>No Items In Cart</p>";
+                _Products += "</div>";
+            }
+
+            $("#Carts_prds").html(_Products);
+            $("#cart_count").html(Cart_Pducts.length);
+            $("#total_count").html(ttal);
+
+        }
+
+
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            alert("Please enter only Numbers.");
+            return false;
+        }
+        return true;
+    }
+
+    function validateEmail(email) {
+    //var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+    //return emailReg.test(String(email).toLowerCase());
+         var pattern = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (pattern.test(email))
+                return true;
+            else
+                return false;
+}
+
+    function phone_number(inputtxt) {
+        var phoneno = /^\d{10}$/;
+        if ((inputtxt.value.match(phoneno))) {
+            return true;
+        }
+        else {
+            alert("message");
+            return false;
+        }
+    }
+    function SaveDetails() {
+
+
+                var name = $("#cf_name").val();
+                var email = $("#cf_email").val();
+                var mobile = $("#cf_mobilenumber").val();
+                var msg = $("#cf_message").val();
+
+                if (name == '') {
+                    alert("Name cannot be empty");
+                    return;
+                }
+                else if (mobile == '' || mobile == null) {
+                    alert("mobilenumber cannot be empty");
+                    return;
+                }
+                else if (mobile.length < 10 || mobile.length > 10) {
+                    alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
+                    return ;
+                }
+                else if (!phone_number(mobile)) {
+                    alert("Mobile No. is not valid");
+                    return false;
+                }
+                else if (email == '' || email == null) {
+                    alert("email cannot be empty");
+                    return;
+                }
+                else if (!validateEmail(email)) {
+                    alert("Email id is not valid");
+                    return false;
+                }
+                else if (msg == '') {
+                    alert("Message cannot be empty");
+                    return;
+                }
+                else {
+
+                $.ajax({
+                   type: "POST",
+                   url: '@Url.Action("RegisterContactUsDetails", "MaxClean")',
+                    contentType: "application/json; charset=utf-8",
+                    data: '{"name":"' + name + '","mobile":"' + mobile + '","email":"' + email + '","msg":"' + msg + '"}',
+                   dataType: "json",
+                    success: function (response) {
+                        if (response.result == 'Success')
+                        {
+                            $("#cf_name").val("");
+                            $("#cf_email").val("");
+                            $("#cf_mobilenumber").val("");
+                            $("#cf_message").val("");
+                            alert("Successfully sent the details")
+
+
+                        }
+                        else
+                        { alert('Failed, Please check/enter the details'); }
+                    },
+                   error: function() { alert('A error'); }
+                    });
+                }
+            }
+   
+</script>
+
+

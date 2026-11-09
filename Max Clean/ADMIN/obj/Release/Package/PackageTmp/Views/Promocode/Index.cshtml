@@ -1,0 +1,292 @@
+﻿
+@{
+    ViewBag.Title = "Promocode";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formpromocode">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">ADD @ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                    
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Promocode Name<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="Promocode_Name" maxlength="100" onkeypress="return NotanHTML(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Discount %<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="Discount" maxlength="3" onkeypress="return IsNumericDecimal(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status<span style="color:red">*</span></label>
+                                <select class="form-control" name="IsActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnadd">Add @ViewBag.Title</button>
+                    <button type="button" class="btn btn-warning" id="btnupdate">Update @ViewBag.Title</button>
+                    <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+            <table id="tbl" class="table table-bordered table-striped " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Promocode Name</th>
+                        <th>Discount</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <script>
+
+        var tableId = "tbl";
+
+        $('#formpromocode').validate({
+            rules: {
+                Promocode_Name: {
+                    required: true,
+                },
+                Discount: {
+                    required: true,
+                },
+               
+
+            }
+        });
+
+        var form = $("#formpromocode");
+        form.validate();
+
+        $(document).ready(function () {
+            BindTableData();
+            $('#btnupdate').hide();
+            $("#btnadd").click(function () {
+                if (isAddEnabled == true) {
+                    if (form.valid()) {
+                        var myobj = new Object();
+                        myobj.Promocode_Name = $('[name="Promocode_Name"]').val();
+                        myobj.Discount = $('[name="Discount"]').val();
+                        myobj.IsActive = $('[name="IsActive"]').val();
+
+                     
+                        $.post("@Url.Action("AddPromocode", "Promocode")", { ObjPromocode: JSON.stringify(myobj) }, function (data) {
+                                var Res = JSON.parse(data);
+                                if (Res.StatusCode == 200) {
+                                    SuccessAlert("@ViewBag.Title", "Added Successfully.");
+                                    ClearFields();
+                                    BindTableData();
+                                }
+                                else
+                                    WarningAlert("@ViewBag.Title", Res.Message);
+                            })
+                        
+                    }
+                    else {
+                        DangerAlert(" ", "Recheck the fields.");
+                    }
+                } else {
+                    DangerAlert("Sorry No access To Add");
+                }
+            });
+
+
+
+            $("#btnupdate").click(function () {
+                if (form.valid()) {
+                    var myobj = new Object();
+                    myobj.Promocode_ID = $('[name="HDID"]').val();
+                    myobj.Promocode_Name = $('[name="Promocode_Name"]').val();
+                    myobj.Discount = $('[name="Discount"]').val();
+                    myobj.IsActive = $('[name="IsActive"]').val();
+                    $.post("@Url.Action("UpdatePromocode", "Promocode")", { ObjPromocode: JSON.stringify(myobj) }, function (data) {
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            SuccessAlert("@ViewBag.Title", "Updated Successfully.");
+                            ClearFields();
+                            BindTableData();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message );
+                    })
+                  
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            })
+        });
+
+        function GetData(Promocode_ID) {
+            $.get("@Url.Action("GetPromocode", "Promocode")", { PromocodeId: Promocode_ID }, function (data) {
+                ClearFields();
+                OpenCard();
+                var myobj = JSON.parse(data);
+                if (myobj.ObjectResult != null) {
+                    $('[name="HDID"]').val(myobj.ObjectResult.Promocode_ID);
+                    $('[name="Promocode_Name"]').val(myobj.ObjectResult.Promocode_Name);
+                    $('[name="Discount"]').val(myobj.ObjectResult.Discount);
+                    
+                    if (myobj.ObjectResult.IsActive)
+                        $('[name="IsActive"]').val('true');
+                    else
+                        $('[name="IsActive"]').val('false');
+                    OpenCard();
+                    $('#btnupdate').show();
+                    $('#btnadd').hide();
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+
+        function DeleteData(Promocode_ID) {
+            var alert = confirm("Are you sure want to Delete");
+            if (alert) {
+                $.post("@Url.Action("DeletePromocode", "Promocode")", { PromocodeId: Promocode_ID }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+                        SuccessAlert("@ViewBag.Title", "Deleted Successfully.");
+                        BindTableData();
+                    }
+                    else
+                        WarningAlert("@ViewBag.Title", myobj.Message);
+                });
+            }
+        }
+        function ClearFields() {
+            $('[name="HDID"]').val(null);
+            $('[name="Promocode_Name"]').val(null);
+            $('[name="Discount"]').val(null);
+            $('[name="IsActive"]').val('true');
+            
+            $('.error').html("");
+            $('#btnupdate').hide();
+            $('#btnadd').show();
+        }
+
+      
+
+        function BindTableData() {
+
+            $("#" + tableId).DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "srolly": true,
+            "destroy": true,
+            "responsive": true,
+            "ajax": {
+                "url": "/Promocode/LoadData",
+                "type": "POST",
+                "datatype": "json",
+                "filter": true,
+                "scroll": "true",
+                "searching": true,
+            },
+            "columns": [
+                { "data": "Promocode_Name", "name": "Promocode_Name", "autoWidth": true },
+                { "data": "Discount", "name": "Discount", "autoWidth": true },
+                {
+                    "name": "IsActive",
+                     "render": function (data, type, full, meta) {
+                         if (full.IsActive)
+                             return '<span class="badge bg-success float-right">Active</span>';
+                         else
+                             return '<span class="badge bg-danger float-right">InActive</span>';
+                    }
+                },
+                {
+                    "render": function (data, type, full, meta) {
+                        if (isAddEnabled)
+                            return '<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + full.Promocode_ID + ')">Edit</button>';
+                        return '';
+                    }
+                },
+                {
+                    "render": function (data, type, full, meta) {
+                        if (isAddEnabled)
+                            return '<button type="button" class="btn btn-danger btn-sm delete" onclick="DeleteData(' + full.Promocode_ID + ')">Delete</button>';
+                        return '';
+                    }
+                }
+            ],
+            "aoColumnDefs": [
+                {
+                    bSortable: false,
+                    aTargets: [-1,-2]
+                },
+                {
+                    searchable: true,
+                    aTargets: [1,2]
+                }
+            ]
+
+        });
+        }
+
+    </script>
+
+</section>
+
+
+

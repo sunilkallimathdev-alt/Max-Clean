@@ -1,0 +1,354 @@
+﻿
+@{
+    ViewBag.Title = "Receive Vendor Product";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1><label style="color:red">Once received data cant be modified.</label>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formvendor">
+            <div class="card card-info" id="carddiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                      
+                        <div class="col-md-12">
+                            <div class="callout callout-success">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Requested Order ID</h5>
+                                            <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                <strong><label id="txtrequestorderid"></label></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Vendor Name</h5>
+                                            <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                <strong><label id="VendorPaymentOrderID"></label></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Vendor Mobile No.</h5>
+                                            <div class="callout callout-warning" style="background-color:#d39e0024">
+                                                <strong><label id="VendorMobile"></label></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Receiving at Store</h5>
+                                            <div class="callout callout-info" style="background-color:#117a8b21">
+                                                <label id="txtstorename"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Store Mobile No.</h5>
+                                            <div class="callout callout-info" style="background-color:#117a8b21">
+                                                <label id="txtstoremobileno"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Requested / Est.Delivery Date</h5>
+                                            <div class="callout callout-info" style="background-color:#117a8b21">
+                                                <label id="txtrequesteddate"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Receiving On</h5>
+                                            <div class="callout callout-info" style="background-color:#117a8b21">
+                                                <input class="form-control" type="datetime-local" name="ActualDeliveryDate" maxlength="20">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <h5>Remark</h5>
+                                            <div class="callout callout-info" style="background-color:#117a8b21">
+                                                <label id="txtremark"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-md-12">
+                            <div class="card-header">
+                                <h3 class="card-title">@ViewBag.Title List</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div id="buttons"></div>
+                                <table id="tbl" class="table table-bordered table-striped" style="width:100%"></table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                    </div>
+                </div>
+               <span id="hdd"></span>
+               <div class="card-footer">
+                   <div class="col-md-8">
+                       <div class="form-group">
+                           <h5>Remark</h5>
+                           <div class="callout callout-info" style="background-color:#117a8b21">
+
+                               <textarea class="col-md-12" name="txtremark" id="txtremark"></textarea>
+                           </div>
+                       </div>
+                   </div>
+                   <h3 id="grandtotal">Grand Total : </h3><br />
+                   <div class="form-inline"> <div class="form-group"><h3>Paying Amount : </h3></div><input class="form-control col-lg-2" type="text" name="PayingAmount" onkeypress="return IsNumeric(event)" maxlength="20"></div>
+                   <div style="float:right;padding:10px;">
+                       <button type="button" class="btn btn-success" id="btnadd">@ViewBag.Title</button>
+                       <button type="button" class="btn btn-danger" onclick="ClearFields()" id="btnreset">Cancel</button>
+
+                   </div>
+               </div>
+            </div>
+        </form>
+    </div>
+    <script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="~/CustomFiles/js/Common_js.js"></script>
+    <script>
+        var HiddenField = [];
+        var IDs = [];
+        var ProductIDs = [];
+        var GrandTotalPrice = 0;
+        var tableId = "tbl";
+
+        $('#formvendor').validate({
+            rules: {
+                VendorPaymentOrderID: {
+                    required: true,
+                },
+                ActualDeliveryDate: {
+                    required: true,
+                },
+                PricePerKG: {
+                    number: true,
+                    required: true,
+                },
+                ReceivedQuantity: {
+                    number: true,
+                    required: true,
+                },
+                PaidAmount: {
+                    number: true,
+                    required: true,
+                },
+                RemainingAmount: {
+                    number: true,
+                    required: true,
+                },
+                GrandTotal: {
+                    number: true,
+                    required: true,
+                },
+            }
+        });
+
+        var form = $("#formvendor");
+        form.validate();
+
+        $(document).ready(function () {
+            BlockPreviousDate("ActualDeliveryDate");
+            SetTodaysDate("ActualDeliveryDate");
+            setTimeout(function () {
+                $('#carddiv').removeClass('collapsed-card');
+            }, 500);
+
+            var ID = localStorage.getItem("VPOID");
+            localStorage.removeItem("VPOID");
+           GetRequestOrders(2);
+          
+       
+
+            $("#btnadd").click(function () {
+                if (form.valid()) {
+                    var alert1 = confirm("Once submitted can't be edited.Is it ok?");
+                    if (alert1) {
+                        var myobj = new Object();
+                        myobj.VendorPurchaseOrderID = $("#txtrequestorderid").html();
+                        myobj.PaidAmount = $('[name="PayingAmount"]').val();
+                        myobj.ActualDeliveryDate = $('[name="ActualDeliveryDate"]').val();
+                        myobj.Remark = $('[name="txtremark"]').val();
+
+                        var details = [];
+                            for (var j = 0; j < IDs.length; j++) {
+                                var obj = new Object();
+                                obj.ReceivedQuantity = $('[name="ReceivingQuantity_' + IDs[j] + '"]').val();
+                                obj.ProductID = ProductIDs[j];
+                                details.push(obj);
+                            }
+
+                            myobj.PurchaseOrderDetail = details;
+                      
+                       
+                        myobj.IsActive = true;
+                        $.post("@Url.Action("UpdatePurchaseOrder", "PurchaseOrder")", { ObjOrder: JSON.stringify(myobj) }, function (data) {
+                            var Res = JSON.parse(data);
+                            if (Res.StatusCode == 200) {
+                                SuccessAlert("@ViewBag.Title", "Added to stock.");
+                                alert("Goods Received Successfully");
+                                window.close();
+                                ClearFiled();
+                            }
+                            else
+                                WarningAlert("@ViewBag.Title", Res.Message);
+                        });
+                    }
+                }
+                else {
+                    DangerAlert(" ", "Recheck the fields.");
+                }
+            });
+        });
+
+        function GetRequestOrders(PurchaseOrderByID) {
+            $.get("@Url.Action("GetRequestedOrdersById", "ReceiveVendorProduct")", { ID: PurchaseOrderByID }, function (data) {
+              
+
+                var myObject = JSON.parse(data);
+                $("#grandtotal").html("Grand Total : "+myObject.ObjectResult.GrandTotal);
+                $("#txtrequestorderid").html(myObject.ObjectResult.VendorPurchaseOrderID);
+                $("#txtstorename").html(myObject.ObjectResult.StoreName);
+                $("#VendorMobile").html(myObject.ObjectResult.VendorMobileNO);
+                $("#txtstoremobileno").html("<a href='tel:" + myObject.ObjectResult.StoreMobileNo + "' style='color: black;'>" + myObject.ObjectResult.StoreMobileNo + "</a>");
+                $("#VendorPaymentOrderID").html(myObject.ObjectResult.VendorName);
+                $("#txtrequesteddate").html(SplitDateTime(myObject.ObjectResult.CreatedDate).replace("/", "-").replace("/", "-") + " / " + SplitDateTime(myObject.ObjectResult.ExpectingDeliveryDate).replace("/", "-").replace("/", "-"));
+                $("#txtremark").html(myObject.ObjectResult.Remark);
+
+                var TableDate = [];
+
+                for (var i = 0; i < myObject.ObjectResult.PurchaseOrderDetail.length; i++) {
+                var row = [];
+                row.push(myObject.ObjectResult.PurchaseOrderDetail[i].CategoryName);
+                row.push(myObject.ObjectResult.PurchaseOrderDetail[i].ProductName);
+                row.push('<span id="UP_' + myObject.ObjectResult.PurchaseOrderDetail[i].PurchaseOrderDetailsID + '">' + myObject.ObjectResult.PurchaseOrderDetail[i].PricePerKG + '</span>');
+                row.push('<span id="RQ_'+myObject.ObjectResult.PurchaseOrderDetail[i].PurchaseOrderDetailsID+'">'+myObject.ObjectResult.PurchaseOrderDetail[i].RequestedQuantity+'</span>');
+                row.push('<input class="form-control" type="text" name="ReceivingQuantity_' + myObject.ObjectResult.PurchaseOrderDetail[i].PurchaseOrderDetailsID + '" value="0" onkeyup="checkQuantity(' + myObject.ObjectResult.PurchaseOrderDetail[i].PurchaseOrderDetailsID + ');" onkeypress="return IsNumericDecimal(event)">');
+
+                HiddenField.push('<input type="hidden" value="0" id="H_' + myObject.ObjectResult.PurchaseOrderDetail[i].PurchaseOrderDetailsID + '"/>');
+                IDs.push(myObject.ObjectResult.PurchaseOrderDetail[i].PurchaseOrderDetailsID);
+                ProductIDs.push(myObject.ObjectResult.PurchaseOrderDetail[i].ProductID);
+                TableDate.push(row);
+                }
+                $('#hdd').html(HiddenField);
+                $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Category" },
+                    { title: "Product Name" },
+                    { title: "Price / KG" },
+                    { title: "RequestedQuantity" },
+                    { title: "Receiving Quantity " },
+                   
+                    ]
+                });
+           });
+        }
+        
+        function Calculate(id) {
+            GrandTotalPrice = 0;
+            var Enter_quant = $('[name="ReceivingQuantity_' + id + '"]').val();
+
+            if (Enter_quant == "")
+                Enter_quant = 0;
+            else
+                Enter_quant = JSON.parse($('[name="ReceivingQuantity_' + id + '"]').val());
+
+            var UnitPrice = JSON.parse($('#UP_' + id).html());
+            $('#H_' + id).val((Enter_quant * UnitPrice));
+
+            for (var i = 0; i < IDs.length; i++) {
+                var price = $('#H_' + IDs[i]).val();
+                if (price == "")
+                    price = 0;
+                else
+                    price =  JSON.parse($('#H_' + IDs[i]).val());
+                GrandTotalPrice = GrandTotalPrice + price;
+            }
+            $("#grandtotal").html("Grand Total : " + GrandTotalPrice);
+        
+        }
+
+        function checkQuantity(id) {
+            var Enter_quant = $('[name="ReceivingQuantity_' + id + '"]').val();
+
+            if (Enter_quant == "")
+                Enter_quant = 0;
+            else
+                Enter_quant = JSON.parse($('[name="ReceivingQuantity_' + id + '"]').val());
+          
+            var Rqst_quant = JSON.parse($('#RQ_' + id).html());
+            if (Enter_quant > Rqst_quant) {
+                alert("Entered Quantity Is More Than Requested Quantity");
+                $('[name="ReceivingQuantity_' + id + '"]').val(0);
+            }
+            else {
+                Calculate(id);
+            }
+        }
+
+        function ClearFiled() {
+            $("#txtrequestorderid").html("");
+            $("#txtstorename").html("");
+            $("#txtstoremobileno").html("");
+            $("#txtrequestedqty").html("");
+            $("#txtrequesteddate").html("");
+            $("#txtremark").html("");
+            GetRequestOrders();
+            $('[name="ActualDeliveryDate"]').val(SetTodaysDate("ActualDeliveryDate"));
+            $('[name="PricePerKG"]').val(null);
+            $('[name="ReceivedQuantity"]').val(null);
+            $('[name="PaidAmount"]').val(null);
+            $('[name="RemainingAmount"]').val(null);
+            $('[name="GrandTotal"]').val(null);
+            $('[name="Remark"]').val(null);
+            $("#VendorPaymentOrderID").html("");
+            $("#VendorMobile").html("");
+            $('[name="txtremark"]').val(null);
+            $('#' + tableId).html("");
+            $('[name="PayingAmount"]').val(null);
+            $("#grandtotal").html("");
+        }
+    </script>
+</section>

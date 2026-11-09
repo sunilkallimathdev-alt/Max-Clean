@@ -1,0 +1,1474 @@
+﻿<noscript>PLEASE ENABLE JAVASCRIPT OF YOUR BROWSER</noscript>
+    <!DOCTYPE html>
+    <html>
+    @using API.Models;
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="icon" type="image/png" href="~/images/optima-fav.png" />
+        <title>MaxClean</title>
+        <script type="text/javascript" src="~/js/jquery.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/color.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/responsive.css" />
+
+        <!-- Revolution Style -->
+        <link rel="stylesheet" type="text/css" href="~/css/revolution/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+        <link rel="stylesheet" type="text/css" href="~/css/revolution/settings.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/revolution/navigation.css" />
+        <title>MaxClean</title>
+        @*@Styles.Render("~/Content/css")
+            @Scripts.Render("~/bundles/modernizr")*@
+
+
+    </head>
+    <style>
+        /** SPINNER CREATION **/
+
+        .loader {
+            position: relative;
+            text-align: center;
+            margin: 15px auto 35px auto;
+            z-index: 9999;
+            display: block;
+            width: 80px;
+            height: 80px;
+            border: 10px solid rgba(0, 0, 0, .3);
+            border-radius: 50%;
+            border-top-color: #000;
+            animation: spin 1s ease-in-out infinite;
+            -webkit-animation: spin 1s ease-in-out infinite;
+        }
+
+        @@keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @@-webkit-keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+
+        /** MODAL STYLING **/
+
+        .modal-content {
+            border-radius: 0px;
+            box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.75;
+        }
+
+        .loader-txt {
+            p
+
+        {
+            font-size: 13px;
+            color: #666;
+            small
+
+        {
+            font-size: 11.5px;
+            color: #999;
+        }
+
+        }
+        }
+
+
+        #output {
+            padding: 25px 15px;
+            background: #222;
+            border: 1px solid #222;
+            max-width: 350px;
+            margin: 35px auto;
+            font-family: 'Roboto', sans-serif !important;
+            p .subtle
+
+        {
+            color: #555;
+            font-style: italic;
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+        h4 {
+            font-weight: 300 !important;
+            font-size: 1.1em;
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif !important;
+            font-size: 0.9em;
+            b
+
+        {
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+        }
+        }
+    /*OTP POPUP CSS*/
+       .open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  bottom: 50px;
+  right: 50px;
+  width: 280px;
+}
+
+/ The popup form - hidden by default /
+.form-popup {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right:10px;
+  border: 3px solid #f1f1f1;
+  z-index: 2000;
+  min-height:200px
+}
+@@media (min-width: 768px) {
+.form-popup {
+  display: none;
+  position: absolute;
+  top: 170px;
+  right:270px;
+  border: 3px solid #f1f1f1;
+  z-index: 1000;
+
+}
+}
+/ Add styles to the form container /
+.form-container {
+  max-width: 200px;
+  padding: 11px;
+  background-color: white;
+}
+@@media (min-width: 768px) {
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+}
+/ Full-width input fields /
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 7px;
+  margin: 2px 0 6px 0;
+  border: none;
+  background: #f1f1f1;
+}
+@@media (min-width: 768px) {
+.form-container input[type=text], .form-container input[type=password] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+}
+/ When the inputs get focus, do something /
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/ Set a style for the submit/login button /
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+@@media (min-width: 768px) {
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:5px;
+  opacity: 0.8;
+}
+}
+/ Add a red background color to the cancel button /
+.form-container .cancel {
+  background-color: red;
+}
+
+/ Add some hover effects to buttons /
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+    </style>
+    <body itemscope>
+
+        <div class="pg-lyut" style="padding-top:0px!important;">
+            @*<div id="loading">
+                    <div id="loading-center">
+                        <img src="images/loader.gif" alt="" itemprop="image" />
+                    </div>
+                </div>*@
+            <header class="style1">
+                @if (ViewBag.Header != "1")
+                {
+                    <div class="top-bar2">
+                        <div class="container">
+                            <ul class="contact-info2">
+                                <li id="MobileDisplay2">Phone: </li>
+                                <li id="EmailDisplay2">Email: </li>
+                                <li class="dropdown margin-top-none">
+                                    <button type="button" id="ProfileBtn" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                        Profile
+                                    </button>
+                                    <div class="dropdown-menu" style="line-height:25px; left:none; min-width:none;">
+                                        <a class="dropdown-item" href="~/CustomerOrder/Order">My Order</a>
+                                        <a class="dropdown-item" href="~/Profile/ProfilePage">My Profile</a>
+                                        <a class="dropdown-item" href="~/Home/Logout" onclick="return clearCart()">Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="socl-sh3">
+                                <a class="thm-btn" id="just_load_please" class="btn btn-info" title="" href="~/Cleaning/Index" itemprop="url">Book a Cleaning</a>
+                            </div><!-- Social Share Style 1 -->
+                        </div>
+                    </div><!-- Top Bar Style 1 -->
+
+                }
+                else
+                {
+
+
+                    <div class="top-bar2">
+                        <div class="container">
+                            <ul class="contact-info2">
+                                <li id="UserMobileDisplay">Phone: </li>
+                                <li id="UserEmailDisplay">Email: </li>
+                                <li>
+                                    <i class="fa fa-user-circle-o"></i> <a class="lgn" href="#" title="" id="LoginMenu" itemprop="url">@ViewBag.UserName</a>
+                                    <div class="sgnin-wrp rd6">
+                                        <h2 itemprop="headline" id="LoginHeadLine">Sign in</h2>
+                                        <form action="~/Home/LoginUser" method="post" id="forLogin" onsubmit="return ValidateLogin()">
+                                            <div class="row mrgd5">
+                                                <div class="col-md-12">
+                                                    <div class="frm-fld">
+                                                        <label>Your Email*</label>
+                                                        <input class="rd30" id="EmailID" name="EmailID" style="color:black;" type="email" placeholder="" />
+                                                        <label id="LblEmail" style="color:red; display:none;">Invalid EmailID</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="frm-fld">
+                                                        <label>Your Password*</label>
+                                                        <input class="rd30" id="Password" name="Password" style="color:black;" type="password" placeholder="" />
+                                                        <label id="LblPwd" style="color:red; display:none;">Invalid Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="submit" id="login" class="rd30 thm-btn2">Sign In</button>
+                                                </div>
+                                                <div class="col-md-12">
+                                                </div>
+
+                                            </div>
+                                            <div style="text-align:center;">
+                                                <a href="javascript:OpenReg()" style="color:darkslateblue;">If you are new, please register with us.</a>
+                                            </div><br />
+                                            <div style="text-align:center;">
+                                                <a href="javascript:FrgtPwd()" id="FPText" style="color:darkslateblue;">Forgot Password?</a>
+                                            </div>
+                                        </form>
+
+                                        <form method="post" action="~/Home/Logout" id="ForLogout" onsubmit="return clearCart()">
+
+                                            @*<button type="button" onclick="RefirectToProfilePage()" class="rd30 thm-btn2">My Profile</button>
+
+                                                <button type="button" onclick="RefirectToOrderPage()" class="rd30 thm-btn2">My Orders</button>*@
+
+                                            <button type="submit" id="logout" class="rd30 thm-btn2">Logout</button>
+
+                                        </form>
+                                    </div>
+                                </li>
+                                <li id="RegistrationLinker">
+                                    <i class="fa fa-user-circle-o"></i> <a class="lgn" href="#" title="" id="RegistrationMenu" itemprop="url">@ViewBag.RegTtl</a>
+                                    <div class="sgnin-wrp rd6">
+                                        <h2 itemprop="headline">Registration</h2>
+                                        <form action="~/Home/RegisterUser" method="post" id="ForRegistration" onsubmit="return ValidateRegistration()">
+                                            <div class="row mrgd5">
+                                                <div class="col-md-12">
+                                                    <div class="frm-fld">
+                                                        <label>Your Name*</label>
+                                                        <input class="rd30" id="RName" name="RName" type="text" style="color:black;" placeholder="" />
+                                                        <label id="LblRyn" style="color:red; display:none;">Invalid Name</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="frm-fld">
+                                                        <label>Your Mobile Number*</label>
+                                                        <input class="rd30" id="RMobile" name="RMobile" type="tel" style="color:black;" maxlength="10" placeholder="" />
+                                                        <label id="LblRnum" style="color:red; display:none;">Invalid Mobile Number</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="frm-fld">
+                                                        <label>Alternative number*</label>
+                                                        <input class="rd30" id="RAltMobile" maxlength="10" style="color:black;" name="RAltMobile" type="text" placeholder="" />
+                                                        <label id="LblRAltMobile" style="color:red; display:none;">Invalid number</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="frm-fld">
+                                                        <label>Your Email*</label>
+                                                        <input class="rd30" id="REmailID" name="REmailID" style="color:black;" type="email" placeholder="" />
+                                                        <label id="LblRem" style="color:red; display:none;">Invalid Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="frm-fld">
+                                                        <label>Your New Password*</label>
+                                                        <input class="rd30" id="RPassword" name="RPassword" style="color:black;" type="password" placeholder="" />
+                                                        <label id="LblRpwd" style="color:red; display:none;">Invalid Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="frm-fld">
+                                                        <label>Your Address*</label>
+                                                        <input class="rd30" id="RAddr" name="RAddr" style="color:black;" type="text" placeholder="" />
+                                                        <label id="LblRaddr" style="color:red; display:none;">Invalid Address</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <button type="submit" id="Register" class="rd30 thm-btn2">Register</button>
+                                                </div>
+                                                <div class="col-md-12">
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+
+                                </li>
+                            </ul>
+
+                            <div class="socl-sh3">
+                                <a class="thm-btn" id="just_load_please" href="javascript:Getlatlon()" class="btn btn-info" title="" itemprop="url">Book a Cleaning</a>
+                            </div><!-- Social Share Style 1 -->
+                        </div>
+                    </div>
+
+                }<!-- Top Bar Style 1 -->
+                <div class="lg-mnu-sec">
+                    <div class="container">
+                        <div class="logo"><h1 itemprop="headline"><a href="~/Home/Index" title="" itemprop="url"><img src="~/images/resource/logo3.png" alt="" itemprop="image" /></a></h1></div>
+                        <nav>
+                            <div class="menu">
+                                <ul>
+                                    <li>
+                                        <a href="~/Home/Index" title="" itemprop="url">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/About/Index" title="" itemprop="url">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Service/Index" title="" itemprop="url">Services</a>
+                                    </li>
+                                    <li><a href="~/Contact/Index" title="" itemprop="url">Contact</a></li>
+                                </ul>
+                            </div>
+                            <ul class="menu-btns">
+                                <li>
+                                    <a class="crt-btn" href="#" title=""><i class="fa fa-shopping-basket"></i><span class="rd50" id="CartItemCount"></span></a>
+                                    <div class="cart-drp">
+                                        <div class="crt-prd-lst" id="CartBodyDrpDwn">
+
+                                        </div>
+
+                                        <span class="crt-sb-tl">Subtotal: Rs. <span class="price" id="TotalCartDD">0.00</span></span>
+                                        <div class="crt-btns col-md-6">
+                                            <a href="~/Cleaning/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i>add cloths</a>
+                                        </div>
+                                        <div class="crt-btns col-md-6">
+                                            <a href="~/Cart/Cart" class="btn btn-warning"> Checkout <i class="fa fa-angle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- <li><a class="hdr-srch-btn" href="#" title=""><i class="fa fa-search"></i></a></li> -->
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div> <!--Contains Cart-->
+            </header>
+
+            @if (ViewBag.Header != "2")
+            {
+                if (ViewBag.IsOtherResp != null) //If its null then its Homepage modules
+                {
+                    <div class="rspn-hdr">
+                        <div class="rspn-tpbr">
+                            <ul class="rspn-cnt">
+                                <li class="active"><i class="fa fa-map-marker"></i> MaxClean</li>
+                                <li><i class="fa fa-phone"></i> MaxClean</li>
+                            </ul>
+                        </div>
+                        <div class="rspn-mdbr">
+                            <div class="row" style="padding-top:10px;">
+                                <div class="container col-3">
+                                    <ul class="menu-btns">
+                                        <li style="list-style-type:none;">
+                                            <a class="crt-btn" href="cart.html" title=""><i class="fa fa-shopping-basket"></i><span class="rd50" id="CartItemCountRespHome"></span></a>
+                                            <div class="cart-drp">
+                                                <div class="crt-prd-lst" id="CartDrpDwnRespHome">
+                                                    @*<div class="crt-prd-itm">
+                                                            <div class="crt-prd-inf">
+                                                                <h5 itemprop="headline"><a href="#" title="" itemprop="url">Jacquard Floral Coat</a></h5>
+                                                                <span class="price">$35.00</span>
+                                                                <i>QTY: 01</i>
+                                                                <a class="prd-rmv" href="#" title="" itemprop="url"><i class="fa fa-times"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="crt-prd-itm">
+                                                            <div class="crt-prd-inf">
+                                                                <h5 itemprop="headline"><a href="#" title="" itemprop="url">Flat Sole Patent Sandal</a></h5>
+                                                                <span class="price">$35.00</span>
+                                                                <i>QTY: 01</i>
+                                                                <a class="prd-rmv" href="#" title="" itemprop="url"><i class="fa fa-times"></i></a>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                                <span class="crt-sb-tl">Subtotal: <span class="price" id="TotalCartDDRespHome"></span></span>
+                                                <div class="crt-btns col-6 ">
+                                                    <a href="~/Cleaning/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> add cloths</a>
+                                                </div>
+                                                <div class="crt-btns col-6">
+                                                    <a href="~/Cart/Cart" class="btn btn-warning"> Checkout <i class="fa fa-angle-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="container col-3" id="RespProfileBtn">
+                                    <ul style="padding:0px;">
+                                        <li class="dropdown margin-top-none" style="list-style-type:none;">
+                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" style="font-size:10px;" aria-expanded="false">
+                                                Profile
+                                            </button>
+                                            <div class="dropdown-menu" style="line-height:18px; font-size:10px; padding:0px; margin:0px;">
+                                                <a class="dropdown-item" href="~/CustomerOrder/Order">My Order</a>
+                                                <a class="dropdown-item" href="~/Profile/profilepage">My Profile</a>
+                                                <a class="dropdown-item" href="~/Home/Logout" onclick="return clearCart()">Logout</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-6">
+                                    <a class="thm-btn" href="~/Cleaning/Index" title="" itemprop="url">Book a Cleaning</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg-mn">
+                            <div class="logo">
+                                <h1><a href="index.html" title="" itemprop="url"><img src="images/resource/logo3.png" alt=""></a></h1>
+                            </div>
+
+                            <span class="rspn-mnu-btn"><i class="fa fa-list-ul"></i></span>
+                        </div>
+                        <div class="rsnp-mnu">
+                            <span class="rspn-mnu-cls"><i class="fa fa-times"></i></span>
+                            <ul class="ps-container" data-ps-id="45e59361-b540-82b8-35b2-b00d86cb711c">
+                                <li>
+                                    <a href="index.html" title="" itemprop="url">Home</a>
+                                </li>
+                                <li>
+                                    <a href="about.html" title="" itemprop="url">About</a>
+                                </li>
+                                <li>
+                                    <a href="service-detail.html" title="" itemprop="url">Services</a>
+                                </li>
+                                <li><a href="contact.html" title="" itemprop="url">Contact</a></li>
+                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div>
+                                <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div>
+                            </ul>
+                        </div>
+                        <!-- Responsive Menu -->
+                    </div>
+
+                }
+                else
+                {
+                    <div class="rspn-hdr">
+                        <div class="rspn-tpbr">
+                            <ul class="rspn-cnt">
+                                <li class="active"><i class="fa fa-map-marker"></i> @ViewBag.Username</li>
+                                <li><i class="fa fa-phone"></i> @Session["Mobile"]</li>
+                            </ul>
+                        </div>
+                        <div class="rspn-mdbr">
+                            <div class="row" style="padding-top:10px;">
+                                <div class="container col-3">
+                                    <ul class="menu-btns">
+                                        <li style="list-style-type:none;">
+                                            <a class="crt-btn" href="cart.html" title=""><i class="fa fa-shopping-basket"></i><span class="rd50" id="CartItemCountRespHome">0</span></a>
+                                            <div class="cart-drp">
+                                                <div class="crt-prd-lst" id="CartDrpDwnRespHome">
+
+                                                </div>
+                                                <span class="crt-sb-tl">Subtotal: Rs. <span class="price" id="TotalCartDDRespHome">0.00</span></span>
+                                                <div class="crt-btns col-6 ">
+                                                    <a href="~/Cleaning/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Add cloths</a>
+                                                </div>
+                                                <div class="crt-btns col-6">
+                                                    <a href="~/Cart/Cart" class="btn btn-warning"> Checkout <i class="fa fa-angle-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="container col-2">
+                                </div>
+                                <div class="container col-7">
+                                    <ul class="contact-info2" id="RespSigninOtherPages">
+                                        <li>
+                                            <i class="fa fa-user-circle-o"></i> <a class="lgn" href="#" title="" itemprop="url" id="SignInText">Sign In</a>
+                                            <div class="sgnin-wrp rd6">
+                                                <h2 itemprop="headline" id="ResHeader">Sign in</h2>
+                                                <form action="/Home/LoginUser" method="post" id="forResLogin" onsubmit="return ValidateResLogin()">
+                                                    <div class="row mrgd5">
+                                                        <div class="col-md-12 cl-12">
+                                                            <div class="frm-fld">
+                                                                <label>Your Email*</label>
+                                                                <input class="rd30" id="ResEmailID" style="color:black;" name="ResEmailID" type="email" placeholder="" />
+                                                                <label id="LblResEmail" style="color:red; display:none;">Invalid EmailID</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 cl-12">
+                                                            <div class="frm-fld">
+                                                                <label>Your Password*</label>
+                                                                <input class="rd30" id="ResPassword" style="color:black;" name="ResPassword" type="password" placeholder="" />
+                                                                <label id="LblResPwd" style="color:red; display:none;">Invalid Password</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-6">
+                                                            <button type="submit" id="Reslogin" class="rd30 thm-btn2">Sign In</button>
+                                                        </div>
+
+                                                    </div> <br />
+                                                    <div style="text-align:center;">
+                                                        <a href="javascript:FrgtPwd()" id="ResFPText" style="color:darkslateblue;">Forgot Password?</a>
+                                                    </div>
+                                                </form>
+                                                <form action="/Home/Logout" method="post" id="forResLogout" onsubmit="return clearCart()">
+                                                    <div class="col-md-6 col-6">
+                                                        <button type="submit" id="Reslogout" class="rd30 thm-btn2">Sign Out</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6" id="ForResRegistration">
+                                    <ul class="contact-info2">
+                                        <li id="RegistrationLinker">
+                                            <i class="fa fa-user-circle-o"></i> <a class="lgn" href="#" id="RegistrationREStag" title="" itemprop="url">@ViewBag.RegTtl</a>
+                                            <div class="sgnin-wrp rd6">
+                                                <h2 itemprop="headline">Registration</h2>
+                                                <form action="/Home/RegisterUser" method="post" id="ForResRegistrationForm" onsubmit="return ValidateResRegistration()">
+                                                    <div class="row mrgd5">
+                                                        <div class="col-md-6 col-6">
+                                                            <div class="frm-fld">
+                                                                <label>Your Name*</label>
+                                                                <input class="rd30" style="color:black;" id="ResName" name="ResName" type="text" placeholder="" />
+                                                                <label id="LblResyn" style="color:red; display:none;">Invalid Name</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-6">
+                                                            <div class="frm-fld">
+                                                                <label >Your Email*</label>
+                                                                <input class="rd30" style="color:black;" id="ResEmailID1" name="ResEmailID" type="email" placeholder="" />
+                                                                <label id="LblResem" style="color:red; display:none;">Invalid Email</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-6">
+                                                            <div class="frm-fld">
+                                                                <label>Your New Password*</label>
+                                                                <input class="rd30" style="color:black;" id="ResPassword1" name="ResPassword1" type="password" placeholder="" />
+                                                                <label id="LblRespwd" style="color:red; display:none;">Invalid Password</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-6">
+                                                            <div class="frm-fld">
+                                                                <label>Your Address*</label>
+                                                                <input class="rd30" style="color:black;" id="ResAddr" name="ResAddr" type="text" placeholder="" />
+                                                                <label id="LblResaddr" style="color:red; display:none;">Invalid Address</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-6">
+                                                            <div class="frm-fld">
+                                                                <label>Alternative number*</label>
+                                                                <input class="rd30" style="color:black;" id="ResAltMobile" name="ResAltMobile" maxlength="10" type="text" placeholder="" />
+                                                                <label id="LblResAltMobile" style="color:red; display:none;">Invalid Alternative Number</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-6">
+                                                            <div class="frm-fld">
+                                                                <label>Your Mobile Number*</label>
+                                                                <input class="rd30" style="color:black;" id="ResMobile" name="ResMobile" maxlength="10" type="tel" placeholder="" />
+                                                                <label id="LblResnum" style="color:red; display:none;">Invalid Mobile Number</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 col-6">
+                                                            <button type="button" id="Register" onclick="ValidateResRegistration()" class="rd30 thm-btn2">Register</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <a class="thm-btn" id="just_load_please1" class="btn btn-info" title="" itemprop="url">Book a Cleaning</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg-mn">
+                            <div class="logo">
+                                <h1><a href="~/Home/Index" title="" itemprop="url"><img src="~/images/resource/logo3.png" alt="" /></a></h1>
+                            </div>
+
+                            <span class="rspn-mnu-btn"><i class="fa fa-list-ul"></i></span>
+                        </div>
+                        <div class="rsnp-mnu">
+                            <span class="rspn-mnu-cls"><i class="fa fa-times"></i></span>
+                            <ul>
+                                <li>
+                                    <a href="~/Home/Index" title="" itemprop="url">Home</a>
+                                </li>
+                                <li>
+                                    <a href="~/About/Index" title="" itemprop="url">About</a>
+                                </li>
+                                <li>
+                                    <a href="~/Service/Index" title="" itemprop="url">Services</a>
+                                </li>
+                                <li><a href="~/Contact/Index" title="" itemprop="url">Contact</a></li>
+                            </ul>
+                        </div>
+                        <!-- Responsive Menu -->
+                    </div><!-- Responsive Header -->
+                }
+            }
+            else
+            {
+                @*<div class="rspn-hdr">
+                        <div class="rspn-tpbr">
+                            <ul class="rspn-cnt">
+                                <li class="active"><i class="fa fa-map-marker"></i> 45 East Deloney Avenue PO Box 1552</li>
+                                <li><i class="fa fa-phone"></i> (+061) 307-733-3005</li>
+                            </ul>
+                        </div>
+                        <div class="rspn-mdbr">
+                            <div class="row" style="padding-top:10px;">
+                                <div class="container col-3">
+                                    <ul class="menu-btns">
+                                        <li style="list-style-type:none;">
+                                            <a class="crt-btn" href="cart.html" title=""><i class="fa fa-shopping-basket"></i><span class="rd50">2</span></a>
+                                            <div class="cart-drp">
+                                                <div class="crt-prd-lst">
+                                                    <div class="crt-prd-itm">
+                                                        <div class="crt-prd-inf">
+                                                            <h5 itemprop="headline"><a href="#" title="" itemprop="url">Jacquard Floral Coat</a></h5>
+                                                            <span class="price">$35.00</span>
+                                                            <i>QTY: 01</i>
+                                                            <a class="prd-rmv" href="#" title="" itemprop="url"><i class="fa fa-times"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="crt-prd-itm">
+                                                        <div class="crt-prd-inf">
+                                                            <h5 itemprop="headline"><a href="#" title="" itemprop="url">Flat Sole Patent Sandal</a></h5>
+                                                            <span class="price">$35.00</span>
+                                                            <i>QTY: 01</i>
+                                                            <a class="prd-rmv" href="#" title="" itemprop="url"><i class="fa fa-times"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="crt-sb-tl">Subtotal: <span class="price">$159.00</span></span>
+                                                <div class="crt-btns col-6 ">
+                                                    <a href="cleaning.html" class="btn btn-warning"><i class="fa fa-angle-left"></i> Add cloths</a>
+                                                </div>
+                                                <div class="crt-btns col-6">
+                                                    <a href="cart.html" class="btn btn-warning"> Checkout <i class="fa fa-angle-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="container col-3">
+                                    <ul style="padding:0px;">
+                                        <li class="dropdown margin-top-none" style="list-style-type:none;">
+                                            <button type="button" class="btn btn-info dropdown-toggle" id="ResProfileBtn" data-toggle="dropdown" style="font-size:10px;">
+                                                Profile
+                                            </button>
+                                            <div class="dropdown-menu" style="line-height:18px; font-size:10px; padding:0px; margin:0px;">
+                                                <a class="dropdown-item" href="myorder.html">My Order</a>
+                                                <a class="dropdown-item" href="my-profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="#">Sign Up</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-6">
+                                    <a class="thm-btn" href="cleaning.html" class="btn btn-info" title="" itemprop="url">Book a Cleaning</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg-mn">
+                            <div class="logo">
+                                <h1><a href="index.html" title="" itemprop="url"><img src="images/resource/logo3.png" alt="" /></a></h1>
+                            </div>
+
+                            <span class="rspn-mnu-btn"><i class="fa fa-list-ul"></i></span>
+                        </div>
+                        <div class="rsnp-mnu">
+                            <span class="rspn-mnu-cls"><i class="fa fa-times"></i></span>
+                            <ul>
+                                <li>
+                                    <a href="index.html" title="" itemprop="url">Home</a>
+                                </li>
+                                <li>
+                                    <a href="about.html" title="" itemprop="url">About</a>
+                                </li>
+                                <li>
+                                    <a href="service-detail.html" title="" itemprop="url">Services</a>
+                                </li>
+                                <li><a href="contact.html" title="" itemprop="url">Contact</a></li>
+                            </ul>
+                        </div>
+                        <!-- Responsive Menu -->
+                    </div><!-- Responsive Header -->*@
+            }
+
+
+            @*<div class="container body-content">*@
+            @RenderBody()
+            <hr />
+            <footer>
+                <div class="gp ls-gp2 drk-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                                <div class="ftr-mn">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-lg-2">
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-lg-2">
+                                            <div class="wdgt">
+                                                <h5 class="wdgt-tl" itemprop="headline">QUICK LINKS</h5>
+                                                <div class="ftr-psts">
+                                                    <ul>
+                                                        <li><a href="~/Home/Index">Home</a></li>
+                                                        <li><a href="~/About/Index">About</a></li>
+                                                        <li><a href="~/Service/Index">Services</a></li>
+                                                        <li><a href="~/Contact/index">Contact</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div><!-- Widget -->
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-lg-3">
+                                            <div class="wdgt">
+                                                <h5 class="wdgt-tl" itemprop="headline">LEGAL STUFF</h5>
+                                                <div class="ftr-psts">
+                                                    <ul>
+                                                        <li>Terms of use</li>
+                                                        <li>Privacy Policy</li>
+                                                        <li>Security Policy</li>
+                                                        <li>Money back Guarantee</li>
+                                                    </ul>
+                                                </div>
+                                            </div><!-- Widget -->
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-lg-4">
+                                            <div class="wdgt">
+                                                <h5 class="wdgt-tl" itemprop="headline">SUBSCRIBE WITH US!</h5>
+                                                <div class="ftr-psts">
+                                                    @*<form class="form-inline" action="">*@
+                                                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                            @*<input type="email" class="form-control subscribe-form" id="inlineFormInputGroup" placeholder="Enter your email">*@
+                                                            <button type="submit" onclick="TakeUserToContactPage()" class="input-group-addon subscribe-btn"><span class="pe-7s-angle-right"></span></button>
+                                                        </div>
+                                                    @*</form>*@
+                                                </div>
+                                                <br />
+                                                @*<div class="socl-sh2" style="padding-top: 20px;">
+                                                    <a class="rd50" href="#" title="" itemprop="url" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                    <a class="rd50" href="#" title="" itemprop="url" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                                    <a class="rd50" href="#" title="" itemprop="url" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                    <a class="rd50" href="#" title="" itemprop="url" target="_blank"><i class="fa fa-pinterest-p"></i></a>
+                                                    <a class="rd50" href="#" title="" itemprop="url" target="_blank"><i class="fa fa-behance"></i></a>
+                                                </div>*@
+                                            </div><!-- Widget -->
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-lg-1">
+                                        </div>
+                                    </div>
+                                </div><!-- Footer Main -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="btm-ln">
+                <div class="container">
+                    <p itemprop="description">&copy; 2018  All Rights Reserved. Design By. <a href="http://www.testcompanystechnologies.com/" title="" itemprop="url" target="_blank"> testcompanys Technologies</a></p>
+                </div>
+            </div><!-- Bottem Line -->
+
+            <div class="hdr-srch">
+                <span class="srch-cls"><i class="fa fa-close"></i></span>
+                <form>
+                    <input type="text"  placeholder="Search Here..." />
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div><!-- Header Search -->
+
+            <div class="hdr-sd-pnl styl2">
+                <span class="hdr-sd-cls"><i class="fa fa-times"></i></span>
+                <div class="hdr-sd-pnl-innr">
+                    <div class="wdgt">
+                        <div class="abt-wdgt">
+                            <div class="logo">
+                                <h1 itemprop="headline"><a href="index.html" title="" itemprop="url"><img src="~/images/resource/logo2.png" alt="" itemprop="image" /></a></h1>
+                            </div>
+                            <p itemprop="description">Documentation has been carefully detailed and completed with super easy to understand instructions giving you the full access to all of its features.</p>
+                        </div><!-- About Widget -->
+                    </div><!-- Widget -->
+                    <div class="cont-inf">
+                        <div class="cnt-itm">
+                            <i class="fa fa-address-card-o"></i>
+                            <div class="cnt-itm-inr">
+                                <strong>Postal Address</strong>
+                                <p itemprop="description">PO Box 16122 Collins Street West Victoria</p>
+                            </div>
+                        </div>
+                        <div class="cnt-itm">
+                            <i class="fa fa-mobile"></i>
+                            <div class="cnt-itm-inr">
+                                <strong>Business Phones</strong>
+                                <p itemprop="description">+61 3 8376 6284, +61 3 8376 2648</p>
+                            </div>
+                        </div>
+                        <img src="~/images/resource/hdr-sd-btm.png" alt="" itemprop="image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Layout -->
+        @* This is the model for OTP *@
+        @*<div id="id01" class="w3-modal" style="z-index:200000;padding-top:300px;" >
+            <div class="w3-modal-content">
+                <div class="w3-container">
+
+                    <div class="indf form-option" style="padding:20px;">
+                        <h4 class="fancy-title" id="MessageOTP">Please enter the OTP that you will be recieve on your mobile.</h4>
+
+                        <span class="radio-field">
+                            <label for="mobile-number" style="padding-right:5px;">OTP</label>
+                            <input class="digits" name="Phone-number" type="text" id="USErOTP" value="">
+                        </span>
+                        <span class="radio-field" style="padding:10px; ">
+                            <button onclick="VerifyOTP('@Session["Mobile"]')" id="BtnOTP" class="w3-button " style="color:#45c3d3">OK</button>
+                           
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        @*<div id="id01" class="modal">
+
+            <div class="modal-content animate" >*@
+                @*<div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>*@
+                @*<div class="indf form-option" style="padding:20px;">
+                    <h4  class="fancy-title" id="MessageOTP">Please enter the OTP that you will be recieve on your mobile.</h4>
+
+                    <span class="radio-field" >
+                        <label for="mobile-number">OTP</label>
+                        <input class="digits" name="Phone-number" type="text" id="USErOTP" value="">
+                    </span>
+                    <span class="radio-field">
+                        <button onclick="VerifyOTP('@Session["Mobile"]')" id="BtnOTP" class="md-button" style="color:#45c3d3">OK</button>
+
+                    </span>
+
+                </div>
+            </div>
+        </div>*@
+
+        <div class="container">
+
+            <!-- Button to Open the Modal -->
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Open modal
+            </button>*@
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal" style="z-index:99999999;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="MessageOTP">Please enter the OTP that you will be recieve on your mobile.</h5>
+                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <label for="mobile-number">OTP</label>
+                            <input class="digits" name="Phone-number" type="text" id="USErOTP" value="">
+                            <button type="button" onclick="VerifyOTP()" id="BtnOTP" class="btn">submit</button>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+    
+
+
+        <script type="text/javascript" src="~/js/jquery.js"></script>
+        <script type="text/javascript" src="~/js/tether.min.js"></script>
+        <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="~/js/jquery.minimalect.min.js"></script>
+        <script type="text/javascript" src="~/js/isotope.min.js"></script>
+        <script type="text/javascript" src="~/js/isotope-int.js"></script>
+        <script type="text/javascript" src="~/js/scroll-up-bar.min.js"></script>
+        <script type="text/javascript" src="~/js/wow.min.js"></script>
+        <script type="text/javascript" src="~/js/wow.min.js"></script>
+        <script type="text/javascript" src="~/js/jquery.counterup.js"></script>
+        <script type="text/javascript" src="~/js/waypoints.min.js"></script>
+        <script type="text/javascript" src="~/js/jquery.poptrox.min.js"></script>
+        <script type="text/javascript" src="~/js/scrolltopcontrol.js"></script>
+        <script type="text/javascript" src="~/js/perfect-scrollbar.js"></script>
+        <script type="text/javascript" src="~/js/perfect-scrollbar.jquery.js"></script>
+        <script type="text/javascript" src="~/js/script.js"></script>
+        @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
+        <!-- Revolution JS Files -->
+        <script type="text/javascript" src="~/js/revolution/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/jquery.themepunch.revolution.min.js"></script>
+
+        <!-- Slider Revolution 5.0 Extensions -->
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.actions.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.carousel.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.kenburn.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.layeranimation.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.migration.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.navigation.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.parallax.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.slideanims.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.extension.video.min.js"></script>
+        <script type="text/javascript" src="~/js/revolution/revolution.initialize.js"></script>
+        @*<script type="text/javascript" src="~/CustomJS/UserControls.js"></script>*@
+        <script src="~/CustomJS/General.js"></script>
+        <script src="~/CustomJS/RestrictedAccessOTPConfirmation.js"></script>
+        <script type="text/javascript">
+        
+            $(document).ready((function () {
+                var user = "@Session["CurrentUser"]";
+                var isMobileVerified = "@Session["IsMobileVerified"]";
+                if (user == "") {
+
+                    //Profile Button hide
+                    $('#ProfileBtn').hide();
+                    $('#ResProfileBtn').hide();
+                    $('#RespProfileBtn').hide();
+                    $('#LoginMenu').click();
+
+                    $('#ForLogout').hide();
+                    $('#forLogin').show();
+                    $('#RegistrationLinker').show();
+                    $('#LoginHeadLine').show();
+                    $('#UserEmailDisplay').html("Email: " + "General");
+                    $('#UserMobileDisplay').html("Mobile: " + "General");
+                    $('#MobileDisplay2').html("Email: " + "MaxClean");
+                    $('#EmailDisplay2').html("Mobile: " + "MaxClean");
+                    $('#ResHeader').show();
+                    $('#ForResRegistration').show();
+
+                    //Responsive header
+                    $('#forResLogout').hide();
+                    $('#forResLogin').show();
+
+                }
+                else
+                {
+                    $('#ForLogout').show();
+                    $('#forLogin').hide();
+                    $('#RegistrationLinker').hide();
+                    $('#LoginHeadLine').hide();
+                    $('#UserEmailDisplay').html("Email: " + "@Session["Email"]");
+                    $('#UserMobileDisplay').html("Mobile: " + "@Session["Mobile"]");
+                    $('#MobileDisplay2').html("Email: " + "MaxClean");
+                    $('#EmailDisplay2').html("Mobile: " + "MaxClean");
+                    $('#ResHeader').hide();
+                    $('#ForResRegistration').hide();
+
+                    //Profile Button hide
+                    $('#ProfileBtn').show();
+                    $('#ResProfileBtn').show();
+
+                    //Responsive Header.
+                    $('#forResLogout').show();
+                    $('#forResLogin').hide();
+                    $('#SignInText').text("My Account");
+
+                    @*if (isMobileVerified == "False" || isMobileVerified == "") {
+                        sendOTPNow("@Session["Mobile"]");
+                    }*@
+                }
+
+            //Mobile number restrictions
+            $("#RMobile").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                    // let it happen, don't do anything
+
+                        return;
+                 }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+            $("#RAltMobile").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                    // let it happen, don't do anything
+
+                    return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+            $("#ResMobile").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                    // let it happen, don't do anything
+
+                    return;
+
+
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+            $("#ResAltMobile").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                    // let it happen, don't do anything
+
+                    return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+            CartUpdate();
+        }));
+
+        function ValidateLogin() {
+            var flag = true;
+
+            if (!$('#EmailID').val()) {
+                $("#LblEmail").show();
+                flag = false;
+            } else {
+                $('#LblEmail').hide();
+            }
+
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test($('#EmailID').val())) {
+                $('#LblEmail').show();
+                flag = false;
+            } else {
+                $('#LblEmail').hide();
+            }
+
+            if (!$('#Password').val()) {
+                $('#LblPwd').show();
+                flag = false;
+            } else {
+                $('#LblPwd').hide();
+            }
+            return flag;
+
+        }
+
+        function ValidateRegistration() {
+            var flag = true;
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+            if (!$('#RName').val()) {
+                $('#LblRyn').show();
+                flag = false;
+            } else {
+                $('#LblRyn').hide();
+            }
+
+
+            if (!$('#REmailID').val()) {
+                $('#LblRem').show();
+                flag = false;
+            } else {
+                $('#LblRem').hide();
+            }
+
+            if (!filter.test($('#REmailID').val())) {
+                $('#LblRem').show();
+                flag = false;
+            } else {
+                $('#LblRem').hide();
+            }
+
+
+            if (!$('#RPassword').val()) {
+                $('#LblRpwd').show();
+                flag = false;
+            } else {
+                $('#LblRpwd').hide();
+            }
+
+            if (!$('#RAddr').val()) {
+                $('#LblRaddr').show();
+                flag = false;
+            } else {
+                $('#LblRaddr').hide();
+            }
+
+            if (!$('#RAltMobile').val()) {
+                $('#LblRAltMobile').show();
+                flag = false;
+            } else {
+                $('#LblRAltMobile').hide();
+            }
+
+            if ($('#RAltMobile').val()<=999999999) {
+                $('#LblRAltMobile').show();
+                flag = false;
+            } else {
+                $('#LblRAltMobile').hide();
+            }
+
+
+
+            if (!$('#RMobile').val()) {
+                $('#LblRnum').show();
+                flag = false;
+            } else {
+                $('#LblRnum').hide();
+            }
+
+            if ($('#RMobile').val() <= 999999999) {
+                $('#LblRnum').show();
+                flag = false;
+            } else {
+                $('#LblRnum').hide();
+            }
+
+            if (flag) {
+
+                sendOTPNow($('#RMobile').val());
+            }
+             return false;
+                
+            }
+        
+        function CartUpdate() {
+            var cartTotalAmnt = localStorage.getItem("CartTotal") ;
+            $('#CartItemCount').text("0");
+            $('#TotalCartDD').text("0");
+            var cart = JSON.parse(localStorage.getItem("Cart"));
+            $('#TotalCartDD').html(cartTotalAmnt);
+            //Update cart count
+            var count = 0;
+            if (cart == null || cart == undefined) {
+                count = 0;
+            } else {
+                for (i = 0; i < cart.length; i++){
+                    count = count + parseInt(cart[i].Quantity);
+                }
+
+            }
+
+
+            //Update cart content
+            $('#CartItemCount').text(count);
+            $('#CartBodyDrpDwn').html("");
+            if (cart != null && cart != undefined) {
+                for (i = 0; i < cart.length; i++) {
+                    var response = '';
+                    response = ' <div class="crt-prd-itm"><div class="crt-prd-inf"><h5 itemprop="headline"><a href="#" title="" itemprop="url">' + cart[i].ProductName + '</a></h5>';
+                    response = response + '<span class="price">Rs. ' + cart[i].SubTotal + '</span><i style="color:white;">QTY: ' + cart[i].Quantity + '</i><a class="prd-rmv" href="#" title="" itemprop="url"><i class="fa fa-times"></i></a></div></div>';
+                    $('#CartBodyDrpDwn').append(response);
+                }
+            }
+
+
+            //Cart on responsive header of homepage (Mobile view)
+            $('#CartDrpDwnRespHome').html("");
+            $('#CartItemCountRespHome').text(count);
+            $('#TotalCartDDRespHome').html(cartTotalAmnt);
+
+            if (cart != null && cart != undefined) {
+                for (i = 0; i < cart.length; i++) {
+                    var response = '';
+                    response = ' <div class="crt-prd-itm"><div class="crt-prd-inf"><h5 itemprop="headline"><a href="#" title="" itemprop="url">' + cart[i].ProductName + '</a></h5>';
+                    response = response + '<span class="price">Rs. ' + cart[i].SubTotal + '</span><i style="color:white;">QTY: ' + cart[i].Quantity + '</i><a class="prd-rmv" href="#" title="" itemprop="url"><i class="fa fa-times"></i></a></div></div>';
+                    $('#CartDrpDwnRespHome').append(response);
+                }
+            }
+
+        }
+
+        //Responsive header components
+        function ValidateResLogin() {
+            var flag = true;
+
+            if (!$('#ResEmailID').val()) {
+                $("#LblResEmail").show();
+                flag = false;
+            } else {
+                $('#LblResEmail').hide();
+            }
+
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test($('#ResEmailID').val())) {
+                $('#LblResEmail').show();
+                flag = false;
+            } else {
+                $('#LblResEmail').hide();
+            }
+
+            if (!$('#ResPassword').val()) {
+                $('#LblResPwd').show();
+                flag = false;
+            } else {
+                $('#LblResPwd').hide();
+            }
+            return flag;
+
+        }
+
+        function ValidateResRegistration() {
+            var flag = true;
+
+            if (!$('#ResName').val()) {
+                $('#LblResyn').show();
+                flag = false;
+            } else {
+                $('#LblResyn').hide();
+            }
+
+            if (!$('#ResEmailID1').val()) {
+                $('#LblResem').show();
+                flag = false;
+            } else {
+                $('#LblResem').hide();
+            }
+
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test($('#ResEmailID1').val())) {
+                $('#LblResem').show();
+                flag = false;
+            } else {
+                $('#LblResem').hide();
+            }
+
+
+            if (!$('#ResPassword1').val()) {
+                $('#LblRespwd').show();
+                flag = false;
+            } else {
+                $('#LblRespwd').hide();
+            }
+
+            if (!$('#ResAddr').val()) {
+                $('#LblResaddr').show();
+                flag = false;
+            } else {
+                $('#LblResaddr').hide();
+            }
+
+            if (!$('#ResAltMobile').val()) {
+                $('#LblResAltMobile').show();
+                flag = false;
+            } else {
+                $('#LblResAltMobile').hide();
+            }
+            if ($('#ResAltMobile').val()<=999999999) {
+                $('#LblResAltMobile').show();
+                flag = false;
+            } else {
+                $('#LblResAltMobile').hide();
+            }
+
+            if (!$('#ResMobile').val()) {
+                $('#LblResnum').show();
+                flag = false;
+            } else {
+                $('#LblResnum').hide();
+            }
+            if ($('#ResMobile').val()<=999999999) {
+                $('#LblResnum').show();
+                flag = false;
+            } else {
+                $('#LblResnum').hide();
+            }
+
+
+            if (flag) {
+                sendOTPNow($('#ResMobile').val());
+            }
+
+            return false;
+        }
+
+        //Clear the cart once logged out.
+        function clearCart() {
+            localStorage.clear();
+            return true;
+        }
+
+        //responsice contents end
+        function RefirectToOrderPage() {
+                window.location.pathname = "/CustomerOrder/Order";
+        }
+
+        function RefirectToProfilePage() {
+            window.location.pathname = "/Profile/ProfilePage";
+        }
+   
+        function FrgtPwd()
+        {
+            var email;
+
+            if ($("#ResEmailID").val()) {
+                email = $("#ResEmailID").val();
+            } else {
+                email = $("#EmailID").val();
+            }
+
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (email && filter.test(email)) {
+                $("#LblEmail").hide();
+                $("#LblResEmail").hide();
+                $("#FPText").text("Please wait while send you a recovery mail.");
+                $("#ResFPText").text("Please wait while send you a recovery mail.");
+
+                ForgotPassword(email);
+            } else {
+                $("#LblEmail").show();
+                $("#LblResEmail").show();
+
+            }
+        }
+
+        function OpenReg() {
+            $('#RegistrationMenu').click();
+            $('#LoginMenu').click();
+            }
+
+        function TakeUserToContactPage() {
+           window.location.pathname = "/Contact/Index";
+            }
+
+       </script>
+
+    </body>
+</html>

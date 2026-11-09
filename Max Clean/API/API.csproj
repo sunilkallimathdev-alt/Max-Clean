@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2CD0E4B2-A1A8-47FA-B0B3-FE57BFBFCDF3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>API</RootNamespace>
+    <AssemblyName>API</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\ADMIN\bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ADMIN\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\ADMIN\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataAccess\maxclean.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>maxclean.edmx</DependentUpon>
+      <LastGenOutput>maxclean.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\maxclean.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>maxclean.edmx</DependentUpon>
+      <LastGenOutput>maxclean.cs</LastGenOutput>
+    </Content>
+    <Content Include="EmailTemplates\OrderInvoice.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\CategoryBanner\1\category 1_1.jpg" />
+    <Content Include="Images\CategoryBanner\4\Category 1_4.jpg" />
+    <Content Include="Images\CategoryIcon\1\category 1_1.jpg" />
+    <Content Include="Images\CategoryIcon\4\Category 1_4.jpg" />
+    <Content Include="Images\EmailTemplates\OrderInvoice.html" />
+    <Content Include="Images\EmailTemplates\VendorRequestCopy.html" />
+    <Content Include="Images\ProductImage\0\kj_0.jpg" />
+    <Content Include="Images\ProductImage\1\product_1.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CommonClasses\Base64Encode_Decode.cs" />
+    <Compile Include="CommonClasses\EmailSMSCredentials.cs" />
+    <Compile Include="CommonClasses\GetCustomErrorType.cs" />
+    <Compile Include="CommonClasses\MailSender.cs" />
+    <Compile Include="CommonClasses\SaveBase64File.cs" />
+    <Compile Include="CommonClasses\Send_Exception_Mail.cs" />
+    <Compile Include="CommonClasses\StaticData.cs" />
+    <Compile Include="Controllers\AcceptDeliveryController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
+    <Compile Include="Controllers\CancelOrderController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\CustomerLoginController.cs" />
+    <Compile Include="Controllers\Customer_PlaceOrderController.cs" />
+    <Compile Include="Controllers\DeliveryBoyController.cs" />
+    <Compile Include="Controllers\DeliveryBoyDeviceController.cs" />
+    <Compile Include="Controllers\DeliveryBoyDeviceIDController.cs" />
+    <Compile Include="Controllers\DeliveryBoyIncentivesController.cs" />
+    <Compile Include="Controllers\DeliveryBoyRegistrationController.cs" />
+    <Compile Include="Controllers\DeviceIDController.cs" />
+    <Compile Include="Controllers\ExpensesController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="Controllers\GetOrderByCustomerIDController.cs" />
+    <Compile Include="Controllers\GetOrderRequestListController.cs" />
+    <Compile Include="Controllers\GetOrdersbyDateController.cs" />
+    <Compile Include="Controllers\MarqueController.cs" />
+    <Compile Include="Controllers\mCustomerController.cs" />
+    <Compile Include="Controllers\mCustomerDetailsController.cs" />
+    <Compile Include="Controllers\mCustomerOrderController.cs" />
+    <Compile Include="Controllers\mGetAvailableSlotsController.cs" />
+    <Compile Include="Controllers\mLoginController.cs" />
+    <Compile Include="Controllers\mPaymentStatusController.cs" />
+    <Compile Include="Controllers\mPlaceOrderController.cs" />
+    <Compile Include="Controllers\mProductsController.cs" />
+    <Compile Include="Controllers\NearbyStoresController.cs" />
+    <Compile Include="Controllers\OrderCycleController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\OTPController.cs" />
+    <Compile Include="Controllers\PayBalanceController.cs" />
+    <Compile Include="Controllers\PCashUtilizationController.cs" />
+    <Compile Include="Controllers\PettyCashController.cs" />
+    <Compile Include="Controllers\PickUpOrdersController.cs" />
+    <Compile Include="Controllers\PincodeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PromocodeController.cs" />
+    <Compile Include="Controllers\PromocodeValidateController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\PushNotificationController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\RescheduleController.cs" />
+    <Compile Include="Controllers\RewardspointsController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RolesAndPrivilegesController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\ServicePriceController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\SubmitOrderController.cs" />
+    <Compile Include="Controllers\TaggingController.cs" />
+    <Compile Include="DataAccess\maxclean.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>maxclean.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\maxclean.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\maxclean.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>maxclean.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SP_StoreAtYourLoc_Result.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\tbl_admin_category.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\tbl_admin_pages.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\tbl_roles_privileges.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_admin_users.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_banner.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_brands.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_category.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_cities.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_coupun.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_customer.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_customer_details.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_customer_rating.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_dealoftheday.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_delete_order.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_delete_order_details.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_deliveryboy_deviceid.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_deliveryboy_incentives.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_delivery_boy.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_delivery_details.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_delivery_locations.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_enquiries.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_enquiry.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_exception.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_expenses.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_gallery.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_gst.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_incentives_transaction.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_marque.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_orders.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_order_cylce.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_order_details.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_paymentstatus.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_petty_cash.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_petty_cash_utilization.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_pickuptimeslabs.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_pincodes.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_product.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_promocode.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_promotions.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_reward.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_role.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_service.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_service_price.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_store.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_taggs.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_tag_details.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_test.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\t_user.cs">
+      <DependentUpon>maxclean.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IRepository\AdminLogin_IRepository.cs" />
+    <Compile Include="IRepository\AdminUser_IRepository.cs" />
+    <Compile Include="IRepository\Banner_IRepository.cs" />
+    <Compile Include="IRepository\CancelOrder_IRepository.cs" />
+    <Compile Include="IRepository\Category_IRepository.cs" />
+    <Compile Include="IRepository\ContactUs_IRepository.cs" />
+    <Compile Include="IRepository\Customer_IRepository.cs" />
+    <Compile Include="IRepository\Dashboard_IRepository.cs" />
+    <Compile Include="IRepository\DeliveryBoyDevice_IRepository.cs" />
+    <Compile Include="IRepository\DeliveryBoyIncentives_IRepository.cs" />
+    <Compile Include="IRepository\Expenses_IRepository.cs" />
+    <Compile Include="IRepository\Gallery_IRepository.cs" />
+    <Compile Include="IRepository\ICustomerOrderPlacement_Repository.cs" />
+    <Compile Include="IRepository\IDeliveryBoy_Repository.cs" />
+    <Compile Include="IRepository\IOrder_CycleStage_Repository.cs" />
+    <Compile Include="IRepository\Marque_IRepository.cs" />
+    <Compile Include="IRepository\OrderCancelRequests_IRepository.cs" />
+    <Compile Include="IRepository\PCashUtilization_IRepository.cs" />
+    <Compile Include="IRepository\PettyCash_IRepository.cs" />
+    <Compile Include="IRepository\Pincode_IRepository.cs" />
+    <Compile Include="IRepository\Product_IRepository.cs" />
+    <Compile Include="IRepository\Promocode_IRepository.cs" />
+    <Compile Include="IRepository\IPaymentStatus_Repository.cs" />
+    <Compile Include="IRepository\PurchaseOrder_IRepository.cs" />
+    <Compile Include="IRepository\Reports_IRepository.cs" />
+    <Compile Include="IRepository\Reschedule_IRepository.cs" />
+    <Compile Include="IRepository\Rewardspoints_IRepository.cs" />
+    <Compile Include="IRepository\RolesAndPrivileges_IRepository.cs" />
+    <Compile Include="IRepository\Role_IRepository.cs" />
+    <Compile Include="IRepository\ServicePrice_IRepository.cs" />
+    <Compile Include="IRepository\Service_IRepository.cs" />
+    <Compile Include="IRepository\Store_IRepository.cs" />
+    <Compile Include="IRepository\Tag_IRepository.cs" />
+    <Compile Include="Models\AdminUser_Model.cs" />
+    <Compile Include="Models\Banner_Model.cs" />
+    <Compile Include="Models\Base_Model.cs" />
+    <Compile Include="Models\Category_Model.cs" />
+    <Compile Include="CommonClasses\ErrorResponce.cs" />
+    <Compile Include="Models\ContactUs_Model.cs" />
+    <Compile Include="Models\CustmoerOrders_Model.cs" />
+    <Compile Include="Models\Customer_Model.cs" />
+    <Compile Include="Models\Dashboard.cs" />
+    <Compile Include="Models\DeliveryBoyDevice_Model.cs" />
+    <Compile Include="Models\DeliveryBoyInsentives_Model.cs" />
+    <Compile Include="Models\DeliveryBoy_Model.cs" />
+    <Compile Include="Models\Gallery_Model.cs" />
+    <Compile Include="Models\GeoLocation_Model.cs" />
+    <Compile Include="Models\IncentiveTransaction_Model.cs" />
+    <Compile Include="Models\Inventory_Model.cs" />
+    <Compile Include="Models\OrderCancel_Model.cs" />
+    <Compile Include="Models\orderCycle_Model.cs" />
+    <Compile Include="Models\OrderList_Model.cs" />
+    <Compile Include="Models\PettyCash_Model.cs" />
+    <Compile Include="Models\Pincode_Model.cs" />
+    <Compile Include="Models\Product_Model.cs" />
+    <Compile Include="Models\Promocode_Model.cs" />
+    <Compile Include="Models\PaymentStatus_Model.cs" />
+    <Compile Include="Models\PurchaseOrder_Model.cs" />
+    <Compile Include="Models\PushNotification_Model.cs" />
+    <Compile Include="Models\Reward_Model.cs" />
+    <Compile Include="Models\RolesAndPrivileges_Model.cs" />
+    <Compile Include="Models\Role_Model.cs" />
+    <Compile Include="Models\ServicePrice_Model.cs" />
+    <Compile Include="Models\Service_Model.cs" />
+    <Compile Include="Models\Shop_Model.cs" />
+    <Compile Include="Models\Store_Model.cs" />
+    <Compile Include="CommonClasses\SuccessResponce_Model.cs" />
+    <Compile Include="Models\TimeSlab_Model.cs" />
+    <Compile Include="Models\User_Model.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AdminLogin_Repository.cs" />
+    <Compile Include="Repository\AdminUser_Repository.cs" />
+    <Compile Include="Repository\Banner_Repository.cs" />
+    <Compile Include="Repository\CancelOrder_Repository.cs" />
+    <Compile Include="Repository\Category_Repository.cs" />
+    <Compile Include="Repository\ContactUs_Repository.cs" />
+    <Compile Include="Repository\Expenses_Repository.cs" />
+    <Compile Include="Repository\OrderCancelRequests_Repository.cs" />
+    <Compile Include="Repository\PaymentStatus_Repository.cs" />
+    <Compile Include="Repository\CustomerOrderPlacement_Repository.cs" />
+    <Compile Include="Repository\Customer_Repository.cs" />
+    <Compile Include="Repository\DeliveryBoyDevice_Repository.cs" />
+    <Compile Include="Repository\DeliveryBoyIncentives_Repository.cs" />
+    <Compile Include="Repository\DeliveryBoy_Repository.cs" />
+    <Compile Include="Repository\Gallery_Repository.cs" />
+    <Compile Include="Repository\Marque_Repository.cs" />
+    <Compile Include="Repository\Order_Cycle_Repository.cs" />
+    <Compile Include="Repository\PCashUtilization_Repository.cs" />
+    <Compile Include="Repository\PettyCash_Repository.cs" />
+    <Compile Include="Repository\Pincode_Repository.cs" />
+    <Compile Include="Repository\Product_Repository.cs" />
+    <Compile Include="Repository\Promocode_Repository.cs" />
+    <Compile Include="Repository\PurchaseOrder_Repository.cs" />
+    <Compile Include="Repository\Reports_Repository.cs" />
+    <Compile Include="Repository\Reschedule_Repository.cs" />
+    <Compile Include="Repository\RewardsPoint_Repository.cs" />
+    <Compile Include="Repository\RolesAndPrivileges_Repository.cs" />
+    <Compile Include="Repository\Role_Repository.cs" />
+    <Compile Include="Repository\ServicePrice_Repository.cs" />
+    <Compile Include="Repository\Service_Repository.cs" />
+    <Compile Include="Repository\Store_Repository.cs" />
+    <Compile Include="Repository\TaggingRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataAccess\maxclean.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>maxclean.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccess\maxclean.edmx.diagram">
+      <DependentUpon>maxclean.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Images\Admin_Sign_at_Pickup\18\" />
+    <Folder Include="Views\CancelOrder\" />
+    <Folder Include="Views\CancelOrder_IRepository\" />
+    <Folder Include="Views\CancelOrder_Repository\" />
+    <Folder Include="Views\GetOrderRequestList\" />
+    <Folder Include="Views\OrderCancel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49170</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49170/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

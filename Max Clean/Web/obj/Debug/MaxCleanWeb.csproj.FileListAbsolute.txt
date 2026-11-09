@@ -1,0 +1,211 @@
+E:\MAXCLEAN\Max Clean\Web\bin\ApplicationInsights.config
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\csc.exe
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\csc.exe.config
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\csc.rsp
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\csi.exe
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\csi.exe.config
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\csi.rsp
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.AppContext.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Collections.Immutable.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Console.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Diagnostics.Process.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.IO.Compression.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.IO.FileSystem.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.IO.Pipes.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Reflection.Metadata.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.AccessControl.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.Claims.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Security.Principal.Windows.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Threading.Thread.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.ValueTuple.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Xml.XmlDocument.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Xml.XPath.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\vbc.exe
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\vbc.exe.config
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\vbc.rsp
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\VBCSCompiler.exe
+E:\MAXCLEAN\Max Clean\Web\bin\roslyn\VBCSCompiler.exe.config
+E:\MAXCLEAN\Max Clean\Web\bin\MaxCleanWeb.dll.config
+E:\MAXCLEAN\Max Clean\Web\bin\MaxCleanWeb.dll
+E:\MAXCLEAN\Max Clean\Web\bin\MaxCleanWeb.pdb
+E:\MAXCLEAN\Max Clean\Web\bin\Antlr3.Runtime.dll
+E:\MAXCLEAN\Max Clean\Web\bin\API.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.Agent.Intercept.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.Web.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.WindowsServer.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.ApplicationInsights.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.Owin.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Newtonsoft.Json.dll
+E:\MAXCLEAN\Max Clean\Web\bin\Owin.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Net.Http.Formatting.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Helpers.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Http.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Http.Owin.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Http.WebHost.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Mvc.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Razor.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.WebPages.Deployment.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.WebPages.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.WebPages.Razor.dll
+E:\MAXCLEAN\Max Clean\Web\bin\WebGrease.dll
+E:\MAXCLEAN\Max Clean\Web\bin\MySql.Data.dll
+E:\MAXCLEAN\Max Clean\Web\bin\EntityFramework.dll
+E:\MAXCLEAN\Max Clean\Web\bin\System.Linq.Dynamic.dll
+E:\MAXCLEAN\Max Clean\Web\bin\API.pdb
+E:\MAXCLEAN\Max Clean\Web\bin\API.dll.config
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.Owin.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Net.Http.Formatting.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Helpers.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Http.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Http.Owin.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Http.WebHost.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Mvc.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.Razor.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.WebPages.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.WebPages.Deployment.xml
+E:\MAXCLEAN\Max Clean\Web\bin\System.Web.WebPages.Razor.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Antlr3.Runtime.pdb
+E:\MAXCLEAN\Max Clean\Web\bin\Newtonsoft.Json.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.ApplicationInsights.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.WindowsServer.xml
+E:\MAXCLEAN\Max Clean\Web\bin\Microsoft.AI.Web.xml
+E:\MAXCLEAN\Max Clean\Web\bin\MySql.Data.xml
+E:\MAXCLEAN\Max Clean\Web\obj\Debug\MaxCleanWeb.csprojResolveAssemblyReference.cache
+E:\MAXCLEAN\Max Clean\Web\obj\Debug\MaxCleanWeb.csproj.CoreCompileInputs.cache
+E:\MAXCLEAN\Max Clean\Web\obj\Debug\MaxCleanWeb.dll
+E:\MAXCLEAN\Max Clean\Web\obj\Debug\MaxCleanWeb.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\ApplicationInsights.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csc.exe
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csc.exe.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csc.rsp
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csi.exe
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csi.exe.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\csi.rsp
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.AppContext.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Console.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.Compression.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.IO.Pipes.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Claims.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Threading.Thread.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.ValueTuple.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.XPath.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\vbc.exe
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\vbc.exe.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\vbc.rsp
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\VBCSCompiler.exe
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\MaxCleanWeb.dll.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\MaxCleanWeb.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\MaxCleanWeb.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Antlr3.Runtime.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\API.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.Web.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.ApplicationInsights.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.Owin.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Newtonsoft.Json.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Owin.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Net.Http.Formatting.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Helpers.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.Owin.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.WebHost.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Mvc.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Razor.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\WebGrease.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\MySql.Data.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\EntityFramework.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Linq.Dynamic.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\API.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\API.dll.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.Owin.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Net.Http.Formatting.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Helpers.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.Owin.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Http.WebHost.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Mvc.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.Razor.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Antlr3.Runtime.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Newtonsoft.Json.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.ApplicationInsights.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\Microsoft.AI.Web.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\bin\MySql.Data.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\obj\Debug\MaxCleanWeb.csprojAssemblyReference.cache
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\obj\Debug\MaxCleanWeb.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\obj\Debug\MaxCleanWeb.csproj.CopyComplete
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\obj\Debug\MaxCleanWeb.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\Web\obj\Debug\MaxCleanWeb.pdb

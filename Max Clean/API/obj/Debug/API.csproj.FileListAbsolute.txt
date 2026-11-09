@@ -1,0 +1,100 @@
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\bin\API.dll.config
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\bin\API.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\bin\API.pdb
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\bin\EntityFramework.xml
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\bin\Newtonsoft.Json.xml
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\obj\Debug\API.dll
+G:\MAXCLEAN\MaxCleanLatest\Max Clean Admin\API\obj\Debug\API.pdb
+G:\MMT New TFS\Max Clean\API\bin\API.dll.config
+G:\MMT New TFS\Max Clean\API\bin\API.dll
+G:\MMT New TFS\Max Clean\API\bin\API.pdb
+G:\MMT New TFS\Max Clean\API\bin\EntityFramework.dll
+G:\MMT New TFS\Max Clean\API\bin\MySql.Data.dll
+G:\MMT New TFS\Max Clean\API\bin\MySql.Data.xml
+G:\MMT New TFS\Max Clean\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+G:\MMT New TFS\Max Clean\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+G:\MMT New TFS\Max Clean\API\obj\Debug\API.dll
+G:\MMT New TFS\Max Clean\API\obj\Debug\API.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\API.dll.config
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\API.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\API.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\EntityFramework.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\MySql.Data.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\System.Net.Http.Formatting.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\System.Web.Http.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\bin\System.Web.Http.WebHost.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\obj\Debug\API.dll
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\obj\Debug\API.pdb
+G:\MindMaps\1_WorkingCentre\WebApps\MaxClean\Max Clean\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+E:\MAXCLEAN\Max Clean\API\bin\API.dll.config
+E:\MAXCLEAN\Max Clean\API\bin\API.dll
+E:\MAXCLEAN\Max Clean\API\bin\API.pdb
+E:\MAXCLEAN\Max Clean\API\bin\EntityFramework.dll
+E:\MAXCLEAN\Max Clean\API\bin\MySql.Data.dll
+E:\MAXCLEAN\Max Clean\API\bin\System.Linq.Dynamic.dll
+E:\MAXCLEAN\Max Clean\API\bin\System.Web.Mvc.dll
+E:\MAXCLEAN\Max Clean\API\bin\System.Web.WebPages.dll
+E:\MAXCLEAN\Max Clean\API\bin\System.Web.WebPages.Razor.dll
+E:\MAXCLEAN\Max Clean\API\bin\System.Web.Razor.dll
+E:\MAXCLEAN\Max Clean\API\bin\Microsoft.Web.Infrastructure.dll
+E:\MAXCLEAN\Max Clean\API\bin\System.Web.WebPages.Deployment.dll
+E:\MAXCLEAN\Max Clean\API\bin\MySql.Data.xml
+E:\MAXCLEAN\Max Clean\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+E:\MAXCLEAN\Max Clean\API\obj\Debug\API.dll
+E:\MAXCLEAN\Max Clean\API\obj\Debug\API.pdb
+E:\MAXCLEAN\Max Clean\API\obj\Debug\API.csprojAssemblyReference.cache
+E:\MAXCLEAN\Max Clean\API\obj\Debug\API.csproj.CopyComplete
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\API.dll.config
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\API.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\API.pdb
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\EntityFramework.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\MySql.Data.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Linq.Dynamic.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Net.Http.Formatting.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.Http.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.Http.WebHost.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.Mvc.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.WebPages.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.WebPages.Razor.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.Razor.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.WebPages.Deployment.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\MySql.Data.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Net.Http.Formatting.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.Http.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\bin\System.Web.Http.WebHost.xml
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\obj\Debug\API.csprojAssemblyReference.cache
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\obj\Debug\API.csproj.CopyComplete
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\obj\Debug\API.dll
+C:\Users\User\Downloads\Max Clean_21_02_2019\Max Clean\API\obj\Debug\API.pdb
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\API.dll.config
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\API.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\API.pdb
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\EntityFramework.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\MySql.Data.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Linq.Dynamic.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Net.Http.Formatting.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Cors.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Http.Cors.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Http.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Http.WebHost.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Mvc.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.WebPages.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.WebPages.Razor.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Razor.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Net.Http.Formatting.xml
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Http.xml
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Http.Cors.xml
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\bin\System.Web.Http.WebHost.xml
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\obj\Debug\API.csproj.AssemblyReference.cache
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\obj\Debug\API.csproj.Up2Date
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\obj\Debug\API.dll
+C:\Users\Suni\OneDrive\Pictures\Max Clean22-03\Max Clean\Max Clean\API\obj\Debug\API.pdb

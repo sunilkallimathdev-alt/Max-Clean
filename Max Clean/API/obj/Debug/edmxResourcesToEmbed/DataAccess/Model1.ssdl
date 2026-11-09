@@ -1,0 +1,1320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="maxcleanModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_admin_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_admin_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="250" />
+    <Property Name="user_name" Type="varchar" MaxLength="250" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="phone" Type="bigint" />
+    <Property Name="role_id" Type="int" />
+    <Property Name="state_id" Type="int" />
+    <Property Name="city_id" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+    <Property Name="status" Type="bool" />
+    <Property Name="token_id" Type="varchar" MaxLength="36" />
+  </EntityType>
+  <EntityType Name="t_banner">
+    <Key>
+      <PropertyRef Name="banner_id" />
+    </Key>
+    <Property Name="banner_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="banner_name" Type="varchar" MaxLength="150" />
+    <Property Name="banner_image" Type="varchar" MaxLength="1500" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="update_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_brands' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_brands">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="int" Nullable="false" />
+    <Property Name="brand_name" Type="varchar" MaxLength="100" />
+    <Property Name="status" Type="bool" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_id" Type="int" />
+    <Property Name="category_name" Type="varchar" MaxLength="100" />
+    <Property Name="category_icon" Type="varchar" MaxLength="1000" />
+    <Property Name="category_banner" Type="varchar" MaxLength="1000" />
+    <Property Name="display_order" Type="int" />
+    <Property Name="description" Type="varchar" MaxLength="1000" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_cities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_cities">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="int" Nullable="false" />
+    <Property Name="state_id" Type="int" />
+    <Property Name="city_name" Type="varchar" MaxLength="100" />
+    <Property Name="home_delivery_available" Type="bool" />
+    <Property Name="city_image" Type="varchar" MaxLength="400" />
+    <Property Name="status" Type="bool" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_coupun' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_coupun">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="created_date" />
+      <PropertyRef Name="updated_date" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="coupun_name" Type="varchar" MaxLength="50" />
+    <Property Name="coupun_code" Type="varchar" MaxLength="50" />
+    <Property Name="discount_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="discount_percent" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="offers_in_percent" Type="bool" />
+    <Property Name="minmum_amount_purches" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="status" Type="bool" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+  </EntityType>
+  <EntityType Name="t_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" MaxLength="100" />
+    <Property Name="email_id" Type="varchar" MaxLength="100" />
+    <Property Name="mobile_no" Type="varchar" MaxLength="20" />
+    <Property Name="alt_mobile_no" Type="varchar" MaxLength="20" />
+    <Property Name="IsMobileVerified" Type="bool" />
+    <Property Name="address" Type="varchar" MaxLength="1000" />
+    <Property Name="password" Type="varchar" MaxLength="100" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="old_balance" Type="double" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+    <Property Name="pincode" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_customer_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_customer_details">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" MaxLength="100" />
+    <Property Name="mobile_no" Type="bigint" />
+    <Property Name="email_id" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="Token" Type="varchar" MaxLength="50" />
+    <Property Name="delivery_address" Type="text" />
+    <Property Name="status" Type="bool" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_dealoftheday' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_dealoftheday">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="created_date" />
+      <PropertyRef Name="updated_date" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="start_date" Type="timestamp" Precision="0" />
+    <Property Name="end_date" Type="timestamp" Precision="0" />
+    <Property Name="start_time" Type="varchar" MaxLength="10" />
+    <Property Name="end_time" Type="varchar" MaxLength="10" />
+    <Property Name="actual_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="descount_percentage" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="descounted_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="location_id" Type="int" />
+    <Property Name="status" Type="bool" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_delete_order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_delete_order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="bigint" Nullable="false" />
+    <Property Name="temp_order_id" Type="int" />
+    <Property Name="paypal_transaction_id" Type="int" />
+    <Property Name="customer_id" Type="int" />
+    <Property Name="ordered_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="total_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="location_id" Type="int" />
+    <Property Name="shipping_name" Type="varchar" MaxLength="50" />
+    <Property Name="shipping_emailId" Type="varchar" MaxLength="50" />
+    <Property Name="shipping_conctactno" Type="bigint" />
+    <Property Name="shipping_address" Type="varchar" MaxLength="2000" />
+    <Property Name="shipping_landmark" Type="varchar" MaxLength="100" />
+    <Property Name="shipping_city" Type="varchar" MaxLength="100" />
+    <Property Name="shipping_pincode" Type="int" />
+    <Property Name="billing_name" Type="varchar" MaxLength="50" />
+    <Property Name="billing_emailId" Type="varchar" MaxLength="50" />
+    <Property Name="billing_conctactno" Type="bigint" />
+    <Property Name="billing_address" Type="varchar" MaxLength="2000" />
+    <Property Name="billing_landmark" Type="varchar" MaxLength="100" />
+    <Property Name="billing_city" Type="varchar" MaxLength="100" />
+    <Property Name="billing_pincode" Type="int" />
+    <Property Name="coupon_code" Type="varchar" MaxLength="25" />
+    <Property Name="coupon_discountprice" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="warehouse_pickup" Type="bool" />
+    <Property Name="warehouse_pickup_discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="shippingcharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="order_status" Type="varchar" MaxLength="20" />
+    <Property Name="OrderFrom" Type="varchar" MaxLength="20" />
+    <Property Name="payment_mode" Type="varchar" MaxLength="20" />
+    <Property Name="remarks" Type="varchar" MaxLength="2000" />
+    <Property Name="recipt_number" Type="varchar" MaxLength="500" />
+    <Property Name="created_date" Type="timestamp" Precision="0" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+    <Property Name="tax_percent" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="dispatch_id" Type="varchar" MaxLength="100" />
+    <Property Name="status" Type="bool" />
+    <Property Name="PaymentPending" Type="timestamp" Precision="0" />
+    <Property Name="Confirm" Type="timestamp" Precision="0" />
+    <Property Name="InTransit" Type="timestamp" Precision="0" />
+    <Property Name="Delivered" Type="timestamp" Precision="0" />
+    <Property Name="Rejected" Type="timestamp" Precision="0" />
+    <Property Name="DeliveryFailed" Type="timestamp" Precision="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_delete_order_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_delete_order_details">
+    <Key>
+      <PropertyRef Name="order_detail_id" />
+    </Key>
+    <Property Name="order_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="actual_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="discount_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="order_id" Type="bigint" />
+    <Property Name="created_date" Type="timestamp" Precision="0" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_delivery_boy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="500" />
+    <Property Name="mobile" Type="varchar" MaxLength="20" />
+    <Property Name="email" Type="varchar" MaxLength="150" />
+    <Property Name="address" Type="varchar" MaxLength="1000" />
+    <Property Name="vehicle_no" Type="varchar" MaxLength="100" />
+    <Property Name="licence_no" Type="varchar" MaxLength="100" />
+    <Property Name="image" Type="varchar" MaxLength="1000" />
+    <Property Name="languages_known" Type="varchar" MaxLength="1000" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_delivery_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_delivery_details">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="int" Nullable="false" />
+    <Property Name="location_id" Type="int" />
+    <Property Name="store_manager_name" Type="varchar" MaxLength="100" />
+    <Property Name="store_name" Type="varchar" MaxLength="100" />
+    <Property Name="store_number" Type="bigint" />
+    <Property Name="store_emailid" Type="varchar" MaxLength="200" />
+    <Property Name="store_address" Type="text" />
+    <Property Name="store_landmark" Type="varchar" MaxLength="100" />
+    <Property Name="store_city" Type="varchar" MaxLength="500" />
+    <Property Name="store_pincode" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+    <Property Name="status" Type="bool" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_delivery_locations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_delivery_locations">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="int" Nullable="false" />
+    <Property Name="state_id" Type="int" />
+    <Property Name="location_name" Type="varchar" MaxLength="100" />
+    <Property Name="display_order" Type="int" />
+    <Property Name="location_image_url" Type="varchar" MaxLength="250" />
+    <Property Name="is_home_delivery_available" Type="bool" />
+    <Property Name="markup_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="min_amount" Type="int" />
+    <Property Name="free_shipping_price" Type="int" />
+    <Property Name="shipping_charges" Type="int" />
+    <Property Name="estimated_delivery" Type="int" />
+    <Property Name="status" Type="bool" />
+    <Property Name="created_date" Type="timestamp" Precision="0" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_deliveryboy_deviceid">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="delivery_boy_id" Type="int" />
+    <Property Name="deviceId" Type="text" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_deliveryboy_incentives">
+    <Key>
+      <PropertyRef Name="db_incentive_id" />
+    </Key>
+    <Property Name="db_incentive_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="delivery_boy_id" Type="int" />
+    <Property Name="incentives" Type="double" />
+    <Property Name="amount_paid" Type="double" />
+    <Property Name="balance" Type="double" />
+  </EntityType>
+  <EntityType Name="t_enquiries">
+    <Key>
+      <PropertyRef Name="contact_us_id" />
+    </Key>
+    <Property Name="contact_us_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contact_name" Type="varchar" MaxLength="100" />
+    <Property Name="email_id" Type="varchar" MaxLength="100" />
+    <Property Name="mobile_number" Type="varchar" MaxLength="20" />
+    <Property Name="message" Type="text" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="update_by" Type="int" />
+    <Property Name="update_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_enquiry' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_enquiry">
+    <Key>
+      <PropertyRef Name="enquiry_id" />
+      <PropertyRef Name="created_date" />
+      <PropertyRef Name="updated_date" />
+    </Key>
+    <Property Name="enquiry_id" Type="int" Nullable="false" />
+    <Property Name="enquiry_name" Type="varchar" MaxLength="50" />
+    <Property Name="contact_no" Type="bigint" />
+    <Property Name="email_id" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="1000" />
+    <Property Name="status" Type="bool" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+  </EntityType>
+  <EntityType Name="t_exception">
+    <Key>
+      <PropertyRef Name="exception_id" />
+    </Key>
+    <Property Name="exception_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="exception_type" Type="text" />
+    <Property Name="exception_Error" Type="text" />
+    <Property Name="exception Page" Type="text" />
+    <Property Name="inner_exception" Type="text" />
+    <Property Name="date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_gallery">
+    <Key>
+      <PropertyRef Name="gallery_id" />
+    </Key>
+    <Property Name="gallery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="1000" />
+    <Property Name="is_image" Type="bool" />
+    <Property Name="url" Type="varchar" MaxLength="1000" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" Nullable="false" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="update_by" Type="int" />
+    <Property Name="update_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.maxcleanlocal.t_gst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_gst">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="percentage_of_gst" Type="int" />
+    <Property Name="status" Type="bool" />
+  </EntityType>
+  <EntityType Name="t_incentives_transaction">
+    <Key>
+      <PropertyRef Name="incentive_transaction_id" />
+    </Key>
+    <Property Name="incentive_transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="deliveryboy_incentive_id" Type="bigint" />
+    <Property Name="amount_paid" Type="double" />
+    <Property Name="payment_type" Type="varchar" MaxLength="20" />
+    <Property Name="transaction_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="note" Type="text" />
+  </EntityType>
+  <EntityType Name="t_marque">
+    <Key>
+      <PropertyRef Name="marque_id" />
+    </Key>
+    <Property Name="marque_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="5000" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_order_cylce">
+    <Key>
+      <PropertyRef Name="order_cycle_id" />
+    </Key>
+    <Property Name="order_cycle_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_cycle_stage" Type="varchar" MaxLength="1000" />
+    <Property Name="diplay_order" Type="int" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_order_details">
+    <Key>
+      <PropertyRef Name="order_details_id" />
+    </Key>
+    <Property Name="order_details_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_id" Type="bigint" />
+    <Property Name="service_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="delivered_quantity" Type="int" />
+    <Property Name="remaining_quantity" Type="int" />
+    <Property Name="unit" Type="varchar" MaxLength="100" />
+    <Property Name="total_price" Type="double" />
+    <Property Name="extra_charge_percentage" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="extra_charge_price" Type="double" />
+  </EntityType>
+  <EntityType Name="t_orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="int" />
+    <Property Name="store_id" Type="int" />
+    <Property Name="order_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="delivery_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="expected_delivery_date" Type="timestamp" Precision="0" />
+    <Property Name="delivery_address" Type="varchar" MaxLength="1500" />
+    <Property Name="pickup_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="pickup_time" Type="time" Precision="0" Nullable="false" />
+    <Property Name="pickup_address" Type="varchar" MaxLength="1500" />
+    <Property Name="delivery_time" Type="time" Precision="0" Nullable="false" />
+    <Property Name="confirmed_by" Type="int" />
+    <Property Name="pickedup_by" Type="int" />
+    <Property Name="is_express_delivery" Type="bool" />
+    <Property Name="delivered_by" Type="int" />
+    <Property Name="express_delivery_price" Type="double" Nullable="false" />
+    <Property Name="old_balance" Type="double" Nullable="false" />
+    <Property Name="grandtotal_price" Type="double" />
+    <Property Name="advance_amount" Type="double" />
+    <Property Name="paid_amount" Type="double" />
+    <Property Name="balance_amount" Type="double" />
+    <Property Name="payment_Status" Type="varchar" MaxLength="100" />
+    <Property Name="payment_type" Type="varchar" MaxLength="200" />
+    <Property Name="Invoice_No" Type="varchar" MaxLength="100" />
+    <Property Name="rewardsapplied" Type="double" />
+    <Property Name="order_status" Type="int" />
+    <Property Name="is_outlet_order" Type="bool" />
+    <Property Name="cust_sign_at_pickup" Type="varchar" MaxLength="1500" />
+    <Property Name="cust_sign_at_delivery" Type="varchar" MaxLength="1500" />
+    <Property Name="Received_at_store_by" Type="varchar" MaxLength="150" />
+    <Property Name="admin_sign_at_pickup" Type="varchar" MaxLength="1500" />
+    <Property Name="sent_from_store_by" Type="varchar" MaxLength="150" />
+    <Property Name="admin_sign_at_delivery" Type="varchar" MaxLength="1500" />
+    <Property Name="remark" Type="text" />
+    <Property Name="is_tagged" Type="bool" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="note" Type="text" />
+    <Property Name="created_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="is_promocode_applied" Type="bool" Nullable="false" />
+    <Property Name="promocode" Type="varchar" MaxLength="100" />
+    <Property Name="promocode_amount" Type="double" Nullable="false" />
+    <Property Name="delivery_charge" Type="double" Nullable="false" />
+    <Property Name="promocode_discount" Type="double" Nullable="false" />
+    <Property Name="is_deleted" Type="bool" />
+    <Property Name="deleted_by" Type="varchar" MaxLength="150" />
+    <Property Name="deleted_date" Type="timestamp" Precision="0" />
+    <Property Name="pincode" Type="int" />
+  </EntityType>
+  <EntityType Name="t_pincodes">
+    <Key>
+      <PropertyRef Name="pincode_id" />
+    </Key>
+    <Property Name="pincode_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pincode" Type="int" />
+    <Property Name="store_id" Type="int" />
+    <Property Name="is_active" Type="bool" />
+  </EntityType>
+  <EntityType Name="t_product">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_name" Type="varchar" MaxLength="500" />
+    <Property Name="product_image" Type="varchar" MaxLength="1000" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_promocode">
+    <Key>
+      <PropertyRef Name="promocode_id" />
+    </Key>
+    <Property Name="promocode_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="promocode_name" Type="varchar" MaxLength="150" />
+    <Property Name="discount" Type="double" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_promotions">
+    <Key>
+      <PropertyRef Name="subscribe_id" />
+    </Key>
+    <Property Name="subscribe_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email_id" Type="varchar" MaxLength="100" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="update_by" Type="int" />
+    <Property Name="update_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_reward">
+    <Key>
+      <PropertyRef Name="reward_id" />
+    </Key>
+    <Property Name="reward_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="int" />
+    <Property Name="customer_rewardpoints" Type="double" />
+    <Property Name="customer_usedrewards" Type="double" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="update_by" Type="int" />
+    <Property Name="update_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_name" Type="varchar" MaxLength="100" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_service">
+    <Key>
+      <PropertyRef Name="service_id" />
+    </Key>
+    <Property Name="service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_name" Type="varchar" MaxLength="20" />
+    <Property Name="image" Type="varchar" MaxLength="1000" />
+    <Property Name="display_order" Type="int" />
+    <Property Name="description" Type="varchar" MaxLength="1000" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="update_by" Type="int" />
+    <Property Name="update_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_service_price">
+    <Key>
+      <PropertyRef Name="service_price_id" />
+    </Key>
+    <Property Name="service_price_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="unit" Type="int" />
+    <Property Name="price" Type="double" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="store_name" Type="varchar" MaxLength="1000" />
+    <Property Name="manager_name" Type="varchar" MaxLength="100" />
+    <Property Name="mobile_no" Type="varchar" MaxLength="20" />
+    <Property Name="email_id" Type="varchar" MaxLength="100" />
+    <Property Name="address" Type="varchar" MaxLength="1000" />
+    <Property Name="city" Type="varchar" MaxLength="100" />
+    <Property Name="state" Type="varchar" MaxLength="100" />
+    <Property Name="country" Type="varchar" MaxLength="100" />
+    <Property Name="pincode" Type="varchar" MaxLength="10" />
+    <Property Name="radius" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="latitude" Type="varchar" MaxLength="100" />
+    <Property Name="longitute" Type="varchar" MaxLength="100" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="store_code" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="t_tag_details">
+    <Key>
+      <PropertyRef Name="tag_details_id" />
+    </Key>
+    <Property Name="tag_details_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tag_id" Type="bigint" />
+    <Property Name="order_id" Type="bigint" />
+  </EntityType>
+  <EntityType Name="t_taggs">
+    <Key>
+      <PropertyRef Name="tag_id" />
+    </Key>
+    <Property Name="tag_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_id" Type="bigint" />
+    <Property Name="sent_to_factory_on" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="received_from_factory" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="tag_number" Type="varchar" MaxLength="50" />
+    <Property Name="tag_note" Type="text" />
+    <Property Name="created_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="t_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_id" Type="int" />
+    <Property Name="store_id" Type="int" />
+    <Property Name="user_name" Type="varchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="email_id" Type="varchar" MaxLength="100" />
+    <Property Name="mobile_no" Type="varchar" MaxLength="20" />
+    <Property Name="alt_mobile_no" Type="varchar" MaxLength="20" />
+    <Property Name="address" Type="varchar" MaxLength="500" />
+    <Property Name="is_active" Type="bool" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="tbl_admin_category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category" Type="varchar" MaxLength="100" />
+    <Property Name="display_order" Type="int" />
+    <Property Name="font_awsome" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_admin_pages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="page_name" Type="varchar" MaxLength="1000" />
+    <Property Name="url" Type="varchar" MaxLength="1000" />
+    <Property Name="display_order" Type="int" />
+    <Property Name="li_id" Type="varchar" MaxLength="50" />
+    <Property Name="is_active" Type="bool" />
+  </EntityType>
+  <EntityType Name="tbl_roles_privileges">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="admin_page_id" Type="int" />
+    <Property Name="role_id" Type="int" />
+    <Property Name="is_view_enabled" Type="bool" />
+    <Property Name="is_add_edit_enabled" Type="bool" />
+    <Property Name="is_delete_enabled" Type="bool" />
+  </EntityType>
+  <Association Name="t_category_ibfk_1">
+    <End Role="t_service" Type="Self.t_service" Multiplicity="0..1" />
+    <End Role="t_category" Type="Self.t_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="t_category">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_deliveryboy_deviceid_ibfk_1">
+    <End Role="t_delivery_boy" Type="Self.t_delivery_boy" Multiplicity="0..1" />
+    <End Role="t_deliveryboy_deviceid" Type="Self.t_deliveryboy_deviceid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_deliveryboy_deviceid">
+        <PropertyRef Name="delivery_boy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_deliveryboy_incentives_ibfk_1">
+    <End Role="t_delivery_boy" Type="Self.t_delivery_boy" Multiplicity="0..1" />
+    <End Role="t_deliveryboy_incentives" Type="Self.t_deliveryboy_incentives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_deliveryboy_incentives">
+        <PropertyRef Name="delivery_boy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_incentives_transaction_ibfk_1">
+    <End Role="t_deliveryboy_incentives" Type="Self.t_deliveryboy_incentives" Multiplicity="0..1" />
+    <End Role="t_incentives_transaction" Type="Self.t_incentives_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_deliveryboy_incentives">
+        <PropertyRef Name="db_incentive_id" />
+      </Principal>
+      <Dependent Role="t_incentives_transaction">
+        <PropertyRef Name="deliveryboy_incentive_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_order_details_ibfk_3">
+    <End Role="t_service" Type="Self.t_service" Multiplicity="0..1" />
+    <End Role="t_order_details" Type="Self.t_order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="t_order_details">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_order_details_ibfk_4">
+    <End Role="t_product" Type="Self.t_product" Multiplicity="0..1" />
+    <End Role="t_order_details" Type="Self.t_order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="t_order_details">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_order_details_ibfk_5">
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="0..1" />
+    <End Role="t_order_details" Type="Self.t_order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="t_order_details">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_1">
+    <End Role="t_customer" Type="Self.t_customer" Multiplicity="0..1" />
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_2">
+    <End Role="t_user" Type="Self.t_user" Multiplicity="0..1" />
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="confirmed_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_3">
+    <End Role="t_delivery_boy" Type="Self.t_delivery_boy" Multiplicity="0..1" />
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="pickedup_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_4">
+    <End Role="t_order_cylce" Type="Self.t_order_cylce" Multiplicity="0..1" />
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_order_cylce">
+        <PropertyRef Name="order_cycle_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="order_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_5">
+    <End Role="t_store" Type="Self.t_store" Multiplicity="0..1" />
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_orders_ibfk_6">
+    <End Role="t_delivery_boy" Type="Self.t_delivery_boy" Multiplicity="0..1" />
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_delivery_boy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_orders">
+        <PropertyRef Name="delivered_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_pincodes_ibfk_1">
+    <End Role="t_store" Type="Self.t_store" Multiplicity="0..1" />
+    <End Role="t_pincodes" Type="Self.t_pincodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="t_pincodes">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_product_ibfk_1">
+    <End Role="t_category" Type="Self.t_category" Multiplicity="0..1" />
+    <End Role="t_product" Type="Self.t_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="t_product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_reward_ibfk_1">
+    <End Role="t_customer" Type="Self.t_customer" Multiplicity="0..1" />
+    <End Role="t_reward" Type="Self.t_reward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="t_reward">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_service_price_ibfk_1">
+    <End Role="t_service" Type="Self.t_service" Multiplicity="0..1" />
+    <End Role="t_service_price" Type="Self.t_service_price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_service">
+        <PropertyRef Name="service_id" />
+      </Principal>
+      <Dependent Role="t_service_price">
+        <PropertyRef Name="service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_service_price_ibfk_2">
+    <End Role="t_product" Type="Self.t_product" Multiplicity="0..1" />
+    <End Role="t_service_price" Type="Self.t_service_price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="t_service_price">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_tag_details_ibfk_4">
+    <End Role="t_taggs" Type="Self.t_taggs" Multiplicity="0..1" />
+    <End Role="t_tag_details" Type="Self.t_tag_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_taggs">
+        <PropertyRef Name="tag_id" />
+      </Principal>
+      <Dependent Role="t_tag_details">
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_tag_details_ibfk_5">
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="0..1" />
+    <End Role="t_tag_details" Type="Self.t_tag_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="t_tag_details">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_taggs_ibfk_1">
+    <End Role="t_orders" Type="Self.t_orders" Multiplicity="0..1" />
+    <End Role="t_taggs" Type="Self.t_taggs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="t_taggs">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_user_ibfk_1">
+    <End Role="t_role" Type="Self.t_role" Multiplicity="0..1" />
+    <End Role="t_user" Type="Self.t_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="t_user">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="t_user_ibfk_2">
+    <End Role="t_store" Type="Self.t_store" Multiplicity="0..1" />
+    <End Role="t_user" Type="Self.t_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="t_user">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_admin_pages_ibfk_1">
+    <End Role="tbl_admin_category" Type="Self.tbl_admin_category" Multiplicity="0..1" />
+    <End Role="tbl_admin_pages" Type="Self.tbl_admin_pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_admin_category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_admin_pages">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_roles_privileges_ibfk_3">
+    <End Role="t_role" Type="Self.t_role" Multiplicity="0..1" />
+    <End Role="tbl_roles_privileges" Type="Self.tbl_roles_privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="tbl_roles_privileges">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_roles_privileges_ibfk_4">
+    <End Role="tbl_admin_pages" Type="Self.tbl_admin_pages" Multiplicity="0..1" />
+    <End Role="tbl_roles_privileges" Type="Self.tbl_roles_privileges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_admin_pages">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_roles_privileges">
+        <PropertyRef Name="admin_page_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="maxcleanModelStoreContainer">
+    <EntitySet Name="t_banner" EntityType="Self.t_banner" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_category" EntityType="Self.t_category" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_customer" EntityType="Self.t_customer" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_delivery_boy" EntityType="Self.t_delivery_boy" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_deliveryboy_deviceid" EntityType="Self.t_deliveryboy_deviceid" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_deliveryboy_incentives" EntityType="Self.t_deliveryboy_incentives" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_enquiries" EntityType="Self.t_enquiries" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_exception" EntityType="Self.t_exception" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_gallery" EntityType="Self.t_gallery" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_incentives_transaction" EntityType="Self.t_incentives_transaction" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_marque" EntityType="Self.t_marque" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_order_cylce" EntityType="Self.t_order_cylce" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_order_details" EntityType="Self.t_order_details" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_orders" EntityType="Self.t_orders" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_pincodes" EntityType="Self.t_pincodes" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_product" EntityType="Self.t_product" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_promocode" EntityType="Self.t_promocode" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_promotions" EntityType="Self.t_promotions" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_reward" EntityType="Self.t_reward" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_role" EntityType="Self.t_role" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_service" EntityType="Self.t_service" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_service_price" EntityType="Self.t_service_price" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_store" EntityType="Self.t_store" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_tag_details" EntityType="Self.t_tag_details" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_taggs" EntityType="Self.t_taggs" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_user" EntityType="Self.t_user" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="tbl_admin_category" EntityType="Self.tbl_admin_category" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="tbl_admin_pages" EntityType="Self.tbl_admin_pages" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="tbl_roles_privileges" EntityType="Self.tbl_roles_privileges" Schema="maxcleanlocal" store:Type="Tables" />
+    <EntitySet Name="t_admin_users" EntityType="Self.t_admin_users" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_admin_users`.`user_id`, 
+`t_admin_users`.`name`, 
+`t_admin_users`.`user_name`, 
+`t_admin_users`.`password`, 
+`t_admin_users`.`email`, 
+`t_admin_users`.`phone`, 
+`t_admin_users`.`role_id`, 
+`t_admin_users`.`state_id`, 
+`t_admin_users`.`city_id`, 
+`t_admin_users`.`created_date`, 
+`t_admin_users`.`updated_date`, 
+`t_admin_users`.`status`, 
+`t_admin_users`.`token_id`
+FROM `t_admin_users` AS `t_admin_users`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_brands" EntityType="Self.t_brands" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_brands`.`brand_id`, 
+`t_brands`.`brand_name`, 
+`t_brands`.`status`, 
+`t_brands`.`created_date`, 
+`t_brands`.`updated_date`
+FROM `t_brands` AS `t_brands`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_cities" EntityType="Self.t_cities" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_cities`.`city_id`, 
+`t_cities`.`state_id`, 
+`t_cities`.`city_name`, 
+`t_cities`.`home_delivery_available`, 
+`t_cities`.`city_image`, 
+`t_cities`.`status`
+FROM `t_cities` AS `t_cities`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_coupun" EntityType="Self.t_coupun" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_coupun`.`id`, 
+`t_coupun`.`coupun_name`, 
+`t_coupun`.`coupun_code`, 
+`t_coupun`.`discount_amount`, 
+`t_coupun`.`discount_percent`, 
+`t_coupun`.`offers_in_percent`, 
+`t_coupun`.`minmum_amount_purches`, 
+`t_coupun`.`status`, 
+`t_coupun`.`created_date`, 
+`t_coupun`.`created_by`, 
+`t_coupun`.`updated_date`, 
+`t_coupun`.`updated_by`
+FROM `t_coupun` AS `t_coupun`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_customer_details" EntityType="Self.t_customer_details" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_customer_details`.`customer_id`, 
+`t_customer_details`.`customer_name`, 
+`t_customer_details`.`mobile_no`, 
+`t_customer_details`.`email_id`, 
+`t_customer_details`.`password`, 
+`t_customer_details`.`Token`, 
+`t_customer_details`.`delivery_address`, 
+`t_customer_details`.`status`, 
+`t_customer_details`.`created_date`, 
+`t_customer_details`.`updated_date`
+FROM `t_customer_details` AS `t_customer_details`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_dealoftheday" EntityType="Self.t_dealoftheday" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_dealoftheday`.`id`, 
+`t_dealoftheday`.`product_id`, 
+`t_dealoftheday`.`start_date`, 
+`t_dealoftheday`.`end_date`, 
+`t_dealoftheday`.`start_time`, 
+`t_dealoftheday`.`end_time`, 
+`t_dealoftheday`.`actual_price`, 
+`t_dealoftheday`.`descount_percentage`, 
+`t_dealoftheday`.`descounted_price`, 
+`t_dealoftheday`.`location_id`, 
+`t_dealoftheday`.`status`, 
+`t_dealoftheday`.`created_date`, 
+`t_dealoftheday`.`updated_date`
+FROM `t_dealoftheday` AS `t_dealoftheday`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_delete_order" EntityType="Self.t_delete_order" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_delete_order`.`order_id`, 
+`t_delete_order`.`temp_order_id`, 
+`t_delete_order`.`paypal_transaction_id`, 
+`t_delete_order`.`customer_id`, 
+`t_delete_order`.`ordered_date`, 
+`t_delete_order`.`total_amount`, 
+`t_delete_order`.`location_id`, 
+`t_delete_order`.`shipping_name`, 
+`t_delete_order`.`shipping_emailId`, 
+`t_delete_order`.`shipping_conctactno`, 
+`t_delete_order`.`shipping_address`, 
+`t_delete_order`.`shipping_landmark`, 
+`t_delete_order`.`shipping_city`, 
+`t_delete_order`.`shipping_pincode`, 
+`t_delete_order`.`billing_name`, 
+`t_delete_order`.`billing_emailId`, 
+`t_delete_order`.`billing_conctactno`, 
+`t_delete_order`.`billing_address`, 
+`t_delete_order`.`billing_landmark`, 
+`t_delete_order`.`billing_city`, 
+`t_delete_order`.`billing_pincode`, 
+`t_delete_order`.`coupon_code`, 
+`t_delete_order`.`coupon_discountprice`, 
+`t_delete_order`.`warehouse_pickup`, 
+`t_delete_order`.`warehouse_pickup_discount`, 
+`t_delete_order`.`shippingcharges`, 
+`t_delete_order`.`order_status`, 
+`t_delete_order`.`OrderFrom`, 
+`t_delete_order`.`payment_mode`, 
+`t_delete_order`.`remarks`, 
+`t_delete_order`.`recipt_number`, 
+`t_delete_order`.`created_date`, 
+`t_delete_order`.`updated_date`, 
+`t_delete_order`.`tax_percent`, 
+`t_delete_order`.`dispatch_id`, 
+`t_delete_order`.`status`, 
+`t_delete_order`.`PaymentPending`, 
+`t_delete_order`.`Confirm`, 
+`t_delete_order`.`InTransit`, 
+`t_delete_order`.`Delivered`, 
+`t_delete_order`.`Rejected`, 
+`t_delete_order`.`DeliveryFailed`
+FROM `t_delete_order` AS `t_delete_order`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_delete_order_details" EntityType="Self.t_delete_order_details" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_delete_order_details`.`order_detail_id`, 
+`t_delete_order_details`.`product_id`, 
+`t_delete_order_details`.`quantity`, 
+`t_delete_order_details`.`actual_price`, 
+`t_delete_order_details`.`discount_price`, 
+`t_delete_order_details`.`order_id`, 
+`t_delete_order_details`.`created_date`, 
+`t_delete_order_details`.`updated_date`
+FROM `t_delete_order_details` AS `t_delete_order_details`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_delivery_details" EntityType="Self.t_delivery_details" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_delivery_details`.`store_id`, 
+`t_delivery_details`.`location_id`, 
+`t_delivery_details`.`store_manager_name`, 
+`t_delivery_details`.`store_name`, 
+`t_delivery_details`.`store_number`, 
+`t_delivery_details`.`store_emailid`, 
+`t_delivery_details`.`store_address`, 
+`t_delivery_details`.`store_landmark`, 
+`t_delivery_details`.`store_city`, 
+`t_delivery_details`.`store_pincode`, 
+`t_delivery_details`.`created_date`, 
+`t_delivery_details`.`updated_date`, 
+`t_delivery_details`.`status`
+FROM `t_delivery_details` AS `t_delivery_details`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_delivery_locations" EntityType="Self.t_delivery_locations" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_delivery_locations`.`location_id`, 
+`t_delivery_locations`.`state_id`, 
+`t_delivery_locations`.`location_name`, 
+`t_delivery_locations`.`display_order`, 
+`t_delivery_locations`.`location_image_url`, 
+`t_delivery_locations`.`is_home_delivery_available`, 
+`t_delivery_locations`.`markup_price`, 
+`t_delivery_locations`.`min_amount`, 
+`t_delivery_locations`.`free_shipping_price`, 
+`t_delivery_locations`.`shipping_charges`, 
+`t_delivery_locations`.`estimated_delivery`, 
+`t_delivery_locations`.`status`, 
+`t_delivery_locations`.`created_date`, 
+`t_delivery_locations`.`updated_date`
+FROM `t_delivery_locations` AS `t_delivery_locations`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_enquiry" EntityType="Self.t_enquiry" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_enquiry`.`enquiry_id`, 
+`t_enquiry`.`enquiry_name`, 
+`t_enquiry`.`contact_no`, 
+`t_enquiry`.`email_id`, 
+`t_enquiry`.`description`, 
+`t_enquiry`.`status`, 
+`t_enquiry`.`created_date`, 
+`t_enquiry`.`created_by`, 
+`t_enquiry`.`updated_date`, 
+`t_enquiry`.`updated_by`
+FROM `t_enquiry` AS `t_enquiry`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="t_gst" EntityType="Self.t_gst" store:Type="Tables" store:Schema="maxcleanlocal">
+      <DefiningQuery>SELECT
+`t_gst`.`id`, 
+`t_gst`.`percentage_of_gst`, 
+`t_gst`.`status`
+FROM `t_gst` AS `t_gst`</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="t_category_ibfk_1" Association="Self.t_category_ibfk_1">
+      <End Role="t_service" EntitySet="t_service" />
+      <End Role="t_category" EntitySet="t_category" />
+    </AssociationSet>
+    <AssociationSet Name="t_deliveryboy_deviceid_ibfk_1" Association="Self.t_deliveryboy_deviceid_ibfk_1">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_deliveryboy_deviceid" EntitySet="t_deliveryboy_deviceid" />
+    </AssociationSet>
+    <AssociationSet Name="t_deliveryboy_incentives_ibfk_1" Association="Self.t_deliveryboy_incentives_ibfk_1">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_deliveryboy_incentives" EntitySet="t_deliveryboy_incentives" />
+    </AssociationSet>
+    <AssociationSet Name="t_incentives_transaction_ibfk_1" Association="Self.t_incentives_transaction_ibfk_1">
+      <End Role="t_deliveryboy_incentives" EntitySet="t_deliveryboy_incentives" />
+      <End Role="t_incentives_transaction" EntitySet="t_incentives_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="t_order_details_ibfk_3" Association="Self.t_order_details_ibfk_3">
+      <End Role="t_service" EntitySet="t_service" />
+      <End Role="t_order_details" EntitySet="t_order_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_order_details_ibfk_4" Association="Self.t_order_details_ibfk_4">
+      <End Role="t_product" EntitySet="t_product" />
+      <End Role="t_order_details" EntitySet="t_order_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_order_details_ibfk_5" Association="Self.t_order_details_ibfk_5">
+      <End Role="t_orders" EntitySet="t_orders" />
+      <End Role="t_order_details" EntitySet="t_order_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_1" Association="Self.t_orders_ibfk_1">
+      <End Role="t_customer" EntitySet="t_customer" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_2" Association="Self.t_orders_ibfk_2">
+      <End Role="t_user" EntitySet="t_user" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_3" Association="Self.t_orders_ibfk_3">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_4" Association="Self.t_orders_ibfk_4">
+      <End Role="t_order_cylce" EntitySet="t_order_cylce" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_5" Association="Self.t_orders_ibfk_5">
+      <End Role="t_store" EntitySet="t_store" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_orders_ibfk_6" Association="Self.t_orders_ibfk_6">
+      <End Role="t_delivery_boy" EntitySet="t_delivery_boy" />
+      <End Role="t_orders" EntitySet="t_orders" />
+    </AssociationSet>
+    <AssociationSet Name="t_pincodes_ibfk_1" Association="Self.t_pincodes_ibfk_1">
+      <End Role="t_store" EntitySet="t_store" />
+      <End Role="t_pincodes" EntitySet="t_pincodes" />
+    </AssociationSet>
+    <AssociationSet Name="t_product_ibfk_1" Association="Self.t_product_ibfk_1">
+      <End Role="t_category" EntitySet="t_category" />
+      <End Role="t_product" EntitySet="t_product" />
+    </AssociationSet>
+    <AssociationSet Name="t_reward_ibfk_1" Association="Self.t_reward_ibfk_1">
+      <End Role="t_customer" EntitySet="t_customer" />
+      <End Role="t_reward" EntitySet="t_reward" />
+    </AssociationSet>
+    <AssociationSet Name="t_service_price_ibfk_1" Association="Self.t_service_price_ibfk_1">
+      <End Role="t_service" EntitySet="t_service" />
+      <End Role="t_service_price" EntitySet="t_service_price" />
+    </AssociationSet>
+    <AssociationSet Name="t_service_price_ibfk_2" Association="Self.t_service_price_ibfk_2">
+      <End Role="t_product" EntitySet="t_product" />
+      <End Role="t_service_price" EntitySet="t_service_price" />
+    </AssociationSet>
+    <AssociationSet Name="t_tag_details_ibfk_4" Association="Self.t_tag_details_ibfk_4">
+      <End Role="t_taggs" EntitySet="t_taggs" />
+      <End Role="t_tag_details" EntitySet="t_tag_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_tag_details_ibfk_5" Association="Self.t_tag_details_ibfk_5">
+      <End Role="t_orders" EntitySet="t_orders" />
+      <End Role="t_tag_details" EntitySet="t_tag_details" />
+    </AssociationSet>
+    <AssociationSet Name="t_taggs_ibfk_1" Association="Self.t_taggs_ibfk_1">
+      <End Role="t_orders" EntitySet="t_orders" />
+      <End Role="t_taggs" EntitySet="t_taggs" />
+    </AssociationSet>
+    <AssociationSet Name="t_user_ibfk_1" Association="Self.t_user_ibfk_1">
+      <End Role="t_role" EntitySet="t_role" />
+      <End Role="t_user" EntitySet="t_user" />
+    </AssociationSet>
+    <AssociationSet Name="t_user_ibfk_2" Association="Self.t_user_ibfk_2">
+      <End Role="t_store" EntitySet="t_store" />
+      <End Role="t_user" EntitySet="t_user" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_admin_pages_ibfk_1" Association="Self.tbl_admin_pages_ibfk_1">
+      <End Role="tbl_admin_category" EntitySet="tbl_admin_category" />
+      <End Role="tbl_admin_pages" EntitySet="tbl_admin_pages" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_roles_privileges_ibfk_3" Association="Self.tbl_roles_privileges_ibfk_3">
+      <End Role="t_role" EntitySet="t_role" />
+      <End Role="tbl_roles_privileges" EntitySet="tbl_roles_privileges" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_roles_privileges_ibfk_4" Association="Self.tbl_roles_privileges_ibfk_4">
+      <End Role="tbl_admin_pages" EntitySet="tbl_admin_pages" />
+      <End Role="tbl_roles_privileges" EntitySet="tbl_roles_privileges" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

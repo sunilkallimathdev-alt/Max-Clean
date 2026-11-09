@@ -1,0 +1,101 @@
+﻿@using API.Models;
+@{
+    ViewBag.Title = "Order";
+    List<CustmoerOrders_Model> orders = (List<CustmoerOrders_Model>)ViewBag.Orders;
+}
+@if (Session["CurrentUser"] == null)
+{   <div style="text-align:center;color:red;">
+        <h2> Please login to access the this page.</h2>
+        <h4>@ViewBag.ErrorMessage</h4>
+     
+    </div>
+}
+else
+{
+    if (orders == null)
+    {
+       
+        <div style="text-align:center; color:red;">
+            <h2> No orders at the moment.</h2>
+            <h4>Order a cleaning!!</h4>
+          
+</div>
+    }
+    else
+    {
+        <section>
+    <div class="container" style="padding-bottom:30px;">
+        <div class="row">
+            <div class="col-md-12 howit-work main-block center-block" id="howitworks">
+                <h2>My <span>Order</span></h2>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Order Date</th>
+                        <th>Delivered Date</th>
+                        <th>Status</th>
+              
+                        <th>Total</th>
+                        <th>View Details</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblBody">
+                    @foreach (CustmoerOrders_Model dataa in orders) {
+                    <tr>
+                        <td>
+                            <a href="">
+                                <div class="">@dataa.OrderID</div>
+                            </a>
+                        </td>
+                        <td><div class=""> @dataa.ordereddate</div></td>
+                        <td>
+                            <div class=""> @dataa.deliverydate</div>
+                        </td>
+                        <td>
+                            <div class="">
+                                @dataa.order_status
+                            </div>
+                        </td>
+                    
+                        <td class="invert">@dataa.total</td>
+                        <td>
+                            <div class=""><a href="@Url.Action("OrderDetails", "CustomerOrder", new { id = dataa.OrderID } )"><button name="submit" type="submit" class="btn-color">View</button></a></div>
+                        </td>
+                    </tr>
+                    }
+                   @*
+                       <tr>
+        <td>
+            <a href="">
+                <div class="">12647</div>
+            </a>
+        </td>
+        <td>
+            <div class=""> 16-06-2017</div>
+        </td>
+        <td>
+            <div class=""> 20-06-2017</div>
+        </td>
+        <td>
+            <div class="">
+                Confirmed
+            </div>
+        </td>
+        <td class="invert">530.00</td>
+        <td>
+            <div class=""> <a href="myorder1.html"><button name="submit" type="submit" class="btn-color">View</button></a></div>
+        </td>
+    </tr>*@
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+@*<script src="~/CustomJS/OrderControles.js"></script>*@
+    }
+}

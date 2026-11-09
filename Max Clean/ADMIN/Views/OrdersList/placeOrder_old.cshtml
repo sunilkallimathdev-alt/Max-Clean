@@ -1,0 +1,2303 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+
+@{
+    ViewBag.Title = "Offline Order";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button id="ADDbutton" class="btn btn-sm btn-info">New Order</button>&nbsp;&nbsp;&nbsp;
+                <button id="OrderListBtn" class="btn btn-sm btn-success">Orders Received</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    List<API.Models.orderCycle_Model> Orderstatuslist = (List<API.Models.orderCycle_Model>)ViewBag.OrderStatusList;
+    var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+    var CategoryList = (List<API.Models.Category_Model>)ViewBag.CategoryList;
+    var ServiceList = (List<API.Models.Service_Model>)ViewBag.ServiceList;
+    var DeliveryBoys = (List<API.Models.DeliveryBoy_Model>)ViewBag.DeliveryBoys;
+    List<API.Models.AdminUser_Model> Adminuserslist = (List<API.Models.AdminUser_Model>)ViewBag.Adminuserlist;
+}
+
+<section class="content" id="section1">
+    <div class="container-fluid">
+        <div class="card card-info" id="customercard">
+            <div class="row">
+                <div class="card-body">
+                    <form id="Customerform">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Customer Name<span style="color:red">*</span></label>
+                                    <input class="form-control" autocomplete="off" type="text" name="CustomerName" maxlength="100" onkeypress="return NotanHTML(event)">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Customer Id<span style="color:red">*</span></label>
+                                    <input class="form-control" type="text" name="CustomerID" maxlength="100" readonly onkeypress="return NotanHTML(event)">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Email ID<span style="color:red"></span></label>
+                                    <input class="form-control" type="text" name="Email" maxlength="200" onkeypress="return NotanHTML(event)">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <label>Mobile Number<span style="color:red">*</span></label>
+                                        <input class="form-control" autocomplete="off" type="text" name="MobileNumber" maxlength="10" onkeypress="return IsNumeric(event)">
+                                        <small style="color:blue">Search By Mobile Number</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label> <span style="color:red"></span></label>
+                                        <button type="button" class="btn btn-info edit" onclick="Searchcustomer();" id="btnsearch" style="margin-top:30px;">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="section2" class="content">
+    <div class="container-fluid">
+        <!-- COLOR PALETTE -->
+        <!-- /.card -->
+        <!-- START ALERTS AND CALLOUTS -->
+        <!-- /.row -->
+        <!-- END ALERTS AND CALLOUTS -->
+
+        <div class="row">
+            <div class="col-12">
+                <!-- Custom Tabs -->
+                <div class="card" id="Ordercard">
+                    <div class="card-header d-flex p-0 row">
+                        <ul class="nav nav-pills  p-2 col-md-6" id="servicetabs"></ul>
+                        <div  class="p-2 col-md-6">
+                            <button type="button" class="p-2 btn btn-danger" onclick="Clearall();" id="btnreset1" style="float:right; ">Cancel</button>
+                            <button type="button" class="btn p-2 btn-success" onclick="addtocart();" id="btncartadd1" style="float:right; padding-right:15px;">Add to cart</button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" style="padding:0px;">
+                        <div class="tab-content" id="categoeryproducts">
+
+                        </div>
+                        <div class="card-footer">
+
+                            <button type="button" class="btn btn-danger" onclick="Clearall();" id="btnreset" style="float:right; ">Cancel</button>
+                            <button type="button" class="btn btn-success" onclick="addtocart();" id="btncartadd" style="float:right; padding-right:15px;">Add to cart</button>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+                <!-- ./card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- END CUSTOM TABS -->
+
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<section id="section3" class="content">
+    <div class="container-fluid">
+        <div class="card card-info" id="cart">
+
+            <div class="card-header">
+                <h3 class="card-title">Cart Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="buttons"></div>
+                <table id="tbl" class="table table-bordered table-striped" style="width:100%;"></table>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section id="section4" class="content">
+    <div class="container-fluid">
+        <div class="card card-info" id="orderdetails">
+            <div class="row">
+                <div class="card-body">
+                    <form id="placeorderform">
+                        <div class="callout callout-info">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Store<span style="color:red">*</span></label>
+                                        <select class="form-control" name="StoreID">
+
+                                            @{
+                                                try
+                                                {
+                                                    var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                                    if (user.StoreID != null)
+                                                    {
+                                                        foreach (var str in StoreList)
+                                                        {
+                                                            if (user.StoreID == @str.StoreID)
+                                                            {
+                                                                <option value="@str.StoreID">@str.StoreName</option>
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="">---Select---</option>
+                                                        foreach (var str in StoreList)
+                                                        {
+                                                            <option value="@str.StoreID">@str.StoreName</option>
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    throw ex;
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>PickUP Address<span style="color:red"></span></label>
+                                        <textarea class="form-control" type="text" name="PickUPAddress" maxlength="700" onkeypress="return NotanHTML(event)"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>PickUP Date<span style="color:red">*</span></label>
+                                        <input class="form-control" type="date" id="PickUPDate" onblur="AddDeliveryDate();" name="PickUPDate" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>PickUP Time<span style="color:red">*</span></label>
+                                        <input class="form-control" type="time" id="PickUPTime" name="PickUPTime" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label><input type="checkbox" id="ExpressDelivery" />  &nbsp;Express Delivery</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Delivery Address<span style="color:red"></span></label>
+                                        <textarea class="form-control" type="text" name="DeliveryAddress" maxlength="700" onkeypress="return NotanHTML(event)"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Delivery Date<span style="color:red"></span></label>
+                                        <input class="form-control" type="date" name="DeliveryDate" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Delivery Time<span style="color:red"></span></label>
+                                        <input class="form-control" type="time" id="DeliveryTime" name="DeliveryTime" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Confirmed By<span style="color:red">*</span></label>
+                                        <select class="form-control" name="ConfirmedBy">
+
+                                            @{
+                                                var users = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+
+                                                foreach (var str in Adminuserslist)
+                                                {
+                                                    if (users.UserID == @str.UserID)
+                                                    {
+                                                        <option value="@str.UserID">@str.UserName</option>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Order Status<span style="color:red">*</span></label>
+                                        <select class="form-control" name="StatusID">
+                                            <option value="5">Goods Received At Store</option>
+                                            <option value="2">Request Sent for Pickup</option>
+                                            @*@{
+                                                  foreach (var ord in Orderstatuslist)
+                                                  {
+                                                      if (ord.OrderCycleID == 2 || ord.OrderCycleID == 5)
+                                                      {
+                                                        <option value="@ord.OrderCycleID">@ord.OrderCycleStage</option>
+                                                      }
+                                                  }
+                                                }*@
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Remark</label>
+                                        <textarea class="form-control" type="text" name="Remark"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Payment Type</label>
+                                        <select class="form-control" name="PaymentType">
+                                            <option value="Cash">Cash</option>
+                                            <option value="Card">Card</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" id="invoice_div">
+                                    <div class="form-group">
+                                        <label>Invoice No.</label>
+                                        <input type="text" id="Invoice_No" name="Invoice_No" class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card">
+
+                                <!-- /.card-body -->
+                                <div class="col-md-12 row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Previous Balance</label>
+                                            <input class="form-control" type="text" name="OldBalance" value="0" readonly />
+                                        </div>
+                                        @*<div class="form-group" id="rewarddiv">
+                <label style="color:gold" id="rewardlable">  Reward Points </label>
+                <input class="form-control" type="text" id="rewardpts" value="0" readonly />
+                <label id="redem"><input type="checkbox" id="redeem" />  &nbsp;Redeem</label>
+            </div>*@
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Express Delivery Charge</label>
+                                            <input class="form-control" value="0" type="text" name="ExpressChargeApplied" readonly />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Cart Total</label>
+                                            <input class="form-control" type="text" name="CartTotal" value="0" readonly />
+                                            @*<small style="color:blue" id="rewardstext">Grand Total After</small>*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group" id="rewarddiv">
+                                            <label style="color:gold" id="rewardlable">  Reward Points </label>
+                                            <input class="form-control" type="text" id="rewardpts" value="0" readonly />
+                                            <label id="redem"><input type="checkbox" id="redeem" />  &nbsp;Redeem</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group" id="rewardapplieddiv">
+                                            <label style="color:gold">  Reward Points Applied </label>
+                                            <input class="form-control" type="text" name="RewardPointsApplied" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label style="color:cornflowerblue">Promocode</label>
+                                            <div class="input-group input-group-sm">
+                                                <input class="form-control" type="text" name="Promocode" style="text-transform:uppercase" onkeyup="IsRewardApplied()" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-sm btn-primary btn-flat" onclick="applyPromocode()">Apply</button>
+                                                </span>
+                                               
+                                            </div>
+                                            <small style="color:blue;cursor:pointer;" onclick="remove_promo()"> &#10006; &nbsp; Remove Promocode</small>
+                                        </div>
+                                       
+                                    </div>
+
+                                    <input id="Promocode_Discount" type="hidden" value="0" />
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Discount Applied</label>
+                                            <input class="form-control" type="text" name="Promocode_amount" value="0" readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Delivery Charges</label>
+                                            <input class="form-control" type="text" name="Delivery_Charges" value="0" readonly />
+                                            <label><input type="checkbox" id="delivery_checkbox" />  &nbsp;Apply Delivery Charge</label>
+                                        </div>
+                                    </div>
+                                @*</div>*@
+                                @*<div class="row">*@
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Grand Total</label>
+                                            <input class="form-control" type="text" name="GrandTotal" value="0" readonly />
+                                            @*<small style="color:blue" id="rewardstext">Grand Total After</small>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Advance Amt<span style="color:red"></span></label>
+                                            <input class="form-control" type="text" name="AdvanceAmount" value="0" onkeypress="return IsNumericDecimal(event)" onkeyup="Cal_Balance_after_paid();" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Balance Amt</label>
+                                        <input class="form-control" type="text" name="BalanceAmount" value="0" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        &nbsp; &nbsp; <button type="button" class="btn btn-danger" onclick="ClearFields();" id="btnreset" style="float:right">Cancel</button>
+                                        &nbsp; &nbsp; <button type="button" class="btn btn-success edit" id="btnplaceorder" style="float:right">Place Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="section5" class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header row">
+                <div class="col-md-2">
+                    <h3 class="card-title">Orders Placed</h3>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>From Date : </label>
+                        <input type="date" class="form-control" id="FromDate" placeholder="From Date" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>To Date : </label>
+                        <div class="input-group input-group-sm">
+                            <input type="date" class="form-control" id="ToDate" placeholder="To Date" />
+                            <span class="input-group-btn">
+                                <button type="button" onclick="GetByDate()" class="btn btn-info btn-flat">Submit</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <button type="button" id="bulkstat" style="margin-top:32px;" class="btn btn-info edit">Bulk Order Status Change</button>
+                            </div>
+                        </div>
+                        @*<div class="col-sm-4" style="padding:2px; text-align:right;"><label> Orders Received From : </label></div>*@
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label> Orders Received From : </label>
+                                <select class="form-control" name="StoresID">
+                                    @{
+                                        try
+                                        {
+                                            var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+                                            if (user.StoreID != null)
+                                            {
+                                                foreach (var str in StoreList)
+                                                {
+                                                    if (user.StoreID == @str.StoreID)
+                                                    {
+                                                        <option value="@str.StoreID">@str.StoreName</option>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="0">---Select---</option>
+                                                foreach (var str in StoreList)
+                                                {
+                                                    <option value="@str.StoreID">@str.StoreName</option>
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="buttons2"></div>
+                <table id="tbl2" class="table table-bordered nopadding table-striped" style="width:100%" cellpadding="0" cellspacing="0">
+
+                    <thead>
+                        <tr>
+                            <th>OrderID</th>
+                            <th>Customer</th>
+                            <th>Exp. Delivery Date</th>
+                            <th>Total Amt</th>
+                            <th>Bal. Amt</th>
+                            <th>Total Qty</th>
+                            <th>Delivery Type</th>
+                            <th>Order Type</th>
+                            <th>Order Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid modal" style="padding-left:100px; padding-right:50px;" id="bulkstatus">
+    <div class="card card-info modal-content">
+        <div class="card-body">
+            <span class="close">&times;</span>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>From Status</label>
+                        <select class="form-control" name="FromStatus" onchange="GetData();">
+                            <option value="">--Select--</option>
+                            @{
+                                foreach (var ord in Orderstatuslist)
+                                {
+                                    <option value="@ord.OrderCycleID">@ord.OrderCycleStage</option>
+
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group" id="tostatusdiv">
+                        <label>To Status</label>
+                        <select class="form-control" name="ToStatus">
+                            <option value="">--Select--</option>
+                            @{
+                                foreach (var ord in Orderstatuslist)
+                                {
+
+
+                                    <option value="@ord.OrderCycleID">@ord.OrderCycleStage</option>
+
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group" id="btnsub">
+                        <label> <span style="color:red"></span></label>
+                        @*<button type="button" class="btn btn-info edit" onclick="GetData();" id="btnordersearch" style="margin-top:30px;">Search</button>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="callout callout-info">
+                        <div class="row" id="Nontagged">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table td {
+        padding: 0.25rem;
+    }
+</style>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 1700px; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+    // Get the modal
+    var modal = document.getElementById('bulkstatus');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("bulkstat");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+        $("#tostatusdiv").hide();
+        $("#btnsub").hide();
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+        var StoreID = $('[name="StoresID"]').val();
+        $('.check_all').prop("checked", false);
+        $("#Nontagged").html("");
+        $("[name=FromStatus]").val(null);
+
+        BindorderTableData(StoreID);
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function GetData() {
+        var FromOrderStatus = $("[name=FromStatus]").val();
+
+        if (FromOrderStatus == "") {
+            DangerAlert(" ", "Select From Status");
+            $("[name=FromStatus]").focus();
+        } else {
+
+
+            $.get("@Url.Action("GetOrderBYstatus", "OrdersList")", { StatusID: FromOrderStatus }, function (data) {
+
+                var myobj = JSON.parse(data);
+                var str = "";
+                str += "<div class='col-md-2'>"
+                str += "<div class='form-group'>"
+                str += "<label><input  name='check_all' type='checkbox' /><strong> Check All</strong></label>"
+                str += "</div>"
+                str += "</div>"
+                if (myobj != null) {
+                    for (var i = 0; i < myobj.length; i++) {
+                        str += "<div class='col-md-2'>"
+                        str += "<div class='form-group'>"
+                        str += "<label><input class='blkstat' id='" + myobj[i].OrderID + "' type='checkbox' />OrderID  " + myobj[i].OrderID + " / " + myobj[i].CustomerName + "/" + SplitDateTime(myobj[i].OrderDate).replace("/", "-").replace("/", "-") + "  </label>"
+                        str += "</div>"
+                        str += "</div>"
+                    }
+                    $("#btnsub").html("<button type='button' class='btn btn-success' onclick='ChangeStatus();' style='height:40px;margin-top:30px;'>Change Status</button>");
+                    $("#Nontagged").html(str);
+                    $("#tostatusdiv").show();
+                    $("#btnsub").show();
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+        }
+    }
+
+    $(document).on('change', 'input[name="check_all"]', function () {
+        $('.blkstat').prop("checked", this.checked);
+    });
+
+    function ChangeStatus(){
+                var myobj = new Object();
+                myobj.Orders = [];
+                myobj.Order_Status = $("[name=ToStatus]").val();
+
+                $("input:checkbox").each(function () {
+                    var $this = $(this);
+
+                    if ($this.is(":checked")) {
+                        var obj = new Object();
+                        obj.OrderID = $this.attr("id");
+                        myobj.Orders.push(obj);
+                    }
+                });
+
+                if ($("[name=ToStatus]").val() == "") {
+                    WarningAlert("", "Please Select Status");
+                    $("[name=ToStatus]").focus();
+                } else {
+                    $.post("@Url.Action("ChangeStatus", "OrdersList")", { objlist: JSON.stringify(myobj) }, function (data) {
+
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+
+                            GetData();
+                            SuccessAlert("@ViewBag.Title", " Successfully.");
+                            $("[name=ToStatus]").val(null);
+
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message);
+
+                    })
+                }
+    }
+</script>
+<script>
+
+
+    $('#Customerform').validate({
+        rules: {
+            CustomerName: {
+                required: true,
+            },
+            CustomerID: {
+                required: false,
+            },
+            Email: {
+                required: false,
+            },
+            MobileNumber: {
+                required: true,
+            }
+        }
+    });
+
+    $('#placeorderform').validate({
+        rules: {
+            CustomerName: {
+
+                required: true,
+            },
+            CustomerID: {
+
+                required: true,
+            },
+            MobileNumber: {
+
+                required: true,
+            },
+            StoreID: {
+                required: true,
+            },
+            PickUPDate: {
+                required: true,
+            },
+            PickUPTime: {
+                required: true,
+            },
+            AdvanceAmount: {
+                number: true,
+                required: true,
+            },
+            PickUPDate: {
+                required: true,
+            },
+            PickUPTime: {
+                required: true,
+            },
+            //DeliveryDate: {
+            //    required: true,
+            //},
+            //DeliveryTime: {
+            //    required: true,
+            //},
+            StatusID: {
+                required: true,
+            },
+            ConfirmedBy: {
+                required: true,
+            },
+            StoreID: {
+                required: true,
+            },
+            PaymentType: {
+                required: true,
+            }
+        }
+    });
+
+    var formplaceorder = $("#placeorderform");
+    formplaceorder.validate();
+
+    var formcustomer = $("#Customerform");
+    formcustomer.validate();
+
+    var tableId2 = "tbl2";
+    var Customers = [];
+    var Rewards = 0;
+    var OrderCycle = [];
+    var ExpressCharge = 0;
+    var tableId = "tbl";
+    var TableData = [];
+    var DataToSave = [];
+    var ServicePrice;
+    var CategoryTabs = "";
+    var tabcount = 0;
+    var ServiceProductIDs = [];
+    var CategoryIDs = [];
+    var idleTime = 0;
+    var isTabActive = true;
+
+    $(document).ready(function () {
+
+        //Increment the idle time counter every minute.
+        var idleInterval = setInterval(timerIncrement, 1000); // 1 sec
+
+        //Zero the idle timer on mouse movement.
+        $(this).mousemove(function (e) {
+            idleTime = 0;
+        });
+        $(this).keypress(function (e) {
+            idleTime = 0;
+        });
+
+
+
+        var StoresID = $('[name="StoresID"]').val();
+        GetOrderCycle();
+        BlockPreviousDate("PickUPDate");
+
+        SetTodaysDate("PickUPDate");
+
+        SetDeliveryDate("DeliveryDate");
+        SetTime("DeliveryTime");
+        SetTime("PickUPTime");
+        $("#invoice_div").hide();
+        $('[name="PaymentType"]').change(function () {
+            $("#invoice_div").toggle();
+        });
+        $("#section1").hide();
+        $("#section2").hide();
+        $("#section3").hide();
+        $("#section4").hide();
+        $("#section5").show();
+        $("#ADDbutton").show();
+        $("#OrderListBtn").hide();
+        $("#OrderListBtn").click(function () {
+            $("#section1").toggle();
+            $("#section2").toggle();
+            $("#section3").toggle();
+            $("#section4").toggle();
+            $("#section5").toggle();
+            $("#ADDbutton").toggle();
+            $("#OrderListBtn").toggle();
+        });
+        $("#ADDbutton").click(function () {
+            $("#section1").toggle();
+            $("#section2").toggle();
+            $("#section3").toggle();
+            $("#section4").toggle();
+            $("#section5").toggle();
+            $("#ADDbutton").toggle();
+            $("#OrderListBtn").toggle();
+        });
+
+        if (localStorage.getItem("PlaceOrder") == "true") {
+            localStorage.removeItem("PlaceOrder");
+            $("#ADDbutton").click();
+        }
+
+        $("#rewardapplieddiv").hide();
+        setTimeout(function () {
+            $('#carddiv').removeClass('collapsed-card');
+        }, 0);
+
+        $('body').css('zoom', '90%');
+        GetServices();
+        BindorderTableData(StoresID);
+        $('[name="StoresID"]').change(function () {
+            var StoresID = $('[name="StoresID"]').val();
+
+            BindorderTableData(StoresID);
+        });
+
+        $('#redeem').change(function () {
+            var RewardPoints = JSON.parse($("#rewardpts").val());
+            var GrandTotal = JSON.parse($('[name="GrandTotal"]').val());
+            var AmountPaid = JSON.parse($('[name="AdvanceAmount"]').val());
+            var pointsApplied = JSON.parse($('[name="RewardPointsApplied"]').val() || 0);
+            if (DataToSave.length > 0 && (RewardPoints > 0 || pointsApplied > 0)) {
+                if (100 < GrandTotal || JSON.parse($('[name="RewardPointsApplied"]').val()) > 0) {
+                    if ($(this).is(":checked")) {
+
+                        if (GrandTotal > 499)
+                            Rewards = 100;
+                        else
+                            Rewards = 50;
+                        $('[name="GrandTotal"]').val(GrandTotal - Rewards);
+
+                        //$('[name="RewardPointsApplied"]').val(0);
+                        $("#rewardpts").val(RewardPoints - Rewards);
+                        $("#rewardapplieddiv").show();
+                        // $("#rewarddiv").hide();
+
+                        $('[name="RewardPointsApplied"]').val(Rewards);
+                        $('[name="BalanceAmount"]').val(JSON.parse($('[name="GrandTotal"]').val()) - AmountPaid);
+
+                    } else {
+                        $('[name="GrandTotal"]').val(GrandTotal + Rewards);
+                        $("#rewardpts").val(Rewards + JSON.parse($("#rewardpts").val()));
+                        //$("#rewarddiv").show();
+                        $("#rewardapplieddiv").hide();
+                        $('[name="RewardPointsApplied"]').val(0);
+                        $('[name="BalanceAmount"]').val(JSON.parse($('[name="GrandTotal"]').val()) - AmountPaid);
+                        CalculateGrandTotal_Balance();
+                    }
+                } else {
+
+
+                    if (JSON.parse($('[name="RewardPointsApplied"]').val()) > 0) {
+                        $('#redeem').prop('checked', true);
+                    } else {
+                        alert("Cannot Redeem Reward Points");
+                        $('#redeem').prop('checked', false);
+                    }
+                }
+            } else {
+                if (DataToSave.length == 0) {
+                    DangerAlert("Please Add Products To Cart");
+                }
+                if ($("#rewardpts").val() == "0") {
+                    DangerAlert("Cannot Redeem Reward Points");
+                }
+                $('#redeem').prop('checked', false);
+            }
+        });
+
+        $('#ExpressDelivery').change(function () {
+
+            if ($(this).is(":checked")) {
+
+                var grndt = Math.floor($('[name="GrandTotal"]').val());
+                ExpressCharge = 0;
+                ExpressCharge = Math.floor($('[name="CartTotal"]').val() * 0.5);
+
+                //if ((grndt + ExpressCharge) < 350) {
+                //    $('[name="Delivery_Charges"]').val(50);
+
+                //} else {
+                //    $('[name="Delivery_Charges"]').val(0);
+                //}
+
+                // var Delivery_Charges = JSON.parse($('[name="Delivery_Charges"]').val());
+
+                // var Promocode_amount = parseInt($("[name=Promocode_amount]").val());
+
+                // $('[name="GrandTotal"]').val(grndt + ExpressCharge + Delivery_Charges + Promocode_amount);
+
+                $('[name="ExpressChargeApplied"]').val(ExpressCharge);
+                CalculateGrandTotal_Balance();
+                // Cal_Balance_after_paid();
+                ExpressDeliveryDate();
+            } else {
+                var grndt = Math.floor($('[name="GrandTotal"]').val());
+                // $('[name="GrandTotal"]').val(Math.floor(grndt - ExpressCharge));
+                $('[name="ExpressChargeApplied"]').val(0);
+                CalculateGrandTotal_Balance();
+                // Cal_Balance_after_paid();
+                AddDeliveryDate();
+            }
+
+
+        });
+
+
+        $('#delivery_checkbox').change(function () {
+
+            if (DataToSave.length > 0 ) {
+
+
+                if (parseInt($("[name=GrandTotal]").val()) < 350) {
+                    if ($(this).is(":checked")) {
+                        $('[name="Delivery_Charges"]').val(50);
+                        CalculateGrandTotal_Balance();
+                    } else {
+                        $('[name="Delivery_Charges"]').val(0);
+                        var OldBalance = JSON.parse($("[name=OldBalance]").val());
+                        var GrandTotal = 0;
+                        var AmountPaid = JSON.parse($("[name=AdvanceAmount]").val());
+
+                        for (var i = 0; i < DataToSave.length; i++) {
+                            GrandTotal += JSON.parse(DataToSave[i][6]);
+                        }
+                        $("[name=CartTotal]").val(GrandTotal);
+                        if (GrandTotal < 1) {
+                            var RewardPoints = JSON.parse($("#rewardpts").val());
+                            $("#rewardpts").val(JSON.parse($("[name=RewardPointsApplied]").val()) + RewardPoints);
+                            $("[name=RewardPointsApplied]").val(0);
+                            $('#redeem').prop('checked', false);
+                        }
+
+                        if ($("#ExpressDelivery").prop('checked') == true) {
+                            $('[name="ExpressChargeApplied"]').val((50 / 100) * GrandTotal);
+                            ExpressCharge = JSON.parse($('[name="ExpressChargeApplied"]').val());
+                            GrandTotal = Math.floor(GrandTotal + ExpressCharge);
+
+                        }
+
+
+                        GrandTotal += OldBalance;
+
+
+                        if ($("#redeem").prop('checked') == true) {
+                            if (GrandTotal > 499) {
+                                var RewardPoints = JSON.parse($("#rewardpts").val());
+                                $("#rewardpts").val((JSON.parse($("[name=RewardPointsApplied]").val()) + RewardPoints) - 100);
+                                $("[name=RewardPointsApplied]").val(100);
+                            } else {
+                                var RewardPoints = JSON.parse($("#rewardpts").val());
+                                $("#rewardpts").val((JSON.parse($("[name=RewardPointsApplied]").val()) + RewardPoints) - 50);
+                                $("[name=RewardPointsApplied]").val(50);
+                            }
+                            var Rewards = JSON.parse($("[name=RewardPointsApplied]").val());
+                        } else {
+                            var Rewards = 0;
+                        }
+                        GrandTotal -= Rewards;
+
+                        if (parseInt($("[name=CartTotal]").val()) < 500) {
+                            $("#Promocode_Discount").val(0)
+                        }
+                        var discount = parseInt($("#Promocode_Discount").val());
+
+                        if (discount > 0) {
+                            var CartTotal = parseInt($("[name=CartTotal]").val());
+                            var ExpressChargeApplied = parseInt($("[name=ExpressChargeApplied]").val());
+                            $('[name="Promocode_amount"]').val((discount / 100) * (CartTotal + ExpressChargeApplied));
+                        }
+
+
+                        GrandTotal -= parseInt($('[name="Promocode_amount"]').val() || 0);
+
+
+                        $("#delivery_checkbox").prop('checked', false);
+                        $('[name="Delivery_Charges"]').val(0);
+
+                        GrandTotal += JSON.parse($("[name=Delivery_Charges]").val());
+
+
+                        if (AmountPaid > GrandTotal) {
+                            alert("Advance Amount Is Greater Than Grand Total");
+                            $("[name=AdvanceAmount]").val(0);
+                            $("[name=BalanceAmount]").val(GrandTotal);
+                        } else {
+
+                            $("[name=BalanceAmount]").val(GrandTotal - AmountPaid);
+                        }
+                        $("[name=GrandTotal]").val(GrandTotal);
+                    }
+                }
+                else {
+                    $("#delivery_checkbox").prop('checked', false);
+                    $('[name="Delivery_Charges"]').val(0);
+              
+                    var OldBalance = JSON.parse($("[name=OldBalance]").val());
+                    var CartTotal = JSON.parse($("[name=CartTotal]").val());
+                    var AmountPaid = JSON.parse($("[name=AdvanceAmount]").val());
+                    var ExpressdelCharge = JSON.parse($('[name="ExpressChargeApplied"]').val());
+                    var Promocode_Amount = JSON.parse($('[name="Promocode_amount"]').val());
+                    var RewardPointsApplied = JSON.parse($("[name=RewardPointsApplied]").val());
+                    var GrandTotals = (OldBalance + CartTotal + ExpressdelCharge) - Promocode_Amount - RewardPointsApplied;
+                    $("[name=GrandTotal]").val(GrandTotals);
+                    $("[name=BalanceAmount]").val(GrandTotals - AmountPaid);
+                    if (CartTotal>349)
+                    DangerAlert("No Delivery Charges Applied For GrandTotal 350 or more");
+                }
+
+            } else {
+                $(this).prop('checked', false);
+                $('[name="Delivery_Charges"]').val(0);
+                if (DataToSave.length < 1) {
+                    DangerAlert("No Products in Cart");
+                    $('[name="Delivery_Charges"]').val(0);
+                    var OldBalance = JSON.parse($("[name=OldBalance]").val());
+                    var CartTotal = JSON.parse($("[name=CartTotal]").val());
+                    var AmountPaid = JSON.parse($("[name=AdvanceAmount]").val());
+                    var ExpressdelCharge = JSON.parse($('[name="ExpressChargeApplied"]').val());
+                    var Promocode_Amount = JSON.parse($('[name="Promocode_amount"]').val());
+                    var RewardPointsApplied = JSON.parse($("[name=RewardPointsApplied]").val());
+                    var GrandTotals = (OldBalance + CartTotal + ExpressdelCharge) - Promocode_Amount - RewardPointsApplied;
+                    $("[name=GrandTotal]").val(GrandTotals);
+                    $("[name=BalanceAmount]").val(GrandTotals - AmountPaid);
+                } else {
+                    
+                }
+               // CalculateGrandTotal_Balance();
+            }
+        });
+
+
+        //$("#btncartadd").on("click", function () {
+
+        //    //for (var k = 0; k < CategoryIDs.length; k++) {
+        //    //    $('#Cattbl_' + CategoryIDs[k]).DataTable({
+        //    //        destroy: true,
+        //    //        paging: false,
+        //    //    });
+        //    //}
+
+
+        //    var Dublicate = false;
+        //    for (var k = 0; k < ServiceProductIDs.length; k++) {
+        //        var ServiceID = ServiceProductIDs[k].split("_")[0];
+        //        var CategoryID = ServiceProductIDs[k].split("_")[1];
+        //        var ProductID = ServiceProductIDs[k].split("_")[2];
+
+
+
+        //        if ($("#Q_" + ServiceID + "_" + ProductID).val() > 0) {
+        //            for (var i = 0; i < DataToSave.length; i++) {
+        //                if (DataToSave[i][0] == ServiceID && DataToSave[i][1] == ProductID) {
+        //                    Dublicate = true
+        //                    var oldquant = JSON.parse(DataToSave[i][2]);
+        //                    var quant = JSON.parse($("#Q_" + ServiceID + "_" + ProductID).val());
+        //                    DataToSave[i][2] = oldquant + quant;
+        //                    TableData[i][4] = oldquant + quant;
+
+        //                    var oldperct = JSON.parse(DataToSave[i][4]);
+        //                    var percent = JSON.parse($("#E_" + ServiceID + "_" + ProductID).val());
+        //                    DataToSave[i][4] = oldperct + percent;
+        //                    TableData[i][5] = oldperct + percent;
+
+        //                    var oldextraprc = JSON.parse(DataToSave[i][5]);
+        //                    var extprc = JSON.parse($("#EP_" + ServiceID + "_" + ProductID).val());
+        //                    DataToSave[i][5] = oldextraprc + extprc;
+        //                    TableData[i][6] = oldextraprc + extprc;
+
+        //                    var oldetotalprc = JSON.parse(DataToSave[i][6]);
+        //                    var totalprc = JSON.parse($("#TP_" + ServiceID + "_" + ProductID).val());
+        //                    DataToSave[i][6] = oldetotalprc + totalprc;
+        //                    TableData[i][7] = oldetotalprc + totalprc;
+
+
+        //                    break;
+        //                }
+        //            }
+        //            if (!Dublicate) {
+        //                Dublicate = false;
+        //                var Trow = [];
+        //                Trow.push($("#SR_" + ServiceID).html());
+        //                Trow.push($("#CT_" + ServiceID + "_" + CategoryID).html());
+        //                Trow.push($("#PN_" + ProductID).html());
+        //                //Trow.push(JSON.parse($("#P_" + ServiceID + "_" + ProductID).html()));
+        //                //Trow.push($("#Q_" + ServiceID + "_" + ProductID).val());
+        //                //Trow.push($("#E_" + ServiceID + "_" + ProductID).val());
+        //                //Trow.push($("#EP_" + ServiceID + "_" + ProductID).val());
+        //                //Trow.push($("#TP_" + ServiceID + "_" + ProductID).val());
+
+        //                Trow.push("<span id='PRC_" + ServiceID + "_" + ProductID + "' >" + JSON.parse($("#P_" + ServiceID + "_" + ProductID).html()) + " </span>");
+        //                Trow.push("<input id='QTY_" + ServiceID + "_" + ProductID + "' type='number' onblur='Calculate(" + ServiceID + "," + ProductID + ")' value='" + $("#Q_" + ServiceID + "_" + ProductID).val() + "'  min='0'   maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />");
+        //                Trow.push("<input id='EPER_" + ServiceID + "_" + ProductID + "' type='number' onblur='ch(" + ServiceID + "," + ProductID + ")' value='" + $("#E_" + ServiceID + "_" + ProductID).val() + "' min='0'  maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />");
+        //                Trow.push("<span id='EPRC_" + ServiceID + "_" + ProductID + "' >" + $("#EP_" + ServiceID + "_" + ProductID).val() + " </span>")
+        //                Trow.push("<span id='TTP_" + ServiceID + "_" + ProductID + "' >" + $("#TP_" + ServiceID + "_" + ProductID).val() + " </span>")
+
+        //                Trow.push("<button type='button' class='btn btn-danger btn-sm' onclick='RemoveFromCart(" + ProductID + "," + ServiceID + ")'>Delete</button>");
+
+        //                TableData.push(Trow);
+        //                var Srow = [];
+        //                Srow.push(ServiceID);
+        //                Srow.push(ProductID);
+        //                Srow.push($("#Q_" + ServiceID + "_" + ProductID).val());
+        //                Srow.push($("#S_" + ServiceID + "_" + ProductID).val());
+        //                Srow.push($("#E_" + ServiceID + "_" + ProductID).val());
+        //                Srow.push($("#EP_" + ServiceID + "_" + ProductID).val());
+        //                Srow.push($("#TP_" + ServiceID + "_" + ProductID).val());
+        //                DataToSave.push(Srow);
+
+        //                BindTableData();
+        //                SuccessAlert("", "Added to cart.");
+
+        //                CalculateGrandTotal_Balance();
+        //                //for (var k = 0; k < CategoryIDs.length; k++) {
+        //                //    $('#Cattbl_' + CategoryIDs[k]).DataTable({
+        //                //        destroy: true,
+        //                //        scrolly: true,
+        //                //        paging: true,
+        //                //        searching: true
+        //                //    });
+        //                //}
+
+        //            }
+        //            else {
+        //                SuccessAlert("", "Details Updated in cart.");
+        //                BindTableData();
+        //                CalculateGrandTotal_Balance();
+        //            }
+        //        }
+        //    }
+
+        //    Clearall();
+        //});
+
+        $("#btnplaceorder").on("click", function () {
+            var alerts = false;
+            if (formcustomer.valid()) {
+                if (DataToSave.length == 0 && $("[name=StatusID]").val() == 1) {
+                    alerts = confirm("Want to place Order With Empty Cart ? ");
+                } else if (DataToSave.length == 0 && $("[name=StatusID]").val() == 5) {
+                    alerts = false;
+                }
+                else {
+                    alerts = true;
+                }
+                if (alerts) {
+
+                    if ($('[name="PickUPDate"]').val() >= $('[name="DeliveryDate"]').val()) {
+
+                        if ($('[name="DeliveryDate"]').val() == "") {
+                            alert("Enter Delivery Date");
+                        }
+                        alert("delivery date should be greater than pickup date");
+                        $('[name="DeliveryDate"]').focus();
+
+                    }
+                    else {
+                        if (formplaceorder.valid()) {
+                            var myobj = new Object();
+                            myobj.CustomerName = $("[name=CustomerName]").val();
+                            myobj.CustomerMobile = $("[name=MobileNumber]").val();
+                            myobj.CustomerEmail = $("[name=Email]").val();
+                            myobj.PickupAddress = $("[name=PickUPAddress]").val();
+                            myobj.PickupDate = $("[name=PickUPDate]").val();
+                            myobj.ConfirmedBy = $("[name=ConfirmedBy]").val();
+                            myobj.Pickedby = $("[name=PickedBy]").val();
+                            myobj.DeliveryAddress = $("[name=DeliveryAddress]").val();
+                            myobj.ActualDeliveryDate = $("[name=DeliveryDate]").val();
+                            myobj.PickupTime = $("[name=PickUPTime]").val();
+                            myobj.DeliveryTime = $("[name=DeliveryTime]").val();
+                            myobj.StoreID = $("[name=StoreID]").val();
+                            myobj.orderstatusID = $("[name=StatusID]").val();
+                            myobj.PaidAmount = $('[name="AdvanceAmount"]').val();
+                            myobj.Remark = $("[name=Remark]").val();
+                            myobj.PaymentType = $("[name=PaymentType]").val();
+                            myobj.Invoice_No == $("[name=Invoice_No]").val();
+
+                            myobj.GrandTotal = $('[name="GrandTotal"]').val()
+                            myobj.RemainingAmount = $('[name="BalanceAmount"]').val();
+                            myobj.OldBalanceApplied = $('[name="OldBalance"]').val();
+                            myobj.IsOutletOrder = true;
+                            myobj.RewardPointsApplied = $("[name=RewardPointsApplied]").val();
+                            if ($("#redeem").prop('checked') == true) {
+                                myobj.IsReward = true;
+                            } else {
+                                myobj.IsReward = false;
+                            }
+                            if ($("#ExpressDelivery").prop('checked') == true) {
+                                myobj.IsExpressDelivery = true;
+
+                            } else {
+                                myobj.IsExpressDelivery = false;
+
+                            }
+                            myobj.ExpressChargeApplied = $('[name="ExpressChargeApplied"]').val();
+
+                            if (JSON.parse($('[name="Promocode_amount"]').val()) > 0) {
+                                myobj.IsPromocodeApplied = true;
+                                myobj.Promocode = $('[name="Promocode"]').val();
+                                myobj.Promocode_Amount = JSON.parse($('[name="Promocode_amount"]').val());
+                            }
+                            else {
+
+                                myobj.IsPromocodeApplied = false;
+                                myobj.Promocode = null;
+                                myobj.Promocode_Amount = 0;
+                            }
+
+                            myobj.Delivery_charge = JSON.parse($('[name="Delivery_Charges"]').val());
+
+
+                            var Details = [];
+
+                            DataToSave.forEach(function (index) {
+                                var detail = new Object();
+                                detail.ServiceID = index[0];
+                                detail.ProductID = index[1];
+                                detail.Quantity = index[2];
+                                detail.ExtraPercent = index[4];
+                                detail.ExtraPrice = index[5];
+                                detail.Price = index[6];
+                                Details.push(detail);
+                            });
+                            myobj.PurchaseOrderDetail = Details;
+
+
+                            $.post("@Url.Action("AddPurchaseOrder", "OrdersList")", { ObjPO: JSON.stringify(myobj) }, function (data) {
+
+                                var myobj = JSON.parse(data);
+                                if (myobj.StatusCode == 200) {
+                                    SuccessAlert("Order Placed Successfully with ORDERID: " + myobj.Result, " ")
+                                    ClearFields();
+                                    BindTableData();
+                                    $("#ADDbutton").click();
+                                    $('#cardv').addClass('collapsed-card');
+                                    BindorderTableData(StoresID);
+
+                                    var url = window.location.origin + "/Invoice/Index/" + myobj.Result;
+                                    window.open(url, '_blank');
+
+                                }
+                                else {
+                                    DangerAlert("Something Went Wrong. Please retry.");
+                                }
+
+                            });
+                        }
+                        else {
+                            DangerAlert(" ", "Recheck the fields.");
+                        }
+
+                    }
+
+
+                } else {
+                    alert("Cannot Place An Empty Order With Status Goods Received At Store");
+                }
+            } else {
+                DangerAlert(" ", "Recheck the fields.");
+                $("[name=MobileNumber]").focus();
+            }
+        });
+    
+    });
+
+    window.onfocus = function () {
+        isTabActive = true;
+    };
+    window.onblur = function () {
+        isTabActive = false;
+    };
+
+    function timerIncrement() {
+        idleTime = idleTime + 1;
+        $("#lblcount").html(idleTime);
+        if (idleTime > 40 && isTabActive == true) { // 40 seconds
+           // alert("You were idle for more than 40sec.");
+           // window.location.reload();
+            idleTime = 0;
+            BindorderTableData($("[name=StoreID]").val());
+        }
+    }
+
+    function addtocart() {
+        //for (var k = 0; k < CategoryIDs.length; k++) {
+        //    $('#Cattbl_' + CategoryIDs[k]).DataTable({
+        //        destroy: true,
+        //        paging: false,
+        //    });
+        //}
+
+
+        var Dublicate = false;
+        for (var k = 0; k < ServiceProductIDs.length; k++) {
+            var ServiceID = ServiceProductIDs[k].split("_")[0];
+            var CategoryID = ServiceProductIDs[k].split("_")[1];
+            var ProductID = ServiceProductIDs[k].split("_")[2];
+
+
+
+            if ($("#Q_" + ServiceID + "_" + ProductID).val() > 0) {
+                for (var i = 0; i < DataToSave.length; i++) {
+                    if (DataToSave[i][0] == ServiceID && DataToSave[i][1] == ProductID) {
+                        Dublicate = true
+                        var oldquant = JSON.parse(DataToSave[i][2]);
+                        var quant = JSON.parse($("#Q_" + ServiceID + "_" + ProductID).val());
+                        DataToSave[i][2] = oldquant + quant;
+                        TableData[i][4] = oldquant + quant;
+
+                        var oldperct = JSON.parse(DataToSave[i][4]);
+                        var percent = JSON.parse($("#E_" + ServiceID + "_" + ProductID).val());
+                        DataToSave[i][4] = oldperct + percent;
+                        TableData[i][5] = oldperct + percent;
+
+                        var oldextraprc = JSON.parse(DataToSave[i][5]);
+                        var extprc = JSON.parse($("#EP_" + ServiceID + "_" + ProductID).val());
+                        DataToSave[i][5] = oldextraprc + extprc;
+                        TableData[i][6] = oldextraprc + extprc;
+
+                        var oldetotalprc = JSON.parse(DataToSave[i][6]);
+                        var totalprc = JSON.parse($("#TP_" + ServiceID + "_" + ProductID).val());
+                        DataToSave[i][6] = oldetotalprc + totalprc;
+                        TableData[i][7] = oldetotalprc + totalprc;
+
+
+                        break;
+                    }
+                }
+                if (!Dublicate) {
+                    Dublicate = false;
+                    var Trow = [];
+                    Trow.push($("#SR_" + ServiceID).html());
+                    Trow.push($("#CT_" + ServiceID + "_" + CategoryID).html());
+                    Trow.push($("#PN_" + ProductID).html());
+                    //Trow.push(JSON.parse($("#P_" + ServiceID + "_" + ProductID).html()));
+                    //Trow.push($("#Q_" + ServiceID + "_" + ProductID).val());
+                    //Trow.push($("#E_" + ServiceID + "_" + ProductID).val());
+                    //Trow.push($("#EP_" + ServiceID + "_" + ProductID).val());
+                    //Trow.push($("#TP_" + ServiceID + "_" + ProductID).val());
+
+                    Trow.push("<span id='PRC_" + ServiceID + "_" + ProductID + "' >" + JSON.parse($("#P_" + ServiceID + "_" + ProductID).html()) + " </span>");
+                    Trow.push("<input id='QTY_" + ServiceID + "_" + ProductID + "' type='number' onblur='Calculate(" + ServiceID + "," + ProductID + ")' value='" + $("#Q_" + ServiceID + "_" + ProductID).val() + "'  min='0'   maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />");
+                    Trow.push("<input id='EPER_" + ServiceID + "_" + ProductID + "' type='number' onblur='ch(" + ServiceID + "," + ProductID + ")' value='" + $("#E_" + ServiceID + "_" + ProductID).val() + "' min='0'  maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />");
+                    Trow.push("<span id='EPRC_" + ServiceID + "_" + ProductID + "' >" + $("#EP_" + ServiceID + "_" + ProductID).val() + " </span>")
+                    Trow.push("<span id='TTP_" + ServiceID + "_" + ProductID + "' >" + $("#TP_" + ServiceID + "_" + ProductID).val() + " </span>")
+
+                    Trow.push("<button type='button' class='btn btn-danger btn-sm' onclick='RemoveFromCart(" + ProductID + "," + ServiceID + ")'>Delete</button>");
+
+                    TableData.push(Trow);
+                    var Srow = [];
+                    Srow.push(ServiceID);
+                    Srow.push(ProductID);
+                    Srow.push($("#Q_" + ServiceID + "_" + ProductID).val());
+                    Srow.push($("#S_" + ServiceID + "_" + ProductID).val());
+                    Srow.push($("#E_" + ServiceID + "_" + ProductID).val());
+                    Srow.push($("#EP_" + ServiceID + "_" + ProductID).val());
+                    Srow.push($("#TP_" + ServiceID + "_" + ProductID).val());
+                    DataToSave.push(Srow);
+
+                    BindTableData();
+                    SuccessAlert("", "Added to cart.");
+
+                    CalculateGrandTotal_Balance();
+                    //for (var k = 0; k < CategoryIDs.length; k++) {
+                    //    $('#Cattbl_' + CategoryIDs[k]).DataTable({
+                    //        destroy: true,
+                    //        scrolly: true,
+                    //        paging: true,
+                    //        searching: true
+                    //    });
+                    //}
+
+                }
+                else {
+                    SuccessAlert("", "Details Updated in cart.");
+                    BindTableData();
+                    CalculateGrandTotal_Balance();
+                }
+            }
+        }
+
+        Clearall();
+    }
+
+    function GetByDate() {
+        BindorderTableData($('[name="StoresID"]').val())
+    }
+
+    function IsRewardApplied() {
+        if ($("#redeem").is(':checked')) {
+          
+            DangerAlert("Rewards are redeemed , Cannot use Promocode");
+            $('[name="Promocode"]').val(null);
+        }
+    }
+    function applyPromocode() {
+        if ($('[name="Promocode"]').val() != "") {
+
+            if ($("#redeem").is(':checked') || DataToSave.length < 1 || parseInt($('[name="CartTotal"]').val()) < 500) {
+                if (DataToSave.length < 1) {
+                    DangerAlert("Please Add Products To Cart");
+                }
+                else if ($("#redeem").is(':checked')) {
+                    DangerAlert("Rewards are redeemed , Cannot use Promocode");
+                }
+                else {
+                    DangerAlert("Cart Total LessThan 500 , Cannot use Promocode");
+                }
+                $('[name="Promocode"]').val(null);
+            } else {
+
+                var Obj = new Object();
+                Obj.Promocode_Name = $('[name="Promocode"]').val();
+
+                $.post("@Url.Action("ValidatePromocode", "Promocode")", { ObjPromocode: JSON.stringify(Obj) }, function (data) {
+                    var myobj = JSON.parse(data);
+                    if (myobj.StatusCode == 200) {
+                        SuccessAlert("Promocode Applied Successfully")
+                        var CartTotal = parseInt($('[name="CartTotal"]').val());
+                        var ExpressChargeApplied = parseInt($('[name="ExpressChargeApplied"]').val());
+                        var Discount = myobj.ObjectResult.Discount || 0;
+                        $("#Promocode_Discount").val(Discount);
+                        $('[name="Promocode_amount"]').val(parseInt((Discount / 100) * (CartTotal + ExpressChargeApplied)));
+                        var Promocode_amount = parseInt($('[name="Promocode_amount"]').val());
+                        if (Promocode_amount > 0) {
+                            $("#redeem").hide();
+                            $("#rewarddiv").hide();
+                            $('#redem').hide();
+                           // $("#rewardpts").val(0);
+                        }
+                        else {
+                            $("#rewarddiv").show();
+                            $("#rewardpts").val(myObject.CustomerRewardPoints);
+                            $("#redeem").show();
+                            $('#redem').show();
+                        }
+                        CalculateGrandTotal_Balance();
+                    }
+                    else {
+                        $('[name="Promocode_amount"]').val(0);
+
+                        DangerAlert("Invalid Promocode");
+                    }
+                });
+            }
+        } else {
+            DangerAlert("Enter Promocode");
+        }
+    }
+
+    function ch(ServiceID, ProductID) {
+
+        var price = JSON.parse($('#PRC_' + ServiceID + '_' + ProductID).html());
+        var Extrapercent = JSON.parse($('#EPER_' + ServiceID + '_' + ProductID).val());
+        var quant = JSON.parse($('#QTY_' + ServiceID + '_' + ProductID).val());
+
+        $('#EPRC_' + ServiceID + '_' + ProductID).html(Math.floor((Extrapercent / 100) * price));
+        var extraprice = Math.floor((Extrapercent / 100) * price);
+
+        for (var i = 0; i < DataToSave.length; i++) {
+            if (DataToSave[i][0] == ServiceID, DataToSave[i][1] == ProductID) {
+                DataToSave[i][2] = quant;
+                DataToSave[i][4] = Extrapercent;
+                DataToSave[i][5] = extraprice;
+                DataToSave[i][6] = (quant * price) + extraprice;
+
+                TableData[i][3] = "<span id='PRC_" + ServiceID + "_" + ProductID + "' >" + price + " </span>";
+                TableData[i][4] = "<input id='QTY_" + ServiceID + "_" + ProductID + "' type='number' onblur='Calculate(" + ServiceID + "," + ProductID + ")' value='" + quant + "'  min='0'   maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />";
+                TableData[i][5] = "<input id='EPER_" + ServiceID + "_" + ProductID + "' type='number' onblur='ch(" + ServiceID + "," + ProductID + ")' value='" + Extrapercent + "' min='0'  maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />";
+                TableData[i][6] = "<span id='EPRC_" + ServiceID + "_" + ProductID + "' >" + extraprice + " </span>";
+                TableData[i][7] = "<span id='TTP_" + ServiceID + "_" + ProductID + "' >" + ((quant * price) + extraprice) + " </span>";
+            }
+        }
+
+        $('#EPRC_' + ServiceID + '_' + ProductID).html(Math.floor((Extrapercent / 100) * price));
+        // $("[name=ExtraPrice]").html((Extrapercent / 100) * price);
+        Calculate(ServiceID, ProductID);
+    }
+    function Calculate(serviceid, productid) {
+        GrandTotalPrice = 0;
+        var Enter_quant = $('#QTY_' + serviceid + "_" + productid).val();
+
+        if (Enter_quant == "")
+            Enter_quant = 0;
+        else
+            Enter_quant = JSON.parse($('#QTY_' + serviceid + "_" + productid).val());
+
+        var UnitPrice = JSON.parse($('#PRC_' + serviceid + "_" + productid).html());
+        var ExtraPrices = JSON.parse($('#EPRC_' + serviceid + '_' + productid).html());
+        var Extrapercent = JSON.parse($('#EPER_' + serviceid + '_' + productid).val());
+
+        $('#TTP_' + serviceid + "_" + productid).html((Enter_quant * UnitPrice) + ExtraPrices);
+
+        for (var i = 0; i < DataToSave.length; i++) {
+            if (DataToSave[i][0] == serviceid, DataToSave[i][1] == productid) {
+                DataToSave[i][2] = Enter_quant;
+                DataToSave[i][4] = Extrapercent;
+                DataToSave[i][5] = ExtraPrices;
+                DataToSave[i][6] = (Enter_quant * UnitPrice) + ExtraPrices;
+
+                TableData[i][3] = "<span id='PRC_" + serviceid + "_" + productid + "' >" + UnitPrice + " </span>";
+                TableData[i][4] = "<input id='QTY_" + serviceid + "_" + productid + "' type='number' onblur='Calculate(" + serviceid + "," + productid + ")' value='" + Enter_quant + "'  min='0'   maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />";
+                TableData[i][5] = "<input id='EPER_" + serviceid + "_" + productid + "' type='number' onblur='ch(" + serviceid + "," + productid + ")' value='" + Extrapercent + "' min='0'  maxlength='50' class='form-control' onkeypress='return IsNumeric(event)'  />";
+                TableData[i][6] = "<span id='EPRC_" + serviceid + "_" + productid + "' >" + ExtraPrices + " </span>";
+                TableData[i][7] = "<span id='TTP_" + serviceid + "_" + productid + "' >" + ((Enter_quant * UnitPrice) + ExtraPrices) + " </span>";
+            }
+
+        }
+        CalculateGrandTotal_Balance();
+    }
+
+    function BindTableData() {
+        $('#' + tableId).DataTable({
+            destroy: true,
+            data: TableData,
+            scrolly: true,
+            paging: false,
+            searching: false,
+            columns: [
+                { title: "Service Type" },
+                { title: "Category " },
+                { title: "Product " },
+                { title: "Price" },
+                { title: "Qty" },
+                { title: "Extra %" },
+                { title: "Extra Price" },
+                { title: "Total Price" },
+                { title: " " },
+            ]
+        });
+
+    }
+
+    function RemoveFromCart(ProductID, ServiceID) {
+
+        for (var i = 0; i < DataToSave.length; i++) {
+            if (DataToSave[i][0] == ServiceID, DataToSave[i][1] == ProductID) {
+                DataToSave.splice(i, 1);
+                TableData.splice(i, 1);
+                BindTableData();
+                SuccessAlert(" ", "Deleted from cart.");
+                CalculateGrandTotal_Balance();
+
+            }
+        }
+    }
+    function clearsearch() {
+        $('[name="Email"]').val(null);
+        $('[name="CustomerID"]').val(null);
+        $("[name=CustomerName]").val(null);
+        $("[name=MobileNumber]").val(null);
+    }
+
+    function remove_promo() {
+        $("[name=Promocode]").val(null);
+        $("#Promocode_Discount").val(0);
+        $("[name=Promocode_amount]").val(0);
+        $('#redeem').prop('checked', false);
+        $("#rewardapplieddiv").hide();
+        if (parseInt($("#rewardpts").val()) > 99) {
+            $("#rewarddiv").show();
+            $("#redem").show();
+            $("#redeem").show();
+        } else {
+            $("#rewarddiv").hide();
+            $("#redem").hide();
+            $("#redeem").hide();
+        }
+        CalculateGrandTotal_Balance();
+    }
+ 
+    function ClearFields() {
+        $('[name="VendorID"]').val(null);
+        $("[name=RewardPointsApplied]").val(0);
+        $("[name=ExpressChargeApplied]").val(0);
+        $('#ExpressDelivery').prop('checked', false);
+        $('[name="Remark"]').val(null);
+        $('[name="Email"]').val(null);
+        $('[name="CustomerID"]').val(null);
+        $("[name=CustomerName]").val(null);
+        $("[name=MobileNumber]").val(null);
+        $("[name=PickUPAddress]").val(null);
+        $("[name=DeliveryAddress]").val(null);
+        //$("[name=StatusID]").val(null);
+        $("[name=Promocode]").val(null);
+        $("#Promocode_Discount").val(0);
+        $("[name=Promocode_amount]").val(0);
+        $('[name="Delivery_Charges"]').val(0);
+        $('[name="OldBalance"]').val(0);
+        $('[name="GrandTotal"]').val(0);
+        $('[name="BalanceAmount"]').val(0);
+        $('[name="AdvanceAmount"]').val(0);
+        $('[name="CartTotal"]').val(0);
+        $("#rewardpts").val(0);
+        $("#delivery_checkbox").prop('checked', false);
+        $('#redeem').prop('checked', false);
+        $("#rewardapplieddiv").hide();
+        TableData = [];
+        DataToSave = [];
+        ExpressCharge = 0;
+        BindTableData();
+
+
+    }
+
+    function Clearall() {
+        GetServices();
+        //$("#Ordercard input").each(function () {
+        //    $(this).val(null);
+        //});
+    }
+    //////********Search Customer************///////
+     function Searchcustomer() {
+            var myObject = new Object();
+            myObject.MobileNumber = $('[name="MobileNumber"]').val();
+            var mobile = $('[name="MobileNumber"]').val();
+
+            if (myObject.MobileNumber != "" && myObject.MobileNumber.length==10) {
+                $.get("@Url.Action("GetCustomerID", "OrdersList")", { objcst: JSON.stringify(myObject) }, function (data) {
+                    ClearFields();
+                    var myObject = JSON.parse(data);
+                    $('[name="CustomerID"]').val(myObject.CustomerID);
+                    $('[name="CustomerName"]').val(myObject.CustomerName);
+                    $('[name="MobileNumber"]').val(myObject.MobileNumber);
+                    $('[name="Email"]').val(myObject.EmailID);
+                    $('[name="PickUPAddress"]').val(myObject.Address);
+                    $('[name="DeliveryAddress"]').val(myObject.Address);
+                    $('[name="OldBalance"]').val(myObject.OldBalance ||0);
+                    $('[name="GrandTotal"]').val(myObject.OldBalance||0);
+                    $('[name="BalanceAmount"]').val(myObject.OldBalance||0);
+                    if (myObject.CustomerRewardPoints > 99) {
+
+                        $("#rewarddiv").show();
+                        $("#rewardpts").val(myObject.CustomerRewardPoints);
+                        $("#redeem").show();
+                        $('#redem').show();
+                    }
+                    else {
+                        $("#redeem").hide();
+                        $("#rewarddiv").hide();
+                        $('#redem').hide();
+                        $("#rewardpts").val(0);
+                    }
+                    if (myObject.CustomerID == 0) {
+                        alert("No Records Found in Customer Details");
+                        $('[name="MobileNumber"]').val(mobile);
+                    }
+                   // ClearFields();
+                });
+            } else {
+                alert("Please Enter valid Mobile No");
+            }
+     }
+
+     function GetServices() {
+         tabcount = 0;
+         CategoryTabs = "";
+         ServiceProductIDs = [];
+         CategoryIDs = [];
+       $.get("@Url.Action("GetService", "OrdersList")", function (data) {
+
+           var myObject = JSON.parse(data);
+           var servicetabs = "";
+           for (var i = 0; i < myObject.length; i++) {
+               if (i == 0)
+                   servicetabs += "<li class='nav-item'><a class='nav-link active card-info' id='SR_" + myObject[i].ServiceID+"' href='#tab_" + myObject[i].ServiceID + "' data-toggle='tab'>" + myObject[i].ServiceName+"</a></li>";
+               else
+                   servicetabs += "<li class='nav-item'><a class='nav-link card-info' id='SR_" + myObject[i].ServiceID +"' href='#tab_" + myObject[i].ServiceID + "' data-toggle='tab'>" + myObject[i].ServiceName +"</a></li>";
+               GetCategoryProductsbyServiceID(myObject[i].ServiceID);
+           }
+           $("#servicetabs").html(servicetabs);
+           $("#categoeryproducts").html(CategoryTabs);
+
+           for (var k = 0; k < CategoryIDs.length; k++) {
+               $('#Cattbl_' + CategoryIDs[k]).DataTable({
+                   destroy: true,
+                   scrolly: true,
+                   paging: false,
+                   searching: true
+               });
+           }
+
+       });
+
+     }
+
+     function GetCategoryProductsbyServiceID(ServiceID) {
+
+
+             $.ajax({
+                 type: "get",
+                 url: "/OrdersList/GetCategoryProductsByServiceID",
+                 data: { 'ServiceID': ServiceID },
+                 async: false,
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     var myObject =data;
+
+
+                     if (tabcount == 0)
+                         CategoryTabs += "<div class='tab-pane active' id='tab_" + ServiceID + "'>";
+                     else
+                         CategoryTabs += "<div class='tab-pane' id='tab_" + ServiceID + "'>";
+                     CategoryTabs += "<div class='card-body' style='padding:12px;'>";
+                     CategoryTabs += "<div id='accordion'>";
+
+                     for (var i = 0; i < myObject.ObjectResult.length; i++) {
+
+                         CategoryTabs += "<div class='card card-info'>";
+                         CategoryTabs += "<a data-toggle='collapse' data-parent='#accordion' href='#" + ServiceID + "_" + myObject.ObjectResult[i].CategoryID + "'>";
+                         CategoryTabs += "<div class='card-header'>";
+                         CategoryTabs += "<h4 class='card-title' id='CT_" + ServiceID + "_" + myObject.ObjectResult[i].CategoryID+"'>" + myObject.ObjectResult[i].CategoryName + "</h4>";
+                         CategoryTabs += "</div>";
+                         CategoryTabs += "</a>";
+                         CategoryTabs += "<div id='" + ServiceID+"_" + myObject.ObjectResult[i].CategoryID +"' class='panel-collapse collapse'>";
+                         CategoryTabs += "<div class='card-body' style='padding:0px;'>";
+                         CategoryTabs += "<div class='table-responsive'>";
+                         CategoryTabs += "<table class='table' style='margin:0px;' id='Cattbl_" + ServiceID+"_" + myObject.ObjectResult[i].CategoryID+"'>";
+                         CategoryTabs += "<thead>";
+                         CategoryTabs += "<tr>";
+                         CategoryTabs += "<th>Product</th>";
+                         CategoryTabs += "<th>Price</th>";
+                         CategoryTabs += "<th>Quantity</th>";
+                         CategoryTabs += "<th>Subtotal</th>";
+                         CategoryTabs += "<th>Extra %</th>";
+                         CategoryTabs += "<th>Extra Price</th>";
+                         CategoryTabs += "<th>Total Price</th>";
+                         CategoryTabs += "</tr>";
+                         CategoryTabs += "</thead>";
+                         CategoryTabs += "<tbody>";
+                         for (var j = 0; j < myObject.ObjectResult[i].ProductList.length; j++) {
+                             CategoryTabs += "<tr>";
+                             CategoryTabs += "<td style='padding:0.45rem;' id='PN_"+myObject.ObjectResult[i].ProductList[j].ProductId+"'>" + myObject.ObjectResult[i].ProductList[j].ProductName + "</td>";
+                             CategoryTabs += "<td style='padding:0.45rem;'><span id='P_" + ServiceID + "_" + myObject.ObjectResult[i].ProductList[j].ProductId + "'>" + myObject.ObjectResult[i].ProductList[j].Price + "</span></td>";
+                             CategoryTabs += "<td style='padding:0.45rem;'>";
+                             CategoryTabs += "<input type='number' style='padding:0.175rem 0.55rem;'  id='Q_" + ServiceID + "_" + myObject.ObjectResult[i].ProductList[j].ProductId + "' class='form-control text-center clr' min='0' onkeypress='return IsNumeric(event)'  onblur='Calculate_Subtotal_TotalPrice(" + ServiceID + "," + myObject.ObjectResult[i].ProductList[j].ProductId +");' >";
+                             CategoryTabs += "</td>";
+                             CategoryTabs += "<td style='padding:0.45rem;'><input type='number' style='padding:0.175rem 0.55rem;' id='S_" + ServiceID + "_" + myObject.ObjectResult[i].ProductList[j].ProductId + "' readonly tabindex='-1' class='form-control text-center clr' ></td>";
+                             CategoryTabs += "<td style='padding:0.45rem;'>";
+                             CategoryTabs += "<input type='number' style='padding:0.175rem 0.55rem;' id='E_" + ServiceID + "_" + myObject.ObjectResult[i].ProductList[j].ProductId + "' class='form-control text-center clr'  min='0' onkeypress='return IsNumeric(event)'  onblur='Calculate_Subtotal_TotalPrice(" + ServiceID + "," + myObject.ObjectResult[i].ProductList[j].ProductId +");' >";
+                             CategoryTabs += "</td>";
+                             CategoryTabs += "<td style='padding:0.45rem;'><input type='number' style='padding:0.175rem 0.55rem;' id='EP_" + ServiceID + "_" + myObject.ObjectResult[i].ProductList[j].ProductId + "' readonly tabindex='-1' class='form-control text-center clr' ></td>";
+                             CategoryTabs += "<td style='padding:0.45rem;'><input type='number' style='padding:0.175rem 0.55rem;' id='TP_" + ServiceID + "_" + myObject.ObjectResult[i].ProductList[j].ProductId + "' readonly tabindex='-1' class='form-control text-center clr' ></td>";
+                             CategoryTabs += "</tr>";
+
+                             ServiceProductIDs.push(ServiceID + "_" + myObject.ObjectResult[i].CategoryID+ "_" + myObject.ObjectResult[i].ProductList[j].ProductId);
+                         }
+                         CategoryTabs += "</tbody>";
+                         CategoryTabs += "</table>";
+                         CategoryTabs += "</div>";
+                         CategoryTabs += "</div>";
+                         CategoryTabs += "</div>";
+                         CategoryTabs += "</div>";
+
+                         CategoryIDs.push(ServiceID+"_"+ myObject.ObjectResult[i].CategoryID);
+                     }
+                     CategoryTabs += "</div>";
+                     CategoryTabs += "</div>";
+                     CategoryTabs += "</div>";
+
+                        tabcount++;
+                 },
+                 error: function (errMsg) {
+                     alert(JSON.stringify(errMsg));
+                 }
+             });
+
+     }
+
+     function GetOrderCycle() {
+         $.ajax({
+             type: "get",
+             url: "/OrderCycle/GetAllOrderCycleList",
+             async: false,
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
+             success: function (data) {
+                 var myObject = data;
+                 for (var i = 0; i < myObject.length; i++) {
+                     var myobj = new Object();
+                     myobj.OrderCycleID = myObject[i].OrderCycleID;
+                     myobj.OrderCycleStage = myObject[i].OrderCycleStage;
+                     OrderCycle.push(myobj);
+                 }
+             },
+             error: function (errMsg) {
+                 alert(JSON.stringify(errMsg));
+             }
+         });
+     }
+
+     function UpdateStatus(OrderID){
+
+            if (isAddEnabled == true) {
+                var check = confirm("Are You Sure You Want to Update Status ?")
+                if (check) {
+                    var Obj = new Object();
+                    Obj.OrderID = OrderID;
+                    Obj.orderstatusID = $("#_" + OrderID).val();
+
+                    $.post("@Url.Action("UpdateStatus", "OrdersList")", { obj: JSON.stringify(Obj) }, function (data) {
+                        var myobj = JSON.parse(data);
+                        if (myobj.StatusCode == 200) {
+                            SuccessAlert("Order Status Updated Successfully with ORDERID: " + myobj.Result, " ")
+
+                            BindorderTableData($('[name="StoresID"]').val());
+                        }
+                        else {
+                            DangerAlert(myobj.Message);
+                        }
+                    });
+                }
+            } else {
+                DangerAlert("No Access To Update Status");
+            }
+     }
+
+
+     function Calculate_Subtotal_TotalPrice(ServiceID, ProductID) {
+
+
+
+         var Quantity = ($("#Q_" + ServiceID + "_" + ProductID).val() != "") ? $("#Q_" + ServiceID + "_" + ProductID).val() : 0;
+         if (Quantity == '' || Quantity == 0) {
+
+            // $("#Q_" + ServiceID + "_" + ProductID).focus();
+             DangerAlert("Enter Quantity");
+             $("#E_" + ServiceID + "_" + ProductID).val(null);
+             $("#S_" + ServiceID + "_" + ProductID).val(null);
+             $("#EP_" + ServiceID + "_" + ProductID).val(null);
+             $("#TP_" + ServiceID + "_" + ProductID).val(null);
+         } else {
+             var UnitPrice = JSON.parse($("#P_" + ServiceID + "_" + ProductID).html());
+             var SubTotal = Quantity * UnitPrice;
+             var ExtraPercent = ($("#E_" + ServiceID + "_" + ProductID).val() != "") ? $("#E_" + ServiceID + "_" + ProductID).val() : 0;
+             var ExtraPrice = Math.floor((ExtraPercent / 100) * UnitPrice);
+             var TotalPrice = SubTotal + ExtraPrice;
+
+             if (Quantity < 0 || ExtraPercent < 0) {
+                 DangerAlert("Enter Value is less than 0");
+                 if (Quantity < 0)
+                     $("#Q_" + ServiceID + "_" + ProductID).val(0);
+                 if (ExtraPercent < 0)
+                     $("#E_" + ServiceID + "_" + ProductID).val(0);
+             } else {
+                 $("#S_" + ServiceID + "_" + ProductID).val(SubTotal);
+                 $("#EP_" + ServiceID + "_" + ProductID).val(ExtraPrice);
+                 $("#TP_" + ServiceID + "_" + ProductID).val(TotalPrice);
+
+                 if (ExtraPercent == 0) {
+                     $("#E_" + ServiceID + "_" + ProductID).val(0);
+                 }
+             }
+         }
+     }
+
+     function CalculateGrandTotal_Balance() {
+
+         var OldBalance = JSON.parse($("[name=OldBalance]").val());
+         var GrandTotal = 0;
+         var AmountPaid = JSON.parse($("[name=AdvanceAmount]").val());
+
+         for (var i = 0; i < DataToSave.length; i++) {
+             GrandTotal += JSON.parse(DataToSave[i][6]);
+         }
+         $("[name=CartTotal]").val(GrandTotal);
+
+         if (GrandTotal < 1) {
+             var RewardPoints = JSON.parse($("#rewardpts").val());
+             $("#rewardpts").val(JSON.parse($("[name=RewardPointsApplied]").val()) + RewardPoints);
+             $("[name=RewardPointsApplied]").val(0);
+             $('#redeem').prop('checked', false);
+         }
+
+         if ($("#ExpressDelivery").prop('checked') == true)  {
+             $('[name="ExpressChargeApplied"]').val((50 / 100) * GrandTotal);
+             ExpressCharge = JSON.parse($('[name="ExpressChargeApplied"]').val());
+             GrandTotal = Math.floor(GrandTotal + ExpressCharge);
+
+         }
+
+
+         GrandTotal += OldBalance;
+
+
+         if ($("#redeem").prop('checked') == true) {
+             if (GrandTotal > 499) {
+                 var RewardPoints = JSON.parse($("#rewardpts").val());
+                 $("#rewardpts").val((JSON.parse($("[name=RewardPointsApplied]").val())+ RewardPoints) - 100);
+                 $("[name=RewardPointsApplied]").val(100);
+             } else {
+                 var RewardPoints = JSON.parse($("#rewardpts").val());
+                 $("#rewardpts").val((JSON.parse($("[name=RewardPointsApplied]").val()) + RewardPoints) - 50);
+                 $("[name=RewardPointsApplied]").val(50);
+             }
+             var Rewards = JSON.parse($("[name=RewardPointsApplied]").val());
+         } else {
+             var Rewards = 0;
+         }
+         GrandTotal -= Rewards;
+
+         if (parseInt($("[name=CartTotal]").val()) < 500) {
+             $("#Promocode_Discount").val(0)
+         }
+         var discount = parseInt($("#Promocode_Discount").val());
+        
+         if (discount > 0) {
+             var CartTotal = parseInt($("[name=CartTotal]").val());
+             var ExpressChargeApplied = parseInt($("[name=ExpressChargeApplied]").val());
+             $('[name="Promocode_amount"]').val(Math.floor((discount / 100) * (CartTotal + ExpressChargeApplied)));
+         } else {
+             var CartTotal = parseInt($("[name=CartTotal]").val());
+             var ExpressChargeApplied = parseInt($("[name=ExpressChargeApplied]").val());
+             $('[name="Promocode_amount"]').val(Math.floor((discount / 100) * (CartTotal + ExpressChargeApplied)));
+         }
+
+
+         GrandTotal -= parseInt($('[name="Promocode_amount"]').val()||0);
+
+         if (GrandTotal<350) {
+             $('[name="Delivery_Charges"]').val(50);
+             $("#delivery_checkbox").prop('checked', true);
+
+         }
+         else {
+             $("#delivery_checkbox").prop('checked', false);
+             $('[name="Delivery_Charges"]').val(0);
+         }
+             GrandTotal += JSON.parse($("[name=Delivery_Charges]").val());
+         
+
+         if (AmountPaid > GrandTotal) {
+             alert("Advance Amount Is Greater Than Grand Total");
+             $("[name=AdvanceAmount]").val(0);
+             $("[name=BalanceAmount]").val(GrandTotal);
+         } else {
+
+             $("[name=BalanceAmount]").val(GrandTotal - AmountPaid);
+         }
+         $("[name=GrandTotal]").val(GrandTotal);
+     }
+
+     function SaveID(ID) {
+         var POID = ID;
+         localStorage.setItem("POID", ID);
+         window.location.href = "/OrderDetails/editOrder";
+     }
+
+     function Cal_Balance_after_paid() {
+         var GrandTotal = JSON.parse($("[name=GrandTotal]").val());
+         var AmountPaid = JSON.parse($("[name=AdvanceAmount]").val());
+
+         if (AmountPaid > GrandTotal) {
+             alert("Advance Amount Is Greater Than Grand Total");
+             $("[name=AdvanceAmount]").val(0);
+             $("[name=BalanceAmount]").val(GrandTotal);
+         } else {
+
+             $("[name=BalanceAmount]").val(GrandTotal - AmountPaid);
+         }
+         $("[name=GrandTotal]").val(GrandTotal);
+     }
+
+     function ExpressDeliveryDate() {
+         var dtToday = new Date($('[name="PickUPDate"]').val());
+
+         var n = 1; //number of days to add.
+         var requiredDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate() + n);
+         var month = requiredDate.getMonth() + 1;
+         var day = requiredDate.getDate();
+         var year = requiredDate.getFullYear();
+         if (month < 10)
+             month = '0' + month.toString();
+         if (day < 10)
+             day = '0' + day.toString();
+         var hour = requiredDate.getHours();
+         var min = requiredDate.getMinutes();
+         var ss = requiredDate.getSeconds();
+         if (hour < 10)
+             hour = '0' + hour.toString();
+         if (min < 10)
+             min = '0' + min.toString();
+         if (ss < 10)
+             ss = '0' + ss.toString();
+         var Today = year + '-' + month + '-' + day;
+         $('[name="DeliveryDate"]').val(Today);
+     }
+
+     function AddDeliveryDate() {
+         var dtToday = new Date($('[name="PickUPDate"]').val());
+
+         var n = 4; //number of days to add.
+         var requiredDate = new Date(dtToday.getFullYear(), dtToday.getMonth(), dtToday.getDate() + n);
+         var month = requiredDate.getMonth() + 1;
+         var day = requiredDate.getDate();
+         var year = requiredDate.getFullYear();
+         if (month < 10)
+             month = '0' + month.toString();
+         if (day < 10)
+             day = '0' + day.toString();
+         var hour = requiredDate.getHours();
+         var min = requiredDate.getMinutes();
+         var ss = requiredDate.getSeconds();
+         if (hour < 10)
+             hour = '0' + hour.toString();
+         if (min < 10)
+             min = '0' + min.toString();
+         if (ss < 10)
+             ss = '0' + ss.toString();
+         var Today = year + '-' + month + '-' + day;
+         $('[name="DeliveryDate"]').val(Today);
+     }
+
+     function BindorderTableData(storeID) {
+         var IDs = [];
+         //var myObject = JSON.parse(data);
+         var TableDate = [];
+         var dropdownoption = "";
+
+
+         @*$.get("@Url.Action("GetOrdersList", "OrdersList")", { ID: isoutlet }, function (data) {
+
+
+             for (var i = 0; i < myObject.ObjectResult.length; i++) {
+                 var row = [];
+                 row.push(myObject.ObjectResult[i].OrderID);
+                 row.push(myObject.ObjectResult[i].CustomerName + " " + myObject.ObjectResult[i].CustomerMobile);
+                 //row.push(myObject.ObjectResult[i].CustomerMobile);
+                // row.push(myObject.ObjectResult[i].StoreName);
+                 row.push(SplitDateTime(myObject.ObjectResult[i].ExpectingDeliveryDate).replace("/", "-").replace("/", "-"));
+                 row.push(myObject.ObjectResult[i].GrandTotal);
+                 row.push(myObject.ObjectResult[i].RemainingAmount);
+                 row.push(myObject.ObjectResult[i].TotalQuantity);
+                 if (myObject.ObjectResult[i].IsExpressDelivery == true) {
+                     row.push("<span class='badge bg-danger float-right'>Express</span>");
+                 } else {
+                     row.push("<span class='badge bg-info float-right'>Normal</span>");
+                 }
+                 if (myObject.ObjectResult[i].IsOutletOrder == true) {
+                     row.push("<span class='badge bg-secondary float-right'>Offline</span>");
+                 } else {
+                     row.push("<span class='badge bg-success float-right'>Online</span>");
+                 }
+                 if (myObject.ObjectResult[i].orderstatusID == 11) {
+                     row.push(myObject.ObjectResult[i].OrderStatus);
+                 } else {
+                     dropdownoption += "<select class='form-control' id='_" + myObject.ObjectResult[i].OrderID + "' onchange='UpdateStatus(" + myObject.ObjectResult[i].OrderID + ")' >";
+                     for (var j = 0; j < OrderCycle.length; j++) {
+                         if (OrderCycle[j].OrderCycleID == myObject.ObjectResult[i].orderstatusID)
+                             dropdownoption += "<option value='" + OrderCycle[j].OrderCycleID + "' selected>" + OrderCycle[j].OrderCycleStage + "</option>";
+                         if (OrderCycle[j].OrderCycleID> myObject.ObjectResult[i].orderstatusID)
+                             dropdownoption += "<option value='" + OrderCycle[j].OrderCycleID + "'>" + OrderCycle[j].OrderCycleStage + "</option>";
+                     }
+                     dropdownoption += "</select>";
+                     row.push(dropdownoption);
+                 }
+                 dropdownoption = "";
+                 //var myobj = new Object();
+                 //myobj.ID = myObject.ObjectResult[i].OrderID;
+                 //myobj.Value = myObject.ObjectResult[i].orderstatusID;
+                 //IDs.push(myobj);
+
+                 row.push('<button  onclick="SaveID(' + myObject.ObjectResult[i].OrderID + ');" class="btn btn-info btn-sm">Edit Details</button>');
+                 row.push('<a href="/Invoice/Index/' + myObject.ObjectResult[i].OrderID + '" target="blank" class="btn btn-success btn-sm">Invoice</a>');
+
+                 TableDate.push(row);
+             }
+             $('#' + tableId2).DataTable({
+                 destroy: true,
+                 data: TableDate,
+                 scrolly: true,
+                 order: [[0, "desc"]],
+                 columns: [
+                     { title: "OrderID" },
+                     { title: "Customer" },
+                     //{ title: "Customer Mobile No." },
+                     //{ title: "Store" },
+                     { title: "Delivery Date" },
+                     { title: "Total Amt" },
+                     { title: "Bal. Amt" },
+                     { title: "Total Qty" },
+                     { title: "Delivery Type" },
+                     { title: "Order Type" },
+                     { title: "Order Status" },
+                     { title: " " },
+                    { title: " " }
+                 ]
+             });
+             hideshowbuttons();
+             //var buttons = new $.fn.dataTable.Buttons($('#' + tableId2).DataTable(), {
+             //    buttons: [
+             //        'copyHtml5',
+             //        'excelHtml5',
+             //        'csvHtml5',
+             //        'pdfHtml5'
+
+             //    ]
+             //}).container().appendTo($('#buttons2'));
+             //    $('.buttons-html5').addClass('btn btn-default btn-sm');
+
+             //for (var i = 0; i < IDs.length; i++) {
+             //    $("#_"+ IDs[i].ID).val(IDs[i].Value);
+             //}
+         });*@
+
+         var Myobj = new Object();
+         Myobj.StoreID = storeID;
+         Myobj.FromDate = $("#FromDate").val();
+         Myobj.ToDate = $("#ToDate").val();
+
+
+         $("#" + tableId2).DataTable({
+             "processing": true, // for show progress bar
+             "serverSide": true, // for process server side
+             "filter": true, // this is for enable filter (search box)
+             "orderMulti": false, // for disable multiple column at once
+             "srolly": true,
+             "destroy": true,
+             "order": [[0, "desc"]],
+             "ajax": {
+                 "url": "/OrdersList/LoadData",
+                 "type": "POST",
+                 "datatype": "json",
+                 "data": { obj: JSON.stringify(Myobj)},
+                 "filter": true,
+                 "scroll": true,
+                 "searching": true,
+             },
+             "columns": [
+                
+                 {
+                     "name": "OrderID",
+                     "render": function (data, type, full, meta) {
+                         return full.Store_code + "-" + full.OrderID;
+                     }
+                 },
+                 {
+                     "name": "CustomerName",
+                     "render": function (data, type, full, meta) {
+                         return full.CustomerName + " - " + full.CustomerMobile;
+                     }
+                 },
+                 {
+                     "name": "ExpectingDeliveryDate",
+                     "render": function (data, type, full, meta) {
+                         return SplitDate(full.ExpectingDeliveryDate);
+                     }
+                 },
+                 { "data": "GrandTotal", "name": "GrandTotal", "autoWidth": true },
+                 { "data": "RemainingAmount", "name": "RemainingAmount", "autoWidth": true },
+                 { "data": "TotalQuantity", "name": "TotalQuantity", "autoWidth": true },
+                 {
+                     "name": "IsExpressDelivery",
+                     "render": function (data, type, full, meta) {
+                         if (full.IsExpressDelivery)
+                             return '<span class="badge bg-danger float-right">Express</span>';
+                         else
+                             return '<span class="badge bg-info float-right">Normal</span>';
+                     }
+                 },
+                 {
+                     "name": "IsOutletOrder",
+                     "render": function (data, type, full, meta) {
+                         if (full.IsOutletOrder)
+                             return '<span class="badge bg-secondary float-right">Offline</span>';
+                         else
+                             return '<span class="badge bg-success float-right">Online</span>';
+                     }
+                 },
+                 {
+                     "name": "OrderCycleID",
+                     "render": function (data, type, full, meta) {
+                         dropdownoption = "";
+                         if (full.orderstatusID == 11)
+                             return full.OrderStatus;
+                         else {
+                             dropdownoption += '<select class="form-control" id="_' + full.OrderID + '" onchange="UpdateStatus(' + full.OrderID + ')" style=height:unset;">';
+                             for (var j = 0; j < OrderCycle.length; j++) {
+
+                                 if (OrderCycle[j].OrderCycleID == full.orderstatusID)
+                                     dropdownoption += "<option value='" + OrderCycle[j].OrderCycleID + "' selected>" + OrderCycle[j].OrderCycleStage + "</option>";
+                                 if (OrderCycle[j].OrderCycleID > full.orderstatusID)
+                                     dropdownoption += "<option value='" + OrderCycle[j].OrderCycleID + "'>" + OrderCycle[j].OrderCycleStage + "</option>";
+                             }
+                             dropdownoption += "</select>";
+                             return dropdownoption;
+                             dropdownoption = "";
+                         }
+
+                     }
+                 },
+                 {
+                     "render": function (data, type, full, meta) {
+                         return '<button onclick="SaveID(' + full.OrderID + ');" class="btn btn-info btn-sm">Edit Details</button>';
+                     }
+                 },
+                 {
+                     "render": function (data, type, full, meta) {
+                         return '<a href="/Invoice/Index/' + full.OrderID + '" target="blank" class="btn btn-success btn-sm">Invoice</a>';
+                     }
+                 },
+             ],
+             "aoColumnDefs": [
+                 {
+                     bSortable: false,
+                     aTargets: [-1, -2,-3,-4,-5,-9,-10]
+                 },
+                 {
+                     searchable: true,
+                     aTargets: [1,2,4,5,6,9]
+                 }, { width: "18%", targets: [1] }, { width: "25%", targets: [-3] }, { width: "3%", targets: [3,4,5,6,7] }
+             ]
+
+         });
+         hideshowbuttons();
+         //var buttons = new $.fn.dataTable.Buttons($('#' + tableId2).DataTable(), {
+         //    buttons: [
+         //        'copyHtml5',
+         //        'excelHtml5',
+         //        'csvHtml5',
+         //        'pdfHtml5'
+
+         //    ]
+         //}).container().appendTo($('#buttons2'));
+         //$('.buttons-html5').addClass('btn btn-default btn-sm');
+     }
+</script>

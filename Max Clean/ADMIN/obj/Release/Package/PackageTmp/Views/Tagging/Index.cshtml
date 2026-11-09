@@ -1,0 +1,312 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+@using API.DataAccess;
+@{
+    ViewBag.Title = "Tagging";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <form id="formcustomer">
+            <div class="card card-info" id="cardiv">
+                <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                    <h3 class="card-title">@ViewBag.Title</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tag Number<span style="color:red"></span></label>
+                                <input class="form-control" type="text" name="TagNumber" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tag Note<span style="color:red">*</span></label>
+                                <textarea class="form-control" type="text" name="TagNote"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-success" id="btnupdate">Update Tag Note</button>
+                    <button type="button" class="btn btn-danger" onclick="ClearFields()" id="btnreset">Cancel</button>
+                    <input type="hidden" name="HDID" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Tagged List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="buttons"></div>
+
+            <table id="tbl" class="table table-bordered table-striped" style="width:100%">
+
+                <thead>
+                    <tr>
+
+                        <th>Tag Number</th>
+                        <th>Order ID</th>
+                        <th>Delivery Date</th>
+                        <th>Quantity</th>
+                        <th>Tagged Date</th>
+                        <th>Sent To Factory</th>
+                        <th>Received From Factory</th>
+                        <th>Order Status</th>
+                        <th>Tag Note</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</section>
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+
+
+        var tableId = "tbl";
+
+        //$('#formcustomer').validate({
+        //    rules: {
+        //        TagNote: {
+        //            required: true,
+        //        },
+
+        //    }
+        //});
+
+        //var form = $("#formcustomer");
+        //form.validate();
+
+        $(document).ready(function () {
+            $('body').css('zoom','85%');
+            BindTableData();
+            $('#cardiv').hide();
+            $("#btnupdate").click(function () {
+                if ($('[name="TagNote"]').val() != null) {
+                    var myobj = new Object();
+                    myobj.Tag_ID = $('[name="HDID"]').val();
+                    myobj.Tag_Note = $('[name="TagNote"]').val();
+
+                    $.post("@Url.Action("UpdateTag", "Tagging")", { objTag: JSON.stringify(myobj) }, function (data) {
+
+                        var Res = JSON.parse(data);
+                        if (Res.StatusCode == 200) {
+                            BindTableData();
+
+                            SuccessAlert("@ViewBag.Title", " Successfully.");
+
+                            ClearFields();
+                        }
+                        else
+                            WarningAlert("@ViewBag.Title", Res.Message);
+
+                    });
+                } else {
+                    alert("Enter Tag Note");
+                }
+            });
+        });
+
+        function ClearFields() {
+
+            $('[name="HDID"]').val(null);
+            $('[name="TagNote"]').val(null);
+            $('[name="TagNumber"]').val(null);
+            $('#cardiv').hide();
+        }
+
+          function BindTableData() {
+
+
+          @*$.get("@Url.Action("GetTags", "Tagging")", function (data) {
+
+            var myObject = JSON.parse(data);
+            var TableDate = [];
+            for (var i = 0; i < myObject.length; i++) {
+                var row = [];
+                row.push(i + 1);
+                row.push(myObject[i].Tag_Number);
+                row.push(myObject[i].Order_ID);
+                row.push(SplitDateTime(myObject[i].DeliveryDate).replace("/", "-").replace("/", "-"));
+                row.push(myObject[i].Tag_Number.split("/")[1]);
+                row.push(SplitDateTime(myObject[i].TaggedDate).replace("/", "-").replace("/", "-"));
+                row.push(SplitDateTime(myObject[i].Sent_to_factory).replace("/", "-").replace("/", "-"));
+                row.push(SplitDateTime(myObject[i].Received_from_factory).replace("/", "-").replace("/", "-"));
+                row.push(myObject[i].Order_Status);
+                row.push(myObject[i].Tag_Note);
+                row.push('<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + myObject[i].Tag_ID + ')">Edit Tag Note</button>');
+                row.push('<a href="/Tagging/Tag/' + myObject[i].Tag_ID + '" target="blank" class="btn btn-success btn-sm" >Print Tag</a>');
+                TableDate.push(row);
+            }
+            $('#' + tableId).DataTable({
+                destroy: true,
+                data: TableDate,
+                scrollX: true,
+                columns: [
+                    { title: "Sl No." },
+                    { title: "Tag Number" },
+                    { title: "Order ID" },
+                    { title: "Delivery Date" },
+                    { title: "Quantity" },
+                    { title: "Tagged Date" },
+                    { title: "Sent To Factory" },
+                    { title: "Received From Factory" },
+                    { title: "Order Status" },
+                    { title: "Tag Note" },
+                    { title: "" },
+                    { title: "" }
+                ]
+            });
+            hideshowbuttons();
+            var buttons = new $.fn.dataTable.Buttons($('#' + tableId).DataTable(), {
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+                ]
+            }).container().appendTo($('#buttons'));
+            $('.buttons-html5').addClass('btn btn-default btn-sm');
+        });*@
+
+
+          $("#" + tableId).DataTable({
+              "processing": true, // for show progress bar
+              "serverSide": true, // for process server side
+              "filter": true, // this is for enable filter (search box)
+              "orderMulti": false, // for disable multiple column at once
+              "srolly": true,
+              "destroy": true,
+              "order": [[0, "desc"]],
+              "ajax": {
+                  "url": "/Tagging/GetTags",
+                  "type": "POST",
+                  "datatype": "json",
+                  "filter": true,
+                  "scroll": true,
+                  "searching": true,
+              },
+              "columns": [
+
+                  { "data": "Tag_Number", "name": "Tag_Number", "autoWidth": true },
+                  { "data": "Order_ID", "name": "Order_ID", "autoWidth": true },
+                  {
+                      "render": function (data, type, full, meta) {
+                          return SplitDate(full.DeliveryDate);
+                      }
+                  },
+                  {
+                      "render": function (data, type, full, meta) {
+                          return full.Tag_Number.split("/")[1];
+                      }
+                  },
+                  {
+                      "render": function (data, type, full, meta) {
+                          return SplitDate(full.TaggedDate);
+                      }
+                  },
+                  {
+                      "render": function (data, type, full, meta) {
+                          if (full.Sent_to_factory != "/Date(-62135596800000)/")
+                              return SplitDate(full.Sent_to_factory);
+                          else
+                              return "";
+                      }
+                  },
+                  {
+                      "render": function (data, type, full, meta) {
+                          if (full.Received_from_factory != "/Date(-62135596800000)/")
+                              return SplitDate(full.Received_from_factory);
+                          else
+                              return "";
+
+                      }
+                  },
+                  { "data": "Order_Status", "name": "Order_Status", "autoWidth": true },
+                  { "data": "Tag_Note", "name": "Tag_Note", "autoWidth": true },
+
+
+                  {
+                      "render": function (data, type, full, meta) {
+                          return '<button type="button" class="btn btn-info btn-sm edit" onclick="GetData(' + full.Tag_ID + ')">Edit Tag Note</button>'
+                      }
+                  },
+                  {
+                      "render": function (data, type, full, meta) {
+                          return '<a href="/Tagging/Tag/' + full.Tag_ID + '" target="blank" class="btn btn-success btn-sm" >Print Tag</a>'
+                      }
+                  },
+              ],
+              "aoColumnDefs": [
+                  {
+                      bSortable: false,
+                      aTargets: [-1, -2, -5, -6, -7,-9]
+                  },
+                  {
+                      searchable: true,
+                      aTargets: [1, 2, 4,8]
+                  }
+              ]
+
+          });
+          hideshowbuttons();
+          }
+
+
+          function GetData(TagID) {
+              $.get("@Url.Action("Getby_ID", "Tagging")", { id: TagID }, function (data) {
+
+                var myobj = JSON.parse(data);
+                if (myobj != null) {
+                    $('[name="HDID"]').val(myobj.Tag_ID);
+                    $('[name="TagNote"]').val(myobj.Tag_Note);
+                    $('[name="TagNumber"]').val(myobj.Tag_Number);
+                    $('[name="TagNote"]').focus();
+                    $('#cardiv').show();
+                    $('#btnupdate').show();
+
+
+                }
+                else {
+                    DangerAlert(" ", "Failed to get data.");
+                }
+            });
+          }
+
+
+</script>

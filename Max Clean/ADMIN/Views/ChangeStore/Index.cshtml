@@ -1,0 +1,255 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using API.Models;
+@using ADMIN.API_Repository;
+@{
+    ViewBag.Title = "Transfer Order";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">@ViewBag.Title</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Welcome">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="card card-info" id="cardiv">
+            <div class="card-header" data-widget="collapse" style="cursor:pointer">
+                <h3 class="card-title"></h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool"><i class="fa"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Order ID<span style="color:red">*</span></label>
+                            <input class="form-control" type="text" name="OrderID" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-info" onclick="GetData()" id="btnradd">Get Order</button>
+                <button type="button" class="btn btn-danger" id="btnreset" onclick="ClearFields()">Cancel</button>
+                <input type="hidden" name="HDID" />
+            </div>
+        </div>
+
+    </div>
+    <div class="card" id="orderrecevied">
+        <div class='card-body'><div class='callout callout-info'><h5>Order has received at Store</h5></div></div>
+    </div>
+    <div class="card" id="orderdetails">
+        <div class="card-header">
+            <h5 class="card-title"><strong> Order Details</strong></h5>
+        </div>
+        <!-- /.card-header -->
+        <form id="formorderdetails">
+            <div class="card-body">
+                <div class="callout callout-info">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Order ID</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="orderid"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Current Store</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="store"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Order Status</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="OrderStatus"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5>Ordered Date</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="orderdate"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <h5>Pickup Date</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="PickUpDate" name="PickUpDate"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <h5>Delivery Date</h5>
+                                <div class="callout callout-info" style="background-color:#d39e0024">
+                                    <strong><label id="DeliveryDate" name="DeliveryDate"></label></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Transfer Order to :<span style="color:red">*</span></label>
+                                <select class="form-control" name="StoreID">
+
+                                    @{
+                                        try
+                                        {
+                                            List<API.Models.orderCycle_Model> Orderstatuslist = (List<API.Models.orderCycle_Model>)ViewBag.OrderStatusList;
+                                            var StoreList = (List<API.Models.Store_Model>)ViewBag.StoreList;
+                                            var user = JsonConvert.DeserializeObject<API.Models.AdminUser_Model>(Session["logindetails"].ToString());
+
+
+
+                                            foreach (var str in StoreList)
+                                            {
+                                                <option value="@str.StoreID">@str.StoreName</option>
+                                            }
+
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            throw ex;
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <br /><br /><br /><br />
+                                <button type="button" class="btn btn-success" id="btnadd">Reschedule</button>
+                                <button type="button" class="btn btn-danger" id="btnreset" onclick="Clear()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </form>
+    </div>
+</section>
+<input type="hidden" id="orderID" />
+<script src="~/CustomFiles/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="~/CustomFiles/js/Common_js.js"></script>
+<script>
+
+        var tableId = "tbl";
+
+
+
+        $(document).ready(function () {
+
+            $('#orderdetails').hide();
+            $('#orderrecevied').hide();
+            $("#btnadd").click(function () {
+
+                var myobj = new Object();
+                myobj.OrderID = $('#orderID').val();
+                myobj.StoreID = $('[name="StoreID"]').val();
+
+                $.post("@Url.Action("UpdateorderStore", "ChangeStore")", { Obj: JSON.stringify(myobj) }, function (data) {
+                    var Res = JSON.parse(data);
+                    if (Res.StatusCode == 200) 
+                    {
+                        SuccessAlert("", "Transfered Successfully.");
+                        $('#orderdetails').hide();
+                        $('#orderrecevied').hide();
+
+                        Clear();
+                        GetData();
+                    }
+                    else
+                    {
+                        WarningAlert("", Res.Message);
+                    }
+                });
+
+
+            })
+        });
+
+    function GetData() {
+        var OrderID = $('[name="OrderID"]').val();
+        //alert(OrderID.split('-')[1]);
+        if (OrderID != null && OrderID.split('-')[1] != undefined) {
+            $.get("@Url.Action("GetOrdersById", "OrderDetails")", { ID: OrderID.split('-')[1] }, function (data) {
+                // $('#orderdetails').show();
+                var myObject = JSON.parse(data);
+                if (myObject.ObjectResult != null) {
+                    $("#orderID").val(myObject.ObjectResult.OrderID);
+                    $('#orderid').html(myObject.ObjectResult.Store_code + "-" + myObject.ObjectResult.OrderID);
+                    $('#orderdate').html(SplitDateTime(myObject.ObjectResult.OrderDate));
+
+                    $('[name="prePickUptime"]').html(tConvert(myObject.ObjectResult.PickupTime));
+                    $('[name="preDeliveryTime"]').html(tConvert(myObject.ObjectResult.DeliveryTime));
+                    $('[name="PickUpDate"]').html(SplitDateTime(myObject.ObjectResult.PickupDate));
+                    $('[name="DeliveryDate"]').html(SplitDateTime(myObject.ObjectResult.ActualDeliveryDate));
+                    $('[name="Note"]').html(myObject.ObjectResult.RescheduledNote);
+                    $('#store').html(myObject.ObjectResult.StoreName);
+                    $('#OrderStatus').html(myObject.ObjectResult.OrderStatus);
+                    $('#store').val(myObject.ObjectResult.StoreName);
+                    if (myObject.ObjectResult.orderstatusID < 3) {
+                        $("#orderdetails").show();
+                        $('#orderrecevied').hide();
+                    } else {
+                        $("#orderdetails").hide();
+                        $('#orderrecevied').show();
+                    }
+
+
+                }
+                else {
+                    DangerAlert(" ", "Order Not Found");
+                }
+            });
+        } else {
+            WarningAlert("", "Enter Valid OrderID");
+            $('[name="OrderID"]').focus();
+        }
+    }
+
+
+        function ClearFields() {
+            $('[name="OrderID"]').val(null);
+        }
+        function Clear() {
+            $('[name="Pickup"]').val(null);
+            $('[name="PickUPTime"]').val(null);
+            $('[name="DeliveryTime"]').val(null);
+            $('[name="Delivery"]').val(null);
+            $('[name="prePickUptime"]').html("");
+            $('[name="preDeliveryTime"]').html("");
+            $('[name="EnteredNote"]').val(null);
+            $('#orderdetails').hide();
+            $('#orderrecevied').hide();
+        }
+</script>
+
+
+
