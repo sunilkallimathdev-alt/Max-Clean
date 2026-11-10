@@ -334,9 +334,9 @@ namespace API.Repository
         {
             try
             {
-                var BaseURL = "http://api.maxcleanlaundry.in/api/";
+                var BaseURL = "http://http://test.in/api/api/";
                 //var BaseURL = "http://maxcleanapilocal.myprelaunch.in/api/";
-                //var BaseURL = "http://maxcleanapi.myprelaunch.in/api/";
+                //var BaseURL = "http://test.in/api/";
                 //var BaseURL = "http://localhost:49170/api/";
                 WebClient client = new WebClient();
                 client.Headers[HttpRequestHeader.Accept] = "application/json";

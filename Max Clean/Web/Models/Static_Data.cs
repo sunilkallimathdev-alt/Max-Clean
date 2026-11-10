@@ -8,7 +8,7 @@ namespace MaxCleanWeb.Models
 
 #if DEBUG
         static string _name = "http://localhost:49170/api/";
-#else       //static string _name = "http://maxcleanapi.myprelaunch.in/api/";
+#else       //static string _name = "http://test.in/api/";
         static string _name = "http://maxcleanapilocal.myprelaunch.in/api/";
 #endif
         public static string BaseURL { get { return _name; } }

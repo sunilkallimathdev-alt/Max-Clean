@@ -13,10 +13,10 @@ namespace MaxCleanWebV1.Models
         {
 
             //#if DEBUG
-            //static string _name = "http://maxcleanapi.myprelaunch.in/api/";
+            //static string _name = "http://test.in/api/";
             //#else      
 
-            // static string _name = http://api.maxcleanlaundry.in/api/;
+            // static string _name = http://http://test.in/api/api/;
             //#endif
 
             static string _name = System.Configuration.ConfigurationManager.AppSettings["BaseURL"];
